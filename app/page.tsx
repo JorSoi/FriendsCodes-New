@@ -1,6 +1,8 @@
-import Button from "@/Components/Global/Button";
-import HeadingTag from "@/Components/Landing/HeadingTag";
-import NavBar from "@/Components/Landing/NavBar";
+import Button from "@/components/Global/Button";
+import ExplanationCardTwo from "@/components/Landing/ExplanationCardTwo";
+import ExplanationCardOne from "@/components/Landing/ExplanationCardOne";
+import HeadingTag from "@/components/Landing/HeadingTag";
+import NavBar from "@/components/Landing/NavBar";
 import Image from "next/image";
 
 export default function Home() {
@@ -176,15 +178,25 @@ export default function Home() {
         <div className="absolute w-full left-0 right-0 bottom-0 h-[30%] z-2 bg-gradient-to-b from-transparent from-0% via-[#09071c9e] via-30% to-[#09071C] to-90%"></div>
       </section>
 
-      <section className="pt-[30px]">
-        <div className="flex justify-center">
+      {/* Feature Cards */}
+      <section id="how-it-works" className="pt-[30px] mx-[3%]">
+        <div className="flex justify-center align-center flex-col gap-[20px]">
           <HeadingTag>How it works</HeadingTag>
+          <h2 className="text-center text-white text-[40px] font-[670] tracking-[-2%] leading-[130%]">
+            It really can't get any simpler than this!
+          </h2>
+        </div>
+        <div className="w-full flex justify-center align-center">
+          <div className="flex justify-between gap-8 mt-[60px] relative w-full max-w-[1300px]">
+            <ExplanationCardOne />
+            <ExplanationCardTwo />
+
+            <div className="bg-[#7c07dc93]  blur-[125px] rounded-[100%]  w-[60%] h-[30%] absolute z-[-1] top-[50%] translate-y-[-50%] left-[-10%]"></div>
+            <div className="bg-[#9413a29d]  blur-[125px] rounded-[100%]  w-[60%] h-[30%] absolute z-[-1] top-[50%] translate-y-[-50%] right-[-10%]"></div>
+          </div>
         </div>
       </section>
 
-      <div id="how-it-works" className="w-full h-20 mt-[100vh] bg-red-400">
-        How it works
-      </div>
       <div id="about" className="w-full h-20 mt-[100vh] bg-red-400">
         about
       </div>
