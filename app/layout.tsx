@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${figtree.variable} ${inter.variable} scroll-smooth`}>
-      <body className="font-figtree">
+      <body className="font-figtree bg-[#09071C]">
         {children}
       </body>
     </html>

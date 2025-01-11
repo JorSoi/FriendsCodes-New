@@ -4,7 +4,7 @@ import Button from "../Global/Button";
 
 function NavBar () {
     return (
-        <div className="w-full flex justify-center items-center fixed top-[27px]">
+        <div className="w-full flex justify-center items-center fixed top-[30px] z-10">
             <div className="w-[90%] max-w-[880px] sm:w-[94%] bg-[#ffffff16] rounded-full backdrop-blur-md border-2 border-[#ffffff16] px-[24px] py-[12px]">
                 <div className="flex justify-between items-center w-full">
                     <Link className="flex gap-[10px] items-center" href="/">

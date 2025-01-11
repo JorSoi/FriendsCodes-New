@@ -9,23 +9,32 @@ export default {
   ],
   theme: {
     screens: {
-      "2xl": {
-        max: '1535px'
-      },
-      "xl": {
-        max: '1279px'
-      },
       "lg": {
-        max: '1023px'
+        max: '1024px'
       },
       "md": {
         max: '767px'
       },
       "sm": {
         max: '639px'
-      }
+      },
+
     },
     extend: {
+      screens: {
+        "3xl": {
+          min: '1920px'
+        },
+        "2xl": {
+          min: '1440px'
+        },
+        "xl": {
+          min: '1380px'
+        },
+        "2sm": {
+          max: '479px'
+        }
+      },
       fontFamily: {
         figtree: ['var(--font-figtree)'],
         inter: ['var(--font-inter)'],
