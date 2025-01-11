@@ -13,7 +13,7 @@ const buttonVariants = cva(
                 secondary:"text-white bg-[#ffffff15] shadow-[0_0_0_1px_#ffffff24,inset_0_2px_2px_0_#ffffff10]",
             },
             size: {
-                sm: "text-[14px] px-[16px] py-[12px] rounded-[11px]",
+                sm: "text-[14px] md:text-[11px] px-[16px] py-[12px] rounded-[11px] ",
                 md:"text-[17px] md:text-[14px] px-[23px] py-[12px] rounded-[11px]",
                 lg:"",
             }

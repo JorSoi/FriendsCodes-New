@@ -1,7 +1,7 @@
 import Button from "@/Components/Global/Button";
+import HeadingTag from "@/Components/Landing/HeadingTag";
 import NavBar from "@/Components/Landing/NavBar";
 import Image from "next/image";
-
 
 export default function Home() {
   return (
@@ -33,7 +33,6 @@ export default function Home() {
               width="1379"
               height="893"
               preserveAspectRatio="xMidYMid slice"
-              
             />
           </pattern>
         </defs>
@@ -45,25 +44,143 @@ export default function Home() {
       </svg>
 
       {/* Hero Heading Section */}
-      <div className="w-[900px] max-w-[90%] text-center mx-auto my-auto pt-[190px] xl:pt-[240px] flex items-center justify-center flex-col">
-        <h1 className="text-white text-[65px] md:text-[52px] sm:text-[47px] xl:text-[75px] font-[670] tracking-[-2%] leading-[130%] ">Share Codes with Friends, Family and the World</h1>
-        <p className="max-w-[600px] md:max-w-[540px] sm:max-w-[500px] text-[18px] xl:text-[20px] leading-[156.1%] pt-[31px] text-[#A9A6B2]">The easiest place to share and redeem product referral codes with anyone. Collect the benefits from 4000+ companies worldwide.</p>
-        <div className="flex gap-6 mt-[52px]">
-          <Button variant={'primary'} size={'md'}>Get Started!</Button>
-          <Button variant={'secondary'} size={'md'}>How it works</Button>
+      <div className="w-full pt-[190px] md:pt-[170px] xs:pt-[145px] xl:pt-[240px] overflow-hidden">
+        <div className="w-[900px] md:w-[500px] max-w-[90%] mx-auto my-auto flex items-center justify-center flex-col text-center relative">
+          <h1 className="text-white text-[65px] md:text-[56px] sm:text-[50px] xs:text-[40px] xl:text-[75px] font-[670] tracking-[-2%] leading-[130%] ">
+            Share Codes with Friends, Family and the World
+          </h1>
+          <p className="max-w-[600px] md:max-w-[540px] sm:max-w-[500px] text-[18px] sm:text-[17px] xl:text-[20px] leading-[156.1%] pt-[31px] md:pt-[20px] text-[#A9A6B2]">
+            The easiest place to share and redeem product referral codes with
+            anyone. Collect the benefits from 4000+ companies worldwide.
+          </p>
+          <div className="flex gap-6 mt-[52px] xs:mt-[42px]">
+            <Button variant={"primary"} size={"md"}>
+              Get Started!
+            </Button>
+            <Button variant={"secondary"} size={"md"}>
+              How it works
+            </Button>
+          </div>
+
+          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] lg:top-[-14%] top-[-8%] xl:top-[-23%] lg:left-[-5%] left-[-10%] xl:left-[-18%] rotate-[-17deg] backdrop-blur-[10px] z-10 scale-[85%] lg:scale-[75%]">
+            <Image
+              src={"/company-logos/adidas-logo.svg"}
+              width={60}
+              height={60}
+              alt="Spotify logo"
+            />
+            <Image
+              className="inset-0 absolute"
+              src={"/company-logos/logo-box-border.svg"}
+              width={300}
+              height={300}
+              alt=""
+            />
+          </div>
+
+          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] lg:left-[0%] left-[-1%] xl:left-[-6%] lg:top-[27%] xl:top-[50%] rotate-[-9deg] backdrop-blur-[10px] z-10 scale-[67%]">
+            <Image
+              src={"/company-logos/amex-logo.svg"}
+              width={65}
+              height={65}
+              alt="Spotify logo"
+            />
+            <Image
+              className="inset-0 absolute"
+              src={"/company-logos/logo-box-border.svg"}
+              width={300}
+              height={300}
+              alt=""
+            />
+          </div>
+
+          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] lg:left-[-5%] left-[-12%] xl:left-[-24%] bottom-[0%] rotate-[-20deg] backdrop-blur-[10px] z-10 scale-[84%]">
+            <Image
+              src={"/company-logos/amazon-logo.svg"}
+              width={50}
+              height={50}
+              alt="Spotify logo"
+            />
+            <Image
+              className="inset-0 absolute"
+              src={"/company-logos/logo-box-border.svg"}
+              width={300}
+              height={300}
+              alt=""
+            />
+          </div>
+
+          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] top-[-8%] xl:top-[-14%] right-[-10%] xl:right-[-17%] rotate-[13deg] backdrop-blur-[10px] z-10 scale-[90%] xl:scale-[95%]">
+            <Image
+              src={"/company-logos/spotify-logo.svg"}
+              width={60}
+              height={60}
+              alt="Spotify logo"
+            />
+            <Image
+              className="inset-0 absolute"
+              src={"/company-logos/logo-box-border.svg"}
+              width={300}
+              height={300}
+              alt=""
+            />
+          </div>
+
+          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] right-[-1%] xl:right-[-5%] rotate-[11deg] backdrop-blur-[10px] z-10 scale-[65%] xl:scale-[70%]">
+            <Image
+              src={"/company-logos/trade-republic-logo.svg"}
+              width={65}
+              height={65}
+              alt="Spotify logo"
+            />
+            <Image
+              className="inset-0 absolute"
+              src={"/company-logos/logo-box-border.svg"}
+              width={300}
+              height={300}
+              alt=""
+            />
+          </div>
+
+          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] right-[-12%] xl:right-[-20%] bottom-[5%] rotate-[11deg] backdrop-blur-[10px] z-10 scale-[69%] xl:scale-[73%]">
+            <Image
+              src={"/company-logos/paypal-logo.svg"}
+              width={45}
+              height={45}
+              alt="Spotify logo"
+            />
+            <Image
+              className="inset-0 absolute"
+              src={"/company-logos/logo-box-border.svg"}
+              width={300}
+              height={300}
+              alt=""
+            />
+          </div>
         </div>
       </div>
 
-
       {/* Hero Image */}
-      <section className="w-full flex justify-center items-center pt-[100px] lg:pt-[70px] pb-[20px] relative">
-        <div className="backdrop-blur-[38px] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] border-[#ffffff30] border-2 rounded-[20px] p-[23px] md:p-[15px] relative max-w-[90%]">
-          <Image className="[border-radius:10px] shadow-[0_0_17_0px_#16182440 relative z-1" src={'/hero-image.png'} width={950} height={550} priority alt="Dashboard with referral codes"/>
-          <div className="absolute left-[3%] right-[3%] top-[3%] bottom-[30%] bg-white z-[-1] blur-[80px] opacity-[34%]"></div>
+      <section className="w-full flex justify-center items-center pt-[100px] lg:pt-[70px] pb-[20px] xs:pb-[10px] relative">
+        <div className="backdrop-blur-[38px] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] border-[#ffffff30] border-2 rounded-[20px] xs:rounded-[10px] p-[23px] md:p-[15px] xs:p-[7px] relative max-w-[90%] xs:max-w-[94%]">
+          <Image
+            className="rounded-[10px] xs:rounded-[5px] relative z-1"
+            src={"/hero-image.png"}
+            width={950}
+            height={550}
+            priority
+            alt="Dashboard with referral codes"
+          />
+          <div className="absolute left-[3%] right-[3%] top-[3%] bottom-[30%] md:bottom-[40%] bg-white z-[-1] blur-[80px] md:blur-[40px] sm:blur-[40px] xs:blur-[25px] opacity-[34%]"></div>
         </div>
-        <div className="absolute w-full left-0 right-0 bottom-0 h-[200px] z-2 bg-gradient-to-b from-transparent from-0% via-[#09071c9e] via-30% to-[#09071C] to-90%"></div>
+        <div className="absolute w-full left-0 right-0 bottom-0 h-[30%] z-2 bg-gradient-to-b from-transparent from-0% via-[#09071c9e] via-30% to-[#09071C] to-90%"></div>
       </section>
-      
+
+      <section className="pt-[30px]">
+        <div className="flex justify-center">
+          <HeadingTag>How it works</HeadingTag>
+        </div>
+      </section>
 
       <div id="how-it-works" className="w-full h-20 mt-[100vh] bg-red-400">
         How it works

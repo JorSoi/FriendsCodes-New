@@ -9,6 +9,15 @@ export default {
   ],
   theme: {
     screens: {
+      "3xl": {
+        min: '1920px'
+      },
+      "2xl": {
+        min: '1440px'
+      },
+      "xl": {
+        min: '1380px'
+      },
       "lg": {
         max: '1024px'
       },
@@ -18,23 +27,12 @@ export default {
       "sm": {
         max: '639px'
       },
-
+      "xs": {
+        max: '479px'
+      }
     },
     extend: {
-      screens: {
-        "3xl": {
-          min: '1920px'
-        },
-        "2xl": {
-          min: '1440px'
-        },
-        "xl": {
-          min: '1380px'
-        },
-        "2sm": {
-          max: '479px'
-        }
-      },
+     
       fontFamily: {
         figtree: ['var(--font-figtree)'],
         inter: ['var(--font-inter)'],
