@@ -12,7 +12,7 @@ export default function Home() {
       <svg
         viewBox="0 0 1379 893"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-[96%] max-w-[1500px] mt-[5px] absolute left-1/2 -translate-x-1/2 z-[-10] top-[10px]"
+        className="absolute left-1/2 top-[10px] z-[-10] mt-[5px] w-[96%] max-w-[1500px] -translate-x-1/2"
       >
         <defs>
           <linearGradient id="fadeGradient" x1="0" y1="0" x2="0" y2="1">
@@ -46,16 +46,16 @@ export default function Home() {
       </svg>
 
       {/* Hero Heading Section */}
-      <div className="w-full pt-[190px] md:pt-[170px] xs:pt-[145px] xl:pt-[240px] overflow-hidden">
-        <div className="w-[900px] md:w-[500px] max-w-[90%] mx-auto my-auto flex items-center justify-center flex-col text-center relative">
-          <h1 className="text-white text-[65px] md:text-[56px] sm:text-[50px] xs:text-[40px] xl:text-[75px] font-[670] tracking-[-2%] leading-[130%] ">
+      <div className="w-full overflow-hidden pt-[190px] xl:pt-[240px] md:pt-[170px] xs:pt-[145px]">
+        <div className="relative mx-auto my-auto flex w-[900px] max-w-[90%] flex-col items-center justify-center text-center md:w-[500px]">
+          <h1 className="text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] md:text-[56px] sm:text-[50px] xs:text-[40px]">
             Share Codes with Friends, Family and the World
           </h1>
-          <p className="max-w-[600px] md:max-w-[540px] sm:max-w-[500px] text-[18px] sm:text-[17px] xl:text-[20px] leading-[156.1%] pt-[31px] md:pt-[20px] text-[#A9A6B2]">
+          <p className="max-w-[600px] pt-[31px] text-[18px] leading-[156.1%] text-[#A9A6B2] xl:text-[20px] md:max-w-[540px] md:pt-[20px] sm:max-w-[500px] sm:text-[17px]">
             The easiest place to share and redeem product referral codes with
             anyone. Collect the benefits from 4000+ companies worldwide.
           </p>
-          <div className="flex gap-6 mt-[52px] xs:mt-[42px]">
+          <div className="mt-[52px] flex gap-6 xs:mt-[42px]">
             <Button variant={"primary"} size={"md"}>
               Get Started!
             </Button>
@@ -64,7 +64,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] lg:top-[-14%] top-[-8%] xl:top-[-23%] lg:left-[-5%] left-[-10%] xl:left-[-18%] rotate-[-17deg] backdrop-blur-[10px] z-10 scale-[85%] lg:scale-[75%]">
+          <div className="absolute left-[-10%] top-[-8%] z-10 flex size-[100px] rotate-[-17deg] scale-[85%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-18%] xl:top-[-23%] lg:left-[-5%] lg:top-[-14%] lg:scale-[75%]">
             <Image
               src={"/company-logos/adidas-logo.svg"}
               width={60}
@@ -72,7 +72,7 @@ export default function Home() {
               alt="Spotify logo"
             />
             <Image
-              className="inset-0 absolute"
+              className="absolute inset-0"
               src={"/company-logos/logo-box-border.svg"}
               width={300}
               height={300}
@@ -80,7 +80,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] lg:left-[0%] left-[-1%] xl:left-[-6%] lg:top-[27%] xl:top-[50%] rotate-[-9deg] backdrop-blur-[10px] z-10 scale-[67%]">
+          <div className="absolute left-[-1%] z-10 flex size-[100px] rotate-[-9deg] scale-[67%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-6%] xl:top-[50%] lg:left-[0%] lg:top-[27%]">
             <Image
               src={"/company-logos/amex-logo.svg"}
               width={65}
@@ -88,7 +88,7 @@ export default function Home() {
               alt="Spotify logo"
             />
             <Image
-              className="inset-0 absolute"
+              className="absolute inset-0"
               src={"/company-logos/logo-box-border.svg"}
               width={300}
               height={300}
@@ -96,7 +96,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] lg:left-[-5%] left-[-12%] xl:left-[-24%] bottom-[0%] rotate-[-20deg] backdrop-blur-[10px] z-10 scale-[84%]">
+          <div className="absolute bottom-[0%] left-[-12%] z-10 flex size-[100px] rotate-[-20deg] scale-[84%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-24%] lg:left-[-5%]">
             <Image
               src={"/company-logos/amazon-logo.svg"}
               width={50}
@@ -104,7 +104,7 @@ export default function Home() {
               alt="Spotify logo"
             />
             <Image
-              className="inset-0 absolute"
+              className="absolute inset-0"
               src={"/company-logos/logo-box-border.svg"}
               width={300}
               height={300}
@@ -112,7 +112,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] top-[-8%] xl:top-[-14%] right-[-10%] xl:right-[-17%] rotate-[13deg] backdrop-blur-[10px] z-10 scale-[90%] xl:scale-[95%]">
+          <div className="absolute right-[-10%] top-[-8%] z-10 flex size-[100px] rotate-[13deg] scale-[90%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-17%] xl:top-[-14%] xl:scale-[95%]">
             <Image
               src={"/company-logos/spotify-logo.svg"}
               width={60}
@@ -120,7 +120,7 @@ export default function Home() {
               alt="Spotify logo"
             />
             <Image
-              className="inset-0 absolute"
+              className="absolute inset-0"
               src={"/company-logos/logo-box-border.svg"}
               width={300}
               height={300}
@@ -128,7 +128,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] right-[-1%] xl:right-[-5%] rotate-[11deg] backdrop-blur-[10px] z-10 scale-[65%] xl:scale-[70%]">
+          <div className="absolute right-[-1%] z-10 flex size-[100px] rotate-[11deg] scale-[65%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-5%] xl:scale-[70%]">
             <Image
               src={"/company-logos/trade-republic-logo.svg"}
               width={65}
@@ -136,7 +136,7 @@ export default function Home() {
               alt="Spotify logo"
             />
             <Image
-              className="inset-0 absolute"
+              className="absolute inset-0"
               src={"/company-logos/logo-box-border.svg"}
               width={300}
               height={300}
@@ -144,7 +144,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="size-[100px] absolute flex justify-center items-center bg-gradient-to-br from-[#2c304678] to-[#40456462] rounded-[25px] right-[-12%] xl:right-[-20%] bottom-[5%] rotate-[11deg] backdrop-blur-[10px] z-10 scale-[69%] xl:scale-[73%]">
+          <div className="absolute bottom-[5%] right-[-12%] z-10 flex size-[100px] rotate-[11deg] scale-[69%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-20%] xl:scale-[73%]">
             <Image
               src={"/company-logos/paypal-logo.svg"}
               width={45}
@@ -152,7 +152,7 @@ export default function Home() {
               alt="Spotify logo"
             />
             <Image
-              className="inset-0 absolute"
+              className="absolute inset-0"
               src={"/company-logos/logo-box-border.svg"}
               width={300}
               height={300}
@@ -163,44 +163,45 @@ export default function Home() {
       </div>
 
       {/* Hero Image */}
-      <section className="w-full flex justify-center items-center pt-[100px] lg:pt-[70px] pb-[20px] xs:pb-[10px] relative">
-        <div className="backdrop-blur-[38px] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] border-[#ffffff30] border-2 rounded-[20px] xs:rounded-[10px] p-[23px] md:p-[15px] xs:p-[7px] relative max-w-[90%] xs:max-w-[94%]">
+      <section className="relative flex w-full items-center justify-center pb-[20px] pt-[100px] lg:pt-[70px] xs:pb-[10px]">
+        <div className="relative max-w-[90%] rounded-[20px] border-2 border-[#ffffff30] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] p-[23px] backdrop-blur-[38px] md:p-[15px] xs:max-w-[94%] xs:rounded-[10px] xs:p-[7px]">
           <Image
-            className="rounded-[10px] xs:rounded-[5px] relative z-1"
+            className="z-1 relative rounded-[10px] xs:rounded-[5px]"
             src={"/hero-image.png"}
             width={950}
             height={550}
             priority
             alt="Dashboard with referral codes"
           />
-          <div className="absolute left-[3%] right-[3%] top-[3%] bottom-[30%] md:bottom-[40%] bg-white z-[-1] blur-[80px] md:blur-[40px] sm:blur-[40px] xs:blur-[25px] opacity-[34%]"></div>
+          <div className="absolute bottom-[30%] left-[3%] right-[3%] top-[3%] z-[-1] bg-white opacity-[34%] blur-[80px] md:bottom-[40%] md:blur-[40px] sm:blur-[40px] xs:blur-[25px]"></div>
         </div>
-        <div className="absolute w-full left-0 right-0 bottom-0 h-[30%] z-2 bg-gradient-to-b from-transparent from-0% via-[#09071c9e] via-30% to-[#09071C] to-90%"></div>
+        <div className="z-2 absolute bottom-0 left-0 right-0 h-[30%] w-full bg-gradient-to-b from-transparent from-0% via-[#09071c9e] via-30% to-[#09071C] to-90%"></div>
       </section>
 
       {/* Feature Cards */}
-      <section id="how-it-works" className="pt-[30px] mx-[3%]">
-        <div className="flex justify-center align-center flex-col gap-[20px]">
+      <section id="how-it-works" className="mx-[3%] pt-[30px]">
+        <div className="align-center flex flex-col justify-center gap-[20px]">
           <HeadingTag>How it works</HeadingTag>
-          <h2 className="text-center text-white text-[40px] font-[670] tracking-[-2%] leading-[130%]">
+          <h2 className="text-center text-[40px] font-[670] leading-[130%] tracking-[-2%] text-white">
             It really can't get any simpler than this!
           </h2>
         </div>
-        <div className="w-full flex justify-center align-center">
-          <div className="flex justify-between gap-8 mt-[60px] relative w-full max-w-[1300px]">
+
+        <div className="align-center flex w-full justify-center">
+          <div className="relative mt-[60px] flex w-full max-w-[1300px] justify-between gap-8">
             <ExplanationCardOne />
             <ExplanationCardTwo />
 
-            <div className="bg-[#7c07dc93]  blur-[125px] rounded-[100%]  w-[60%] h-[30%] absolute z-[-1] top-[50%] translate-y-[-50%] left-[-10%]"></div>
-            <div className="bg-[#9413a29d]  blur-[125px] rounded-[100%]  w-[60%] h-[30%] absolute z-[-1] top-[50%] translate-y-[-50%] right-[-10%]"></div>
+            <div className="absolute left-[-10%] top-[50%] z-[-1] h-[30%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#7c07dc93] blur-[125px]"></div>
+            <div className="absolute right-[-10%] top-[50%] z-[-1] h-[30%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#9413a29d] blur-[125px]"></div>
           </div>
         </div>
       </section>
 
-      <div id="about" className="w-full h-20 mt-[100vh] bg-red-400">
+      <div id="about" className="mt-[100vh] h-20 w-full bg-red-400">
         about
       </div>
-      <div id="blog" className="w-full h-20 mt-[100vh] bg-red-400">
+      <div id="blog" className="mt-[100vh] h-20 w-full bg-red-400">
         blog
       </div>
     </>

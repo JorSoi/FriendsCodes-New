@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import { figtree } from "./Lib/fonts";
 
 export default {
   content: [
