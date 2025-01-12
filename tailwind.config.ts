@@ -20,6 +20,9 @@ export default {
       "lg": {
         max: '1024px'
       },
+      "mlg": {
+        max: '890px'
+      },
       "md": {
         max: '767px'
       },

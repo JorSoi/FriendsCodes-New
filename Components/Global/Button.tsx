@@ -12,7 +12,7 @@ const buttonVariants = cva(
         primary:
           "text-white bg-gradient-to-b from-[#FF00B2] to-[#D900FF] shadow-[0_0_0_1px_#ED01D8,inset_0_2px_2px_0_#ffffff70]",
         secondary:
-          "text-white bg-[#ffffff15] hover:bg-[#ffffff18] shadow-[0_0_0_1px_#ffffff24,inset_0_2px_2px_0_#ffffff10]",
+          "text-white bg-[#ffffff15] hover:bg-[#ffffff20] shadow-[0_0_0_1px_#ffffff24,inset_0_2px_2px_0_#ffffff10]",
       },
       size: {
         sm: "text-[14px] md:text-[11px] px-[16px] py-[12px] rounded-[11px] ",
