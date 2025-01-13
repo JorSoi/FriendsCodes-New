@@ -4,6 +4,8 @@ import ExplanationCardOne from "@/components/Landing/ExplanationCardOne";
 import HeadingTag from "@/components/Landing/HeadingTag";
 import NavBar from "@/components/Landing/NavBar";
 import Image from "next/image";
+import ExplanationCardThree from "@/components/Landing/ExplanationCardThree";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -51,7 +53,7 @@ export default function Home() {
         className="w-full overflow-hidden pt-[190px] xl:pt-[240px] md:pt-[170px] xs:pt-[145px]"
       >
         <div className="relative mx-auto my-auto flex w-[900px] max-w-[90%] flex-col items-center justify-center text-center md:w-[500px]">
-          <h1 className="mlg:max-w-[600px] text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] md:text-[57px] sm:text-[52px] xs:text-[45px]">
+          <h1 className="text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] mlg:max-w-[600px] md:text-[57px] sm:text-[52px] xs:text-[45px]">
             Share Codes with Friends, Family and the World
           </h1>
           <p className="max-w-[600px] pt-[31px] text-[18px] leading-[156.1%] text-[#A9A6B2] xl:text-[20px] md:max-w-[540px] md:pt-[20px] sm:max-w-[500px] sm:text-[17px]">
@@ -59,15 +61,19 @@ export default function Home() {
             anyone. Collect the benefits from 4000+ companies worldwide.
           </p>
           <div className="mt-[52px] flex gap-6 xs:mt-[42px]">
+          <Link href={'https://friendscodes.de/auth/signUp'}>
             <Button variant={"primary"} size={"md"}>
               Get Started!
             </Button>
-            <Button variant={"secondary"} size={"md"}>
-              How it works
-            </Button>
+          </Link>
+            <Link href={'/#how-it-works'}>
+              <Button variant={"secondary"} size={"md"}>
+                How it works
+              </Button>
+            </Link>
           </div>
 
-          <div className="mlg:left-[-1%] mlg:top-[-15%] absolute left-[-10%] top-[-15%] z-10 flex size-[100px] rotate-[-17deg] scale-[85%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-18%] xl:top-[-23%] lg:left-[-5%] lg:top-[-19%] lg:scale-[75%] md:left-[-18%] md:scale-[65%] sm:hidden">
+          <div className="absolute left-[-10%] top-[-15%] z-10 flex size-[100px] rotate-[-17deg] scale-[85%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-18%] xl:top-[-23%] lg:left-[-5%] lg:top-[-19%] lg:scale-[75%] mlg:left-[-1%] mlg:top-[-15%] md:left-[-18%] md:scale-[65%] sm:hidden">
             <Image
               src={"/company-logos/adidas-logo.svg"}
               width={60}
@@ -83,7 +89,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="mlg:scale-[60%] mlg:top-[35%] mlg:rotate-[-25deg] absolute left-[-1%] z-10 flex size-[100px] rotate-[-9deg] scale-[67%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-6%] xl:top-[50%] lg:left-[0%] lg:top-[27%] md:left-[-15%] md:top-[30%] md:rotate-[-19deg] md:scale-[55%] sm:hidden">
+          <div className="absolute left-[-1%] z-10 flex size-[100px] rotate-[-9deg] scale-[67%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-6%] xl:top-[50%] lg:left-[0%] lg:top-[27%] mlg:top-[35%] mlg:rotate-[-25deg] mlg:scale-[60%] md:left-[-15%] md:top-[30%] md:rotate-[-19deg] md:scale-[55%] sm:hidden">
             <Image
               src={"/company-logos/amex-logo.svg"}
               width={65}
@@ -99,7 +105,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="mlg:hidden absolute bottom-[0%] left-[-12%] z-10 flex size-[100px] rotate-[-20deg] scale-[78%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-24%] lg:left-[-5%] lg:scale-[60%]">
+          <div className="absolute bottom-[0%] left-[-12%] z-10 flex size-[100px] rotate-[-20deg] scale-[78%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-24%] lg:left-[-5%] lg:scale-[60%] mlg:hidden">
             <Image
               src={"/company-logos/amazon-logo.svg"}
               width={50}
@@ -131,7 +137,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="mlg:scale-[55%] mlg:rotate-[16deg] absolute right-[-1%] z-10 flex size-[100px] rotate-[11deg] scale-[65%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-5%] xl:scale-[70%] md:right-[-10%] md:top-[33%] md:scale-[50%] sm:hidden">
+          <div className="absolute right-[-1%] z-10 flex size-[100px] rotate-[11deg] scale-[65%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-5%] xl:scale-[70%] mlg:rotate-[16deg] mlg:scale-[55%] md:right-[-10%] md:top-[33%] md:scale-[50%] sm:hidden">
             <Image
               src={"/company-logos/trade-republic-logo.svg"}
               width={65}
@@ -147,7 +153,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="mlg:hidden absolute bottom-[5%] right-[-12%] z-10 flex size-[100px] rotate-[11deg] scale-[69%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-20%] xl:scale-[73%] lg:bottom-[0%] lg:right-[5%] lg:rotate-[5deg] lg:scale-[50%]">
+          <div className="absolute bottom-[5%] right-[-12%] z-10 flex size-[100px] rotate-[11deg] scale-[69%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-20%] xl:scale-[73%] lg:bottom-[0%] lg:right-[5%] lg:rotate-[5deg] lg:scale-[50%] mlg:hidden">
             <Image
               src={"/company-logos/paypal-logo.svg"}
               width={45}
@@ -183,7 +189,7 @@ export default function Home() {
 
       {/* Feature Cards */}
       <section id="how-it-works" className="mx-[3%] scroll-mt-40 pt-[30px]">
-        <div className="align-center flex flex-col justify-center gap-[20px]">
+        <div className="items-center flex flex-col justify-center gap-[20px]">
           <HeadingTag>How it works</HeadingTag>
           <h2 className="text-center text-[40px] font-[670] leading-[130%] tracking-[-2%] text-white">
             It really can't get any simpler than this!
@@ -191,9 +197,10 @@ export default function Home() {
         </div>
 
         <div className="align-center flex w-full justify-center">
-          <div className="relative mt-[60px] flex w-full max-w-[1300px] justify-between gap-8">
+          <div className="relative mt-[60px] grid grid-cols-3 w-full max-w-[1300px] justify-between gap-8">
             <ExplanationCardOne />
             <ExplanationCardTwo />
+            <ExplanationCardThree />
 
             {/* <div className="absolute left-[-10%] top-[50%] z-[-1] h-[30%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#7c07dc93] blur-[125px]"></div>
             <div className="absolute right-[-10%] top-[50%] z-[-1] h-[30%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#9413a29d] blur-[125px]"></div> */}
