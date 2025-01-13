@@ -195,7 +195,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center gap-[20px]">
           <HeadingTag>How it works</HeadingTag>
           <h2 className="text-center text-[40px] font-[670] leading-[130%] tracking-[-2%] text-white">
-            It really can't get any simpler than this!
+            It really can&apos;t get any simpler than this!
           </h2>
         </div>
 
