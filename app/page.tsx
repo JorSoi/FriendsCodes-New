@@ -1,10 +1,10 @@
 import Button from "@/components/Global/Button";
-import ExplanationCardTwo from "@/components/Landing/ExplanationCardTwo";
-import ExplanationCardOne from "@/components/Landing/ExplanationCardOne";
+import Card2 from "@/components/Landing/Card2";
+import Card1 from "@/components/Landing/Card1";
 import HeadingTag from "@/components/Landing/HeadingTag";
 import NavBar from "@/components/Landing/NavBar";
 import Image from "next/image";
-import ExplanationCardThree from "@/components/Landing/ExplanationCardThree";
+import Card3 from "@/components/Landing/Card3";
 import Link from "next/link";
 
 export default function Home() {
@@ -188,7 +188,7 @@ export default function Home() {
       </section>
 
       {/* Feature Cards */}
-      <section id="how-it-works" className="mx-[3%] scroll-mt-40 pt-[30px]">
+      <section id="how-it-works" className="px-[3%] scroll-mt-40 pt-[30px] overflow-hidden">
         <div className="items-center flex flex-col justify-center gap-[20px]">
           <HeadingTag>How it works</HeadingTag>
           <h2 className="text-center text-[40px] font-[670] leading-[130%] tracking-[-2%] text-white">
@@ -196,14 +196,14 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="align-center flex w-full justify-center">
-          <div className="relative mt-[60px] grid grid-cols-3 w-full max-w-[1300px] justify-between gap-8">
-            <ExplanationCardOne />
-            <ExplanationCardTwo />
-            <ExplanationCardThree />
+        <div className="align-center flex w-full justify-center ">
+          <div className="relative mt-[60px] grid grid-cols-3 lg:grid-cols-2 w-full max-w-[1300px] justify-between gap-8 lg:max-w-[850px] sm:w-full sm:flex sm:flex-col">
+            <Card1 />
+            <Card2 />
+            <Card3 />
 
-            {/* <div className="absolute left-[-10%] top-[50%] z-[-1] h-[30%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#7c07dc93] blur-[125px]"></div>
-            <div className="absolute right-[-10%] top-[50%] z-[-1] h-[30%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#9413a29d] blur-[125px]"></div> */}
+            <div className="absolute left-[-10%] top-[50%] z-[-1] h-[50%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#7c07dc87] blur-[125px]"></div>
+            <div className="absolute right-[-10%] top-[50%] z-[-1] h-[50%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#9413a284] blur-[125px]"></div>
           </div>
         </div>
       </section>
