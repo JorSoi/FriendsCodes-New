@@ -34,7 +34,6 @@ export default {
       }
     },
     extend: {
-     
       fontFamily: {
         figtree: ['var(--font-figtree)'],
         inter: ['var(--font-inter)'],

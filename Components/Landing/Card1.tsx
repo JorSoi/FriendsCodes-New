@@ -2,7 +2,9 @@ import Image from "next/image";
 
 function Card1() {
   return (
-    <div className="max-w-[400px] lg:max-w-full rounded-[13px] border-2 border-[#ffffff10] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)]">
+    <div className="max-w-[400px] rounded-[13px] border-2 border-[#ffffff10] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:max-w-full">
+      
+      {/* Graphic Container */}
       <div className="relative h-[280px] overflow-hidden">
         <div className="absolute left-1/2 top-1/2 flex w-max -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-3">
           <div className="relative flex size-[80px] items-center justify-center rounded-[11px] border-[1px] border-[#ffffff09] bg-gradient-to-br from-[#ffffff06] to-[#ffffff03] shadow-[inset_0px_0px_5px_1px_rgba(255,255,255,0.07)]">
@@ -52,7 +54,7 @@ function Card1() {
               />
             </div>
 
-            <div className="absolute bottom-[-50%] right-[-45%] z-[1] flex size-[90px] rotate-[-11deg] items-center justify-center rounded-[16px] border-[1px] border-[#ffffff09] bg-gradient-to-br from-[#ffffff20] to-[#ffffff10] shadow-[inset_0px_0px_3px_2px_#2C88D8,_0px_7px_56px_0px_rgba(0,0,0,0.12)] backdrop-blur-[10px] group-hover:scale-[110%] group-hover:translate-x-[-50px]  group-hover:translate-y-[-40px] group-hover:rotate-[-3deg] transition-transform duration-700">
+            <div className="absolute bottom-[-50%] right-[-45%] z-[1] flex size-[90px] rotate-[-11deg] items-center justify-center rounded-[16px] border-[1px] border-[#ffffff09] bg-gradient-to-br from-[#ffffff20] to-[#ffffff10] shadow-[inset_0px_0px_3px_2px_#2C88D8,_0px_7px_56px_0px_rgba(0,0,0,0.12)] backdrop-blur-[10px] transition-transform duration-700 group-hover:translate-x-[-50px] group-hover:translate-y-[-40px] group-hover:rotate-[-3deg] group-hover:scale-[110%]">
               <Image
                 src={"/company-logos/amazon-logo.svg"}
                 width={35}
@@ -61,7 +63,7 @@ function Card1() {
                 draggable="false"
               />
               <Image
-              className="absolute bottom-[-15%] right-[7%]"
+                className="absolute bottom-[-15%] right-[7%]"
                 src={"/icons/cursor-closed.svg"}
                 width={27}
                 height={27}
@@ -109,6 +111,7 @@ function Card1() {
         </div>
       </div>
 
+      {/* Text Container */}
       <div className="px-[26px] pb-[26px] text-center lg:text-left">
         <h3 className="mb-3 text-[20px] font-[670] leading-[130%] tracking-[-2%] text-white">
           Add any referral code

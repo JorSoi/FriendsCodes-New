@@ -3,8 +3,11 @@ import Button from "../Global/Button";
 
 function Card2() {
   return (
-    <div className="max-w-[400px] overflow-hidden rounded-[13px] border-2 border-[#ffffff10] pb-[26px] backdrop-blur-[30px] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:max-w-full">
-      <div className="relative flex h-full max-h-[280px] w-full items-center justify-center">
+    <div className="max-w-[400px] overflow-hidden rounded-[13px] border-2 border-[#ffffff10] backdrop-blur-[30px] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:max-w-full">
+      
+      {/* Graphic Container */}
+      <div className="relative flex h-[280px] w-full items-center justify-center">
+        {/* Button (including all the fancy images etc. around) */}
         <Button className="relative mt-10 flex items-center justify-center gap-2 !text-[16px]">
           <Image
             src={"/icons/share.svg"}
@@ -63,7 +66,9 @@ function Card2() {
           </div>
         </div>
       </div>
-      <div className="px-[26px] text-center lg:text-left">
+
+      {/* Text Container */}
+      <div className="px-[26px] pb-[26px] text-center lg:text-left">
         <h3 className="mb-3 text-[20px] font-[670] leading-[130%] tracking-[-2%] text-white">
           Share profile with friends
         </h3>

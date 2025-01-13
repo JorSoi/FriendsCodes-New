@@ -61,12 +61,12 @@ export default function Home() {
             anyone. Collect the benefits from 4000+ companies worldwide.
           </p>
           <div className="mt-[52px] flex gap-6 xs:mt-[42px]">
-          <Link href={'https://friendscodes.de/auth/signUp'}>
-            <Button variant={"primary"} size={"md"}>
-              Get Started!
-            </Button>
-          </Link>
-            <Link href={'/#how-it-works'}>
+            <Link href={"https://friendscodes.de/auth/signUp"}>
+              <Button variant={"primary"} size={"md"}>
+                Get Started!
+              </Button>
+            </Link>
+            <Link href={"/#how-it-works"}>
               <Button variant={"secondary"} size={"md"}>
                 How it works
               </Button>
@@ -188,16 +188,19 @@ export default function Home() {
       </section>
 
       {/* Feature Cards */}
-      <section id="how-it-works" className="px-[3%] scroll-mt-40 pt-[30px] overflow-hidden">
-        <div className="items-center flex flex-col justify-center gap-[20px]">
+      <section
+        id="how-it-works"
+        className="scroll-mt-40 overflow-hidden px-[3%] pt-[30px]"
+      >
+        <div className="flex flex-col items-center justify-center gap-[20px]">
           <HeadingTag>How it works</HeadingTag>
           <h2 className="text-center text-[40px] font-[670] leading-[130%] tracking-[-2%] text-white">
             It really can't get any simpler than this!
           </h2>
         </div>
 
-        <div className="align-center flex w-full justify-center ">
-          <div className="relative mt-[60px] grid grid-cols-3 lg:grid-cols-2 w-full max-w-[1300px] justify-between gap-8 lg:max-w-[850px] sm:w-full sm:flex sm:flex-col">
+        <div className="flex w-full justify-center">
+          <div className="relative mt-[60px] grid w-full max-w-[1300px] grid-cols-3 justify-between gap-8 lg:max-w-[850px] lg:grid-cols-2 sm:flex sm:flex-wrap">
             <Card1 />
             <Card2 />
             <Card3 />
