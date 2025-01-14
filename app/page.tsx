@@ -221,60 +221,121 @@ export default function Home() {
           <div className="grid w-full max-w-[1100px] grid-cols-2 justify-items-center gap-5 sm:grid-cols-1">
             <Question
               questionTitle={"What is FriendsCodes about?"}
-              iconSrc="/icons/money.svg"
+              iconSrc="/icons/star-shining.svg"
+              iconWidth={24}
+              iconHeight={24}
             >
-              FriendsCodes enables you to host any of your referral codes or
-              links in just a single space. Sharing your profile with your
-              friends ensures that you'll never miss out on any benefits when
-              your friends sign up using your code.
+              FriendsCodes lets you store and share all your referral codes in
+              one place. Share your profile to ensure friends use your codes, so
+              you never miss out on rewards.
             </Question>
             <Question
               questionTitle={"What are referral codes?"}
               iconSrc="/icons/gift.svg"
             >
-              Most companies offer a referral program for their customers. You
-              get a custom link which tells the company how many friends /
-              people you have already invited. A successful invite gets rewarded
-              with coupons, cash or special discounts.
+              Referral codes are unique links companies provide to track how
+              many people you invite. Successful referrals earn you rewards like
+              discounts, cash, or coupons.
             </Question>
             <Question
-              questionTitle={"What are referral codes?"}
+              questionTitle={"How can I maximize my referrals?"}
               iconSrc="/icons/money.svg"
             >
-              Lorem ipsum dolor sit amet consecetur idiscit oledir. Lorem ipsum
-              this is a text for the being of text. Lorem ipsum dolor sit amet
-              consecetur isditasdfjasdlfjaksdlf.
+              Share your referral profile globally! Add your profile link to
+              social media bios to remind friends to use your codes when signing
+              up for services.
             </Question>
             <Question
-              questionTitle={"What are referral codes?"}
-              iconSrc="/icons/money.svg"
+              questionTitle={"Who can see the codes on my profile?"}
+              iconSrc="/icons/multiple-users.svg"
             >
-              Lorem ipsum dolor sit amet consecetur idiscit oledir. Lorem ipsum
-              this is a text for the being of text. Lorem ipsum dolor sit amet
-              consecetur isditasdfjasdlfjaksdlf.
+              Your codes are visible to anyone with your profile link and
+              friends you have added on the platform.
             </Question>
             <Question
-              questionTitle={"What are referral codes?"}
-              iconSrc="/icons/money.svg"
+              questionTitle={"How will I know if my codes are used?"}
+              iconSrc="/icons/bell-ringing.svg"
             >
-              Lorem ipsum dolor sit amet consecetur idiscit oledir. Lorem ipsum
-              this is a text for the being of text. Lorem ipsum dolor sit amet
-              consecetur isditasdfjasdlfjaksdlf.
+              Since redemptions happen outside our platform, you will need to
+              track them. However, we will notify you when someone opens or
+              copies any of your referral codes.
             </Question>
             <Question
-              questionTitle={"What are referral codes?"}
-              iconSrc="/icons/money.svg"
+              questionTitle={"Is it free?"}
+              iconSrc="/icons/diamond.svg"
             >
-              k
+              Yes! Referral programs are widely offered by companies to grow
+              their user base, and we are here to help you get the most value
+              from your referral codes - completely free.
             </Question>
           </div>
         </div>
         <div className="flex items-center justify-center py-16">
-          <a href="mailto:jorim.soika@gmx.de">
-            <Button variant={"secondary"} size={"md"}>
+          <a
+            href="mailto:heimleitung@alfred-delp-haus.de"
+            className="px-10"
+          >
+            <Button variant="secondary" size="md">
               Send Questions or Feedback
             </Button>
           </a>
+        </div>
+      </section>
+
+      <section id="blog " className="flex items-center justify-center pt-20">
+        {/* Footer Card */}
+        <div className="relative mx-[3%] flex h-[456px] w-full max-w-[1150px] items-center justify-center border-2 border-red-400 px-[3%] sm:h-full sm:py-[10%] sm:mx-[2%]">
+          <div className="flex max-w-[800px] flex-col items-center justify-center border-1 border-green-500 text-center ">
+            <h2 className="text-[55px] font-[670] leading-[130%] tracking-[-2%] text-white mlg:text-[50px] mlg:max-w-[600px] md:text-[45px] sm:text-[42px] xs:text-[37px]">
+              Get your referral codes redeemed faster today!
+            </h2>
+            <p className="mt-[15px] max-w-[580px] text-[18px] leading-[156.1%] text-[#A9A6B2] md:text-[17px] mlg:px-[2%]">
+              Start sharing your referral codes to ensure no one misses out on the rewards. It's free, easy, and the perfect way to maximize your benefits!
+            </p>
+            <div className="mt-[50px] flex gap-6 xs:mt-[42px] xs:flex-col xs:w-[90%]">
+              <Link href={"https://friendscodes.de/auth/signUp"}>
+                <Button variant={"primary"} size={"md"} className="xs:w-full">
+                  Sign Up!
+                </Button>
+              </Link>
+              <Link href={"/#how-it-works"}>
+                <Button variant={"secondary"} size={"md"} className="xs:w-full">
+                  Login to Dashboard
+                </Button>
+              </Link>
+            </div>
+          </div>
+          <svg
+            className="absolute inset-0 z-[-1]"
+            width="100%"
+            height="100%"
+            viewBox="0 0 1125 465"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <pattern
+                id="footerBgPattern"
+                patternUnits="userSpaceOnUse"
+                width="100%"
+                height="100%"
+              >
+                <image
+                  href="/footer-card-bg.png"
+                  x="-75%"
+                  y="-35%"
+                  width="250%"
+                  height="150%"
+                  preserveAspectRatio="xMidYMid slice"
+                />
+              </pattern>
+            </defs>
+            <path
+              d="M1.11287 47.3748C-2.12862 22.2532 17.4377 0 42.7675 0H1082.33C1107.63 0 1127.18 22.1937 1124 47.2866L1075.66 428.287C1073 449.27 1055.14 465 1033.99 465H91.9288C70.8107 465 52.9767 449.319 50.2742 428.375L1.11287 47.3748Z"
+              fill="url(#footerBgPattern)"
+            />
+          </svg>
         </div>
       </section>
 

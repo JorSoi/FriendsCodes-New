@@ -7,10 +7,14 @@ import clsx from "clsx";
 function Question({
   questionTitle,
   iconSrc,
+  iconWidth,
+  iconHeight,
   children,
 }: {
   questionTitle: string;
   iconSrc: string;
+  iconWidth?: number;
+  iconHeight?: number;
   children: React.ReactNode;
 }) {
   const handleClick = () => setIsOpen(!isOpen);
@@ -24,7 +28,7 @@ function Question({
       {/* Image Container */}
       <div className="items-center sm:flex sm:gap-3">
         <div className="flex size-[44px] shrink-0 items-center justify-center rounded-[11px] border-[1px] border-[#ffffff09] bg-gradient-to-br from-[#ffffff30] to-[#ffffff03] shadow-[inset_0px_0px_3px_0.5px_rgba(255,255,255,0.06)] sm:size-[38px]">
-          <Image src={iconSrc} width={20} height={20} alt="" />
+          <Image src={iconSrc} width={iconWidth ? iconWidth : 20} height={iconHeight ? iconHeight : 20} alt="" />
         </div>
         <p className="hidden pr-4 text-[18px] font-semibold sm:block">
           {questionTitle}
@@ -34,7 +38,7 @@ function Question({
       {/* Content Container */}
       <div>
         <h4 className="text-[18px] font-semibold sm:hidden">{questionTitle}</h4>
-        <p className={clsx("mt-1 text-[#7D7C87] sm:mt-3", {
+        <p className={clsx("mt-1 text-[#9594a1] sm:mt-3", {
             "sm:block": isOpen,
             "sm:hidden": !isOpen,
         })}>{children}</p>
