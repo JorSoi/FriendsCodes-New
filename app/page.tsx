@@ -1,11 +1,12 @@
 import Button from "@/components/Global/Button";
 import Card2 from "@/components/Landing/Card2";
 import Card1 from "@/components/Landing/Card1";
-import HeadingTag from "@/components/Landing/HeadingTag";
+import SectionHeading from "@/components/Landing/SectionHeading";
 import NavBar from "@/components/Landing/NavBar";
 import Image from "next/image";
 import Card3 from "@/components/Landing/Card3";
 import Link from "next/link";
+import Question from "@/components/Landing/Question";
 
 export default function Home() {
   return (
@@ -192,12 +193,9 @@ export default function Home() {
         id="how-it-works"
         className="scroll-mt-40 overflow-hidden px-[3%] pt-[30px]"
       >
-        <div className="flex flex-col items-center justify-center gap-[20px]">
-          <HeadingTag>How it works</HeadingTag>
-          <h2 className="text-center text-[40px] font-[670] leading-[130%] tracking-[-2%] text-white">
-            It really can&apos;t get any simpler than this!
-          </h2>
-        </div>
+        <SectionHeading tagContent="How it works">
+          It really can&apos;t get any simpler than this!
+        </SectionHeading>
 
         <div className="flex w-full justify-center">
           <div className="relative mt-[60px] grid w-full max-w-[1300px] grid-cols-3 justify-between gap-8 lg:max-w-[850px] lg:grid-cols-2 sm:flex sm:flex-wrap">
@@ -211,9 +209,75 @@ export default function Home() {
         </div>
       </section>
 
-      <div id="about" className="mt-[100vh] h-20 w-full bg-red-400">
-        about
-      </div>
+      <section
+        id="about"
+        className="scroll-mt-40 overflow-hidden px-[3%] pt-[100px]"
+      >
+        <SectionHeading tagContent="FAQ">
+          Still not sure how it works?
+        </SectionHeading>
+
+        <div className="flex w-full items-center justify-center pt-[50px]">
+          <div className="grid w-full max-w-[1100px] grid-cols-2 justify-items-center gap-5 sm:grid-cols-1">
+            <Question
+              questionTitle={"What is FriendsCodes about?"}
+              iconSrc="/icons/money.svg"
+            >
+              FriendsCodes enables you to host any of your referral codes or
+              links in just a single space. Sharing your profile with your
+              friends ensures that you'll never miss out on any benefits when
+              your friends sign up using your code.
+            </Question>
+            <Question
+              questionTitle={"What are referral codes?"}
+              iconSrc="/icons/gift.svg"
+            >
+              Most companies offer a referral program for their customers. You
+              get a custom link which tells the company how many friends /
+              people you have already invited. A successful invite gets rewarded
+              with coupons, cash or special discounts.
+            </Question>
+            <Question
+              questionTitle={"What are referral codes?"}
+              iconSrc="/icons/money.svg"
+            >
+              Lorem ipsum dolor sit amet consecetur idiscit oledir. Lorem ipsum
+              this is a text for the being of text. Lorem ipsum dolor sit amet
+              consecetur isditasdfjasdlfjaksdlf.
+            </Question>
+            <Question
+              questionTitle={"What are referral codes?"}
+              iconSrc="/icons/money.svg"
+            >
+              Lorem ipsum dolor sit amet consecetur idiscit oledir. Lorem ipsum
+              this is a text for the being of text. Lorem ipsum dolor sit amet
+              consecetur isditasdfjasdlfjaksdlf.
+            </Question>
+            <Question
+              questionTitle={"What are referral codes?"}
+              iconSrc="/icons/money.svg"
+            >
+              Lorem ipsum dolor sit amet consecetur idiscit oledir. Lorem ipsum
+              this is a text for the being of text. Lorem ipsum dolor sit amet
+              consecetur isditasdfjasdlfjaksdlf.
+            </Question>
+            <Question
+              questionTitle={"What are referral codes?"}
+              iconSrc="/icons/money.svg"
+            >
+              k
+            </Question>
+          </div>
+        </div>
+        <div className="flex items-center justify-center py-16">
+          <a href="mailto:jorim.soika@gmx.de">
+            <Button variant={"secondary"} size={"md"}>
+              Send Questions or Feedback
+            </Button>
+          </a>
+        </div>
+      </section>
+
       <div id="blog" className="mt-[100vh] h-20 w-full bg-red-400">
         blog
       </div>

@@ -8,7 +8,7 @@ function page() {
                     <h1>Hello World</h1>
                     <p>Lorem Ipsum</p>
                 </div>
-                <Card3 />
+       
                 <div className="bg-yellow-500 max-w-[400px]">hi</div>
             </div>
         </div>

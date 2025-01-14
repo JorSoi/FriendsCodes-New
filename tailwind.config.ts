@@ -34,6 +34,9 @@ export default {
       }
     },
     extend: {
+      borderWidth:{
+        "1": "1px",
+      },
       fontFamily: {
         figtree: ['var(--font-figtree)'],
         inter: ['var(--font-inter)'],
