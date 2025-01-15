@@ -4,11 +4,10 @@ import Button from "../Global/Button";
 function Card2() {
   return (
     <div className="max-w-[400px] overflow-hidden rounded-[13px] border-2 border-[#ffffff10] backdrop-blur-[30px] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:max-w-full">
-      
       {/* Graphic Container */}
-      <div className="relative flex h-[280px] w-full items-center justify-center">
+      <div className="relative flex h-[280px] w-full items-center justify-center sm:h-[230px]">
         {/* Button (including all the fancy images etc. around) */}
-        <Button className="relative mt-10 flex items-center justify-center gap-2 !text-[16px]">
+        <Button className="relative mt-10 flex items-center justify-center gap-2 !text-[16px] sm:!text-[13px]">
           <Image
             src={"/icons/share.svg"}
             width={17}
@@ -60,7 +59,7 @@ function Card2() {
         </Button>
 
         {/* Circle Decoration */}
-        <div className="absolute left-1/2 top-[-20%] z-[-1] flex size-[450px] translate-x-[-50%] items-center justify-center rounded-full border-[1px] border-[#ffffff09] bg-gradient-to-b from-[#ffffff09] to-[#ffffff00] to-[80%]">
+        <div className="absolute left-1/2 top-[-20%] z-[-1] flex size-[450px] translate-x-[-50%] items-center justify-center rounded-full border-[1px] border-[#ffffff09] bg-gradient-to-b from-[#ffffff09] to-[#ffffff00] to-[80%] sm:top-[-40%]">
           <div className="flex size-[70%] items-center justify-center rounded-full border-[1px] border-[#ffffff09] bg-gradient-to-b from-[#ffffff09] to-[#ffffff00] to-[75%]">
             <div className="size-[60%] rounded-full border-[1px] border-[#ffffff09] bg-gradient-to-b from-[#ffffff07] to-[#ffffff00] to-[90%]"></div>
           </div>

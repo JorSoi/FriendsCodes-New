@@ -1,5 +1,3 @@
-import Card3 from "@/components/Landing/Card3";
-
 function page() {
     return (
         <div className="w-full h-svh flex justify-center items-center">

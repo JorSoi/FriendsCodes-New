@@ -5,8 +5,8 @@ function Card1() {
     <div className="max-w-[400px] rounded-[13px] border-2 border-[#ffffff10] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:max-w-full">
       
       {/* Graphic Container */}
-      <div className="relative h-[280px] overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 flex w-max -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-3">
+      <div className="relative h-[280px] overflow-hidden sm:h-[230px]">
+        <div className="absolute left-1/2 top-1/2 flex w-max -translate-x-1/2 -translate-y-1/2 transform items-center justify-center gap-3 sm:scale-[90%]">
           <div className="relative flex size-[80px] items-center justify-center rounded-[11px] border-[1px] border-[#ffffff09] bg-gradient-to-br from-[#ffffff06] to-[#ffffff03] shadow-[inset_0px_0px_5px_1px_rgba(255,255,255,0.07)]">
             <Image
               src={"/company-logos/zalando-logo.svg"}

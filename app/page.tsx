@@ -17,6 +17,7 @@ export default function Home() {
         viewBox="0 0 1379 893"
         xmlns="http://www.w3.org/2000/svg"
         className="absolute left-1/2 top-[10px] z-[-10] mt-[5px] w-[96%] max-w-[1500px] -translate-x-1/2"
+        
       >
         <defs>
           <linearGradient id="fadeGradient" x1="0" y1="0" x2="0" y2="1">
@@ -55,12 +56,12 @@ export default function Home() {
         className="w-full overflow-hidden pt-[190px] xl:pt-[240px] md:pt-[170px] xs:pt-[145px]"
       >
         <div className="relative mx-auto my-auto flex w-[900px] max-w-[90%] flex-col items-center justify-center text-center md:w-[500px]">
-          <h1 className="text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] mlg:max-w-[600px] md:text-[57px] sm:text-[52px] xs:text-[45px]">
+          <h1 className="text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] mlg:max-w-[600px] md:text-[57px] sm:text-[52px] xs:text-[43px]">
             Share Codes with Friends, Family and the World
           </h1>
-          <p className="max-w-[600px] pt-[31px] text-[18px] leading-[156.1%] text-[#A9A6B2] xl:text-[20px] md:max-w-[540px] md:pt-[20px] sm:max-w-[500px] sm:text-[17px]">
+          <p className="max-w-[600px] pt-[31px] text-[18px] leading-[156.1%] text-[#A9A6B2] xl:text-[20px] md:max-w-[540px] md:pt-[20px] sm:max-w-[500px] sm:text-[17px] xs:pt-[15px]">
             The easiest place to share and redeem product referral codes with
-            anyone. Collect the benefits from 4000+ companies worldwide.
+            anyone. Collect benefits from 4000+ companies worldwide.
           </p>
           <div className="mt-[52px] flex gap-6 xs:mt-[42px]">
             <Link href={"https://friendscodes.de/auth/signUp"}>
@@ -174,7 +175,7 @@ export default function Home() {
       </div>
 
       {/* Hero Image */}
-      <section className="relative flex w-full items-center justify-center pb-[20px] pt-[100px] lg:pt-[70px] xs:pb-[10px]">
+      <section className="relative flex w-full items-center justify-center pt-[100px] lg:pt-[70px] ">
         <div className="relative max-w-[90%] rounded-[20px] border-2 border-[#ffffff30] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] p-[23px] backdrop-blur-[38px] md:p-[15px] xs:max-w-[94%] xs:rounded-[10px] xs:p-[7px]">
           <Image
             className="z-1 relative rounded-[10px] xs:rounded-[5px]"
@@ -192,14 +193,14 @@ export default function Home() {
       {/* Feature Cards */}
       <section
         id="how-it-works"
-        className="scroll-mt-40 overflow-hidden px-[3%] pt-[30px]"
+        className="scroll-mt-40 overflow-hidden px-[3%] pb-[160px] pt-[60px] lg:pb-[110px]"
       >
         <SectionHeading tagContent="How it works">
           It really can&apos;t get any simpler than this!
         </SectionHeading>
 
         <div className="flex w-full justify-center">
-          <div className="relative mt-[60px] grid w-full max-w-[1300px] grid-cols-3 justify-between gap-8 lg:max-w-[850px] lg:grid-cols-2 sm:flex sm:flex-wrap">
+          <div className="relative grid w-full max-w-[1300px] grid-cols-3 justify-between gap-8 lg:max-w-[850px] lg:grid-cols-2  sm:flex sm:flex-wrap">
             <Card1 />
             <Card2 />
             <Card3 />
@@ -210,15 +211,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="about"
-        className="scroll-mt-40 overflow-hidden px-[3%] pt-[100px]"
-      >
+      <section id="about" className="scroll-mt-40 overflow-hidden px-[3%]">
         <SectionHeading tagContent="FAQ">
           Still not sure how it works?
         </SectionHeading>
 
-        <div className="flex w-full items-center justify-center pt-[50px]">
+        <div className="flex w-full items-center justify-center">
           <div className="grid w-full max-w-[1100px] grid-cols-2 justify-items-center gap-5 sm:grid-cols-1">
             <Question
               questionTitle={"What is FriendsCodes about?"}
@@ -272,7 +270,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center justify-center py-16">
-          <a href="mailto:heimleitung@alfred-delp-haus.de" className="px-10">
+          <a href="mailto:hello@friendscodes.de" className="px-10">
             <Button variant="secondary" size="md">
               Send Questions or Feedback
             </Button>
@@ -292,7 +290,7 @@ export default function Home() {
             </h2>
             <p className="mt-[15px] max-w-[580px] text-[18px] leading-[156.1%] text-[#A9A6B2] mlg:px-[2%] md:text-[17px]">
               Start sharing your referral codes to ensure no one misses out on
-              the rewards. It's free, easy, and the perfect way to maximize your
+              the rewards. It&apos;s free, easy, and the perfect way to maximize your
               benefits!
             </p>
             <div className="mt-[50px] flex gap-6 xs:mt-[42px] xs:w-[90%] xs:flex-col">
