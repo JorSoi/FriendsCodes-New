@@ -1,10 +1,10 @@
 import Button from "@/components/Global/Button";
-import Card2 from "@/components/Landing/Card2";
 import Card1 from "@/components/Landing/Card1";
+import Card2 from "@/components/Landing/Card2";
+import Card3 from "@/components/Landing/Card3";
 import SectionHeading from "@/components/Landing/SectionHeading";
 import NavBar from "@/components/Landing/NavBar";
 import Image from "next/image";
-import Card3 from "@/components/Landing/Card3";
 import Link from "next/link";
 import Question from "@/components/Landing/Question";
 import Footer from "@/components/Landing/Footer";
@@ -17,7 +17,6 @@ export default function Home() {
         viewBox="0 0 1379 893"
         xmlns="http://www.w3.org/2000/svg"
         className="absolute left-1/2 top-[10px] z-[-10] mt-[5px] w-[96%] max-w-[1500px] -translate-x-1/2"
-        
       >
         <defs>
           <linearGradient id="fadeGradient" x1="0" y1="0" x2="0" y2="1">
@@ -175,7 +174,7 @@ export default function Home() {
       </div>
 
       {/* Hero Image */}
-      <section className="relative flex w-full items-center justify-center pt-[100px] lg:pt-[70px] ">
+      <section className="relative flex w-full items-center justify-center pt-[100px] lg:pt-[70px]">
         <div className="relative max-w-[90%] rounded-[20px] border-2 border-[#ffffff30] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] p-[23px] backdrop-blur-[38px] md:p-[15px] xs:max-w-[94%] xs:rounded-[10px] xs:p-[7px]">
           <Image
             className="z-1 relative rounded-[10px] xs:rounded-[5px]"
@@ -200,7 +199,7 @@ export default function Home() {
         </SectionHeading>
 
         <div className="flex w-full justify-center">
-          <div className="relative grid w-full max-w-[1300px] grid-cols-3 justify-between gap-8 lg:max-w-[850px] lg:grid-cols-2  sm:flex sm:flex-wrap">
+          <div className="relative grid w-full max-w-[1300px] grid-cols-3 justify-between gap-8 lg:max-w-[850px] lg:grid-cols-2 sm:flex sm:flex-wrap">
             <Card1 />
             <Card2 />
             <Card3 />
@@ -290,8 +289,8 @@ export default function Home() {
             </h2>
             <p className="mt-[15px] max-w-[580px] text-[18px] leading-[156.1%] text-[#A9A6B2] mlg:px-[2%] md:text-[17px]">
               Start sharing your referral codes to ensure no one misses out on
-              the rewards. It&apos;s free, easy, and the perfect way to maximize your
-              benefits!
+              the rewards. It&apos;s free, easy, and the perfect way to maximize
+              your benefits!
             </p>
             <div className="mt-[50px] flex gap-6 xs:mt-[42px] xs:w-[90%] xs:flex-col">
               <Link href={"https://friendscodes.de/auth/signUp"}>
