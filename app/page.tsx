@@ -272,10 +272,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center justify-center py-16">
-          <a
-            href="mailto:heimleitung@alfred-delp-haus.de"
-            className="px-10"
-          >
+          <a href="mailto:heimleitung@alfred-delp-haus.de" className="px-10">
             <Button variant="secondary" size="md">
               Send Questions or Feedback
             </Button>
@@ -283,27 +280,97 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="blog " className="flex items-center justify-center pt-20">
+      <section
+        id="blog "
+        className="flex items-center justify-center overflow-hidden pt-20"
+      >
         {/* Footer Card */}
-        <div className="relative mx-[3%] flex h-[456px] w-full max-w-[1150px] items-center justify-center border-2 border-red-400 px-[3%] sm:h-full sm:py-[10%] sm:mx-[2%]">
-          <div className="flex max-w-[800px] flex-col items-center justify-center border-1 border-green-500 text-center ">
-            <h2 className="text-[55px] font-[670] leading-[130%] tracking-[-2%] text-white mlg:text-[50px] mlg:max-w-[600px] md:text-[45px] sm:text-[42px] xs:text-[37px]">
+        <div className="relative mx-[3%] flex h-[456px] w-full max-w-[1150px] items-center justify-center px-[3%] sm:mx-[2%] sm:h-full sm:py-[10%]">
+          <div className="relative flex max-w-[800px] flex-col items-center justify-center text-center">
+            <h2 className="text-[55px] font-[670] leading-[130%] tracking-[-2%] text-white mlg:max-w-[600px] mlg:text-[50px] md:text-[45px] sm:text-[42px] xs:text-[37px]">
               Get your referral codes redeemed faster today!
             </h2>
-            <p className="mt-[15px] max-w-[580px] text-[18px] leading-[156.1%] text-[#A9A6B2] md:text-[17px] mlg:px-[2%]">
-              Start sharing your referral codes to ensure no one misses out on the rewards. It's free, easy, and the perfect way to maximize your benefits!
+            <p className="mt-[15px] max-w-[580px] text-[18px] leading-[156.1%] text-[#A9A6B2] mlg:px-[2%] md:text-[17px]">
+              Start sharing your referral codes to ensure no one misses out on
+              the rewards. It's free, easy, and the perfect way to maximize your
+              benefits!
             </p>
-            <div className="mt-[50px] flex gap-6 xs:mt-[42px] xs:flex-col xs:w-[90%]">
+            <div className="mt-[50px] flex gap-6 xs:mt-[42px] xs:w-[90%] xs:flex-col">
               <Link href={"https://friendscodes.de/auth/signUp"}>
                 <Button variant={"primary"} size={"md"} className="xs:w-full">
                   Sign Up!
                 </Button>
               </Link>
-              <Link href={"/#how-it-works"}>
+              <Link href={"https://friendscodes.de/auth/signIn"}>
                 <Button variant={"secondary"} size={"md"} className="xs:w-full">
                   Login to Dashboard
                 </Button>
               </Link>
+            </div>
+
+            {/* Company Cards Decoration */}
+            <div className="absolute left-[-5%] top-[-15%] z-10 flex size-[100px] rotate-[-11deg] scale-[75%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] mlg:left-[-12%] mlg:top-[-14%] md:left-[-8%] md:top-[-30%] sm:hidden">
+              <Image
+                src={"/company-logos/wise.svg"}
+                width={65}
+                height={65}
+                alt="Wise logo"
+              />
+              <Image
+                className="absolute inset-0"
+                src={"/company-logos/logo-box-border.svg"}
+                width={300}
+                height={300}
+                alt=""
+              />
+            </div>
+
+            <div className="absolute bottom-[5%] left-[-1%] z-10 flex size-[100px] rotate-[-21deg] scale-[67%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] mlg:bottom-[4%] mlg:left-[-12%] md:bottom-[-5%] md:left-[-6%] md:scale-[60%] sm:hidden">
+              <Image
+                src={"/company-logos/coinbase.svg"}
+                width={65}
+                height={65}
+                alt="Coinbase logo"
+              />
+              <Image
+                className="absolute inset-0"
+                src={"/company-logos/logo-box-border.svg"}
+                width={300}
+                height={300}
+                alt=""
+              />
+            </div>
+
+            <div className="absolute right-[-10%] top-[-30%] z-10 flex size-[100px] rotate-[13deg] scale-[78%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] sm:hidden">
+              <Image
+                src={"/company-logos/doordash.svg"}
+                width={60}
+                height={60}
+                alt="Doordash logo"
+              />
+              <Image
+                className="absolute inset-0"
+                src={"/company-logos/logo-box-border.svg"}
+                width={300}
+                height={300}
+                alt=""
+              />
+            </div>
+
+            <div className="absolute bottom-[15%] right-[-4%] z-10 flex size-[100px] rotate-[11deg] scale-[60%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] mlg:bottom-[15%] mlg:right-[-10%] sm:hidden">
+              <Image
+                src={"/company-logos/chime.svg"}
+                width={78}
+                height={78}
+                alt="Trade Republic logo"
+              />
+              <Image
+                className="absolute inset-0"
+                src={"/company-logos/logo-box-border.svg"}
+                width={300}
+                height={300}
+                alt=""
+              />
             </div>
           </div>
           <svg
@@ -341,7 +408,6 @@ export default function Home() {
       </section>
 
       <Footer />
-
     </main>
   );
 }

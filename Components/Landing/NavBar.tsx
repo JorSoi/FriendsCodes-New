@@ -30,13 +30,13 @@ function NavBar() {
               className="font-[550] text-white hover:opacity-75"
               href={"/#about"}
             >
-              About
+              FAQ
             </Link>
             <Link
               className="font-[550] text-white hover:opacity-75"
               href={"/#blog"}
             >
-              Blog
+              About
             </Link>
           </div>
           <div className="flex gap-[15px]">
