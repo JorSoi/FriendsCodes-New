@@ -7,10 +7,11 @@ import Image from "next/image";
 import Card3 from "@/components/Landing/Card3";
 import Link from "next/link";
 import Question from "@/components/Landing/Question";
+import Footer from "@/components/Landing/Footer";
 
 export default function Home() {
   return (
-    <>
+    <main>
       <NavBar />
       <svg
         viewBox="0 0 1379 893"
@@ -339,9 +340,8 @@ export default function Home() {
         </div>
       </section>
 
-      <div id="blog" className="mt-[100vh] h-20 w-full bg-red-400">
-        blog
-      </div>
-    </>
+      <Footer />
+
+    </main>
   );
 }
