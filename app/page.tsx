@@ -33,7 +33,7 @@ export default function Home() {
             height="100%"
           >
             <image
-              href="/bg-color-gradients.png"
+              href="/bg-color-gradients.webp"
               x="0"
               y="0"
               width="1379"
