@@ -195,27 +195,26 @@ export default function Home() {
       </section>
 
       {/* Feature Cards */}
-      <section
-        id="how-it-works"
-        className="scroll-mt-40 overflow-hidden px-[3%] pb-[160px] pt-[60px] lg:pb-[110px]"
-      >
-        <SectionHeading tagContent="How it works">
-          It really can&apos;t get any simpler than this!
-        </SectionHeading>
+      <section id="how-it-works" className="scroll-mt-[80px]">
+        <div className="overflow-hidden px-[3%] pb-[160px] pt-[60px] lg:pb-[110px]">
+          <SectionHeading tagContent="How it works">
+            It really can&apos;t get any simpler than this!
+          </SectionHeading>
 
-        <div className="flex w-full justify-center">
-          <div className="relative grid w-full max-w-[1300px] grid-cols-3 justify-between gap-8 lg:max-w-[850px] lg:grid-cols-2 sm:flex sm:flex-wrap">
-            <Card1 />
-            <Card2 />
-            <Card3 />
+          <div className="flex w-full justify-center">
+            <div className="relative grid w-full max-w-[1300px] grid-cols-3 justify-between gap-8 lg:max-w-[850px] lg:grid-cols-2 sm:flex sm:flex-wrap">
+              <Card1 />
+              <Card2 />
+              <Card3 />
 
-            <div className="absolute left-[-10%] top-[50%] z-[-1] h-[50%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#7c07dc87] blur-[125px]"></div>
-            <div className="absolute right-[-10%] top-[50%] z-[-1] h-[50%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#9413a284] blur-[125px]"></div>
+              <div className="absolute left-[-10%] top-[50%] z-[-1] h-[50%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#7c07dc87] blur-[125px]"></div>
+              <div className="absolute right-[-10%] top-[50%] z-[-1] h-[50%] w-[60%] translate-y-[-50%] rounded-[100%] bg-[#9413a284] blur-[125px]"></div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="about" className="scroll-mt-40 overflow-hidden px-[3%]">
+      <section id="faq" className="scroll-mt-40 px-[3%]">
         <SectionHeading tagContent="FAQ">
           Still not sure how it works?
         </SectionHeading>

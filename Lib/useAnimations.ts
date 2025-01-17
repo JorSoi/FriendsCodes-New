@@ -64,8 +64,8 @@ const useAnimations = () => {
       gsap.from(selector, {
         scrollTrigger: {
           trigger: selector, // Trigger the animation when the element comes into view
-          start: "top 60%", // Start the animation when the top of the element is 80% from the top of the viewport
-          end: "top 10%", // Optionally end the animation when the element goes past a certain point
+          start: "top 80%", // Start the animation when the top of the element is 80% from the top of the viewport
+          // end: "top 10%", // Optionally end the animation when the element goes past a certain point
           once: false, // Trigger the animation only once
           scrub: 2, // Smooth scrolling effect, optional
         },

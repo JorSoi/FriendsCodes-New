@@ -28,7 +28,7 @@ function NavBar() {
             </Link>
             <Link
               className="font-[550] text-white hover:opacity-75"
-              href={"/#about"}
+              href={"/#faq"}
             >
               FAQ
             </Link>
