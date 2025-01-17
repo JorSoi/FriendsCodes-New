@@ -41,6 +41,7 @@ const useAnimations = () => {
         duration: 0.7,
         ease: "in-out",
         stagger: 0.1,
+        autoAlpha: 0,
       });
     });
 
@@ -55,6 +56,7 @@ const useAnimations = () => {
         delay: 0.4,
         ease: "elastic.out(1,0.9)",
         stagger: 0.1,
+        autoAlpha: 0,
       });
     });
 
@@ -62,9 +64,9 @@ const useAnimations = () => {
       gsap.from(selector, {
         scrollTrigger: {
           trigger: selector, // Trigger the animation when the element comes into view
-          start: "top 80%", // Start the animation when the top of the element is 80% from the top of the viewport
-          end: "top 20%", // Optionally end the animation when the element goes past a certain point
-          once: true, // Trigger the animation only once
+          start: "top 60%", // Start the animation when the top of the element is 80% from the top of the viewport
+          end: "top 10%", // Optionally end the animation when the element goes past a certain point
+          once: false, // Trigger the animation only once
           scrub: 2, // Smooth scrolling effect, optional
         },
         scale: 0.9,
@@ -76,7 +78,7 @@ const useAnimations = () => {
         ease: "elastic.out(1,0.9)",
         stagger: 0.1,
       });
-    });
+    });    
   });
 };
 
