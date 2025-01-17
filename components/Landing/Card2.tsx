@@ -3,11 +3,11 @@ import Button from "../Global/Button";
 
 function Card2() {
   return (
-    <div className="max-w-[400px] overflow-hidden rounded-[13px] border-2 border-[#ffffff10] backdrop-blur-[30px] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:max-w-full">
+    <div className="fadeInFeatureCards max-w-[400px] overflow-hidden rounded-[13px] border-2 border-[#ffffff10] backdrop-blur-[30px] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:max-w-full">
       {/* Graphic Container */}
       <div className="relative flex h-[280px] w-full items-center justify-center sm:h-[230px]">
         {/* Button (including all the fancy images etc. around) */}
-        <Button className="relative mt-10 flex items-center justify-center gap-2 !text-[16px] sm:!text-[13px]">
+        <Button className="relative mt-10 flex items-center justify-center gap-2 !text-[16px] sm:!text-[13px] active:!scale-[80%] select-none touch-none">
           <Image
             src={"/icons/share.svg"}
             width={17}

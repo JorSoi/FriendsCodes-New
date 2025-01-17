@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "@/components/Global/Button";
 import Card1 from "@/components/Landing/Card1";
 import Card2 from "@/components/Landing/Card2";
@@ -8,8 +10,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Question from "@/components/Landing/Question";
 import Footer from "@/components/Landing/Footer";
+import useAnimations from "@/Lib/useAnimations";
 
 export default function Home() {
+  useAnimations();
+
   return (
     <main>
       <NavBar />
@@ -50,19 +55,19 @@ export default function Home() {
       </svg>
 
       {/* Hero Heading Section */}
-      <div
+      <section
         id="hero"
-        className="w-full overflow-hidden pt-[190px] xl:pt-[240px] md:pt-[170px] xs:pt-[145px]"
+        className="w-full pt-[190px] xl:pt-[240px] md:pt-[170px] xs:pt-[145px]"
       >
         <div className="relative mx-auto my-auto flex w-[900px] max-w-[90%] flex-col items-center justify-center text-center md:w-[500px]">
-          <h1 className="text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] mlg:max-w-[600px] md:text-[57px] sm:text-[52px] xs:text-[43px]">
+          <h1 className="fadeInHero text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] mlg:max-w-[600px] md:text-[57px] sm:text-[52px] xs:text-[43px]">
             Share Codes with Friends, Family and the World
           </h1>
-          <p className="max-w-[600px] pt-[31px] text-[18px] leading-[156.1%] text-[#A9A6B2] xl:text-[20px] md:max-w-[540px] md:pt-[20px] sm:max-w-[500px] sm:text-[17px] xs:pt-[15px]">
+          <p className="fadeInHero max-w-[600px] pt-[31px] text-[18px] leading-[156.1%] text-[#A9A6B2] xl:text-[20px] md:max-w-[540px] md:pt-[20px] sm:max-w-[500px] sm:text-[17px] xs:pt-[15px]">
             The easiest place to share and redeem product referral codes with
             anyone. Collect benefits from 4000+ companies worldwide.
           </p>
-          <div className="mt-[52px] flex gap-6 xs:mt-[42px]">
+          <div className="fadeInHero mt-[52px] flex gap-6 xs:mt-[42px]">
             <Link href={"https://friendscodes.de/auth/signUp"}>
               <Button variant={"primary"} size={"md"}>
                 Get Started!
@@ -75,7 +80,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="absolute left-[-10%] top-[-15%] z-10 flex size-[100px] rotate-[-17deg] scale-[85%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-18%] xl:top-[-23%] lg:left-[-5%] lg:top-[-19%] lg:scale-[75%] mlg:left-[-1%] mlg:top-[-15%] md:left-[-18%] md:scale-[65%] sm:hidden">
+          <div className="popHeroLeft absolute left-[-10%] top-[-15%] z-10 flex size-[100px] rotate-[-17deg] scale-[85%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-18%] xl:top-[-23%] lg:left-[-5%] lg:top-[-19%] lg:scale-[75%] mlg:left-[-1%] mlg:top-[-15%] md:left-[-18%] md:scale-[65%] sm:hidden">
             <Image
               src={"/company-logos/adidas-logo.svg"}
               width={60}
@@ -91,7 +96,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="absolute left-[-1%] z-10 flex size-[100px] rotate-[-9deg] scale-[67%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-6%] xl:top-[50%] lg:left-[0%] lg:top-[27%] mlg:top-[35%] mlg:rotate-[-25deg] mlg:scale-[60%] md:left-[-15%] md:top-[30%] md:rotate-[-19deg] md:scale-[55%] sm:hidden">
+          <div className="popHeroLeft absolute left-[-1%] z-10 flex size-[100px] rotate-[-9deg] scale-[67%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-6%] xl:top-[50%] lg:left-[0%] lg:top-[27%] mlg:top-[35%] mlg:rotate-[-25deg] mlg:scale-[60%] md:left-[-15%] md:top-[30%] md:rotate-[-19deg] md:scale-[55%] sm:hidden">
             <Image
               src={"/company-logos/amex-logo.svg"}
               width={65}
@@ -107,7 +112,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="absolute bottom-[0%] left-[-12%] z-10 flex size-[100px] rotate-[-20deg] scale-[78%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-24%] lg:left-[-5%] lg:scale-[60%] mlg:hidden">
+          <div className="popHeroLeft absolute bottom-[0%] left-[-12%] z-10 flex size-[100px] rotate-[-20deg] scale-[78%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:left-[-24%] lg:left-[-5%] lg:scale-[60%] mlg:hidden">
             <Image
               src={"/company-logos/amazon-logo.svg"}
               width={50}
@@ -123,7 +128,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="absolute right-[-10%] top-[-8%] z-10 flex size-[100px] rotate-[13deg] scale-[90%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-17%] xl:top-[-14%] xl:scale-[95%] lg:right-[-5.5%] lg:top-[-16%] lg:scale-[80%] md:right-[-17%] md:rotate-[23deg] md:scale-[65%] sm:hidden">
+          <div className="popHeroRight absolute right-[-10%] top-[-8%] z-10 flex size-[100px] rotate-[13deg] scale-[90%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-17%] xl:top-[-14%] xl:scale-[95%] lg:right-[-5.5%] lg:top-[-16%] lg:scale-[80%] md:right-[-17%] md:rotate-[23deg] md:scale-[65%] sm:hidden">
             <Image
               src={"/company-logos/spotify-logo.svg"}
               width={60}
@@ -139,7 +144,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="absolute right-[-1%] z-10 flex size-[100px] rotate-[11deg] scale-[65%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-5%] xl:scale-[70%] mlg:rotate-[16deg] mlg:scale-[55%] md:right-[-10%] md:top-[33%] md:scale-[50%] sm:hidden">
+          <div className="popHeroRight absolute right-[-1%] z-10 flex size-[100px] rotate-[11deg] scale-[65%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-5%] xl:scale-[70%] mlg:rotate-[16deg] mlg:scale-[55%] md:right-[-10%] md:top-[33%] md:scale-[50%] sm:hidden">
             <Image
               src={"/company-logos/trade-republic-logo.svg"}
               width={65}
@@ -155,7 +160,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="absolute bottom-[5%] right-[-12%] z-10 flex size-[100px] rotate-[11deg] scale-[69%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-20%] xl:scale-[73%] lg:bottom-[0%] lg:right-[5%] lg:rotate-[5deg] lg:scale-[50%] mlg:hidden">
+          <div className="popHeroRight absolute bottom-[5%] right-[-12%] z-10 flex size-[100px] rotate-[11deg] scale-[69%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] xl:right-[-20%] xl:scale-[73%] lg:bottom-[0%] lg:right-[5%] lg:rotate-[5deg] lg:scale-[50%] mlg:hidden">
             <Image
               src={"/company-logos/paypal-logo.svg"}
               width={45}
@@ -171,11 +176,11 @@ export default function Home() {
             />
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Hero Image */}
       <section className="relative flex w-full items-center justify-center pt-[100px] lg:pt-[70px]">
-        <div className="relative max-w-[90%] rounded-[20px] border-2 border-[#ffffff30] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] p-[23px] backdrop-blur-[38px] md:p-[15px] xs:max-w-[94%] xs:rounded-[10px] xs:p-[7px]">
+        <div className="fadeInHero relative max-w-[90%] rounded-[20px] border-2 border-[#ffffff30] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] p-[23px] backdrop-blur-[38px] md:p-[15px] xs:max-w-[94%] xs:rounded-[10px] xs:p-[7px]">
           <Image
             className="z-1 relative rounded-[10px] xs:rounded-[5px]"
             src={"/hero-image.png"}
@@ -268,7 +273,7 @@ export default function Home() {
             </Question>
           </div>
         </div>
-        <div className="flex items-center justify-center py-16">
+        <div className="fadeIn flex items-center justify-center py-16">
           <a href="mailto:hello@friendscodes.de" className="px-10">
             <Button variant="secondary" size="md">
               Send Questions or Feedback
@@ -282,7 +287,7 @@ export default function Home() {
         className="flex items-center justify-center overflow-hidden pt-20"
       >
         {/* Footer Card */}
-        <div className="relative mx-[3%] flex h-[456px] w-full max-w-[1150px] items-center justify-center px-[3%] sm:mx-[2%] sm:h-full sm:py-[10%]">
+        <div className="wrapper fadeIn relative mx-[3%] flex h-[456px] w-full max-w-[1150px] items-center justify-center px-[3%] sm:mx-[2%] sm:h-full sm:py-[10%]">
           <div className="relative flex max-w-[800px] flex-col items-center justify-center text-center">
             <h2 className="text-[55px] font-[670] leading-[130%] tracking-[-2%] text-white mlg:max-w-[600px] mlg:text-[50px] md:text-[45px] sm:text-[42px] xs:text-[37px]">
               Get your referral codes redeemed faster today!
@@ -306,7 +311,7 @@ export default function Home() {
             </div>
 
             {/* Company Cards Decoration */}
-            <div className="absolute left-[-5%] top-[-15%] z-10 flex size-[100px] rotate-[-11deg] scale-[75%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] mlg:left-[-12%] mlg:top-[-14%] md:left-[-8%] md:top-[-30%] sm:hidden">
+            <div className="popFooterLeft absolute left-[-5%] top-[-15%] z-10 flex size-[100px] rotate-[-11deg] scale-[75%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] mlg:left-[-12%] mlg:top-[-14%] md:left-[-8%] md:top-[-30%] sm:hidden">
               <Image
                 src={"/company-logos/wise.svg"}
                 width={65}
@@ -322,7 +327,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="absolute bottom-[5%] left-[-1%] z-10 flex size-[100px] rotate-[-21deg] scale-[67%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] mlg:bottom-[4%] mlg:left-[-12%] md:bottom-[-5%] md:left-[-6%] md:scale-[60%] sm:hidden">
+            <div className="popFooterLeft absolute bottom-[5%] left-[-1%] z-10 flex size-[100px] rotate-[-21deg] scale-[67%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] mlg:bottom-[4%] mlg:left-[-12%] md:bottom-[-5%] md:left-[-6%] md:scale-[60%] sm:hidden">
               <Image
                 src={"/company-logos/coinbase.svg"}
                 width={65}
@@ -338,7 +343,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="absolute right-[-10%] top-[-30%] z-10 flex size-[100px] rotate-[13deg] scale-[78%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] sm:hidden">
+            <div className="popFooterRight absolute right-[-10%] top-[-30%] z-10 flex size-[100px] rotate-[13deg] scale-[78%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] sm:hidden">
               <Image
                 src={"/company-logos/doordash.svg"}
                 width={60}
@@ -354,7 +359,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="absolute bottom-[15%] right-[-4%] z-10 flex size-[100px] rotate-[11deg] scale-[60%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] mlg:bottom-[15%] mlg:right-[-10%] sm:hidden">
+            <div className="popFooterRight absolute bottom-[15%] right-[-4%] z-10 flex size-[100px] rotate-[11deg] scale-[60%] items-center justify-center rounded-[25px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px] mlg:bottom-[15%] mlg:right-[-10%] sm:hidden">
               <Image
                 src={"/company-logos/chime.svg"}
                 width={78}

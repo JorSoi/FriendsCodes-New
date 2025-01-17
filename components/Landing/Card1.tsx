@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function Card1() {
   return (
-    <div className="max-w-[400px] rounded-[13px] border-2 border-[#ffffff10] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:max-w-full">
+    <div className="fadeInFeatureCards max-w-[400px] rounded-[13px] border-2 border-[#ffffff10] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:max-w-full">
       
       {/* Graphic Container */}
       <div className="relative h-[280px] overflow-hidden sm:h-[230px]">

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function Card3() {
   return (
-    <div className="relative max-w-[400px] rounded-[13px] border-2 border-[#ffffff10] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:col-span-2 lg:flex lg:h-[300px] lg:max-w-full lg:flex-row-reverse lg:items-center md:gap-3 sm:block sm:h-[unset]">
+    <div className="fadeInFeatureCards relative max-w-[400px] rounded-[13px] border-2 border-[#ffffff10] [background:radial-gradient(208.21%_100.36%_at_68.71%_2.35%,_rgba(255,255,255,0.01)_30.51%,rgba(255,255,255,0.03)_100%)] lg:col-span-2 lg:flex lg:h-[300px] lg:max-w-full lg:flex-row-reverse lg:items-center md:gap-3 sm:block sm:h-[unset]">
       {/* Graphic Container */}
       <div className="relative flex h-[280px] w-full items-center justify-center">
         {/* Main Card */}
