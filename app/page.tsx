@@ -375,7 +375,7 @@ export default function Home() {
             </div>
           </div>
           <svg
-            className="absolute inset-0 z-[-1]"
+            className="absolute inset-0 z-[-1] xs:hidden"
             width="100%"
             height="100%"
             viewBox="0 0 1125 465"
@@ -405,6 +405,7 @@ export default function Home() {
               fill="url(#footerBgPattern)"
             />
           </svg>
+          <div className="absolute inset-0 z-[-1] hidden rounded-[20px] bg-[url('/footer-card-bg.png')] bg-[length:250%_740%] bg-center brightness-[120%] xs:block"></div>
         </div>
       </section>
 
