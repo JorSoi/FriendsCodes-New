@@ -16,7 +16,7 @@ const useAnimations = () => {
         scrollTrigger: {
           trigger: element,
           start: "center 90%",
-          markers: true,
+          markers: false,
         },
         y: 30,
         opacity: 0,
