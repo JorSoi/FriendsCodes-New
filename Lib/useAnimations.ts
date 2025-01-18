@@ -15,7 +15,7 @@ const useAnimations = () => {
       gsap.from(element, {
         scrollTrigger: {
           trigger: element,
-          start: "center 90%",
+          start: "top 90%",
           markers: false,
         },
         y: 30,
