@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { figtree, inter } from "@/Lib/fonts";
+import { figtree, inter } from "@/lib/fonts";
 import "./globals.css";
-
 
 export const metadata: Metadata = {
   title: "FriendsCodes - Benefit from referrals!",
@@ -14,8 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${figtree.variable} ${inter.variable} scroll-smooth`}>
-      <body className="font-figtree bg-[#09071C] overflow-x-hidden overflow-y-scroll">
+    <html
+      lang="en"
+      className={`${figtree.variable} ${inter.variable} scroll-smooth`}
+    >
+      <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] font-figtree">
         {children}
       </body>
     </html>
