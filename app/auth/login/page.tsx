@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/client";
 import { useState } from "react";
 import Button from "@/components/Global/Button";
 
-function page() {
+function Page() {
 
   
   const [email, setEmail] = useState<string>("")
@@ -25,18 +25,18 @@ function page() {
 
   const handleSignOut = async () => {
     const supabase = await createClient();
-    const response = await supabase.auth.signOut();
+    await supabase.auth.signOut();
   }
 
 
 
   return (
     <div>
-      <input className="text-black" type="email" value={email} onChange={(el : any) => {setEmail(el.target.value)}}/>
+      <input className="text-black" type="email" value={email} onChange={(el) => {setEmail(el.target.value)}}/>
       <Button onClick={handleClick}>login</Button>
       <Button onClick={handleSignOut} variant={"secondary"}>SignOut</Button>
     </div>
   );
 }
 
-export default page;
+export default Page;
