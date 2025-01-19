@@ -10,7 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Question from "@/components/Landing/Question";
 import Footer from "@/components/Landing/Footer";
-import useAnimations from "@/Lib/useAnimations";
+import useAnimations from "@/lib/useAnimations";
 
 export default function Home() {
   useAnimations();
