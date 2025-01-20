@@ -40,14 +40,14 @@ function NavBar() {
             </Link>
           </div>
           <div className="flex gap-[15px]">
-            <Link href="https://friendscodes.de/auth/signIn">
+            <Link href="/auth/login">
               <Button variant={"secondary"} size={"sm"}>
-                Sign In
+                Log in
               </Button>
             </Link>
-            <Link href={"https://friendscodes.de/auth/signUp"}>
+            <Link href={"/auth/registration"}>
               <Button variant={"primary"} size={"sm"}>
-                Get Started
+                Sign up
               </Button>
             </Link>
           </div>

@@ -23,6 +23,7 @@ const useAnimations = () => {
         duration: 0.7,
         ease: "in-out",
         stagger: 0.1,
+        autoAlpha: 0,
       });
     });
 
@@ -60,14 +61,14 @@ const useAnimations = () => {
       });
     });
 
+    //Footer company logos popup
     [".popFooterLeft", ".popFooterRight"].forEach((selector: string) => {
       gsap.from(selector, {
         scrollTrigger: {
-          trigger: selector, // Trigger the animation when the element comes into view
-          start: "top 80%", // Start the animation when the top of the element is 80% from the top of the viewport
-          // end: "top 10%", // Optionally end the animation when the element goes past a certain point
-          once: false, // Trigger the animation only once
-          scrub: 2, // Smooth scrolling effect, optional
+          trigger: selector, 
+          start: "top 80%",
+          once: false,
+          scrub: 2,
         },
         scale: 0.9,
         x: selector.toLowerCase().endsWith("left") ? 60 : -60,
@@ -78,7 +79,27 @@ const useAnimations = () => {
         ease: "elastic.out(1,0.9)",
         stagger: 0.1,
       });
-    });    
+    });
+
+    //Auth registration handshake
+    gsap.to(".handshake", { scale: 1.3, duration: 0.3, delay: 0.5 });
+
+    gsap.to(".handshake", {
+      transformOrigin: "bottom right",
+      rotation: -20,
+      duration: 0.4,
+      repeat: 3, 
+      yoyo: true,
+      ease: "power1.inOut",
+      delay: 0.5,
+    });
+   
+    gsap.to(".handshake", {
+      scale: 1,
+      duration: 0.3,
+      delay: 1.9, 
+      ease: "in-out",
+    });
   });
 };
 

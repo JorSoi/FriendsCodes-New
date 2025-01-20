@@ -11,8 +11,31 @@ import Link from "next/link";
 import Question from "@/components/Landing/Question";
 import Footer from "@/components/Landing/Footer";
 import useAnimations from "@/lib/useAnimations";
+import { createClient } from "@/utils/supabase/client";
+import Tag from "@/components/Landing/Tag";
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
+  const [userName, setUserName] = useState<string>();
+  const visitorName = useSearchParams().get("visitor");
+
+  const checkForSession = async () => {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (user) {
+      const { data } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+      if (data?.user_name) setUserName(data?.user_name);
+    }
+  };
+
+  checkForSession();
   useAnimations();
 
   return (
@@ -54,12 +77,18 @@ export default function Home() {
         />
       </svg>
 
-      {/* Hero Heading Section */}
+      {/* MARK: Hero Heading Section */}
       <section
         id="hero"
         className="w-full pt-[190px] xl:pt-[240px] md:pt-[170px] xs:pt-[145px]"
       >
         <div className="relative mx-auto my-auto flex w-[900px] max-w-[90%] flex-col items-center justify-center text-center md:w-[500px]">
+          {userName && (
+            <Tag className="mb-4">Welcome back, {userName} ! 🎉</Tag>
+          )}
+          {visitorName && !userName && (
+            <Tag className="mb-4">Hey, {visitorName} ! 👋</Tag>
+          )}
           <h1 className="fadeInHero invisible text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] mlg:max-w-[600px] md:text-[57px] sm:text-[52px] xs:text-[43px]">
             Share Codes with Friends, Family and the World
           </h1>
@@ -68,13 +97,15 @@ export default function Home() {
             anyone. Collect benefits from 4000+ companies worldwide.
           </p>
           <div className="fadeInHero invisible mt-[52px] flex gap-6 xs:mt-[42px]">
-            <Link href={"https://friendscodes.de/auth/signUp"}>
-              <Button variant={"primary"} size={"md"}>
+            <Link
+              href={`/auth/registration${visitorName ? "?visitor=" + visitorName : ""}`}
+            >
+              <Button variant={"primary"} size={"lg"}>
                 Get Started!
               </Button>
             </Link>
             <Link href={"/#how-it-works"}>
-              <Button variant={"secondary"} size={"md"}>
+              <Button variant={"secondary"} size={"lg"}>
                 How it works
               </Button>
             </Link>
@@ -178,7 +209,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hero Image */}
+      {/* MARK: Hero Image */}
       <section className="relative flex w-full items-center justify-center pt-[100px] lg:pt-[70px]">
         <div className="fadeInHero invisible relative max-w-[90%] rounded-[20px] border-2 border-[#ffffff30] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] p-[23px] backdrop-blur-[38px] md:p-[15px] xs:max-w-[94%] xs:rounded-[10px] xs:p-[7px]">
           <Image
@@ -194,7 +225,7 @@ export default function Home() {
         <div className="z-2 absolute bottom-0 left-0 right-0 h-[30%] w-full bg-gradient-to-b from-transparent from-0% via-[#09071c9e] via-30% to-[#09071C] to-90%"></div>
       </section>
 
-      {/* Feature Cards */}
+      {/* MARK: Feature Cards */}
       <section id="how-it-works" className="scroll-mt-[80px]">
         <div className="overflow-hidden px-[3%] pb-[160px] pt-[60px] lg:pb-[110px]">
           <SectionHeading tagContent="How it works">
@@ -214,6 +245,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* MARK: FAQs */}
       <section id="faq" className="scroll-mt-40 px-[3%]">
         <SectionHeading tagContent="FAQ">
           Still not sure how it works?
@@ -285,7 +317,7 @@ export default function Home() {
         id="blog "
         className="flex items-center justify-center overflow-hidden pt-20"
       >
-        {/* Footer Card */}
+        {/* MARK: Footer Card */}
         <div className="wrapper fadeIn relative mx-[3%] flex h-[456px] w-full max-w-[1150px] items-center justify-center px-[3%] sm:mx-[2%] sm:h-full sm:py-[10%]">
           <div className="relative flex max-w-[800px] flex-col items-center justify-center text-center">
             <h2 className="text-[55px] font-[670] leading-[130%] tracking-[-2%] text-white mlg:max-w-[600px] mlg:text-[50px] md:text-[45px] sm:text-[42px] xs:text-[37px]">
@@ -297,14 +329,10 @@ export default function Home() {
               your benefits!
             </p>
             <div className="mt-[50px] flex gap-6 xs:mt-[42px] xs:w-[90%] xs:flex-col">
-              <Link href={"https://friendscodes.de/auth/signUp"}>
-                <Button variant={"primary"} size={"md"} className="xs:w-full">
-                  Sign Up!
-                </Button>
-              </Link>
-              <Link href={"https://friendscodes.de/auth/signIn"}>
-                <Button variant={"secondary"} size={"md"} className="xs:w-full">
-                  Login to Dashboard
+              <Link href={"/auth/registration"}>
+                <Button variant={"primary"} size={"md"} className="xs:w-full flex gap-3 justify-center items-center">
+                  Let&apos;s get started!
+                  <Image src={'/icons/chevron.svg'} width={7} height={7} alt="" />
                 </Button>
               </Link>
             </div>
