@@ -1,8 +1,8 @@
 function Page() {
     return (
-        <div>
-            Enter
-        </div>
+        <h1>
+            Dashboard
+        </h1>
     );
 }
 
