@@ -16,13 +16,13 @@ const buttonVariants = cva(
       },
       size: {
         sm: "text-[14px] md:text-[12px] px-[16px] py-[12px] rounded-[11px] font-medium",
-        md: "text-[17px] md:text-[14px] px-[23px] py-[12px] rounded-[11px] font-medium",
-        lg: "",
+        md: "text-[14px] px-[23px] py-[12px] rounded-[11px] font-medium",
+        lg: "text-[17px] md:text-[14px] px-[23px] py-[12px] rounded-[11px] font-medium",
       },
     },
     defaultVariants: {
       variant: "primary",
-      size: "sm",
+      size: "md",
     },
   },
 );

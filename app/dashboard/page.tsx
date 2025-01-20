@@ -1,4 +1,4 @@
-function signup() {
+function Page() {
     return (
         <div>
             Enter
@@ -6,4 +6,4 @@ function signup() {
     );
 }
 
-export default signup;
+export default Page;
