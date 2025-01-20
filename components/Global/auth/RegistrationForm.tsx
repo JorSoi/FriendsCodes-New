@@ -9,16 +9,41 @@ import { useState } from "react";
 import Checkbox from "../Checkbox";
 import Link from "next/link";
 import Button from "../Button";
+import Form from "../Form";
+import * as Yup from "yup";
 
 function RegistrationForm() {
   const visitorName = useSearchParams().get("visitor");
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   useAnimations();
 
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(2, "Too short!")
+      .max(15, "Too long!")
+      .required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters long")
+      .matches(
+        /[^a-zA-Z0-9]/,
+        "Password must contain at least one special character",
+      ),
+  });
+
+  const handleSubmit = (values : any) => {
+    alert(JSON.stringify(values));
+  };
 
   return (
-    <form className="w-full max-w-[400px] pb-[15vh]">
+    <div className="w-full max-w-[400px] pb-[15vh]">
       <div className="relative flex w-full justify-center pb-7">
         <Image
           className="drop-shadow-[0px_11.9px_16.87px_rgba(243,32,213,0.55)]"
@@ -62,62 +87,73 @@ function RegistrationForm() {
 
       {/* Form Fields */}
       <div className="w-full space-y-3">
-        <Input
-          type="text"
-          variant={"outline"}
-          size={"md"}
-          placeholder="Enter your name..."
-          label="Name"
-          required
-        />
-        <Input
-          type="email"
-          variant={"outline"}
-          size={"md"}
-          placeholder="Enter your email..."
-          label="Email"
-          required
-        />
-        <div className="relative">
+        <Form
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
           <Input
-            type={isPasswordVisible ? "text" : "password"}
+            className="mb-3"
+            name="name"
+            type="text"
             variant={"outline"}
             size={"md"}
-            placeholder="Enter your password..."
-            label="Password"
-            className="pr-9"
+            placeholder="Enter your name..."
+            label="Name"
             required
           />
-          <div
-            className="absolute bottom-[5%] right-1 flex size-10 cursor-pointer items-center justify-center"
-            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-          >
-            <Image
-              className="select-none"
-              src={`/icons/eye${isPasswordVisible ? "-hidden" : ""}.svg`}
-              width={18}
-              height={18}
-              alt="make password visible"
-              draggable="false"
+          <Input
+            className="mb-3"
+            name="email"
+            type="email"
+            variant={"outline"}
+            size={"md"}
+            placeholder="Enter your email..."
+            label="Email"
+            required
+          />
+          <div className="relative">
+            <Input
+              className="pr-9 mb-3"
+              name="password"
+              type={isPasswordVisible ? "text" : "password"}
+              variant={"outline"}
+              size={"md"}
+              placeholder="Enter your password..."
+              label="Password"
+              required
             />
+            <div
+              className="absolute bottom-[5%] right-1 flex size-10 cursor-pointer items-center justify-center"
+              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+            >
+              <Image
+                className="select-none"
+                src={`/icons/eye${isPasswordVisible ? "-hidden" : ""}.svg`}
+                width={18}
+                height={18}
+                alt="make password visible"
+                draggable="false"
+              />
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Checkbox and forgot password */}
-      <div className="mt-6 flex justify-between">
-        <Checkbox label="Remember me" />
-        <Link
-          href={"/reset-password"}
-          className="underline-offset-2] font-inter text-[14px] underline"
-        >
-          Forgot Password?
-        </Link>
-      </div>
+          {/* Checkbox and forgot password */}
+          <div className="mt-6 flex justify-between">
+            <Checkbox label="Remember me" />
+            <Link
+              href={"/reset-password"}
+              className="underline-offset-2] font-inter text-[14px] underline"
+            >
+              Forgot Password?
+            </Link>
+          </div>
 
-      <Button type="submit" className="mt-7 w-full">
-        Sign up
-      </Button>
+          <Button type="submit" className="mt-7 w-full">
+            Sign up
+          </Button>
+        </Form>
+      </div>
 
       <div className="mt-4 flex w-full justify-center">
         <Link
@@ -127,7 +163,7 @@ function RegistrationForm() {
           I have an account
         </Link>
       </div>
-    </form>
+    </div>
   );
 }
 

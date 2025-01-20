@@ -330,9 +330,18 @@ export default function Home() {
             </p>
             <div className="mt-[50px] flex gap-6 xs:mt-[42px] xs:w-[90%] xs:flex-col">
               <Link href={"/auth/registration"}>
-                <Button variant={"primary"} size={"md"} className="xs:w-full flex gap-3 justify-center items-center">
+                <Button
+                  variant={"primary"}
+                  size={"md"}
+                  className="flex items-center justify-center gap-3 xs:w-full"
+                >
                   Let&apos;s get started!
-                  <Image src={'/icons/chevron.svg'} width={7} height={7} alt="" />
+                  <Image
+                    src={"/icons/chevron.svg"}
+                    width={7}
+                    height={7}
+                    alt=""
+                  />
                 </Button>
               </Link>
             </div>
