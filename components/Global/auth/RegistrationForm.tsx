@@ -38,7 +38,7 @@ function RegistrationForm() {
       ),
   });
 
-  const handleSubmit = (values : any) => {
+  const handleSubmit = (values : { [key: string]: string }) => {
     alert(JSON.stringify(values));
   };
 

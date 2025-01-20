@@ -58,6 +58,7 @@ function RegistrationForm() {
       {/* Form Fields */}
       <div className="w-full space-y-3">
         <Input
+          name="email"
           type="email"
           variant={"outline"}
           size={"md"}
@@ -66,6 +67,7 @@ function RegistrationForm() {
         />
         <div className="relative">
           <Input
+            name="password"
             type={isPasswordVisible ? "text" : "password"}
             variant={"outline"}
             size={"md"}
