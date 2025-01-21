@@ -43,7 +43,7 @@ function RegistrationForm() {
   };
 
   return (
-    <div className="w-full max-w-[400px] pb-[15vh]">
+    <div className="w-full max-w-[400px]">
       <div className="relative flex w-full justify-center pb-7">
         <Link href={'/'} className="hover:scale-105 transition-transform">
         <Image
@@ -65,7 +65,7 @@ function RegistrationForm() {
         />
       </div>
 
-      <div className="flex flex-col items-center text-center">
+      <div className="flex flex-col items-center text-center mb-5">
         <div className="flex- flex text-[22px] font-semibold">
           <h3 className="mr-2">Hi {visitorName}</h3>
           <h3 className="handshake touch-none select-none"> 👋</h3>
@@ -78,7 +78,7 @@ function RegistrationForm() {
       </div>
 
       {/* Mark: Social Signup Buttons */}
-      <div className="mt-5 flex w-full justify-between gap-3">
+      <div className="flex w-full justify-between gap-3">
         <SocialAuthButton provider="google" />
         <SocialAuthButton provider="twitter" className="[&>img]:size-[17px]" />
         <SocialAuthButton provider="facebook" className="[&>img]:size-[20px]" />
@@ -138,12 +138,11 @@ function RegistrationForm() {
             </div>
           </div>
             </div>
-
           {/* Checkbox and forgot password */}
           <div className="mt-6 flex justify-between">
             <Checkbox label="Remember me" />
             <Link
-              href={"/reset-password"}
+              href={"/auth/forgot-password"}
               className="underline-offset-2] font-inter text-[14px] underline"
             >
               Forgot Password?

@@ -57,7 +57,7 @@ function Input({ className, size, variant, label, ...props }: InputProps) {
         )}
       />
       {isError && (
-        <div className="my-1 text-[12px] text-red-500">{meta.error}</div>
+        <div className="mt-1 text-[12px] text-red-500">{meta.error}</div>
       )}
     </div>
   );
