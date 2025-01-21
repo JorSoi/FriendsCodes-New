@@ -38,7 +38,7 @@ function RegistrationForm() {
       ),
   });
 
-  const handleSubmit = (values : { [key: string]: string }) => {
+  const handleSubmit = (values: { [key: string]: string }) => {
     alert(JSON.stringify(values));
   };
 
@@ -86,14 +86,13 @@ function RegistrationForm() {
       <div className="relative my-7 h-px w-full bg-[#262537] after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-[#09071C] after:px-4 after:text-[14px] after:text-[#7D7C87] after:content-['OR']"></div>
 
       {/* Form Fields */}
-      <div className="w-full space-y-3">
-        <Form
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
+      <Form
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        <div className="w-full space-y-3 ">
           <Input
-            className="mb-3"
             name="name"
             type="text"
             variant={"outline"}
@@ -103,7 +102,6 @@ function RegistrationForm() {
             required
           />
           <Input
-            className="mb-3"
             name="email"
             type="email"
             variant={"outline"}
@@ -114,7 +112,7 @@ function RegistrationForm() {
           />
           <div className="relative">
             <Input
-              className="pr-9 mb-3"
+              className="pr-9"
               name="password"
               type={isPasswordVisible ? "text" : "password"}
               variant={"outline"}
@@ -124,7 +122,7 @@ function RegistrationForm() {
               required
             />
             <div
-              className="absolute bottom-[5%] right-1 flex size-10 cursor-pointer items-center justify-center"
+              className="absolute top-[29px] right-1 flex size-10 cursor-pointer items-center justify-center"
               onClick={() => setIsPasswordVisible(!isPasswordVisible)}
             >
               <Image
@@ -137,6 +135,7 @@ function RegistrationForm() {
               />
             </div>
           </div>
+            </div>
 
           {/* Checkbox and forgot password */}
           <div className="mt-6 flex justify-between">
@@ -152,8 +151,7 @@ function RegistrationForm() {
           <Button type="submit" className="mt-7 w-full">
             Sign up
           </Button>
-        </Form>
-      </div>
+      </Form>
 
       <div className="mt-4 flex w-full justify-center">
         <Link
