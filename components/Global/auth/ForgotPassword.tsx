@@ -14,7 +14,7 @@ function PasswordResetForm() {
     email: Yup.string().email("Invalid email").required("Required"),
   });
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: {[key: string] : string}) => {
     alert(JSON.stringify(values));
   };
 

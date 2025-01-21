@@ -28,7 +28,7 @@ function ChangePassword() {
       .oneOf([Yup.ref('password')], 'Passwords do not match').required('Required')
   });
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: {[key: string] : string}) => {
     alert(JSON.stringify(values));
   };
 
