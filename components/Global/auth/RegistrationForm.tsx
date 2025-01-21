@@ -45,6 +45,7 @@ function RegistrationForm() {
   return (
     <div className="w-full max-w-[400px] pb-[15vh]">
       <div className="relative flex w-full justify-center pb-7">
+        <Link href={'/'} className="hover:scale-105 transition-transform">
         <Image
           className="drop-shadow-[0px_11.9px_16.87px_rgba(243,32,213,0.55)]"
           src={`/logo.png`}
@@ -52,7 +53,8 @@ function RegistrationForm() {
           height={56}
           alt={`FriendsCodes logo`}
           draggable={false}
-        />
+          />
+          </Link>
         <Image
           className="absolute top-1/2 z-[-1] size-[330px] -translate-y-[45%] select-none"
           src={`/auth-bg-decoration.png`}
