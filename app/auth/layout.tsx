@@ -6,7 +6,6 @@ function layout({children} : {children : React.ReactNode}) {
         <div className="mx-[3%] xs:mx-[5%]">
             <div className="pb-[15vh]">
                 {children}
-
             </div>
         </div>
       </div>
