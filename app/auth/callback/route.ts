@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
-// The client you created from the Server-Side Auth instructions
 import { createClient } from '@/utils/supabase/server'
+
+//This route is used to handle the code exchange between the oAuth provider and our application to save the user session. See google oAuth example -> https://supabase.com/docs/guides/auth/social-login/auth-google?queryGroups=environment&environment=server&queryGroups=framework&framework=nextjs#signing-users-in 
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
