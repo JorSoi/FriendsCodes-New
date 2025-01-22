@@ -1,13 +1,7 @@
-import RegistrationForm from "@/components/Global/auth/RegistrationForm";
+import RegistrationForm from "@/components/Global/auth/Registration";
 
-function signup() {
-  return (
-    <div className="flex h-screen w-full justify-center pt-[15vh] xs:pt-[6vh]">
-      <div className="mx-[3%] xs:mx-[5%]">
-        <RegistrationForm />
-      </div>
-    </div>
-  );
+function registration() {
+  return  <RegistrationForm />;
 }
 
-export default signup;
+export default registration;

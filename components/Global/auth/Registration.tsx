@@ -38,13 +38,14 @@ function RegistrationForm() {
       ),
   });
 
-  const handleSubmit = (values : { [key: string]: string }) => {
+  const handleSubmit = (values: { [key: string]: string }) => {
     alert(JSON.stringify(values));
   };
 
   return (
-    <div className="w-full max-w-[400px] pb-[15vh]">
+    <div className="w-full max-w-[400px]">
       <div className="relative flex w-full justify-center pb-7">
+        <Link href={'/'} className="hover:scale-105 transition-transform">
         <Image
           className="drop-shadow-[0px_11.9px_16.87px_rgba(243,32,213,0.55)]"
           src={`/logo.png`}
@@ -52,7 +53,8 @@ function RegistrationForm() {
           height={56}
           alt={`FriendsCodes logo`}
           draggable={false}
-        />
+          />
+          </Link>
         <Image
           className="absolute top-1/2 z-[-1] size-[330px] -translate-y-[45%] select-none"
           src={`/auth-bg-decoration.png`}
@@ -63,7 +65,7 @@ function RegistrationForm() {
         />
       </div>
 
-      <div className="flex flex-col items-center text-center">
+      <div className="flex flex-col items-center text-center mb-5">
         <div className="flex- flex text-[22px] font-semibold">
           <h3 className="mr-2">Hi {visitorName}</h3>
           <h3 className="handshake touch-none select-none"> 👋</h3>
@@ -76,7 +78,7 @@ function RegistrationForm() {
       </div>
 
       {/* Mark: Social Signup Buttons */}
-      <div className="mt-5 flex w-full justify-between gap-3">
+      <div className="flex w-full justify-between gap-3">
         <SocialAuthButton provider="google" />
         <SocialAuthButton provider="twitter" className="[&>img]:size-[17px]" />
         <SocialAuthButton provider="facebook" className="[&>img]:size-[20px]" />
@@ -86,14 +88,13 @@ function RegistrationForm() {
       <div className="relative my-7 h-px w-full bg-[#262537] after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-[#09071C] after:px-4 after:text-[14px] after:text-[#7D7C87] after:content-['OR']"></div>
 
       {/* Form Fields */}
-      <div className="w-full space-y-3">
-        <Form
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
+      <Form
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        <div className="w-full space-y-3 ">
           <Input
-            className="mb-3"
             name="name"
             type="text"
             variant={"outline"}
@@ -103,7 +104,6 @@ function RegistrationForm() {
             required
           />
           <Input
-            className="mb-3"
             name="email"
             type="email"
             variant={"outline"}
@@ -114,7 +114,7 @@ function RegistrationForm() {
           />
           <div className="relative">
             <Input
-              className="pr-9 mb-3"
+              className="pr-9"
               name="password"
               type={isPasswordVisible ? "text" : "password"}
               variant={"outline"}
@@ -124,7 +124,7 @@ function RegistrationForm() {
               required
             />
             <div
-              className="absolute bottom-[5%] right-1 flex size-10 cursor-pointer items-center justify-center"
+              className="absolute top-[29px] right-1 flex size-10 cursor-pointer items-center justify-center"
               onClick={() => setIsPasswordVisible(!isPasswordVisible)}
             >
               <Image
@@ -137,12 +137,12 @@ function RegistrationForm() {
               />
             </div>
           </div>
-
+            </div>
           {/* Checkbox and forgot password */}
           <div className="mt-6 flex justify-between">
             <Checkbox label="Remember me" />
             <Link
-              href={"/reset-password"}
+              href={"/auth/forgot-password"}
               className="underline-offset-2] font-inter text-[14px] underline"
             >
               Forgot Password?
@@ -152,8 +152,7 @@ function RegistrationForm() {
           <Button type="submit" className="mt-7 w-full">
             Sign up
           </Button>
-        </Form>
-      </div>
+      </Form>
 
       <div className="mt-4 flex w-full justify-center">
         <Link
