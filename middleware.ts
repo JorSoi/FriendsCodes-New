@@ -1,6 +1,8 @@
 import { type NextRequest } from 'next/server'
 import { updateSession } from '@/utils/supabase/middleware'
 
+//Since Server Components can't write cookies, we need middleware to refresh expired Auth tokens and store them.
+
 export async function middleware(request: NextRequest) {
   // update user's auth session
   return await updateSession(request)
