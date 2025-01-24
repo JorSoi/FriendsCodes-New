@@ -21,6 +21,8 @@ function SocialAuthButton({
     });
   };
 
+  console.log(`${window.location.origin}/auth/callback`)
+
   return (
     <button
       className={twMerge(
