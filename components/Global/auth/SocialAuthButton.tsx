@@ -16,7 +16,7 @@ function SocialAuthButton({
     await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: "/home",
+        redirectTo: `${window.location.origin}/auth/callback`,
       },
     });
   };
