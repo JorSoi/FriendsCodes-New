@@ -1,11 +1,10 @@
-import Button from "@/components/Global/Button";
 import { createClient } from "@/utils/supabase/server";
 
 async function Page() {
 
     const supabase = await createClient()
     const {data : {user}, error} = await supabase.auth.getUser();
-    if (user) {
+    if (!error && user) {
         const {data} = await supabase.from("profiles").select().eq("id", user.id)
         console.log(data)
     }
