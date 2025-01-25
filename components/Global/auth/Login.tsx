@@ -35,7 +35,7 @@ function RegistrationForm() {
 
       <div className="flex flex-col items-center text-center">
         <Suspense>
-          <h3 className="mr-2 text-[22px] font-semibold">
+          <h3 className="mr-2 text-[22px] font-semibold text-white">
             Welcome back! 🎉
           </h3>
         </Suspense>

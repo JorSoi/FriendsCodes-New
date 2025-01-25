@@ -66,7 +66,7 @@ function RegistrationForm() {
       </div>
 
       <div className="flex flex-col items-center text-center mb-5">
-        <div className="flex- flex text-[22px] font-semibold">
+        <div className="flex- flex text-[22px] font-semibold text-white">
           <h3 className="mr-2">Hi {visitorName}</h3>
           <h3 className="handshake touch-none select-none"> 👋</h3>
           <h3 className="ml-[2px]">, let&apos;s get started.</h3>

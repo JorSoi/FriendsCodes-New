@@ -117,6 +117,7 @@ export default function Home() {
               width={60}
               height={60}
               alt="Adidas logo"
+              draggable={false}
             />
             <Image
               className="absolute inset-0"
@@ -124,6 +125,7 @@ export default function Home() {
               width={300}
               height={300}
               alt=""
+              draggable={false}
             />
           </div>
 
@@ -133,6 +135,7 @@ export default function Home() {
               width={65}
               height={65}
               alt="Amex logo"
+              draggable={false}
             />
             <Image
               className="absolute inset-0"
@@ -140,6 +143,7 @@ export default function Home() {
               width={300}
               height={300}
               alt=""
+              draggable={false}
             />
           </div>
 
@@ -149,6 +153,7 @@ export default function Home() {
               width={50}
               height={50}
               alt="Amazon logo"
+              draggable={false}
             />
             <Image
               className="absolute inset-0"
@@ -156,6 +161,7 @@ export default function Home() {
               width={300}
               height={300}
               alt=""
+              draggable={false}
             />
           </div>
 
@@ -165,6 +171,7 @@ export default function Home() {
               width={60}
               height={60}
               alt="Spotify logo"
+              draggable={false}
             />
             <Image
               className="absolute inset-0"
@@ -172,6 +179,7 @@ export default function Home() {
               width={300}
               height={300}
               alt=""
+              draggable={false}
             />
           </div>
 
@@ -181,6 +189,7 @@ export default function Home() {
               width={65}
               height={65}
               alt="Trade Republic logo"
+              draggable={false}
             />
             <Image
               className="absolute inset-0"
@@ -188,6 +197,7 @@ export default function Home() {
               width={300}
               height={300}
               alt=""
+              draggable={false}
             />
           </div>
 
@@ -219,6 +229,7 @@ export default function Home() {
             height={550}
             priority
             alt="Dashboard with referral codes"
+            draggable={false}
           />
           <div className="absolute bottom-[30%] left-[3%] right-[3%] top-[3%] z-[-1] bg-white opacity-[34%] blur-[80px] md:bottom-[40%] md:blur-[40px] sm:blur-[40px] xs:blur-[25px]"></div>
         </div>
@@ -341,6 +352,7 @@ export default function Home() {
                     width={7}
                     height={7}
                     alt=""
+                    draggable={false}
                   />
                 </Button>
               </Link>
@@ -353,6 +365,7 @@ export default function Home() {
                 width={65}
                 height={65}
                 alt="Wise logo"
+                draggable={false}
               />
               <Image
                 className="absolute inset-0"
@@ -360,6 +373,7 @@ export default function Home() {
                 width={300}
                 height={300}
                 alt=""
+                draggable={false}
               />
             </div>
 
@@ -369,6 +383,7 @@ export default function Home() {
                 width={65}
                 height={65}
                 alt="Coinbase logo"
+                draggable={false}
               />
               <Image
                 className="absolute inset-0"
@@ -376,6 +391,7 @@ export default function Home() {
                 width={300}
                 height={300}
                 alt=""
+                draggable={false}
               />
             </div>
 
@@ -385,6 +401,7 @@ export default function Home() {
                 width={60}
                 height={60}
                 alt="Doordash logo"
+                draggable={false}
               />
               <Image
                 className="absolute inset-0"
@@ -392,6 +409,7 @@ export default function Home() {
                 width={300}
                 height={300}
                 alt=""
+                draggable={false}
               />
             </div>
 
@@ -401,6 +419,7 @@ export default function Home() {
                 width={78}
                 height={78}
                 alt="Trade Republic logo"
+                draggable={false}
               />
               <Image
                 className="absolute inset-0"
@@ -408,6 +427,7 @@ export default function Home() {
                 width={300}
                 height={300}
                 alt=""
+                draggable={false}
               />
             </div>
           </div>
