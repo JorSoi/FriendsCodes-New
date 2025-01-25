@@ -37,7 +37,7 @@ function PasswordResetForm() {
 
       <div className="flex flex-col items-center text-center mb-5">
         <div className="flex- flex">
-          <h3 className="text-[22px] font-semibold">Forgot your password?</h3>
+          <h3 className="text-[22px] font-semibold text-white">Forgot your password?</h3>
         </div>
         <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
           No worries, we&apos;ll send you reset instructions.

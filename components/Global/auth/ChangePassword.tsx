@@ -23,12 +23,13 @@ function ChangePassword() {
       .min(8, "Password must be at least 8 characters long")
       .matches(
         /[^a-zA-Z0-9]/,
-        "Password must contain at least one special character"
+        "Password must contain at least one special character",
       )
-      .oneOf([Yup.ref('password')], 'Passwords do not match').required('Required')
+      .oneOf([Yup.ref("password")], "Passwords do not match")
+      .required("Required"),
   });
 
-  const handleSubmit = (values: {[key: string] : string}) => {
+  const handleSubmit = (values: { [key: string]: string }) => {
     alert(JSON.stringify(values));
   };
 
@@ -50,9 +51,7 @@ function ChangePassword() {
       </div>
 
       <div className="mb-5 flex flex-col items-center text-center">
-        <div className="flex- flex">
-          <h3 className="text-[22px] font-semibold">Set your new password</h3>
-        </div>
+        <h3 className="text-[22px] font-semibold text-white">Set your new password</h3>
         <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
           Your new password must be different to previously used passwords.
         </p>
@@ -83,11 +82,10 @@ function ChangePassword() {
             label="Confirm New Password"
             required
           />
-
         </div>
-          <Button type="submit" className="mt-5 w-full">
-            Send Recovery Email
-          </Button>
+        <Button type="submit" className="mt-5 w-full">
+          Send Recovery Email
+        </Button>
       </Form>
     </div>
   );
