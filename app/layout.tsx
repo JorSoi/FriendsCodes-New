@@ -19,10 +19,7 @@ export default function RootLayout({
       className={`${figtree.variable} ${inter.variable} scroll-smooth`}
     >
       <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] font-figtree">
-        <Suspense>
-        {children}
-
-        </Suspense>
+        <Suspense>{children}</Suspense>
       </body>
     </html>
   );
