@@ -340,7 +340,7 @@ export default function Home() {
               your benefits!
             </p>
             <div className="mt-[50px] flex gap-6 xs:mt-[42px] xs:w-[90%] xs:flex-col">
-              <Link href={"/auth/registration"}>
+              <Link href={`/auth/registration${visitorName ? "?visitor=" + visitorName : ""}`}>
                 <Button
                   variant={"primary"}
                   size={"md"}

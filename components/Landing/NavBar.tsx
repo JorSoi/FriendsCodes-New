@@ -1,8 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../Global/Button";
+import { useSearchParams } from "next/navigation";
 
 function NavBar() {
+
+const visitorName = useSearchParams().get("visitor");
+
   return (
     <nav className="fixed top-[30px] z-[9999] flex w-full items-center justify-center sm:top-[25px]">
       <div className="fadeInHero w-[90%] max-w-[880px] rounded-full border-2 border-[#ffffff16] bg-[#ffffff16] px-[24px] py-[12px] backdrop-blur-md sm:w-[94%] sm:px-[18px] sm:py-[10px] invisible">
@@ -40,12 +44,12 @@ function NavBar() {
             </Link>
           </div>
           <div className="flex gap-[15px]">
-            <Link href="/auth/login">
+            <Link href={`/auth/login${visitorName ? "?visitor=" + visitorName : ""}`}>
               <Button variant={"secondary"} size={"sm"}>
                 Log in
               </Button>
             </Link>
-            <Link href={"/auth/registration"}>
+            <Link href={`/auth/registration${visitorName ? "?visitor=" + visitorName : ""}`}>
               <Button variant={"primary"} size={"sm"}>
                 Sign up
               </Button>
