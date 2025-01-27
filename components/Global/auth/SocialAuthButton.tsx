@@ -12,7 +12,7 @@ function SocialAuthButton({
   className?: string;
 }) {
   const handleClick = async () => {
-    const supabase = await createClient();
+    const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider,
       options: {
@@ -21,7 +21,6 @@ function SocialAuthButton({
     });
   };
 
-  console.log(`${window.location.origin}/auth/callback`)
 
   return (
     <button

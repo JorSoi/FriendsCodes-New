@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import SocialAuthButton from "./SocialAuthButton";
 import Image from "next/image";
 import useAnimations from "@/lib/useAnimations";
@@ -11,10 +11,13 @@ import Link from "next/link";
 import Button from "../Button";
 import Form from "../Form";
 import * as Yup from "yup";
+import { createClient } from "@/utils/supabase/client";
 
 function RegistrationForm() {
   const visitorName = useSearchParams().get("visitor");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const supabase = createClient();
+  const router = useRouter();
   useAnimations();
 
   const initialValues = {
@@ -25,9 +28,22 @@ function RegistrationForm() {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .min(2, "Too short!")
+      .min(3, "Too short!")
       .max(15, "Too long!")
-      .required("Required"),
+      .matches(/^\S*$/, "Username cannot contain spaces")
+      .required("Required")
+      .test("name", "This one has already been taken. 😦 ", async (value) => {
+        const { data, error } = await supabase
+          .from("profiles")
+          .select()
+          .ilike("user_name", value);
+
+        if (!error && data.length) {
+          return false;
+        } else {
+          return true;
+        }
+      }),
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
       .required("Password is required")
@@ -38,23 +54,37 @@ function RegistrationForm() {
       ),
   });
 
-  const handleSubmit = (values: { [key: string]: string }) => {
+  const handleSubmit = async (values: { [key: string]: string }) => {
     alert(JSON.stringify(values));
+    const { data: {user}, error } = await supabase.auth.signUp({
+      email: values.email,
+      password: values.password,
+      options: {
+        data: {
+          user_name: values.name,
+        },
+      },
+    });
+    if (user) {
+      router.push('/dashboard')
+    } else {
+      console.log(error);
+    }
   };
 
   return (
     <div className="w-full max-w-[400px]">
       <div className="relative flex w-full justify-center pb-7">
-        <Link href={'/'} className="hover:scale-105 transition-transform">
-        <Image
-          className="drop-shadow-[0px_11.9px_16.87px_rgba(243,32,213,0.55)]"
-          src={`/logo.png`}
-          width={56}
-          height={56}
-          alt={`FriendsCodes logo`}
-          draggable={false}
+        <Link href={"/"} className="transition-transform hover:scale-105">
+          <Image
+            className="drop-shadow-[0px_11.9px_16.87px_rgba(243,32,213,0.55)]"
+            src={`/logo.png`}
+            width={56}
+            height={56}
+            alt={`FriendsCodes logo`}
+            draggable={false}
           />
-          </Link>
+        </Link>
         <Image
           className="absolute top-1/2 z-[-1] size-[330px] -translate-y-[45%] select-none"
           src={`/auth-bg-decoration.png`}
@@ -65,7 +95,7 @@ function RegistrationForm() {
         />
       </div>
 
-      <div className="flex flex-col items-center text-center mb-5">
+      <div className="mb-5 flex flex-col items-center text-center">
         <div className="flex- flex text-[22px] font-semibold text-white">
           <h3 className="mr-2">Hi {visitorName}</h3>
           <h3 className="handshake touch-none select-none"> 👋</h3>
@@ -93,7 +123,7 @@ function RegistrationForm() {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <div className="w-full space-y-3 ">
+        <div className="w-full space-y-3">
           <Input
             name="name"
             type="text"
@@ -124,7 +154,7 @@ function RegistrationForm() {
               required
             />
             <div
-              className="absolute top-[29px] right-1 flex size-10 cursor-pointer items-center justify-center"
+              className="absolute right-1 top-[29px] flex size-10 cursor-pointer items-center justify-center"
               onClick={() => setIsPasswordVisible(!isPasswordVisible)}
             >
               <Image
@@ -137,21 +167,21 @@ function RegistrationForm() {
               />
             </div>
           </div>
-            </div>
-          {/* Checkbox and forgot password */}
-          <div className="mt-6 flex justify-between">
-            <Checkbox label="Remember me" />
-            <Link
-              href={"/auth/forgot-password"}
-              className="underline-offset-2] font-inter text-[14px] underline"
-            >
-              Forgot Password?
-            </Link>
-          </div>
+        </div>
+        {/* Checkbox and forgot password */}
+        <div className="mt-6 flex justify-between">
+          <Checkbox label="Remember me" />
+          <Link
+            href={"/auth/forgot-password"}
+            className="underline-offset-2] font-inter text-[14px] underline"
+          >
+            Forgot Password?
+          </Link>
+        </div>
 
-          <Button type="submit" className="mt-7 w-full">
-            Sign up
-          </Button>
+        <Button type="submit" className="mt-7 w-full">
+          Sign up
+        </Button>
       </Form>
 
       <div className="mt-4 flex w-full justify-center">
