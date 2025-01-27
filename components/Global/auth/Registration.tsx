@@ -15,7 +15,8 @@ import { createClient } from "@/utils/supabase/client";
 
 function RegistrationForm() {
   const visitorName = useSearchParams().get("visitor");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const supabase = createClient();
   const router = useRouter();
   useAnimations();
@@ -55,8 +56,11 @@ function RegistrationForm() {
   });
 
   const handleSubmit = async (values: { [key: string]: string }) => {
-    alert(JSON.stringify(values));
-    const { data: {user}, error } = await supabase.auth.signUp({
+    setIsLoading(true);
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.signUp({
       email: values.email,
       password: values.password,
       options: {
@@ -66,8 +70,10 @@ function RegistrationForm() {
       },
     });
     if (user) {
-      router.push('/dashboard')
+      setIsLoading(false);
+      router.push("/dashboard");
     } else {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -179,7 +185,7 @@ function RegistrationForm() {
           </Link>
         </div>
 
-        <Button type="submit" className="mt-7 w-full">
+        <Button type="submit" className="mt-7 w-full" loading={isLoading}>
           Sign up
         </Button>
       </Form>
