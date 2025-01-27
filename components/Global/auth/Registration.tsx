@@ -12,6 +12,8 @@ import Button from "../Button";
 import Form from "../Form";
 import * as Yup from "yup";
 import { createClient } from "@/utils/supabase/client";
+import { FormikHelpers } from "formik";
+import { FormValues } from "@/types/general.types";
 
 function RegistrationForm() {
   const visitorName = useSearchParams().get("visitor");
@@ -31,7 +33,7 @@ function RegistrationForm() {
     name: Yup.string()
       .matches(/^\S*$/, "Username cannot contain spaces")
       .matches(/^(?!.*@.*\..*).*$/, "Profile name cannot be an email address")
-      .required("Required")
+      .required("Name is required")
       .min(3, "Too short!")
       .max(15, "Too long!")
       .test("name", "This one is already taken. 😦 ", async (value) => {
@@ -56,7 +58,7 @@ function RegistrationForm() {
       ),
   });
 
-  const handleSubmit = async (values: { [key: string]: string }) => {
+  const handleSubmit = async (values: FormValues, actions : FormikHelpers<FormValues>) => {
     setIsLoading(true);
     const {
       data: { user },
@@ -74,6 +76,7 @@ function RegistrationForm() {
       setIsLoading(false);
       router.push("/dashboard");
     } else {
+      actions.setFieldError('password', error?.message)
       setIsLoading(false);
       console.log(error);
     }

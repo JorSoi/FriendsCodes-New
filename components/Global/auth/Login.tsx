@@ -12,6 +12,8 @@ import Button from "../Button";
 import Form from "../Form";
 import * as Yup from "yup";
 import { createClient } from "@/utils/supabase/client";
+import { FormikHelpers } from "formik";
+import { FormValues } from "@/types/general.types";
 
 function Login() {
   const visitorName = useSearchParams().get("visitor");
@@ -31,7 +33,7 @@ function Login() {
     password: Yup.string().required("Password is required"),
   });
 
-  const handleSubmit = async (values: { [key: string]: string }) => {
+  const handleSubmit = async (values: FormValues, actions : FormikHelpers<FormValues>) => {
     setIsLoading(true);
     const {
       data: { user },
@@ -42,11 +44,11 @@ function Login() {
     });
 
     if (user) {
-      setIsLoading(false);
       router.push("/dashboard");
     } else {
+      actions.setFieldError('password', error?.message)
       setIsLoading(false);
-      alert(error);
+      console.log(error)
     }
   };
 
