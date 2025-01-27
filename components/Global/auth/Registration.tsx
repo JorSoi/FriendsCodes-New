@@ -29,11 +29,12 @@ function RegistrationForm() {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
+      .matches(/^\S*$/, "Username cannot contain spaces")
+      .matches(/^(?!.*@.*\..*).*$/, "Profile name cannot be an email address")
+      .required("Required")
       .min(3, "Too short!")
       .max(15, "Too long!")
-      .matches(/^\S*$/, "Username cannot contain spaces")
-      .required("Required")
-      .test("name", "This one has already been taken. 😦 ", async (value) => {
+      .test("name", "This one is already taken. 😦 ", async (value) => {
         const { data, error } = await supabase
           .from("profiles")
           .select()
@@ -45,7 +46,7 @@ function RegistrationForm() {
           return true;
         }
       }),
-    email: Yup.string().email("Invalid email").required("Required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string()
       .required("Password is required")
       .min(8, "Password must be at least 8 characters long")
@@ -81,7 +82,10 @@ function RegistrationForm() {
   return (
     <div className="w-full max-w-[400px]">
       <div className="relative flex w-full justify-center pb-7">
-        <Link href={"/"} className="transition-transform hover:scale-105">
+        <Link
+          href={`/${visitorName ? "?visitor=" + visitorName : ""}`}
+          className="transition-transform hover:scale-105"
+        >
           <Image
             className="drop-shadow-[0px_11.9px_16.87px_rgba(243,32,213,0.55)]"
             src={`/logo.png`}
@@ -186,13 +190,13 @@ function RegistrationForm() {
         </div>
 
         <Button type="submit" className="mt-7 w-full" loading={isLoading}>
-          Sign up
+          Register
         </Button>
       </Form>
 
       <div className="mt-4 flex w-full justify-center">
         <Link
-          href={"/auth/login"}
+          href={`/auth/login${visitorName ? "?visitor=" + visitorName : ""}`}
           className="text-center font-inter text-[14px] text-[#908F99] underline-offset-2 transition-colors hover:text-white hover:underline"
         >
           I have an account

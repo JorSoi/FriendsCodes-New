@@ -1,28 +1,71 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
 import SocialAuthButton from "./SocialAuthButton";
 import Image from "next/image";
+import useAnimations from "@/lib/useAnimations";
 import Input from "../Input";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import Checkbox from "../Checkbox";
 import Link from "next/link";
 import Button from "../Button";
+import Form from "../Form";
+import * as Yup from "yup";
+import { createClient } from "@/utils/supabase/client";
 
-function RegistrationForm() {
+function Login() {
+  const visitorName = useSearchParams().get("visitor");
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const supabase = createClient();
+  const router = useRouter();
+  useAnimations();
 
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string().required("Password is required"),
+  });
+
+  const handleSubmit = async (values: { [key: string]: string }) => {
+    setIsLoading(true);
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.signInWithPassword({
+      email: values.email,
+      password: values.password,
+    });
+
+    if (user) {
+      setIsLoading(false);
+      router.push("/dashboard");
+    } else {
+      setIsLoading(false);
+      alert(error);
+    }
+  };
 
   return (
     <div className="w-full max-w-[400px]">
       <div className="relative flex w-full justify-center pb-7">
-        <Image
-          className="drop-shadow-[0px_11.9px_16.87px_rgba(243,32,213,0.55)]"
-          src={`/logo.svg`}
-          width={56}
-          height={56}
-          alt={`FriendsCodes logo`}
-          draggable={false}
-        />
+        <Link
+          href={`/${visitorName ? "?visitor=" + visitorName : ""}`}
+          className="transition-transform hover:scale-105"
+        >
+          <Image
+            className="drop-shadow-[0px_11.9px_16.87px_rgba(243,32,213,0.55)]"
+            src={`/logo.png`}
+            width={56}
+            height={56}
+            alt={`FriendsCodes logo`}
+            draggable={false}
+          />
+        </Link>
         <Image
           className="absolute top-1/2 z-[-1] size-[330px] -translate-y-[45%] select-none"
           src={`/auth-bg-decoration.png`}
@@ -33,89 +76,97 @@ function RegistrationForm() {
         />
       </div>
 
-      <div className="flex flex-col items-center text-center">
-        <Suspense>
-          <h3 className="mr-2 text-[22px] font-semibold text-white">
-            Welcome back! 🎉
+      <div className="mb-5 flex flex-col items-center text-center">
+        <div className="flex- flex text-[22px] font-semibold text-white">
+          <h3 className="mr-2">
+            Welcome back{visitorName ? `, ${visitorName}!` : ""}
           </h3>
-        </Suspense>
+          <h3 className="touch-none select-none">🎉</h3>
+        </div>
         <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
-          Time to catch up on your referral codes! Add more codes and links to
-          your dashboard if you can.
+          Let&apos;s catch up on your referral codes. The more you add, the more
+          benefits you can collect.
         </p>
       </div>
 
       {/* Mark: Social Signup Buttons */}
-      <div className="mt-5 flex w-full justify-between gap-3">
+      <div className="flex w-full justify-between gap-3">
         <SocialAuthButton provider="google" />
-        <SocialAuthButton provider="twitter" className="[&>img]:size-[20px]" />
-        <SocialAuthButton provider="facebook" className="[&>img]:size-[24px]" />
+        <SocialAuthButton provider="twitter" className="[&>img]:size-[17px]" />
+        <SocialAuthButton provider="facebook" className="[&>img]:size-[20px]" />
       </div>
 
       {/* Horizontal Line */}
-      <div className="relative my-7 h-px w-full bg-[#262537] after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-[#09071C] after:px-4 after:text-[#7D7C87] after:content-['OR']"></div>
+      <div className="relative my-7 h-px w-full bg-[#262537] after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-[#09071C] after:px-4 after:text-[14px] after:text-[#7D7C87] after:content-['OR']"></div>
 
       {/* Form Fields */}
-      <div className="w-full space-y-3">
-        <Input
-          name="email"
-          type="email"
-          variant={"outline"}
-          size={"md"}
-          placeholder="Enter your email..."
-          label="Email"
-        />
-        <div className="relative">
+      <Form
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        <div className="w-full space-y-3">
           <Input
-            name="password"
-            type={isPasswordVisible ? "text" : "password"}
+            name="email"
+            type="email"
             variant={"outline"}
             size={"md"}
-            placeholder="Enter your password..."
-            label="Password"
-            className="pr-9"
+            placeholder="Enter your email..."
+            label="Email"
+            required
           />
-          <div
-            className="absolute bottom-[5%] right-1 flex size-10 cursor-pointer items-center justify-center"
-            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-          >
-            <Image
-              className="select-none"
-              src={`/icons/eye${isPasswordVisible ? "-hidden" : ""}.svg`}
-              width={18}
-              height={18}
-              alt="make password visible"
-              draggable="false"
+          <div className="relative">
+            <Input
+              className="pr-9"
+              name="password"
+              type={isPasswordVisible ? "text" : "password"}
+              variant={"outline"}
+              size={"md"}
+              placeholder="Enter your password..."
+              label="Password"
+              required
             />
+            <div
+              className="absolute right-1 top-[29px] flex size-10 cursor-pointer items-center justify-center"
+              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+            >
+              <Image
+                className="select-none"
+                src={`/icons/eye${isPasswordVisible ? "-hidden" : ""}.svg`}
+                width={18}
+                height={18}
+                alt="make password visible"
+                draggable="false"
+              />
+            </div>
           </div>
         </div>
-      </div>
+        {/* Checkbox and forgot password */}
+        <div className="mt-6 flex justify-between">
+          <Checkbox label="Remember me" />
+          <Link
+            href={"/auth/forgot-password"}
+            className="underline-offset-2] font-inter text-[14px] underline"
+          >
+            Forgot Password?
+          </Link>
+        </div>
 
-      {/* Checkbox and forgot password */}
-      <div className="mt-6 flex justify-between">
-        <Checkbox label="Remember me" />
-        <Link
-          href={"/reset-password"}
-          className="underline-offset-2] font-inter text-[14px] underline"
-        >
-          Forgot Password?
-        </Link>
-      </div>
-
-      <Link href={"/dashboard"}>
-        <Button className="mt-7 w-full">Log in</Button>
-      </Link>
+        <Button type="submit" className="mt-7 w-full" loading={isLoading}>
+          Login
+        </Button>
+      </Form>
 
       <div className="mt-4 flex w-full justify-center">
         <Link
-          href={"/auth/registration"}
+          href={`/auth/registration${visitorName ? "?visitor=" + visitorName : ""}`}
           className="text-center font-inter text-[14px] text-[#908F99] underline-offset-2 transition-colors hover:text-white hover:underline"
         >
-          I don&apos;t have an account
+          I don&apos;t have an account yet
         </Link>
       </div>
     </div>
   );
 }
 
-export default RegistrationForm;
+export default Login;
