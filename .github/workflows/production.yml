@@ -1,4 +1,4 @@
-name: Release (Production)
+name: Deploy Migrations to FriendsCodes (Prod) Project
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  migrate:
+  deploy:
     runs-on: ubuntu-latest
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
@@ -22,21 +22,3 @@ jobs:
 
       - run: supabase link --project-ref $SUPABASE_PROJECT_ID
       - run: supabase db push
-
-  apply:
-    runs-on: ubuntu-latest
-    env:
-      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-      TF_VAR_linked_project: ${{ secrets.PRODUCTION_PROJECT_ID }}
-    defaults:
-      run:
-        working-directory: supabase/remotes
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_wrapper: false
-
-      - run: terraform init
-      - run: terraform apply -auto-approve -no-color
