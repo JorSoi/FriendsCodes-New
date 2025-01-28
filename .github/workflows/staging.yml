@@ -26,14 +26,6 @@ jobs:
         with:
           version: latest
 
-      - name: Debug environment variables
-        run: |
-          echo "SUPABASE_ACCESS_TOKEN: $SUPABASE_ACCESS_TOKEN"
-          echo "SUPABASE_DB_PASSWORD: $SUPABASE_DB_PASSWORD"
-          echo "SUPABASE_PROJECT_ID: $SUPABASE_PROJECT_ID"
-          echo "SUPABASE_AUTH_FACEBOOK_CLIENT_ID: $SUPABASE_AUTH_FACEBOOK_CLIENT_ID"
-          echo "SUPABASE_AUTH_FACEBOOK_SECRET: $SUPABASE_AUTH_FACEBOOK_SECRET"
-
       - run: supabase link --project-ref $SUPABASE_PROJECT_ID
       - run: supabase db push
       - run: supabase config push
