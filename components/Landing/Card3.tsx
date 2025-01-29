@@ -6,7 +6,7 @@ function Card3() {
       {/* Graphic Container */}
       <div className="relative flex h-[280px] w-full items-center justify-center">
         {/* Main Card */}
-        <div className="relative mx-[3%] w-full max-w-[330px]">
+        <div className="group relative mx-[3%] w-full max-w-[330px]">
           <div className="relative z-[3] flex gap-[5%] rounded-[14px] border-[1px] border-[#ffffff14] bg-gradient-to-br from-[#ffffff30] to-[#ffffff12] p-2 backdrop-blur-[10px]">
             <div className="relative h-min shrink-0">
               <Image
@@ -16,7 +16,9 @@ function Card3() {
                 alt="CashApp logo"
                 draggable="false"
               />
-              <div className="absolute bottom-[-9%] right-[-9%] size-3 rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] shadow-[0_0_0_1px_#ED01D8,inset_0_2px_2px_0_#ffffff70]"></div>
+              <div className="absolute bottom-[-9%] right-[-9%]  size-3 rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] shadow-[0_0_0_1px_#ED01D8,inset_0_2px_2px_0_#ffffff70]">
+                <div className="absolute inset-0  rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] group-hover:animate-ping "></div>
+              </div>
             </div>
             <div>
               <p className="text-[13px] text-[#9e96a4]">

@@ -10,7 +10,7 @@ function NavBar() {
     <nav className="fixed top-[30px] z-[9999] flex w-full items-center justify-center sm:top-[25px]">
       <div className="fadeInHero invisible w-[90%] max-w-[880px] rounded-full border-2 border-[#ffffff16] bg-[#ffffff16] px-[24px] py-[12px] backdrop-blur-md sm:w-[94%] sm:px-[18px] sm:py-[10px]">
         <div className="flex w-full items-center justify-between">
-          <Link className="flex items-center gap-[10px]" href="/#hero">
+          <Link className="flex items-center gap-[10px]" href={`/${visitorName ? "?visitor=" + visitorName : ""}#hero`}>
             <Image
               src="/logo.png"
               width={35}

@@ -346,7 +346,7 @@ export default function Home() {
                   size={"md"}
                   className="flex items-center justify-center gap-3 xs:w-full"
                 >
-                  Let&apos;s get started!
+                  Let&apos;s get started {visitorName}!
                   <Image
                     src={"/icons/chevron.svg"}
                     width={7}
