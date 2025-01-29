@@ -41,12 +41,14 @@ function Input({ className, size, variant, label, ...props }: InputProps) {
 
   return (
     <div>
-      <label
-        htmlFor={props.type}
-        className="mb-1 block font-figtree text-[14px] font-medium"
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={props.type}
+          className="mb-1 block font-figtree text-[14px] font-medium"
+        >
+          {label}
+        </label>
+      )}
       <input
         id={props.type}
         {...field}
