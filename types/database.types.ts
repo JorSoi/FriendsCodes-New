@@ -7,6 +7,31 @@ export type Json =
   | Json[]
 
 export type Database = {
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          operationName?: string
+          query?: string
+          variables?: Json
+          extensions?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
       companies: {
@@ -30,51 +55,69 @@ export type Database = {
         }
         Relationships: []
       }
+      notifications: {
+        Row: {
+          created_at: string
+          id: number
+          marked_as_read: boolean
+          raw_notification_meta_data: Json | null
+          recipient: string
+          triggered_by: string
+          type: Database["public"]["Enums"]["notification_types"]
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          marked_as_read?: boolean
+          raw_notification_meta_data?: Json | null
+          recipient: string
+          triggered_by: string
+          type: Database["public"]["Enums"]["notification_types"]
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          marked_as_read?: boolean
+          raw_notification_meta_data?: Json | null
+          recipient?: string
+          triggered_by?: string
+          type?: Database["public"]["Enums"]["notification_types"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_recipient_fkey"
+            columns: ["recipient"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_triggered_by_fkey"
+            columns: ["triggered_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
           id: string
-          redemption_count: number | null
           updated_at: string | null
           user_name: string | null
-          username: string | null
         }
         Insert: {
           avatar_url?: string | null
           id: string
-          redemption_count?: number | null
           updated_at?: string | null
           user_name?: string | null
-          username?: string | null
         }
         Update: {
           avatar_url?: string | null
           id?: string
-          redemption_count?: number | null
           updated_at?: string | null
           user_name?: string | null
-          username?: string | null
-        }
-        Relationships: []
-      }
-      test_table: {
-        Row: {
-          content: string | null
-          created_at: string
-          id: number
-          user_id: string | null
-        }
-        Insert: {
-          content?: string | null
-          created_at?: string
-          id?: number
-          user_id?: string | null
-        }
-        Update: {
-          content?: string | null
-          created_at?: string
-          id?: number
-          user_id?: string | null
         }
         Relationships: []
       }
@@ -82,27 +125,21 @@ export type Database = {
         Row: {
           company_id: number
           created_at: string
-          exposed_count: number | null
           id: number
-          redemption_count: number | null
           referral_value: string | null
           user_id: string | null
         }
         Insert: {
           company_id: number
           created_at?: string
-          exposed_count?: number | null
           id?: number
-          redemption_count?: number | null
           referral_value?: string | null
           user_id?: string | null
         }
         Update: {
           company_id?: number
           created_at?: string
-          exposed_count?: number | null
           id?: number
-          redemption_count?: number | null
           referral_value?: string | null
           user_id?: string | null
         }
@@ -124,7 +161,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      notification_types: "new_follower" | "code_interaction"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -228,3 +265,4 @@ export type CompositeTypes<
   : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
     ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
+
