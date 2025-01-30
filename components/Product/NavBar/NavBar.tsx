@@ -3,9 +3,10 @@
 import { createClient } from "@/utils/supabase/client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Notifications from "./Notifications";
-import Profile from "./Profile";
-import Support from "./Support";
+import NotificationButton from "./Nofitications/NotificationButton";
+import ProfileButton from "./ProfileButton";
+import SupportButton from "./SupportButton";
+// import Button from "@/components/Global/Button";
 
 function NavBar() {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -24,8 +25,8 @@ function NavBar() {
           .ilike("companies.name", `%${searchValue}%`);
         if (data) {
           data.forEach((item) => {
-            console.log(item.companies)
-          })
+            console.log(item.companies);
+          });
         } else {
           console.log(error);
         }
@@ -65,9 +66,10 @@ function NavBar() {
         </div>
 
         <div className="flex gap-2">
-          <Support />
-          <Notifications />
-          <Profile />
+          <SupportButton />
+         
+          <NotificationButton />
+          <ProfileButton />
         </div>
       </nav>
     </div>

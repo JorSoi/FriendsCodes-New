@@ -64,6 +64,7 @@ export type Database = {
           recipient: string
           triggered_by: string
           type: Database["public"]["Enums"]["notification_types"]
+          used_referral: number | null
         }
         Insert: {
           created_at?: string
@@ -73,6 +74,7 @@ export type Database = {
           recipient: string
           triggered_by: string
           type: Database["public"]["Enums"]["notification_types"]
+          used_referral?: number | null
         }
         Update: {
           created_at?: string
@@ -82,6 +84,7 @@ export type Database = {
           recipient?: string
           triggered_by?: string
           type?: Database["public"]["Enums"]["notification_types"]
+          used_referral?: number | null
         }
         Relationships: [
           {
@@ -96,6 +99,13 @@ export type Database = {
             columns: ["triggered_by"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_used_referral_fkey"
+            columns: ["used_referral"]
+            isOneToOne: false
+            referencedRelation: "user_codes"
             referencedColumns: ["id"]
           },
         ]
@@ -158,7 +168,33 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      json_matches_schema: {
+        Args: {
+          schema: Json
+          instance: Json
+        }
+        Returns: boolean
+      }
+      jsonb_matches_schema: {
+        Args: {
+          schema: Json
+          instance: Json
+        }
+        Returns: boolean
+      }
+      jsonschema_is_valid: {
+        Args: {
+          schema: Json
+        }
+        Returns: boolean
+      }
+      jsonschema_validation_errors: {
+        Args: {
+          schema: Json
+          instance: Json
+        }
+        Returns: string[]
+      }
     }
     Enums: {
       notification_types: "new_follower" | "code_interaction"
