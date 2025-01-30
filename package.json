@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "supabase-types": "npx supabase gen types typescript --project-id ukedipxxjtublvuhefhx  > /types/database.types.ts",
+    "gen-types": "npx supabase gen types typescript --project-id ukedipxxjtublvuhefhx > types/database.types.ts",
+    "gen-local-types": "npx supabase gen types typescript --local > types/database.types.ts",
     "prod": "next build && next start",
     "build": "next build",
     "start": "next start",
@@ -18,6 +19,7 @@
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
     "gsap": "^3.12.7",
+    "javascript-time-ago": "^2.5.11",
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
