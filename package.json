@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "supabase-types": "npx supabase gen types typescript --project-id ukedipxxjtublvuhefhx  > database.types.ts",
+    "supabase-types": "npx supabase gen types typescript --project-id ukedipxxjtublvuhefhx  > /types/database.types.ts",
     "prod": "next build && next start",
     "build": "next build",
     "start": "next start",
