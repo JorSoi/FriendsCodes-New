@@ -65,7 +65,7 @@ function NotificationButton() {
           )}
         </div>
       </Button>
-      <div className="invisible opacity-0 absolute -left-[400%] top-[100%] w-[350px] translate-y-1 space-y-1 rounded-xl border-1 border-[#ffffff16] bg-[#1d2336] px-2 pb-2 pt-4 shadow-[0px_0px_50px_0px_#00000050] backdrop-blur-[160px] transition-all peer-focus:visible peer-focus:translate-y-0 peer-focus:opacity-100">
+      <div className="invisible opacity-0 absolute -right-[100%] top-[100%] w-[350px] translate-y-1 space-y-1 rounded-xl border-1 border-[#ffffff16] bg-[#1d2336] px-2 pb-2 pt-4 shadow-[0px_0px_50px_0px_#00000050] backdrop-blur-[160px] transition-all peer-focus:visible peer-focus:translate-y-0 peer-focus:opacity-100">
         <h4 className="mb-3 flex items-center gap-2 px-1 text-[15px] font-semibold">
           Notifications{" "}
           <span className="flex size-6 items-center justify-center rounded-lg bg-[#ffffff20] px-2 text-[12px]">
