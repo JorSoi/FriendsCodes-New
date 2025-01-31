@@ -12,7 +12,7 @@ function Notification({ ...notification } : NotificationWithRelations) {
   const timeAgo = new TimeAgo("en-US");
 
   return (
-    <div className="flex cursor-pointer gap-3 rounded-lg p-2 transition-colors hover:bg-[#ffffff0d]">
+    <div className="flex gap-3">
       <div className="relative flex size-[40px] shrink-0 items-center justify-center rounded-lg bg-[#484E6844]">
         {notification.type == "code_interaction" && (
           <Image
