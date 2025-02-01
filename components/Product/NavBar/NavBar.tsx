@@ -68,7 +68,7 @@ function NavBar() {
           </div>
         </div>
         <div className="flex flex-[1] h-full items-center justify-end">
-          <div className="flex gap-2">
+          <div className="flex ">
             <SupportButton />
 
             <NotificationButton />

@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "gen-types": "npx supabase gen types typescript --project-id ukedipxxjtublvuhefhx > types/database.types.ts",
     "gen-local-types": "npx supabase gen types typescript --local > types/database.types.ts",
+    "count-lines": "find . -name '*.tsx' | xargs wc -l",
     "prod": "next build && next start",
     "build": "next build",
     "start": "next start",
