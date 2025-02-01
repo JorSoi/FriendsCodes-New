@@ -31,15 +31,15 @@ function SupportButton() {
         className="w-[200px] text-[14px] text-[#fafafa]"
       >
         <h4 className="mb-2 px-1 text-[15px] font-semibold">Help Center</h4>
-        <HoverMenuItem key={1} className="flex cursor-pointer gap-2">
+        <HoverMenuItem key={1} className="flex gap-2">
           <Image src={"/icons/alert-octagon.svg"} width={16} height={16} alt="Bug" />
           <p className="">Report Bug</p>
         </HoverMenuItem>
-        <HoverMenuItem key={2} className="flex cursor-pointer gap-2">
+        <HoverMenuItem key={2} className="flex gap-2">
           <Image src={"/icons/announcement.svg"} width={16} height={16} alt="Bug" />
           <p>Feature Requests</p>
         </HoverMenuItem>
-        <HoverMenuItem key={3} className="flex cursor-pointer gap-2">
+        <HoverMenuItem key={3} className="flex gap-2">
           <Image src={"/icons/message-question.svg"} width={16} height={16} alt="Bug" />
           <p>FAQ</p>
         </HoverMenuItem>

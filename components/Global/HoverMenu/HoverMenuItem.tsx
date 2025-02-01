@@ -10,7 +10,7 @@ function HoverMenuItem({
   return (
     <div
       className={twMerge(
-        "rounded-md p-2 transition-colors hover:bg-[#ffffff16]",
+        "rounded-md p-2 transition-colors hover:bg-[#ffffff16] cursor-pointer",
         className,
       )}
     >
