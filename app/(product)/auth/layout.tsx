@@ -10,7 +10,7 @@ async function layout({ children }: { children: React.ReactNode }) {
     error,
   } = await supabase.auth.getUser();
   if (user) {
-    redirect("/dashboard");
+    redirect("/home");
   } else {
     console.log(error);
   }
