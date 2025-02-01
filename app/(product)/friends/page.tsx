@@ -1,20 +1,15 @@
-import NavBar from "@/components/Product/NavBar/NavBar";
 import Tab from "@/components/Product/Tab";
-import { createClient } from "@/utils/supabase/server";
+import { getServerProfile } from "@/utils/getServerProfile";
 import { redirect } from "next/navigation";
 
 async function Page() {
-  const supabase = await createClient();
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
+  const { user } = await getServerProfile();
   if (!user) {
       redirect('/auth/login')
   }
 
   return (
     <div className="w-full ">
-      <NavBar />
       <div className="flex flex-col gap-10 justify-center items-center">
       <Tab />
 

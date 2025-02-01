@@ -74,7 +74,7 @@ function RegistrationForm() {
     });
     if (user) {
       setIsLoading(false);
-      router.push("/dashboard");
+      router.push("/home");
     } else {
       actions.setFieldError('password', error?.message)
       setIsLoading(false);

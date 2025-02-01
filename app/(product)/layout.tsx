@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { figtree, inter } from "@/lib/fonts";
 import "@/app/globals.css";
+import NavBar from "@/components/Product/NavBar/NavBar";
 
 export const metadata: Metadata = {
   title: "FriendsCodes - Benefit from referrals!",
@@ -18,6 +19,7 @@ export default function RootLayout({
       className={`${figtree.variable} ${inter.variable} scroll-smooth`}
     >
       <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] font-figtree pt-[150px]">
+        <NavBar />
         {children}
       </body>
     </html>

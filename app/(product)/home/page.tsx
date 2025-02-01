@@ -14,7 +14,7 @@ async function Page() {
 
   return (
     <div className="w-full ">
-      <NavBar />
+      
       <div className="flex flex-col gap-10 justify-center items-center">
       <Tab />
 
