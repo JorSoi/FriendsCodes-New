@@ -1,23 +1,32 @@
+import CodeContainer from "@/components/Product/CodeContainer";
 import Tab from "@/components/Product/Tab";
+import { UserCodeWithRelations } from "@/types/general.types";
 import { getServerProfile } from "@/utils/getServerProfile";
-import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
 
 async function Page() {
+
+  let userCodes: UserCodeWithRelations[] | null = [];
+  const supabase = await createClient();
   const { user } = await getServerProfile();
-  if (!user) {
-      redirect('/auth/login')
+
+  if (user) {
+    const { data } = await supabase
+      .from("user_codes")
+      .select(`*, companies(*)`)
+      .eq("user_id", user.id);
+
+    userCodes = data;
+
+    console.log(userCodes)
   }
 
   return (
-    <div className="w-full ">
-      <div className="flex flex-col gap-10 justify-center items-center">
+    <div className="flex flex-col items-center justify-center gap-10">
       <Tab />
-
-      <div className="max-w-[900px] w-full h-[700px] bg-[#D0DAff11]">
-      </div>
-      
-
-      </div>
+      <CodeContainer>
+        f
+      </CodeContainer>
     </div>
   );
 }

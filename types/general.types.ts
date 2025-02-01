@@ -22,3 +22,9 @@ export type NotificationWithRelations = Tables<"notifications"> & {
     companies: Tables<"companies">;
   }) | null; // Nullable if used_referral is optional
 };
+
+
+//Used for Referral Code Components and defines a SELECT from public.user_codes with various joins that must be chained to the default "user_code" type in order to provide type safety. 
+export type UserCodeWithRelations = Tables<"user_codes"> & {
+  companies: (Tables<"companies">)
+};
