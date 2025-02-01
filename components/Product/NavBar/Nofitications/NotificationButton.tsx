@@ -67,14 +67,14 @@ function NotificationButton() {
         <div className="relative">
           <Image
             src={"/icons/bell-default.svg"}
-            width={20}
-            height={20}
+            width={17}
+            height={17}
             alt="Notifications"
             className="select-none opacity-[50%] transition-all group-hover:opacity-[70%]"
             draggable={false}
           />
           {unreadCount > 0 && (
-            <div className="absolute -right-[35%] -top-[19%] z-[1] flex size-[16px] items-center justify-center rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] text-[13px] font-semibold shadow-[0_0_0_2px_#262538,inset_0_2px_2px_0_#ffffff70]">
+            <div className="absolute -right-[35%] -top-[30%] z-[1] flex size-[16px] items-center justify-center rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] text-[13px] font-semibold shadow-[0_0_0_2px_#262538,inset_0_2px_2px_0_#ffffff70]">
               <div className="absolute inset-0 -z-[1] animate-ping rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF]"></div>
               <p>
                 {

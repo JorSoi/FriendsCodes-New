@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "@/components/Global/Button";
 import HoverMenu from "@/components/Global/HoverMenu/HoverMenu";
 import HoverMenuItem from "@/components/Global/HoverMenu/HoverMenuItem";
+import Link from "next/link";
 
 function SupportButton() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -18,8 +19,8 @@ function SupportButton() {
       >
         <Image
           src={"/icons/support.svg"}
-          width={24}
-          height={24}
+          width={20}
+          height={20}
           alt="Support"
           className="select-none opacity-[50%] transition-all group-hover:opacity-[70%]"
           draggable={false}
@@ -28,21 +29,40 @@ function SupportButton() {
       <HoverMenu
         isVisible={isVisible}
         setIsVisible={setIsVisible}
-        className="w-[200px] text-[14px] text-[#fafafa]"
+        className="w-[200px] text-[14px] text-[#ffffff95] [&_img]:opacity-70"
       >
-        <h4 className="mb-2 px-1 text-[15px] font-semibold">Help Center</h4>
+        <h4 className="mb-2 px-1 text-[15px] font-semibold text-white">
+          Help Center
+        </h4>
         <HoverMenuItem key={1} className="flex gap-2">
-          <Image src={"/icons/alert-octagon.svg"} width={16} height={16} alt="Bug" />
+          <Image
+            src={"/icons/alert-octagon.svg"}
+            width={16}
+            height={16}
+            alt="Bug"
+          />
           <p className="">Report Bug</p>
         </HoverMenuItem>
         <HoverMenuItem key={2} className="flex gap-2">
-          <Image src={"/icons/announcement.svg"} width={16} height={16} alt="Bug" />
+          <Image
+            src={"/icons/announcement.svg"}
+            width={16}
+            height={16}
+            alt="Bug"
+          />
           <p>Feature Requests</p>
         </HoverMenuItem>
-        <HoverMenuItem key={3} className="flex gap-2">
-          <Image src={"/icons/message-question.svg"} width={16} height={16} alt="Bug" />
-          <p>FAQ</p>
-        </HoverMenuItem>
+        <Link href={'/#faq'}>
+          <HoverMenuItem key={3} className="flex gap-2">
+            <Image
+              src={"/icons/message-question.svg"}
+              width={16}
+              height={16}
+              alt="Bug"
+            />
+            <p>FAQ</p>
+          </HoverMenuItem>
+        </Link>
       </HoverMenu>
     </div>
   );
