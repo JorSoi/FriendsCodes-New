@@ -44,7 +44,7 @@ function Login() {
     });
 
     if (user) {
-      router.push("/dashboard");
+      router.push("/home");
     } else {
       actions.setFieldError('password', error?.message)
       setIsLoading(false);

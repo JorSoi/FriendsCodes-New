@@ -10,6 +10,13 @@ const nextConfig: NextConfig = {
         pathname: '/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: '*.brandfetch.io',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
     ],
   },
 };
