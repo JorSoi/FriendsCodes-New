@@ -5,10 +5,7 @@ function Checkbox({ label }: { label: string }) {
   const [isChecked, setIsChecked] = useState(true);
 
   return (
-    <label
-      className="relative flex cursor-pointer select-none items-center gap-2"
-      
-    >
+    <label className="relative flex cursor-pointer select-none items-center gap-2">
       <input
         className="checkbox peer size-6 cursor-pointer opacity-0"
         type="checkbox"
@@ -18,8 +15,8 @@ function Checkbox({ label }: { label: string }) {
 
       <span className="absolute left-0 top-0 flex size-[20px] items-center justify-center rounded-[6px] border-2 border-[#262537] transition-all peer-checked:border-transparent peer-checked:bg-[#dd00ff]">
         <svg
-          className={clsx("opacity-0 transition-opacity ", {
-            "opacity-100": isChecked
+          className={clsx("opacity-0 transition-opacity", {
+            "opacity-100": isChecked,
           })}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
