@@ -2,7 +2,6 @@
 
 import { UserCodeWithRelations } from "@/types/general.types";
 import { cn } from "@/utils/variants";
-import clsx from "clsx";
 import Image from "next/image";
 import { Suspense, useEffect, useRef, useState } from "react";
 
