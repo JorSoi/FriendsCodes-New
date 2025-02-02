@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
-import clsx from "clsx";
-import { twMerge } from "tailwind-merge";
+import { cn } from "@/utils/variants";
 
 /**
  *
@@ -42,14 +41,12 @@ function HoverMenu({
   return (
     <div
       ref={menuRef}
-      className={twMerge(
-        clsx(
-          "absolute -right-[100%] top-[100%] mt-1 rounded-lg border-1 border-[#ffffff16] bg-[#252542] px-[3px] p-1 pt-3 shadow-[0px_0px_50px_0px_#00000020] backdrop-blur-[160px] transition-all",
-          {
-            "visible translate-y-0 opacity-100": isVisible,
-            "invisible translate-y-1 opacity-0": !isVisible,
-          },
-        ),
+      className={cn(
+        "absolute -right-[100%] top-[100%] mt-1 rounded-lg border-1 border-[#ffffff16] bg-[#252542] p-1 px-[3px] pt-3 shadow-[0px_0px_50px_0px_#00000020] backdrop-blur-[160px] transition-all",
+        {
+          "visible translate-y-0 opacity-100": isVisible,
+          "invisible translate-y-1 opacity-0": !isVisible,
+        },
         className,
       )}
     >

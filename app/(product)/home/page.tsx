@@ -20,7 +20,7 @@ async function Page() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-10 mx-[3%]">
+    <div className="flex flex-col items-center justify-center gap-5 mx-[3%]">
       <Tab />
       <CodeContainer>
         {userCodes?.map(({ ...referralCode }) => {
