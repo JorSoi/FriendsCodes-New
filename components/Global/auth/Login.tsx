@@ -4,12 +4,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 import SocialAuthButton from "./SocialAuthButton";
 import Image from "next/image";
 import useAnimations from "@/lib/useAnimations";
-import Input from "../Input";
+import Input from "../FormComponents/Input";
 import { useState } from "react";
-import Checkbox from "../Checkbox";
+import Checkbox from "../FormComponents/Checkbox";
 import Link from "next/link";
 import Button from "../Button";
-import Form from "../Form";
+import Form from "../FormComponents/Form";
 import * as Yup from "yup";
 import { createClient } from "@/utils/supabase/client";
 import { FormikHelpers } from "formik";
@@ -33,7 +33,10 @@ function Login() {
     password: Yup.string().required("Password is required"),
   });
 
-  const handleSubmit = async (values: FormValues, actions : FormikHelpers<FormValues>) => {
+  const handleSubmit = async (
+    values: FormValues,
+    actions: FormikHelpers<FormValues>,
+  ) => {
     setIsLoading(true);
     const {
       data: { user },
@@ -46,9 +49,9 @@ function Login() {
     if (user) {
       router.push("/home");
     } else {
-      actions.setFieldError('password', error?.message)
+      actions.setFieldError("password", error?.message);
       setIsLoading(false);
-      console.log(error)
+      console.log(error);
     }
   };
 

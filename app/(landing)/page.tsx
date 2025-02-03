@@ -13,13 +13,15 @@ import Footer from "@/components/Landing/Footer";
 import useAnimations from "@/lib/useAnimations";
 import { createClient } from "@/utils/supabase/client";
 import Tag from "@/components/Landing/Tag";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function Home() {
   const [userName, setUserName] = useState<string>();
   const visitorName = useSearchParams().get("visitor");
 
+ // Wrap the session check in useEffect
+ useEffect(() => {
   const checkForSession = async () => {
     const supabase = await createClient();
     const {
@@ -36,6 +38,9 @@ export default function Home() {
   };
 
   checkForSession();
+}, []);
+
+
   useAnimations();
 
   return (

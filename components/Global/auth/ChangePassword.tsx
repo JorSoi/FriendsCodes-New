@@ -1,7 +1,7 @@
 import Image from "next/image";
 import * as Yup from "yup";
-import Form from "../Form";
-import Input from "../Input";
+import Form from "../FormComponents/Form";
+import Input from "../FormComponents/Input";
 import Button from "../Button";
 
 function ChangePassword() {
@@ -51,7 +51,9 @@ function ChangePassword() {
       </div>
 
       <div className="mb-5 flex flex-col items-center text-center">
-        <h3 className="text-[22px] font-semibold text-white">Set your new password</h3>
+        <h3 className="text-[22px] font-semibold text-white">
+          Set your new password
+        </h3>
         <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
           Your new password must be different to previously used passwords.
         </p>
