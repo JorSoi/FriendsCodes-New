@@ -23,6 +23,7 @@
     "javascript-time-ago": "^2.5.11",
     "next": "15.1.4",
     "react": "^19.0.0",
+    "react-canvas-confetti": "^2.0.7",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^2.6.0",
     "yup": "^1.6.1"

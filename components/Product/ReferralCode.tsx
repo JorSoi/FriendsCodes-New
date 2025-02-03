@@ -19,12 +19,13 @@ function ReferralCode({ ...code }: UserCodeWithRelations) {
     >
       <div className="flex size-full flex-col items-center justify-center">
         <Image
-          className="h-full max-h-[55px] w-auto max-w-[85px] rounded-md transition-transform duration-200 group-hover:scale-[105%] lg:max-h-[50px] sm:max-w-[65px]"
-          src={code.companies.logo_url || ""}
-          width={60}
-          height={60}
+          className="object-scale-down h-full max-h-[55px] w-auto max-w-[85px] rounded-md transition-transform duration-200 group-hover:scale-[105%] lg:max-h-[50px] sm:max-w-[65px]"
+          src={code.companies.logo_url || "/icons/shop.svg"}
+          width={90}
+          height={90}
           alt=""
           draggable={false}
+          
         />
 
         <p className="mt-[10px] w-full truncate font-medium">
@@ -35,7 +36,7 @@ function ReferralCode({ ...code }: UserCodeWithRelations) {
         <div className="w-svh flex max-w-[400px] flex-col items-center justify-center rounded-md bg-red-50">
           <Image
             className="h-full max-h-[55px] w-auto rounded-md transition-transform duration-200 group-hover:scale-[105%] lg:max-h-[50px]"
-            src={code.companies.logo_url || ""}
+            src={code.companies.logo_url || "/icons/shop.svg"}
             width={60}
             height={60}
             alt=""
