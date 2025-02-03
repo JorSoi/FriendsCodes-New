@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Input from "../Global/FormComponents/Input";
 import Form from "../Global/FormComponents/Form";
 import Button from "../Global/Button";
@@ -12,28 +12,39 @@ import { FormikValues } from "formik";
 import { getClientProfile } from "@/utils/getClientProfile";
 import { useRouter } from "next/navigation";
 
-function ReferralCreationForm({closeModal} : {closeModal: () => void}) {
+function ReferralCreationForm({
+  closeModal,
+  setFireWork,
+}: {
+  closeModal: () => void;
+  setFireWork: Dispatch<SetStateAction<boolean>>;
+}) {
   const [selectedCompany, setSelectedCompany] =
     useState<Tables<"companies"> | null>(null);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSubmit = async (values: FormikValues) => {
     const supabase = createClient();
-    const {user} = await getClientProfile();
-    const {data, error} = await supabase.from("user_codes").insert({
+    const { user } = await getClientProfile();
+    const { data, error } = await supabase
+      .from("user_codes")
+      .insert({
         company_id: selectedCompany!.id,
         referral_value: values.referralCode,
-        user_id: user?.id
-    })
-    if(!error) {
-        console.log(data)
-        router.refresh();
-        closeModal();
+        user_id: user?.id,
+      })
+      .select("*");
+    if (!error) {
+      console.log(data);
+      router.refresh();
+      closeModal();
+      setFireWork(true);
     } else {
-        console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Form
@@ -41,11 +52,8 @@ function ReferralCreationForm({closeModal} : {closeModal: () => void}) {
       onSubmit={handleSubmit}
       validationSchema={Yup.object().shape({
         company: Yup.string()
-        .matches(
-            /^(?!https?:\/\/).*$/, 
-            "Company name cannot be a URL"
-        )
-        .min(2, "Too short")
+          .matches(/^(?!https?:\/\/).*$/, "Company name cannot be a URL")
+          .min(2, "Too short")
           .required("Store is required"),
         referralCode: Yup.string().required("Password is required"),
       })}

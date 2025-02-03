@@ -24,7 +24,7 @@ function DropdownItem({
       }}
     >
       <Image
-        src={company.logo_url || ""}
+        src={company.logo_url || "/icons/shop.svg"}
         width={25}
         height={25}
         alt=""
