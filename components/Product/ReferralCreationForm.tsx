@@ -58,7 +58,7 @@ function ReferralCreationForm({
         referralCode: Yup.string().required("Password is required"),
       })}
     >
-      <div className="rounded-xl bg-[#30354A] p-3">
+      <div className="rounded-xl bg-[#30354A] p-3 border-1 border-[#ffffff20]">
         <div className="mb-3 flex items-center gap-4">
           <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#484E68]">
             {selectedCompany ? (
@@ -87,7 +87,7 @@ function ReferralCreationForm({
             <p className="max-w-[300px] truncate text-[17px] font-semibold text-white">
               {selectedCompany ? selectedCompany.name : "Select a Store"}
             </p>
-            <p className="text-[#9496A1]">
+            <p className="text-[#9496A1] text-[14px]">
               Choose the store for your referral code.
             </p>
           </div>
@@ -119,13 +119,13 @@ function ReferralCreationForm({
       </div>
       <div className="ml-4 h-4 w-4 bg-[#30354A]"></div>
 
-      <div className="rounded-xl bg-[#30354A] p-3">
+      <div className="rounded-xl bg-[#30354A] p-3 border-1 border-[#ffffff20]">
         <div className="mb-3 flex items-center gap-4">
           <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#484E68]">
             <Image
               src={"/icons/referral-code.svg"}
-              width={40}
-              height={40}
+              width={35}
+              height={35}
               alt="20"
             />
           </div>
@@ -133,7 +133,7 @@ function ReferralCreationForm({
             <p className="text-[17px] font-semibold text-white">
               Insert Code or Link
             </p>
-            <p className="text-[#9496A1]">
+            <p className="text-[#9496A1] text-[14px]">
               Paste your referral link or code here.
             </p>
           </div>

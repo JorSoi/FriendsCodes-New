@@ -14,7 +14,8 @@ async function Page() {
     const { data } = await supabase
       .from("user_codes")
       .select(`*, companies(*)`)
-      .eq("user_id", user.id);
+      .eq("user_id", user.id)
+      .order("created_at", {ascending: false})
 
     userCodes = data;
   }
