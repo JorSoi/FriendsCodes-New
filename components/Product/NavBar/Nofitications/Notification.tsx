@@ -1,15 +1,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 import { NotificationWithRelations } from "@/types/general.types";
-TimeAgo.addDefaultLocale(en);
+import { getTimeAgo } from "@/utils/getTimeAgo";
+
 
 
 
 function Notification({ ...notification } : NotificationWithRelations) {
-  const timeAgo = new TimeAgo("en-US");
 
   return (
     <div className="flex gap-3">
@@ -68,7 +66,7 @@ function Notification({ ...notification } : NotificationWithRelations) {
           </p>
         )}
         <p className="pt-[2px] text-[11px] text-[#ffffff50]">
-          {timeAgo.format(new Date(notification.created_at))}
+          {getTimeAgo(notification.created_at)}
         </p>
       </div>
     </div>

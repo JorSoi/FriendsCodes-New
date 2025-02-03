@@ -40,7 +40,7 @@ function Input({ className, size, variant, label, ...props }: InputProps) {
   const isError = meta.touched && meta.error; // Condition for error
 
   return (
-    <div>
+    <div >
       {label && (
         <label
           htmlFor={props.type}
@@ -59,7 +59,7 @@ function Input({ className, size, variant, label, ...props }: InputProps) {
         )}
       />
       {isError && (
-        <div className="mt-1 text-[12px] text-red-500">{meta.error}</div>
+        <div className="mt-1 text-[12px] text-red-500 text-left">{meta.error}</div>
       )}
     </div>
   );

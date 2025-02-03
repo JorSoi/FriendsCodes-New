@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import * as Yup from "yup";
-import Form from "../Form";
-import Input from "../Input";
+import Form from "../FormComponents/Form";
+import Input from "../FormComponents/Input";
 import Button from "../Button";
 
 function PasswordResetForm() {
@@ -14,15 +14,15 @@ function PasswordResetForm() {
     email: Yup.string().email("Invalid email").required("Required"),
   });
 
-  const handleSubmit = (values: {[key: string] : string}) => {
+  const handleSubmit = (values: { [key: string]: string }) => {
     alert(JSON.stringify(values));
   };
 
   return (
     <div className="w-full max-w-[400px]">
       <div className="relative flex w-full justify-center pb-7">
-        <div className="size-[56px] bg-gradient-to-b from-[#ffffff26] to-[#ffffff05] backdrop-blur-[30px] flex justify-center items-center border-1 border-[#ffffff15] rounded-lg overflow-hidden">
-            <h3 className="text-2xl">🔐</h3>
+        <div className="flex size-[56px] items-center justify-center overflow-hidden rounded-lg border-1 border-[#ffffff15] bg-gradient-to-b from-[#ffffff26] to-[#ffffff05] backdrop-blur-[30px]">
+          <h3 className="text-2xl">🔐</h3>
         </div>
 
         <Image
@@ -35,9 +35,11 @@ function PasswordResetForm() {
         />
       </div>
 
-      <div className="flex flex-col items-center text-center mb-5">
+      <div className="mb-5 flex flex-col items-center text-center">
         <div className="flex- flex">
-          <h3 className="text-[22px] font-semibold text-white">Forgot your password?</h3>
+          <h3 className="text-[22px] font-semibold text-white">
+            Forgot your password?
+          </h3>
         </div>
         <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
           No worries, we&apos;ll send you reset instructions.
@@ -61,7 +63,7 @@ function PasswordResetForm() {
         />
 
         <Button type="submit" className="mt-5 w-full">
-        Send Recovery Email
+          Send Recovery Email
         </Button>
       </Form>
 

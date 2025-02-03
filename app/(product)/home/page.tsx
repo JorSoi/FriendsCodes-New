@@ -6,7 +6,7 @@ import { getServerProfile } from "@/utils/getServerProfile";
 import { createClient } from "@/utils/supabase/server";
 
 async function Page() {
-  let userCodes: UserCodeWithRelations[] | null = []
+  let userCodes: UserCodeWithRelations[] | null = [];
   const supabase = await createClient();
   const { user } = await getServerProfile();
 
