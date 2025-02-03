@@ -13,7 +13,7 @@ const inputVariants = cva(
         outline:
           "bg-transparent border-1 border-[#262537] placeholder-[#73727E] focus:placeholder-[#39374f] outline-[#ffffff17] focus:border-[#9291b7] focus:outline-none focus:shadow-[0px_0px_0px_3px_#ffffff20]",
         error:
-          "border-red-500 border-1 bg-transparent outline-none shadow-[0px_0px_0px_3px_#FF000050]",
+          "!border-red-500 border-1 bg-transparent outline-none shadow-[0px_0px_0px_3px_#FF000050]",
       },
       size: {
         sm: "",
