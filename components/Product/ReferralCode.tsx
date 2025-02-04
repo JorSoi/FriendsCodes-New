@@ -51,7 +51,7 @@ function ReferralCode({ ...code }: UserCodeWithRelations) {
       onClick={() => {
         openModal();
       }}
-      className="group flex min-h-[130px] w-full cursor-pointer flex-col items-center justify-between rounded-lg bg-[#3e405ba2] p-5 text-center transition-colors hover:bg-[#3e405bd9] lg:p-[10px] md:min-h-[120px]"
+      className="group flex min-h-[130px] w-full cursor-pointer flex-col items-center justify-between rounded-lg bg-[#3e405b76] p-5 text-center transition-colors hover:bg-[#3e405bd9] lg:p-[10px] md:min-h-[120px]"
     >
       <div className="flex size-full flex-col items-center justify-center">
         <Image
