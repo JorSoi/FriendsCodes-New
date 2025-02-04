@@ -1,5 +1,5 @@
 import CodeContainer from "@/components/Product/CodeContainer";
-import ReferralCode from "@/components/Product/ReferralCode";
+import CodeList from "@/components/Product/CodeList";
 import Tab from "@/components/Product/Tab";
 import { UserCodeWithRelations } from "@/types/general.types";
 import { getServerProfile } from "@/utils/getServerProfile";
@@ -15,18 +15,16 @@ async function Page() {
       .from("user_codes")
       .select(`*, companies(*)`)
       .eq("user_id", user.id)
-      .order("created_at", {ascending: false})
+      .order("created_at", { ascending: false });
 
     userCodes = data;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5 mx-[3%]">
+    <div className="mx-[3%] flex flex-col items-center justify-center gap-5">
       <Tab />
       <CodeContainer>
-        {userCodes?.map(({ ...referralCode }) => {
-          return <ReferralCode key={referralCode.id} {...referralCode} />;
-        })}
+        <CodeList userCodes={userCodes} />
       </CodeContainer>
     </div>
   );

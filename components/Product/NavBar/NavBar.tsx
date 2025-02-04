@@ -1,39 +1,22 @@
 "use client";
 
-import { createClient } from "@/utils/supabase/client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import NotificationButton from "./Nofitications/NotificationButton";
 import ProfileButton from "./ProfileButton";
 import SupportButton from "./SupportButton";
-// import Button from "@/components/Global/Button";
+import { useRouter } from "next/navigation";
 
 function NavBar() {
   const [searchValue, setSearchValue] = useState<string>("");
+  const router = useRouter();
 
   useEffect(() => {
-    const searchUserCodes = async () => {
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (user) {
-        const { data, error } = await supabase
-          .from("user_codes")
-          .select(`companies!inner(name)`)
-          .eq("user_id", user?.id)
-          .ilike("companies.name", `%${searchValue}%`);
-        if (data) {
-          data.forEach((item) => {
-            console.log(item.companies);
-          });
-        } else {
-          console.log(error);
-        }
-      }
-    };
-
-    searchUserCodes();
+    if (searchValue) {
+      router.push(`/home?search=${searchValue}`);
+    } else {
+      router.push(`/home`);
+    }
   }, [searchValue]);
 
   return (
@@ -67,8 +50,8 @@ function NavBar() {
             </div>
           </div>
         </div>
-        <div className="flex flex-[1] h-full items-center justify-end">
-          <div className="flex ">
+        <div className="flex h-full flex-[1] items-center justify-end">
+          <div className="flex">
             <SupportButton />
 
             <NotificationButton />
