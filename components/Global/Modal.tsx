@@ -1,49 +1,47 @@
+"use client";
+
 import { cn } from "@/utils/variants";
-import { RefObject } from "react";
+import { RefObject, useEffect } from "react";
 
 function Modal({
   children,
   className,
   ref,
   closeModal,
-  isOpen,
 }: {
   children: React.ReactNode;
   className?: string;
-  ref: RefObject<HTMLDialogElement | null>;
+  ref: RefObject<HTMLDivElement | null>;
   closeModal: () => void;
-  isOpen : boolean;
 }) {
+  useEffect(() => {
+    console.log(ref.current?.getAttribute("data-open"));
+  }, [ref.current?.getAttribute("data-open")]);
+
   return (
-
-    
-    <dialog
-    autoFocus={false}
+    <div
+      data-open="false"
       ref={ref}
-      onClick={(e) => {
-        if (!ref.current) return;
-        const dialog = ref.current;
-
-        const rect = dialog.getBoundingClientRect();
-        if (
-          e.clientX < rect.left ||
-          e.clientX > rect.right ||
-          e.clientY < rect.top ||
-          e.clientY > rect.bottom
-        ) {
-          closeModal();
-        }
-      }}
       className={cn(
-        "translate-y-10 scale-95 bg-transparent opacity-0 outline-none transition-all duration-300 backdrop:bg-[#09071c00] backdrop:backdrop-blur-[10px] backdrop:transition-all backdrop:duration-300 overflow-visible", {
-            "translate-y-0 scale-100 opacity-100 backdrop:bg-[#09071c82]": isOpen
-        },
-  
-        className,
+        "transition-[opacity, transform] group fixed inset-0 z-[10000] flex cursor-auto items-center justify-center bg-[#09071cc6] duration-150 backdrop-blur-[4px]",
+        "data-[open=true]:visible data-[open=true]:opacity-100",
+        "data-[open=transition]:opacity-0",
+        "data-[open=false]:invisible data-[open=false]:opacity-0",
       )}
+      onClick={() => closeModal()}
     >
-      {children}
-    </dialog>
+      <div
+        data-open="false"
+        onClick={(e) => e.stopPropagation()} //prevents backdrop from triggering animation even when clicking on its child.
+        className={cn(
+          "z-[99999] translate-y-5 scale-95 transition-transform duration-150",
+          "group-data-[open=true]:translate-y-0 group-data-[open=true]:scale-100",
+          className,
+        )}
+      >
+        {children}
+      </div>
+    </div>
   );
 }
 

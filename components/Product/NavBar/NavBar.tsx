@@ -1,40 +1,32 @@
 "use client";
 
-import { createClient } from "@/utils/supabase/client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import NotificationButton from "./Nofitications/NotificationButton";
 import ProfileButton from "./ProfileButton";
 import SupportButton from "./SupportButton";
-// import Button from "@/components/Global/Button";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 function NavBar() {
-  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string | null>(null); //initially set to null to prevent router from pushing upon component mount inside the useEffect.
+  const router = useRouter();
+  const pathName = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const searchUserCodes = async () => {
-      const supabase = createClient();
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (user) {
-        const { data, error } = await supabase
-          .from("user_codes")
-          .select(`companies!inner(name)`)
-          .eq("user_id", user?.id)
-          .ilike("companies.name", `%${searchValue}%`);
-        if (data) {
-          data.forEach((item) => {
-            console.log(item.companies);
-          });
-        } else {
-          console.log(error);
-        }
-      }
-    };
-
-    searchUserCodes();
+    if (searchValue) {
+      router.push(`${pathName}?search=${searchValue}`);
+    } else if (searchValue !== null) {
+      console.log("push");
+      router.push(pathName);
+    }
   }, [searchValue]);
+
+  useEffect(() => {
+    if (searchParams.get("search")) {
+      setSearchValue(searchParams.get("search"));
+    }
+  }, []);
 
   return (
     <div className="fixed top-[30px] z-[9999] flex w-full items-center justify-center sm:top-[25px]">
@@ -56,6 +48,7 @@ function NavBar() {
                 className="transition-[colors, shadow] w-full appearance-none rounded-full border-1 border-[#262537] border-[#ffffff18] bg-transparent p-3 pl-[40px] font-inter text-[14px] placeholder-[#73727E] outline-[#ffffff17] duration-[300ms] placeholder:text-[#ffffff52] autofill:bg-transparent focus:border-[#9291b7] focus:placeholder-[#39374f] focus:shadow-[0px_0px_0px_3px_#ffffff20] focus:outline-none"
                 placeholder="Search your referral codes"
                 onChange={({ target }) => setSearchValue(target.value)}
+                value={searchValue || ""}
               />
               <Image
                 src={"/icons/search.svg"}
@@ -67,8 +60,8 @@ function NavBar() {
             </div>
           </div>
         </div>
-        <div className="flex flex-[1] h-full items-center justify-end">
-          <div className="flex ">
+        <div className="flex h-full flex-[1] items-center justify-end">
+          <div className="flex">
             <SupportButton />
 
             <NotificationButton />

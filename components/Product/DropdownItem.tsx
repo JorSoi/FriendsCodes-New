@@ -14,14 +14,15 @@ function DropdownItem({
   setSelectedCompany: Dispatch<SetStateAction<Tables<"companies"> | null>>;
   setIsDropdownOpen: Dispatch<SetStateAction<boolean>>;
 } & Tables<"companies">) {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
 
   return (
     <div
       className="flex items-center gap-4 rounded-md p-3 hover:bg-[#ffffff20]"
-      onClick={() => {
+      onMouseDown={() => {
         setSelectedCompany(company);
         setFieldValue("company", company.name);
+        console.log(values)
         setIsDropdownOpen(false);
       }}
     >

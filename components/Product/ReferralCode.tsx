@@ -15,17 +15,16 @@ import { FormikValues } from "formik";
 import { useRouter } from "next/navigation";
 
 function ReferralCode({ ...code }: UserCodeWithRelations) {
-  const { modalRef, openModal, closeModal, isOpen } = useModal();
+  const { modalRef, openModal, closeModal } = useModal();
   const router = useRouter();
 
   const updateCode = async (values: FormikValues) => {
     const supabase = createClient();
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("user_codes")
       .update({ referral_value: values.referralCode })
       .eq("id", code.id);
     if (!error) {
-      console.log(data);
       closeModal();
       router.refresh();
     } else {
@@ -35,21 +34,22 @@ function ReferralCode({ ...code }: UserCodeWithRelations) {
 
   const deleteCode = async () => {
     const supabase = createClient();
-    const {error, data} = await supabase.from("user_codes").delete().eq("id", code.id)
-    if(!error) {
-      console.log(data)
+    const { error } = await supabase
+      .from("user_codes")
+      .delete()
+      .eq("id", code.id);
+    if (!error) {
       closeModal();
       router.refresh();
     } else {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div
       onClick={() => {
         openModal();
-        console.log("openModal running now");
       }}
       className="group flex min-h-[130px] w-full cursor-pointer flex-col items-center justify-between rounded-lg bg-[#3e405ba2] p-5 text-center transition-colors hover:bg-[#3e405bd9] lg:p-[10px] md:min-h-[120px]"
     >
@@ -71,7 +71,6 @@ function ReferralCode({ ...code }: UserCodeWithRelations) {
       <Modal
         ref={modalRef}
         closeModal={closeModal}
-        isOpen={isOpen}
         className="w-full max-w-[400px]"
       >
         <Form
@@ -83,12 +82,12 @@ function ReferralCode({ ...code }: UserCodeWithRelations) {
               .notOneOf([code.referral_value], "Cant be the same as before"),
           })}
         >
-          <div className="w-full  rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
+          <div className="w-full rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
             <div className="flex items-center gap-4">
               <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#484E68]">
                 <Image
                   className={clsx(
-                    "h-full max-h-[35px] w-auto max-w-[40px] rounded-sm object-contain shrink-0",
+                    "h-full max-h-[35px] w-auto max-w-[40px] shrink-0 rounded-sm object-contain",
                     {
                       "max-h-[27px]": !code.companies.logo_url,
                     },
@@ -109,13 +108,12 @@ function ReferralCode({ ...code }: UserCodeWithRelations) {
               </div>
             </div>
           </div>
-          <div className="ml-4 h-4 w-4 bg-[#30354A] "></div>
+          <div className="ml-4 h-4 w-4 bg-[#30354A]"></div>
 
           <div className="rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
             <div className="mb-3 flex items-center gap-4">
               <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#484E68]">
                 <Image
-                
                   src={"/icons/referral-code.svg"}
                   width={40}
                   height={40}

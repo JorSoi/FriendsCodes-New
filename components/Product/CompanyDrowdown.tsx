@@ -30,9 +30,8 @@ function CompanyDrowdown({
         .from("companies")
         .select()
         .ilike("name", `%${company}%`)
-        .limit(10);
+        .limit(15);
       if (!error) {
-        console.log(data);
         setCompanyList(data);
       } else {
         console.log(error);
@@ -43,7 +42,7 @@ function CompanyDrowdown({
   }, [values]);
 
   return (
-    <div className="absolute top-full mt-2 max-h-[25svh] w-full overflow-y-auto rounded-md border-1 border-[#ffffff40] bg-[#2f3448c6] p-1 backdrop-blur-[43px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#4b526d] [&::-webkit-scrollbar-track]:bg-[#ffffff0d] [&::-webkit-scrollbar]:w-2 z-10">
+    <div className="absolute top-full mt-2 max-h-[25svh] w-full overflow-y-auto rounded-md border-1 border-[#ffffff40] bg-[#2f3448c6] p-1 backdrop-blur-[43px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#4b526d] [&::-webkit-scrollbar-track]:bg-[#ffffff0d] [&::-webkit-scrollbar]:w-2 z-[10001]">
       {companyList.map(({ ...company }) => {
         return (
           <DropdownItem
