@@ -5,17 +5,17 @@ export const useModal = () => {
 
   const openModal = () => {
     if (modalRef.current) {
-      modalRef.current.dataset.open = "true"
+      modalRef.current.dataset.open = "true";
       modalRef.current.classList.add("isOpen");
     }
   };
 
   const closeModal = () => {
     if (!modalRef.current) return;
-    modalRef.current.dataset.open = "transition"
+    modalRef.current.dataset.open = "transition";
     setTimeout(() => {
       if (!modalRef.current) return;
-       modalRef.current.dataset.open = "false"
+      modalRef.current.dataset.open = "false";
     }, 100);
   };
 
