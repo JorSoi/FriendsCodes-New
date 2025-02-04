@@ -5,19 +5,28 @@ import { useEffect, useState } from "react";
 import NotificationButton from "./Nofitications/NotificationButton";
 import ProfileButton from "./ProfileButton";
 import SupportButton from "./SupportButton";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 function NavBar() {
-  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string | null>(null); //initially set to null to prevent router from pushing upon component mount inside the useEffect.
   const router = useRouter();
+  const pathName = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (searchValue) {
-      router.push(`/home?search=${searchValue}`);
-    } else {
-      router.push(`/home`);
+      router.push(`${pathName}?search=${searchValue}`);
+    } else if (searchValue !== null) {
+      console.log("push");
+      router.push(pathName);
     }
   }, [searchValue]);
+
+  useEffect(() => {
+    if (searchParams.get("search")) {
+      setSearchValue(searchParams.get("search"));
+    }
+  }, []);
 
   return (
     <div className="fixed top-[30px] z-[9999] flex w-full items-center justify-center sm:top-[25px]">
@@ -39,6 +48,7 @@ function NavBar() {
                 className="transition-[colors, shadow] w-full appearance-none rounded-full border-1 border-[#262537] border-[#ffffff18] bg-transparent p-3 pl-[40px] font-inter text-[14px] placeholder-[#73727E] outline-[#ffffff17] duration-[300ms] placeholder:text-[#ffffff52] autofill:bg-transparent focus:border-[#9291b7] focus:placeholder-[#39374f] focus:shadow-[0px_0px_0px_3px_#ffffff20] focus:outline-none"
                 placeholder="Search your referral codes"
                 onChange={({ target }) => setSearchValue(target.value)}
+                value={searchValue || ""}
               />
               <Image
                 src={"/icons/search.svg"}

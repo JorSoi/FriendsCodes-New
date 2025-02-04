@@ -1,24 +1,23 @@
 import { useRef, useState } from "react";
 
 export const useModal = () => {
-  const modalRef = useRef<HTMLDialogElement | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   const openModal = () => {
     if (modalRef.current) {
-      modalRef.current.showModal();
-      setIsOpen(true)
+      modalRef.current.dataset.open = "true"
+      modalRef.current.classList.add("isOpen");
     }
   };
 
   const closeModal = () => {
     if (!modalRef.current) return;
-    setIsOpen(false)
+    modalRef.current.dataset.open = "transition"
     setTimeout(() => {
       if (!modalRef.current) return;
-      modalRef.current.close();
-    }, 300);
+       modalRef.current.dataset.open = "false"
+    }, 100);
   };
 
-  return { modalRef, openModal, closeModal, isOpen };
+  return { modalRef, openModal, closeModal };
 };

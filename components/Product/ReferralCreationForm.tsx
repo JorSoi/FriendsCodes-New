@@ -28,7 +28,7 @@ function ReferralCreationForm({
   const handleSubmit = async (values: FormikValues) => {
     const supabase = createClient();
     const { user } = await getClientProfile();
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("user_codes")
       .insert({
         company_id: selectedCompany!.id,
@@ -37,7 +37,6 @@ function ReferralCreationForm({
       })
       .select("*");
     if (!error) {
-      console.log(data);
       router.refresh();
       closeModal();
       setFireWork(true);

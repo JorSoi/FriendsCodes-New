@@ -11,7 +11,7 @@ import { useState } from "react";
 import ReferralCreationForm from "./ReferralCreationForm";
 
 function AddItemButton() {
-  const { openModal, closeModal, isOpen, modalRef } = useModal();
+  const { openModal, closeModal, modalRef } = useModal();
     const [fireWork, setFireWork] = useState<boolean>(false);
 
 
@@ -29,7 +29,7 @@ function AddItemButton() {
           draggable="false"
         />
       </div>
-      <Modal closeModal={closeModal} isOpen={isOpen} ref={modalRef}>
+      <Modal closeModal={closeModal} ref={modalRef}   className="w-full max-w-[400px]">
         <ReferralCreationForm closeModal={closeModal} setFireWork={setFireWork}/>
       </Modal>
       {fireWork && <Fireworks autorun={{ speed: 3, duration: 2000, delay: 500}} />}
