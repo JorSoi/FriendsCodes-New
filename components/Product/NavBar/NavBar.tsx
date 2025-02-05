@@ -29,9 +29,9 @@ function NavBar() {
   }, []);
 
   return (
-    <div className="fixed top-[30px] z-[9999] flex w-full items-center justify-center sm:top-[25px]">
-      <nav className="flex w-[90%] max-w-[880px] items-center justify-between gap-4 rounded-full border-2 border-[#ffffff16] bg-[#ffffff16] px-[24px] py-[9px] backdrop-blur-md sm:w-[94%] sm:px-[18px] sm:py-[10px]">
-        <div className="flex shrink-0 grow-[1] items-center justify-start">
+    <header className="fixed top-[30px] z-[9999] flex w-full items-center justify-center sm:top-[0px]">
+      <nav className="flex w-[90%] max-w-[880px] items-center justify-between gap-4 rounded-full border-2 border-[#ffffff16] bg-[#1d1d2f9e] px-[24px] py-[9px] backdrop-blur-xl sm:w-[100%] sm:px-[3%] sm:py-[10px] sm:rounded-none sm:border-x-0 sm:border-t-0  sm:border-b-2">
+        <div className="flex shrink-0 grow-[1] items-center justify-start sm:grow-0">
           <Image
             src="/logo.png"
             width={35}
@@ -40,12 +40,12 @@ function NavBar() {
             alt="FriendsCodes Logo"
           />
         </div>
-        <div className="flex grow-[1] items-center justify-center">
+        <div className="flex grow-[1] items-center justify-center sm:grow-[2]">
           <div className="w-full">
             <div className="relative">
               <input
                 type="search"
-                className="transition-[colors, shadow] w-full appearance-none rounded-full border-1 border-[#262537] border-[#ffffff18] bg-transparent p-3 pl-[40px] font-inter text-[14px] placeholder-[#73727E] outline-[#ffffff17] duration-[300ms] placeholder:text-[#ffffff52] autofill:bg-transparent focus:border-[#9291b7] focus:placeholder-[#39374f] focus:shadow-[0px_0px_0px_3px_#ffffff20] focus:outline-none"
+                className="transition-[colors, shadow] w-full appearance-none rounded-full border-1  border-[#ffffff18] bg-transparent p-3 pl-[40px] font-inter text-[14px] placeholder-[#73727E] outline-[#ffffff17] duration-[300ms] placeholder:text-[#ffffff52] autofill:bg-transparent focus:border-[#9291b7] focus:placeholder-[#39374f] focus:shadow-[0px_0px_0px_3px_#ffffff20] focus:outline-none"
                 placeholder="Search your referral codes"
                 onChange={({ target }) => setSearchValue(target.value)}
                 value={searchValue || ""}
@@ -69,7 +69,7 @@ function NavBar() {
           </div>
         </div>
       </nav>
-    </div>
+    </header>
   );
 }
 

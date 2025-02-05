@@ -26,7 +26,7 @@ export default async function RootLayout({
       lang="en"
       className={`${figtree.variable} ${inter.variable} scroll-smooth`}
     >
-      <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] font-figtree pt-[150px]">
+      <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] font-figtree pt-[150px] sm:pt-[120px]">
         <NavBar />
         {children}
       </body>

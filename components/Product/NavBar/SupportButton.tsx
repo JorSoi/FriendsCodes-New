@@ -11,7 +11,7 @@ function SupportButton() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   return (
-    <div className="relative">
+    <div className="relative sm:hidden">
       <Button
         onClick={() => setIsVisible(!isVisible)}
         variant={"ghost"}

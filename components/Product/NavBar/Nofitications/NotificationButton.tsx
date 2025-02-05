@@ -90,7 +90,7 @@ function NotificationButton() {
       <HoverMenu
         isVisible={isMenuOpen}
         setIsVisible={setIsMenuOpen}
-        className="w-[350px]"
+        className="w-[350px] sm:w-[unset]"
       >
         <div className="mb-3 flex items-center justify-between">
           <h4 className="flex items-center gap-2 px-1 text-[15px] font-semibold">

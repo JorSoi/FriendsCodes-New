@@ -9,7 +9,7 @@ function Tab() {
 
   //This approach worked really well: https://stackblitz.com/edit/web-platform-wgsvqs?file=index.html
   return (
-    <div className="relative flex h-12 items-center justify-center gap-1 bg-[#2d2c4c] text-white [&_*]:transition-colors">
+    <div className="relative flex h-12 items-center justify-center gap-1 bg-[#2d2c4c] text-white [&_*]:transition-colors font-medium">
       <div className="absolute -left-[16px] top-0 -z-[2] h-full w-8 skew-x-[20deg] rounded-bl-[8px] rounded-tl-[17px] bg-[#2d2c4c]"></div>
       <div className="absolute -right-[16px] top-0 -z-[2] h-full w-8 -skew-x-[200deg] rounded-br-[8px] rounded-tr-[17px] bg-[#2d2c4c]"></div>
 
