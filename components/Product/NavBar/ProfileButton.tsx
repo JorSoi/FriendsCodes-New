@@ -54,7 +54,7 @@ function ProfileButton() {
       <HoverMenu
         isVisible={isVisible}
         setIsVisible={setIsVisible}
-        className="w-[200px] text-[14px] text-[#C0C1C5] [&_img]:opacity-80"
+        className="w-[200px] text-[14px] text-[#C0C1C5] [&_img]:opacity-80 sm:w-[unset]"
       >
         <HoverMenuItem key={1} className="flex cursor-auto gap-2">
           <div className="flex size-10 items-center justify-center rounded-full bg-[#ffffff28]">
@@ -82,7 +82,7 @@ function ProfileButton() {
             alt="Bug"
             draggable={false}
           />
-          <p className="">Account Settings</p>
+          <p>Account Settings</p>
         </HoverMenuItem>
         <HoverMenuItem key={3} className="flex gap-2">
           <Image

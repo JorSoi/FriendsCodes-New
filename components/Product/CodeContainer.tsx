@@ -43,7 +43,7 @@ function CodeContainer({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="relative mx-[3%] mb-[10svh] h-full min-h-[50svh] w-full max-w-[850px] overflow-hidden rounded-2xl border-1 border-[#ffffff10] bg-[#21203d] p-4 !pb-[100px] xs:p-[3%]">
+    <div className="relative mx-[3%] mb-[10svh] h-full min-h-[50svh] w-full max-w-[850px] overflow-hidden rounded-2xl border-1 border-[#ffffff10] bg-[#21203d] p-4 !pb-[100px] xs:p-[3%] xs:rounded-xl">
       {children}
 
       <Button
