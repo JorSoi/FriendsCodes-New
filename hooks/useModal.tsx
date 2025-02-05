@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export const useModal = () => {
   const modalRef = useRef<HTMLDivElement | null>(null);

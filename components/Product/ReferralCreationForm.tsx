@@ -102,7 +102,7 @@ function ReferralCreationForm({
           <Input
             type="text"
             name="company"
-            className="border-[1.5px] border-[#5c6484] pr-9 text-white"
+            className="border-[1.5px] border-[#5c6484] pr-9 text-white focus:placeholder-[#73727E]"
             placeholder="Select store name"
             autoComplete="off"
             onFocus={() => setIsDropdownOpen(true)}
@@ -122,9 +122,9 @@ function ReferralCreationForm({
         <div className="mb-3 flex items-center gap-4">
           <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#484E68]">
             <Image
-              src={"/icons/referral-code.svg"}
-              width={35}
-              height={35}
+              src={"/icons/referral-code.png"}
+              width={38}
+              height={38}
               alt="20"
             />
           </div>
