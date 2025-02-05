@@ -42,7 +42,7 @@ function ChangePassword() {
 
         <Image
           className="absolute top-1/2 z-[-1] size-[330px] -translate-y-[45%] select-none"
-          src={`/auth-bg-decoration.png`}
+          src={`/auth-bg-decoration.webp`}
           width={506}
           height={506}
           alt=""

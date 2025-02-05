@@ -23,8 +23,6 @@ function CodeContainer({ children }: { children: React.ReactNode }) {
       console.log(profile);
     }
     setProfileState();
-
-    
   }, []);
 
   const handleClick = async () => {
@@ -43,7 +41,7 @@ function CodeContainer({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="relative mx-[3%] mb-[10svh] h-full min-h-[50svh] w-full max-w-[850px] overflow-hidden rounded-2xl border-1 border-[#ffffff10] bg-[#21203d] p-4 !pb-[100px] xs:p-[3%] xs:rounded-xl">
+    <div className="relative mx-[3%] mb-[10svh] h-full min-h-[50svh] w-full max-w-[850px] overflow-hidden rounded-2xl border-1 border-[#ffffff10] bg-[#21203d] p-4 !pb-[100px] xs:rounded-xl xs:p-[3%]">
       {children}
 
       <Button
@@ -61,7 +59,7 @@ function CodeContainer({ children }: { children: React.ReactNode }) {
       </Button>
       <Modal ref={modalRef} closeModal={closeModal} className="max-w-[400px]">
         <div className="w-full rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
-          <div className="flex flex-col items-center justify-center gap-2 rounded-md bg-[#0B081D] bg-[url(/auth-bg-decoration.png)] bg-cover bg-[center_bottom_0px] p-5 text-center">
+          <div className="flex flex-col items-center justify-center gap-2 rounded-md bg-[#0B081D] bg-[url(/auth-bg-decoration.webp)] bg-cover bg-[center_bottom_0px] p-5 text-center">
             <Image src={"/logo.png"} width={50} height={50} alt="" />
             <h3 className="text-lg font-semibold">@{profile?.user_name}</h3>
             <p className="text-sm text-[#ffffff9f]">
