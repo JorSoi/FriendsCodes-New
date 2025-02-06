@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/utils/variants";
-import { RefObject, useEffect } from "react";
+import { RefObject } from "react";
 
 function Modal({
   children,
@@ -14,9 +14,6 @@ function Modal({
   ref: RefObject<HTMLDivElement | null>;
   closeModal: () => void;
 }) {
-  useEffect(() => {
-    console.log(ref.current?.getAttribute("data-open"));
-  }, [ref.current?.getAttribute("data-open")]);
 
   return (
     <div

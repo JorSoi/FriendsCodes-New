@@ -28,3 +28,25 @@ export type NotificationWithRelations = Tables<"notifications"> & {
 export type UserCodeWithRelations = Tables<"user_codes"> & {
   companies: (Tables<"companies">)
 };
+
+
+//Types for rpc function to get friends with their respective user codes
+export type UserCode = {
+  id: number;
+  referral_value: string | null;
+  company: {
+    id: number;
+    name: string;
+    logo_url: string;
+  };
+};
+
+export type FriendWithCodes = {
+  created_at: string; // Timestamp from the friends table
+  profile: {
+    id: string;
+    avatar_url: string;
+    user_name: string;
+  }
+  user_codes: UserCode[];
+};

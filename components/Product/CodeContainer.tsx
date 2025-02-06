@@ -20,7 +20,6 @@ function CodeContainer({ children }: { children: React.ReactNode }) {
     async function setProfileState() {
       const { profile } = await getClientProfile();
       setProfile(profile);
-      console.log(profile);
     }
     setProfileState();
   }, []);

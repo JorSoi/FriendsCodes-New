@@ -55,6 +55,42 @@ export type Database = {
         }
         Relationships: []
       }
+      friends: {
+        Row: {
+          created_at: string
+          friend_id: string
+          id: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          friend_id: string
+          id?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          friend_id?: string
+          id?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "friends_friend_id_fkey"
+            columns: ["friend_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "friends_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notifications: {
         Row: {
           created_at: string
@@ -136,21 +172,21 @@ export type Database = {
           company_id: number
           created_at: string
           id: number
-          referral_value: string | null
+          referral_value: string
           user_id: string | null
         }
         Insert: {
           company_id: number
           created_at?: string
           id?: number
-          referral_value?: string | null
+          referral_value: string
           user_id?: string | null
         }
         Update: {
           company_id?: number
           created_at?: string
           id?: number
-          referral_value?: string | null
+          referral_value?: string
           user_id?: string | null
         }
         Relationships: [
@@ -168,6 +204,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_friends_with_codes: {
+        Args: {
+          current_user_id: string
+        }
+        Returns: {
+          created_at: string
+          profile: Json
+          user_codes: Json
+        }[]
+      }
       json_matches_schema: {
         Args: {
           schema: Json
@@ -197,7 +243,7 @@ export type Database = {
       }
     }
     Enums: {
-      notification_types: "new_follower" | "code_interaction"
+      notification_types: "new_friend" | "code_interaction"
     }
     CompositeTypes: {
       [_ in never]: never
