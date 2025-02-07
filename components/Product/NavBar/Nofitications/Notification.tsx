@@ -22,7 +22,7 @@ function Notification({ ...notification } : NotificationWithRelations) {
           />
         )}
 
-        {notification.type == "new_follower" && <p className="text-2xl">👥</p>}
+        {notification.type == "new_friend" && <p className="text-2xl">👥</p>}
 
         {!notification.marked_as_read && (
           <div className="absolute bottom-[-7%] right-[-7%] z-[1] flex size-[13px] items-center justify-center rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] text-[13px] font-semibold shadow-[0_0_0_2px_#262538,inset_0_2px_2px_0_#ffffff70]"></div>
@@ -53,7 +53,7 @@ function Notification({ ...notification } : NotificationWithRelations) {
           </div> */}
           </div>
         )}
-        {notification.type == "new_follower" && (
+        {notification.type == "new_friend" && (
           <p className="text-[13px] text-[#c1c1c1]">
             <Link
               className="font-semibold text-white transition-colors hover:text-[#FF00B2]"

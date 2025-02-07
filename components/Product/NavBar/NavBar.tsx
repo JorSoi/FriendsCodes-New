@@ -46,7 +46,7 @@ function NavBar() {
               <input
                 type="search"
                 className="transition-[colors, shadow] w-full appearance-none rounded-full border-1  border-[#ffffff18] bg-transparent p-3 pl-[40px] font-inter text-[14px] placeholder-[#73727E] outline-[#ffffff17] duration-[300ms] placeholder:text-[#ffffff52] autofill:bg-transparent focus:border-[#9291b7] focus:placeholder-[#39374f] focus:shadow-[0px_0px_0px_3px_#ffffff20] focus:outline-none"
-                placeholder="Search your referral codes"
+                placeholder={pathName == '/home' ? "Search your referral codes" : "Search friends or their referrals"}
                 onChange={({ target }) => setSearchValue(target.value)}
                 value={searchValue || ""}
               />

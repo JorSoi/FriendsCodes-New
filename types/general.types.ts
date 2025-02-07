@@ -28,3 +28,11 @@ export type NotificationWithRelations = Tables<"notifications"> & {
 export type UserCodeWithRelations = Tables<"user_codes"> & {
   companies: (Tables<"companies">)
 };
+
+
+//Types for rpc function to get friends with their respective user codes
+export type FriendWithCodes = {
+  created_at: string; // Timestamp from the friends table
+  profile: Tables<"profiles">
+  user_codes: UserCodeWithRelations[];
+};
