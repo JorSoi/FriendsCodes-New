@@ -1,23 +1,38 @@
+import { useModal } from "@/hooks/useModal";
 import { FriendWithCodes } from "@/types/general.types";
 import { getTimeAgo } from "@/utils/getTimeAgo";
 import Image from "next/image";
+import Modal from "../Global/Modal";
+import CodeContainer from "./CodeContainer";
+import CodeList from "./CodeList";
+import Button from "../Global/Button";
 
 function FriendsCard({ ...friend }: FriendWithCodes) {
+  
+  console.log(friend)
+  const { openModal, closeModal, modalRef } = useModal();
+
   return (
-    <div className="group relative min-h-[130px] max-h-[180px] w-full cursor-pointer overflow-hidden rounded-lg bg-[#2F304A] p-5 pb-6 transition-colors hover:bg-[#3e405bd9] lg:p-[10px] sm:rounded-md md:max-h-[150px] border-1 border-[#ffffff10]">
-      <div className="mb-2 flex flex-wrap gap-2">
+    <div
+      onClick={() => openModal()}
+      className="group relative max-h-[180px] min-h-[130px] w-full cursor-pointer overflow-hidden rounded-lg border-1 border-[#ffffff10] bg-[#2F304A] p-3 transition-colors hover:bg-[#3e405bd9] lg:p-[10px] md:max-h-[150px] sm:rounded-md"
+    >
+      <div className="grid grid-cols-4 flex-wrap justify-items-center gap-2 sm:gap-1">
         {friend.user_codes.map((user_code) => {
           return (
-            <div key={user_code.id} className="bg-[#444560dd]  flex justify-center items-center rounded-md overflow-hidden border-1 border-[#ffffff10]">
-            <Image
+            <div
               key={user_code.id}
-              src={user_code.company.logo_url}
-              width={30}
-              height={30}
-              alt=""
-              className="object-contain"
+              className="flex items-center justify-center overflow-hidden rounded-md border-1 border-[#ffffff10] bg-[#444560dd]"
+            >
+              <Image
+                key={user_code.id}
+                src={user_code.companies?.logo_url || ""}
+                width={50}
+                height={50}
+                alt=""
+                className="object-contain"
               />
-              </div>
+            </div>
           );
         })}
       </div>
@@ -29,6 +44,39 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
           Added {getTimeAgo(friend.created_at)}
         </p>
       </div>
+      <Modal
+        ref={modalRef}
+        closeModal={closeModal}
+        className="flex flex-col items-center gap-4"
+      >
+        <div className="w-96 max-w-[850px] rounded-full border-1 border-[#ffffff10] bg-[#21203d] p-2">
+          <div className="flex items-center gap-3">
+            <div className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-[#ffffff10] [&_img]:-translate-x-px [&_img]:rotate-180">
+              <Image src={"icons/chevron.svg"} width={7} height={7} alt="" />
+            </div>
+            <div>
+              <p className="w-full truncate font-semibold text-white">
+                @{friend.profile.user_name}
+              </p>
+              <p className="text-[13px] text-[#9496A1]">
+                Friend since {getTimeAgo(friend.created_at)}
+              </p>
+            </div>
+            <div>
+            <Button variant={"secondary"} className="size-10 p-[unset] flex items-center justify-center">
+              <Image src={"icons/remove-user.svg"} width={17} height={17} alt="" />
+            </Button>
+            </div>
+            
+          </div>
+          <div>
+          </div>
+        
+        </div>
+        <CodeContainer>
+          <CodeList userCodes={friend.user_codes} />
+        </CodeContainer>
+      </Modal>
     </div>
   );
 }

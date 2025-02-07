@@ -56,7 +56,7 @@ function ReferralCode({ ...code }: UserCodeWithRelations) {
       <div className="flex size-full flex-col items-center justify-center">
         <Image
           className="h-full max-h-[55px] w-auto max-w-[85px] rounded-md object-contain transition-transform duration-200 group-hover:scale-[105%] lg:max-h-[50px] sm:max-w-[65px]"
-          src={code.companies.logo_url || "/icons/shop.svg"}
+          src={code.companies?.logo_url || "/icons/shop.svg"}
           width={90}
           height={90}
           alt=""
