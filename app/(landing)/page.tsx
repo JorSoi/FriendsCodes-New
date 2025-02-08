@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
     <main>
-      <NavBar />
+      <NavBar className="fadeInHero invisible"/>
       <svg
         viewBox="0 0 1379 893"
         xmlns="http://www.w3.org/2000/svg"
@@ -69,8 +69,8 @@ export default function Home() {
               href="/bg-color-gradients.webp"
               x="0"
               y="0"
-              width="1379"
-              height="893"
+              width={'100%'}
+              height={'100%'}
               preserveAspectRatio="xMidYMid slice"
             />
           </pattern>
@@ -85,7 +85,7 @@ export default function Home() {
       {/* MARK: Hero Heading Section */}
       <section
         id="hero"
-        className="w-full pt-[190px] xl:pt-[240px] md:pt-[170px] xs:pt-[145px]"
+        className="w-full pt-[190px] xl:pt-[240px] md:pt-[170px] sm:pt-[125px]"
       >
         <div className="relative mx-auto my-auto flex w-[900px] max-w-[90%] flex-col items-center justify-center text-center md:w-[500px]">
           {userName && (
