@@ -16,8 +16,8 @@ function Card3() {
                 alt="CashApp logo"
                 draggable="false"
               />
-              <div className="absolute bottom-[-9%] right-[-9%]  size-3 rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] shadow-[0_0_0_1px_#ED01D8,inset_0_2px_2px_0_#ffffff70]">
-                <div className="absolute inset-0  rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] group-hover:animate-ping "></div>
+              <div className="absolute bottom-[-9%] right-[-9%] size-3 rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] shadow-[0_0_0_1px_#ED01D8,inset_0_2px_2px_0_#ffffff70]">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] group-hover:animate-ping"></div>
               </div>
             </div>
             <div>
@@ -32,8 +32,8 @@ function Card3() {
               <p className="mt-1 text-[11px] text-[#9e96a4]">2 min ago </p>
             </div>
           </div>
-          <div className="absolute inset-x-[8%] bottom-[-10px] z-[2] h-[90%] rounded-[10px] border-[1px] border-[#ffffff10] bg-gradient-to-br from-[#ffffff05] to-[#ffffff08] p-5 opacity-[90%] backdrop-blur-[130px]"></div>
-          <div className="absolute inset-x-[14%] bottom-[-18px] z-[1] rounded-[10px] border-[1px] border-[#ffffff04] bg-gradient-to-br from-[#ffffff11] to-[#ffffff08] p-5 opacity-[70%] backdrop-blur-[60px]"></div>
+          <div className="absolute inset-x-[8%] bottom-[-10px] z-[2] h-[90%] rounded-[10px] border-[1px] border-[#ffffff10] bg-gradient-to-br from-[#ffffff1d] to-[#ffffff15] p-5 opacity-[90%]"></div>
+          <div className="absolute inset-x-[14%] bottom-[-18px] z-[1] rounded-[10px] border-[1px] border-[#ffffff04] bg-gradient-to-br from-[#ffffff14] to-[#ffffff11] p-5 opacity-[70%]"></div>
 
           <div className="absolute left-[-8%] top-[-125%] z-10 flex size-[60px] rotate-[-17deg] scale-[100%] items-center justify-center rounded-[18px] bg-gradient-to-br from-[#2c304678] to-[#40456462] backdrop-blur-[10px]">
             <Image
