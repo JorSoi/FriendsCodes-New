@@ -54,7 +54,7 @@ function ReferralCreationForm({
           .matches(/^(?!https?:\/\/).*$/, "Company name cannot be a URL")
           .min(2, "Too short")
           .required("Store is required"),
-        referralCode: Yup.string().required("Password is required"),
+        referralCode: Yup.string().required("Referral code or link required"),
       })}
     >
       <div className="rounded-xl bg-[#30354A] p-3 border-1 border-[#ffffff20]">

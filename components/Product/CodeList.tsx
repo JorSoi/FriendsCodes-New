@@ -8,8 +8,10 @@ import { useSearchParams } from "next/navigation";
 
 function CodeList({
   userCodes,
+  viewOnly = false
 }: {
   userCodes: UserCodeWithRelations[] | null;
+  viewOnly?: boolean
 }) {
   const searchParams = useSearchParams();
   const [list, setList] = useState(userCodes);
@@ -36,9 +38,11 @@ function CodeList({
   return (
     <div className="grid grid-cols-5 gap-3 lg:grid-cols-4 md:grid-cols-3 md:gap-2">
       {list?.map(({ ...referralCode }) => {
-        return <ReferralCode key={referralCode.id} {...referralCode} />;
+        return <ReferralCode key={referralCode.id} {...referralCode} viewOnly={viewOnly}/>;
       })}
-      <AddItemButton />
+
+
+      {!viewOnly &&<AddItemButton />}
     </div>
   );
 }
