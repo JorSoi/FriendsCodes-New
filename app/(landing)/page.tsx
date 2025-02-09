@@ -109,7 +109,7 @@ export default function Home() {
                 Get Started!
               </Button>
             </Link>
-            <Link href={"/#how-it-works"}>
+            <Link href={`/${visitorName ? "?visitor=" + visitorName : ""}#how-it-works`}>
               <Button variant={"secondary"} size={"lg"}>
                 How it works
               </Button>
