@@ -1,14 +1,14 @@
-import Input from "../Global/FormComponents/Input";
+import Input from "../../Global/FormComponents/Input";
 import { getTimeAgo } from "@/utils/getTimeAgo";
-import Form from "../Global/FormComponents/Form";
+import Form from "../../Global/FormComponents/Form";
 import * as Yup from "yup";
 import Image from "next/image";
-import Button from "../Global/Button";
+import Button from "../../Global/Button";
 import { FormikValues } from "formik";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { UserCodeWithRelations } from "@/types/general.types";
-import CompanyLogo from "./CompanyLogo";
+import CompanyLogo from "../CompanyLogo";
 
 function ReferralUpdateForm({
   closeModal,

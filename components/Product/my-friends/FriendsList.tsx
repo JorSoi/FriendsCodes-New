@@ -16,16 +16,19 @@ function FriendsList({ friendsList }: { friendsList: FriendWithCodes[] }) {
       if (searchValue && friendsList) {
         const searchResult = friendsList.filter((friend: FriendWithCodes) => {
           const hasMatchingCode = friend.user_codes.filter((user_code) => {
-            return user_code.companies.name?.toLowerCase().includes(searchValue);
+            return user_code.companies.name
+              ?.toLowerCase()
+              .includes(searchValue);
           });
-          
-          const hasMatchingUserName =
-          friend.profile.user_name?.toLowerCase().includes(searchValue);
-          
-          console.log(hasMatchingUserName)
+
+          const hasMatchingUserName = friend.profile.user_name
+            ?.toLowerCase()
+            .includes(searchValue);
+
+          console.log(hasMatchingUserName);
           if (hasMatchingCode.length > 0 || hasMatchingUserName) return true;
         });
-        
+
         setList(searchResult);
       } else {
         setList(friendsList);

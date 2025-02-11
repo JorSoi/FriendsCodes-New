@@ -1,10 +1,10 @@
 "use client";
 
 import { UserCodeWithRelations } from "@/types/general.types";
-import Button from "../Global/Button";
-import Form from "../Global/FormComponents/Form";
-import Input from "../Global/FormComponents/Input";
-import CompanyLogo from "./CompanyLogo";
+import Button from "../../Global/Button";
+import Form from "../../Global/FormComponents/Form";
+import Input from "../../Global/FormComponents/Input";
+import CompanyLogo from "../CompanyLogo";
 import Image from "next/image";
 import { FormikValues } from "formik";
 
@@ -17,15 +17,15 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
     }
   };
 
-  function isValidUrl(referralValue : string) {
+  function isValidUrl(referralValue: string) {
     try {
-        new URL(referralValue);
-        return true; // If URL constructor succeeds, it's a valid URL
+      new URL(referralValue);
+      return true; // If URL constructor succeeds, it's a valid URL
     } catch (error) {
-      console.log(error)
-        return false;
+      console.log(error);
+      return false;
     }
-}
+  }
 
   return (
     <Form
@@ -47,7 +47,7 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
           <h3 className="mt-[10px] w-full truncate text-[17px] font-medium text-white">
             {code.companies.name}
           </h3>
-          <p className="text-[#ffffff80] text-[15px]">
+          <p className="text-[15px] text-[#ffffff80]">
             Copy this code so that you earn referral benefits from{" "}
             {code.companies.name}!
           </p>

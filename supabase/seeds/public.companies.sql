@@ -1,5 +1,5 @@
 INSERT INTO "companies" ("id", "created_at", "name", "logo_url") VALUES ('1', '2023-10-04 18:39:20.278487+00', 'Amazon', 'https://ukedipxxjtublvuhefhx.supabase.co/storage/v1/object/public/Company%20Logos//amazon-icon-1.svg');
-INSERT INTO "companies" ("id", "created_at", "name", "logo_url") VALUES ('2', '2023-10-04 18:39:20.278487+00', 'McDonalds', 'https://ukedipxxjtublvuhefhx.supabase.co/storage/v1/object/public/Company%20Logos/mcdonalds-5.svg');
+INSERT INTO "companies" ("id", "created_at", "name", "logo_url") VALUES ('2', '2023-10-04 18:39:20.278487+00', 'McDonalds', 'https://ukedipxxjtublvuhefhx.supabase.co/storage/v1/object/public/Company%20Logos/mcdonalds.svg');
 INSERT INTO "companies" ("id", "created_at", "name", "logo_url") VALUES ('3', '2023-10-04 20:07:18.312149+00', 'Spotify', 'https://ukedipxxjtublvuhefhx.supabase.co/storage/v1/object/public/Company%20Logos/Spotify_icon.svg');
 INSERT INTO "companies" ("id", "created_at", "name", "logo_url") VALUES ('4', '2023-10-04 20:13:18.931689+00', 'McFit', 'https://ukedipxxjtublvuhefhx.supabase.co/storage/v1/object/public/Company%20Logos/mcfit.png');
 INSERT INTO "companies" ("id", "created_at", "name", "logo_url") VALUES ('5', '2023-10-04 22:22:47.315102+00', 'Tesla Motors', 'https://ukedipxxjtublvuhefhx.supabase.co/storage/v1/object/public/Company%20Logos/tesla-motors-1.svg');

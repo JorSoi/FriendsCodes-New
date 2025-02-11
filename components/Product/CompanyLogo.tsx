@@ -10,7 +10,7 @@ const logoVariants = cva(
         xs: "max-h-[28px] max-w-[28px] rounded-md",
         sm: "max-h-[35px] rounded-md",
         md: "max-h-[40px] rounded-lg ",
-        lg: "max-h-[55px] rounded-xl lg:max-h-[50px] sm:max-w-[65px]",
+        lg: "max-h-[55px] max-w-[75px] rounded-xl lg:max-h-[50px] sm:max-w-[65px]",
         xl: "max-h-[65px] rounded-xl"
       },
     },
