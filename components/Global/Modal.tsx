@@ -20,7 +20,7 @@ function Modal({
       data-open="false"
       ref={ref}
       className={cn(
-        "transition-all group fixed inset-0 z-[10000] flex cursor-auto items-center justify-center bg-[#09071cc6] duration-150 backdrop-blur-[4px] ",
+        "transition-all group fixed inset-0 z-[10000] flex cursor-auto items-center justify-center bg-[#09071cc6] duration-150 backdrop-blur-[4px]",
         "data-[open=true]:visible data-[open=true]:opacity-100",
         "data-[open=transition]:opacity-0",
         "data-[open=false]:invisible data-[open=false]:opacity-0",

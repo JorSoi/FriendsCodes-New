@@ -1,5 +1,4 @@
 import Input from "../Global/FormComponents/Input";
-import clsx from "clsx";
 import { getTimeAgo } from "@/utils/getTimeAgo";
 import Form from "../Global/FormComponents/Form";
 import * as Yup from "yup";
@@ -9,6 +8,7 @@ import { FormikValues } from "formik";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { UserCodeWithRelations } from "@/types/general.types";
+import CompanyLogo from "./CompanyLogo";
 
 function ReferralUpdateForm({
   closeModal,
@@ -56,19 +56,8 @@ function ReferralUpdateForm({
     >
       <div className="w-full rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
         <div className="flex items-center gap-4">
-          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#484E68]">
-            <Image
-              className={clsx(
-                "h-full max-h-[35px] w-auto max-w-[40px] shrink-0 rounded-sm object-contain",
-                {
-                  "max-h-[27px]": !code.companies.logo_url,
-                },
-              )}
-              src={code.companies.logo_url || "/icons/shop.svg"}
-              width={40}
-              height={40}
-              alt="20"
-            />
+          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#484E68] p-1">
+            <CompanyLogo src={code.companies.logo_url} size={"md"} />
           </div>
           <div className="text-left">
             <p className="max-w-[300px] truncate text-[17px] font-semibold text-white">

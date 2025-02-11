@@ -1,8 +1,9 @@
 
-import Image from "next/image";
+
 import Link from "next/link";
 import { NotificationWithRelations } from "@/types/general.types";
 import { getTimeAgo } from "@/utils/getTimeAgo";
+import CompanyLogo from "../../CompanyLogo";
 
 
 
@@ -13,13 +14,7 @@ function Notification({ ...notification } : NotificationWithRelations) {
     <div className="flex gap-3">
       <div className="relative flex size-[40px] shrink-0 items-center justify-center rounded-lg bg-[#484E6844]">
         {notification.type == "code_interaction" && (
-          <Image
-            src={notification.user_codes!.companies.logo_url!}
-            width={50}
-            height={50}
-            alt=""
-            className="rounded-md"
-          />
+          <CompanyLogo src={notification.user_codes?.companies.logo_url} size={"md"}/>
         )}
 
         {notification.type == "new_friend" && <p className="text-2xl">👥</p>}

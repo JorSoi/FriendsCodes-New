@@ -44,7 +44,7 @@ function Input({ className, size, variant, label, ...props }: InputProps) {
       {label && (
         <label
           htmlFor={props.type}
-          className="mb-1 block font-figtree text-[14px] font-medium"
+          className="mb-1 block font-figtree text-[14px] font-medium text-left"
         >
           {label}
         </label>

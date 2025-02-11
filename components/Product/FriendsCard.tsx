@@ -6,10 +6,10 @@ import Modal from "../Global/Modal";
 import CodeContainer from "./CodeContainer";
 import CodeList from "./CodeList";
 import Button from "../Global/Button";
+import CompanyLogo from "./CompanyLogo";
 
 function FriendsCard({ ...friend }: FriendWithCodes) {
-  
-  console.log(friend)
+  console.log(friend);
   const { openModal, closeModal, modalRef } = useModal();
 
   return (
@@ -22,16 +22,9 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
           return (
             <div
               key={user_code.id}
-              className="flex items-center justify-center overflow-hidden rounded-md border-1 border-[#ffffff10] bg-[#444560dd]"
+              className="flex items-center justify-center  rounded-md border-1 border-[#ffffff10] bg-[#444560dd]"
             >
-              <Image
-                key={user_code.id}
-                src={user_code.companies?.logo_url || ""}
-                width={50}
-                height={50}
-                alt=""
-                className="object-contain"
-              />
+              <CompanyLogo src={user_code.companies.logo_url} size={"sm"} />
             </div>
           );
         })}
@@ -63,18 +56,23 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
               </p>
             </div>
             <div>
-            <Button variant={"secondary"} className="size-10 p-[unset] flex items-center justify-center">
-              <Image src={"icons/remove-user.svg"} width={17} height={17} alt="" />
-            </Button>
+              <Button
+                variant={"secondary"}
+                className="flex size-10 items-center justify-center p-[unset]"
+              >
+                <Image
+                  src={"icons/remove-user.svg"}
+                  width={17}
+                  height={17}
+                  alt=""
+                />
+              </Button>
             </div>
-            
           </div>
-          <div>
-          </div>
-        
+          <div></div>
         </div>
         <CodeContainer>
-          <CodeList userCodes={friend.user_codes} viewOnly={true}/>
+          <CodeList userCodes={friend.user_codes} viewOnly={true} />
         </CodeContainer>
       </Modal>
     </div>
