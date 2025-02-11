@@ -1,35 +1,81 @@
+"use client";
+
 import { UserCodeWithRelations } from "@/types/general.types";
-import Image from "next/image";
+import Button from "../Global/Button";
 import Form from "../Global/FormComponents/Form";
 import Input from "../Global/FormComponents/Input";
+import CompanyLogo from "./CompanyLogo";
+import Image from "next/image";
+import { FormikValues } from "formik";
 
 function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
-  return (
-    <Form initialValues={{ referralCode: code.referral_value! }} onSubmit={() => {}}>
-      <div className="flex w-full flex-col items-center justify-center rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
-        <div className="flex size-full flex-col items-center justify-center">
-          <Image
-            className="h-full max-h-[55px] w-auto max-w-[85px] rounded-md object-contain transition-transform duration-200 group-hover:scale-[105%] lg:max-h-[50px] sm:max-w-[65px]"
-            src={code.companies?.logo_url || "/icons/shop.svg"}
-            width={90}
-            height={90}
-            alt=""
-            draggable={false}
-          />
+  const copyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(code.referral_value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-          <p className="mt-[10px] w-full truncate font-medium">
+  function isValidUrl(referralValue : string) {
+    try {
+        new URL(referralValue);
+        return true; // If URL constructor succeeds, it's a valid URL
+    } catch (error) {
+      console.log(error)
+        return false;
+    }
+}
+
+  return (
+    <Form
+      initialValues={{ referralCode: code.referral_value! }}
+      onSubmit={(value: FormikValues) => {
+        if (isValidUrl(code.referral_value)) {
+          window.open(value.referralCode, "_blank");
+        } else {
+          copyCode();
+        }
+      }}
+    >
+      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-4">
+        <div className="mb-5 flex size-full flex-col items-center justify-center">
+          <div className="flex size-[80px] items-center justify-center rounded-2xl border-1 border-[#ffffff10] bg-gradient-to-br from-[#545571dd] to-[#4445608f] p-[10px]">
+            <CompanyLogo src={code.companies.logo_url} size={"xl"} />
+          </div>
+
+          <h3 className="mt-[10px] w-full truncate text-[17px] font-medium text-white">
             {code.companies.name}
+          </h3>
+          <p className="text-[#ffffff80] text-[15px]">
+            Copy this code so that you earn referral benefits from{" "}
+            {code.companies.name}!
           </p>
-          <p>Copy this code and benefit from my referrals</p>
         </div>
-        <Input
-          type="text"
-          name="referralCode"
-          className="border-[1.5px] border-dashed border-[#5c6484] pr-9 text-white"
-          placeholder="e.g. https://refer.amazon.com/jorsoi13"
-          autoComplete="off"
-        />
+        <div className="relative">
+          <Input
+            type="text"
+            name="referralCode"
+            className="border-[2.4px] border-dashed border-[#5c6484] py-3 pr-11 text-[15px] text-white"
+            placeholder="e.g. https://refer.amazon.com/jorsoi13"
+            autoComplete="off"
+            readOnly
+          />
+          <Image
+            src={"/icons/copy.svg"}
+            width={18}
+            height={18}
+            alt=""
+            className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+            onClick={copyCode}
+          />
+        </div>
       </div>
+      <Button className="mt-5 w-full">
+        {isValidUrl(code.referral_value)
+          ? "Open Referral Link"
+          : "Copy Referral Code"}
+      </Button>
     </Form>
   );
 }
