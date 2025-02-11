@@ -2,11 +2,11 @@ import { useModal } from "@/hooks/useModal";
 import { FriendWithCodes } from "@/types/general.types";
 import { getTimeAgo } from "@/utils/getTimeAgo";
 import Image from "next/image";
-import Modal from "../Global/Modal";
-import CodeContainer from "./CodeContainer";
-import CodeList from "./CodeList";
-import Button from "../Global/Button";
-import CompanyLogo from "./CompanyLogo";
+import Modal from "../../Global/Modal";
+import CodeContainer from "../my-codes/CodeContainer";
+import CodeList from "../my-codes/CodeList";
+import Button from "../../Global/Button";
+import CompanyLogo from "../CompanyLogo";
 
 function FriendsCard({ ...friend }: FriendWithCodes) {
   console.log(friend);
@@ -22,7 +22,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
           return (
             <div
               key={user_code.id}
-              className="flex items-center justify-center  rounded-md border-1 border-[#ffffff10] bg-[#444560dd]"
+              className="flex items-center justify-center rounded-md border-1 border-[#ffffff10] bg-[#444560dd]"
             >
               <CompanyLogo src={user_code.companies.logo_url} size={"sm"} />
             </div>

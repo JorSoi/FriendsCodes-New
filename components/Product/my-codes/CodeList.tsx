@@ -1,17 +1,17 @@
 "use client";
 
 import { UserCodeWithRelations } from "@/types/general.types";
-import ReferralCode from "./ReferralCode";
-import AddItemButton from "./AddItemButton";
+import ReferralCode from "../ReferralCode/ReferralCode";
+import AddItemButton from "../AddItemButton";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 function CodeList({
   userCodes,
-  viewOnly = false
+  viewOnly = false,
 }: {
   userCodes: UserCodeWithRelations[] | null;
-  viewOnly?: boolean
+  viewOnly?: boolean;
 }) {
   const searchParams = useSearchParams();
   const [list, setList] = useState(userCodes);
@@ -38,11 +38,16 @@ function CodeList({
   return (
     <div className="grid grid-cols-5 gap-3 lg:grid-cols-4 md:grid-cols-3 md:gap-2">
       {list?.map(({ ...referralCode }) => {
-        return <ReferralCode key={referralCode.id} {...referralCode} viewOnly={viewOnly}/>;
+        return (
+          <ReferralCode
+            key={referralCode.id}
+            {...referralCode}
+            viewOnly={viewOnly}
+          />
+        );
       })}
 
-
-      {!viewOnly &&<AddItemButton />}
+      {!viewOnly && <AddItemButton />}
     </div>
   );
 }

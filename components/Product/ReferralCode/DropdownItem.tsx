@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import { useFormikContext } from "formik";
 import { Dispatch } from "react";
 import { SetStateAction } from "react";
 import { Tables } from "@/types/database.types";
-import CompanyLogo from "./CompanyLogo";
+import CompanyLogo from "../CompanyLogo";
 
 function DropdownItem({
   setSelectedCompany,
@@ -22,11 +22,11 @@ function DropdownItem({
       onMouseDown={() => {
         setSelectedCompany(company);
         setFieldValue("company", company.name);
-        console.log(values)
+        console.log(values);
         setIsDropdownOpen(false);
       }}
     >
-     <CompanyLogo src={company.logo_url} size={"xs"}/>
+      <CompanyLogo src={company.logo_url} size={"xs"} />
       <p className="truncate text-[14px] text-white">{company.name}</p>
     </div>
   );

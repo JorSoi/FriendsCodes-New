@@ -1,5 +1,5 @@
-import CodeContainer from "@/components/Product/CodeContainer";
-import CodeList from "@/components/Product/CodeList";
+import CodeContainer from "@/components/Product/my-codes/CodeContainer";
+import CodeList from "@/components/Product/my-codes/CodeList";
 import Tab from "@/components/Product/Tab";
 import { UserCodeWithRelations } from "@/types/general.types";
 import { getServerProfile } from "@/utils/getServerProfile";

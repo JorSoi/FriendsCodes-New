@@ -6,14 +6,11 @@ import Modal from "../Global/Modal";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 import { useState } from "react";
 
-
-
-import ReferralCreationForm from "./ReferralCreationForm";
+import ReferralCreationForm from "./ReferralCode/ReferralCreationForm";
 
 function AddItemButton() {
   const { openModal, closeModal, modalRef } = useModal();
-    const [fireWork, setFireWork] = useState<boolean>(false);
-
+  const [fireWork, setFireWork] = useState<boolean>(false);
 
   return (
     <div
@@ -29,10 +26,19 @@ function AddItemButton() {
           draggable="false"
         />
       </div>
-      <Modal closeModal={closeModal} ref={modalRef}   className="w-full max-w-[400px]">
-        <ReferralCreationForm closeModal={closeModal} setFireWork={setFireWork}/>
+      <Modal
+        closeModal={closeModal}
+        ref={modalRef}
+        className="w-full max-w-[400px]"
+      >
+        <ReferralCreationForm
+          closeModal={closeModal}
+          setFireWork={setFireWork}
+        />
       </Modal>
-      {fireWork && <Fireworks autorun={{ speed: 3, duration: 2000, delay: 500}} />}
+      {fireWork && (
+        <Fireworks autorun={{ speed: 3, duration: 2000, delay: 500 }} />
+      )}
     </div>
   );
 }

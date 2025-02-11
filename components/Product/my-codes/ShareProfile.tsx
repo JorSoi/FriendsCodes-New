@@ -1,12 +1,12 @@
 "use client";
 
-import Form from "../Global/FormComponents/Form";
-import Input from "../Global/FormComponents/Input";
+import Form from "../../Global/FormComponents/Form";
+import Input from "../../Global/FormComponents/Input";
 import Link from "next/link";
 import Image from "next/image";
-import Button from "../Global/Button";
+import Button from "../../Global/Button";
 import { useModal } from "@/hooks/useModal";
-import Modal from "../Global/Modal";
+import Modal from "../../Global/Modal";
 import { useState, useEffect } from "react";
 import { getClientProfile } from "@/utils/getClientProfile";
 import { Tables } from "@/types/database.types";
