@@ -2,7 +2,7 @@ alter table "public"."notifications" drop constraint "notifications_recipient_fk
 
 alter table "public"."notifications" drop constraint "notifications_triggered_by_fkey";
 
-alter table "public"."profiles" add column "email" character varying not null;
+alter table "public"."profiles" add column "email" character varying;
 
 CREATE UNIQUE INDEX profiles_email_key ON public.profiles USING btree (email);
 
