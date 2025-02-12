@@ -5,12 +5,14 @@ import Image from "next/image";
 import Modal from "../Global/Modal";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 import { useState } from "react";
-
 import ReferralCreationForm from "./ReferralCode/ReferralCreationForm";
+import { usePathname } from "next/navigation";
+import FriendCreationForm from "./my-friends/FriendCreationForm";
 
 function AddItemButton() {
   const { openModal, closeModal, modalRef } = useModal();
   const [fireWork, setFireWork] = useState<boolean>(false);
+  const pathName = usePathname();
 
   return (
     <div
@@ -31,10 +33,14 @@ function AddItemButton() {
         ref={modalRef}
         className="w-full max-w-[400px]"
       >
-        <ReferralCreationForm
-          closeModal={closeModal}
-          setFireWork={setFireWork}
-        />
+        {pathName == "/home" ? (
+          <ReferralCreationForm
+            closeModal={closeModal}
+            setFireWork={setFireWork}
+          />
+        ) : (
+          <FriendCreationForm closeModal={closeModal} />
+        )}
       </Modal>
       {fireWork && (
         <Fireworks autorun={{ speed: 3, duration: 2000, delay: 500 }} />

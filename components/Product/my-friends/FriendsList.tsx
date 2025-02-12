@@ -4,6 +4,7 @@ import FriendsCard from "./FriendsCard";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FriendWithCodes } from "@/types/general.types";
+import AddItemButton from "../AddItemButton";
 
 function FriendsList({ friendsList }: { friendsList: FriendWithCodes[] }) {
   const searchParams = useSearchParams();
@@ -43,6 +44,7 @@ function FriendsList({ friendsList }: { friendsList: FriendWithCodes[] }) {
       {list.map((friend: FriendWithCodes) => {
         return <FriendsCard key={friend.profile.id} {...friend} />;
       })}
+      <AddItemButton />
     </div>
   );
 }

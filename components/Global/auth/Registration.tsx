@@ -19,6 +19,7 @@ function RegistrationForm() {
   const visitorName = useSearchParams().get("visitor");
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const invitation = localStorage.getItem("invitation");
   const supabase = createClient();
   const router = useRouter();
   useAnimations();
@@ -77,7 +78,8 @@ function RegistrationForm() {
     });
     if (user) {
       setIsLoading(false);
-      router.push("/home");
+      //if user is coming from invitation link, navigate them straight to /friends page to see their new friend.
+      router.push( invitation ? "/friends" : "/home")
     } else {
       actions.setFieldError("password", error?.message);
       setIsLoading(false);

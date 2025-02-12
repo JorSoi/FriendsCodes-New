@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import NavBar from "@/components/Product/NavBar/NavBar";
 import { getServerProfile } from "@/utils/getServerProfile";
 import { redirect } from "next/navigation";
+import InvitationLogic from "@/components/Global/InvitationLogic";
 
 export const metadata: Metadata = {
   title: "FriendsCodes - Benefit from referrals!",
@@ -15,20 +16,21 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-   const { user } = await getServerProfile();
-    if (!user) {
-        redirect('/auth/login')
-    }
+  const { user } = await getServerProfile();
+  if (!user) {
+    redirect("/auth/login");
+  }
 
   return (
     <html
       lang="en"
       className={`${figtree.variable} ${inter.variable} scroll-smooth`}
     >
-      <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] font-figtree pt-[150px] sm:pt-[120px]">
-        <NavBar />
-        {children}
+      <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] pt-[150px] font-figtree sm:pt-[120px]">
+        <InvitationLogic>
+          <NavBar />
+          {children}
+        </InvitationLogic>
       </body>
     </html>
   );

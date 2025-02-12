@@ -38,6 +38,7 @@ function NavBar() {
             height={35}
             className="shrink-0 cursor-pointer"
             alt="FriendsCodes Logo"
+            onClick={() => router.push('/home')}
           />
         </div>
         <div className="flex grow-[1] items-center justify-center sm:grow-[2]">
