@@ -38,9 +38,9 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
         }
       }}
     >
-      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-4">
+      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#333350] p-4">
         <div className="mb-5 flex size-full flex-col items-center justify-center">
-          <div className="flex size-[80px] items-center justify-center rounded-2xl border-1 border-[#ffffff10] bg-gradient-to-br from-[#545571dd] to-[#4445608f] p-[10px]">
+          <div className="flex size-[80px] items-center justify-center rounded-2xl border-1 border-[#ffffff10] bg-[#47476a] p-[10px]">
             <CompanyLogo src={code.companies.logo_url} size={"xl"} />
           </div>
 

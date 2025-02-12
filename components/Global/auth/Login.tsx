@@ -19,9 +19,11 @@ function Login() {
   const visitorName = useSearchParams().get("visitor");
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const invitation = localStorage.getItem("invitation");
   const supabase = createClient();
   const router = useRouter();
   useAnimations();
+
 
   const initialValues = {
     email: "",
@@ -47,7 +49,8 @@ function Login() {
     });
 
     if (user) {
-      router.push("/home");
+      //if user is coming from invitation link, navigate them straight to /friends page to see their new friend.
+      router.push( invitation ? "/friends" : "/home")
     } else {
       actions.setFieldError("password", error?.message);
       setIsLoading(false);
@@ -83,15 +86,24 @@ function Login() {
 
       <div className="mb-5 flex flex-col items-center text-center">
         <div className="flex- flex text-[22px] font-semibold text-white">
-          <h3 className="mr-2">
-            Welcome back{visitorName ? `, ${visitorName}!` : ""}
-          </h3>
-          <h3 className="touch-none select-none">🎉</h3>
+          {invitation ? (
+            <h3>{invitation} invited you as a friend 🧑‍🤝‍🧑</h3>
+          ) : (
+            <h3 className="mr-2">
+              Welcome back{visitorName ? `, ${visitorName}` : ""}! 🎉
+            </h3>
+          )}
         </div>
-        <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
-          Let&apos;s catch up on your referral codes. The more you add, the more
-          benefits you can collect.
-        </p>
+        {invitation ? (
+           <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
+           Login or register to accept their friend request and start benefiting from their referral codes!
+         </p>
+        ) : (
+          <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
+            Let&apos;s catch up on your referral codes. The more you add, the
+            more benefits you can collect.
+          </p>
+        )}
       </div>
 
       {/* Mark: Social Signup Buttons */}

@@ -57,9 +57,9 @@ function ReferralCreationForm({
         referralCode: Yup.string().required("Referral code or link required"),
       })}
     >
-      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
+      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#333350] p-3">
         <div className="mb-3 flex items-center gap-4">
-          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#484E68]">
+          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#47476a]">
             {selectedCompany ? (
               <Image
                 className={clsx(
@@ -116,11 +116,11 @@ function ReferralCreationForm({
           )}
         </div>
       </div>
-      <div className="ml-4 h-4 w-4 bg-[#30354A]"></div>
+      <div className="ml-4 h-4 w-4 bg-[#333350]"></div>
 
-      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
+      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#333350] p-3">
         <div className="mb-3 flex items-center gap-4">
-          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#484E68]">
+          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#47476a]">
             <Image
               src={"/icons/referral-code.png"}
               width={38}
@@ -141,7 +141,7 @@ function ReferralCreationForm({
         <Input
           type="text"
           name="referralCode"
-          className="border-[1.5px] border-dashed border-[#5c6484] pr-9 text-white"
+          className="border-[2.4px] border-dashed border-[#5c6484] pr-9 text-white"
           placeholder="e.g. https://refer.amazon.com/jorsoi13"
           autoComplete="off"
         />
