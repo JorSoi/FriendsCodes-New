@@ -2,7 +2,6 @@
 
 import Form from "../../Global/FormComponents/Form";
 import Input from "../../Global/FormComponents/Input";
-import Link from "next/link";
 import Image from "next/image";
 import Button from "../../Global/Button";
 import { useModal } from "@/hooks/useModal";
@@ -10,12 +9,17 @@ import Modal from "../../Global/Modal";
 import { useState, useEffect } from "react";
 import { getClientProfile } from "@/utils/getClientProfile";
 import { Tables } from "@/types/database.types";
-
+import { useClipboard } from "@/hooks/useClipboard";
+import { shareSocials } from "@/lib/shareSocials";
 
 function ShareProfile() {
   const { modalRef, closeModal, openModal } = useModal();
-  const [hasCopied, setHasCopied] = useState(false);
+  const [writeText, hasCopied] = useClipboard();
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
+  const socials = shareSocials(
+    "Take a look at my referral codes",
+    `${window.origin}/${profile?.user_name}`,
+  );
 
   useEffect(() => {
     async function setProfileState() {
@@ -25,26 +29,11 @@ function ShareProfile() {
     setProfileState();
   }, []);
 
-  const handleClick = async () => {
-    try {
-      if (false) {
-        await navigator.share({
-          title: "Share my referral codes!",
-          url: window.origin + `/${profile!.user_name}`,
-        });
-      } else {
-        openModal();
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
   return (
-    <div>
+    <>
       <Button
-        onClick={handleClick}
-        className="absolute bottom-[2%] left-1/2 flex -translate-x-1/2 items-center justify-center gap-2 xs:w-[94%]"
+        onClick={openModal}
+        className="absolute bottom-[5%] left-1/2 flex -translate-x-1/2 items-center justify-center gap-2 xs:w-[94%]"
       >
         <Image
           src={"/icons/share.svg"}
@@ -72,60 +61,25 @@ function ShareProfile() {
               profileLink: window.origin + `/${profile?.user_name}`,
             }}
           >
-            <div className="my-4 grid grid-cols-[repeat(auto-fit,minmax(60px,1fr))] justify-items-center gap-4 [&_a]:flex [&_a]:size-[60px] [&_a]:items-center [&_a]:justify-center [&_a]:rounded-full [&_a]:bg-[#3d425a] [&_img]:cursor-pointer">
-              <Link href={`https://`} target="_blank">
-                <Image
-                  src={"/company-logos/reddit.svg"}
-                  width={28}
-                  height={28}
-                  alt=""
-                />
-              </Link>
-              <Link
-                href={`https://www.facebook.com/sharer/sharer.php?u&quote=Take a look at my referral codes using this link: ${window.origin}/${profile?.user_name}`}
-                target="_blank"
-              >
-                <Image
-                  src={"/company-logos/facebook.svg"}
-                  width={28}
-                  height={28}
-                  alt=""
-                />
-              </Link>
-              <Link
-                href={`https://telegram.me/share/url?url=${window.origin}/${profile?.user_name}&text=Check out my profile on FriendsCodes!`}
-                target="_blank"
-              >
-                <Image
-                  src={"/company-logos/telegram.svg"}
-                  width={27}
-                  height={27}
-                  alt=""
-                  className="-translate-x-[2px]"
-                />
-              </Link>
-              <Link
-                href={`whatsapp://send?text=Take a look at my referral codes using this link: ${window.origin}/${profile?.user_name}`}
-                target="_blank"
-              >
-                <Image
-                  src={"/company-logos/whatsapp.svg"}
-                  width={27}
-                  height={27}
-                  alt=""
-                />
-              </Link>
-              <Link
-                href={`http://twitter.com/share?text=Take a look at my referral codes using this link: &url=${window.origin}/${profile?.user_name}&hashtags=referralCodes, referral, redeem`}
-                target="_blank"
-              >
-                <Image
-                  src={"/company-logos/twitter.svg"}
-                  width={20}
-                  height={20}
-                  alt=""
-                />
-              </Link>
+            <div className="my-4 grid grid-cols-[repeat(auto-fit,minmax(60px,1fr))] gap-2">
+              {socials.map(({ company, href }) => {
+                return (
+                  <Button
+                    key={company}
+                    variant={"outline"}
+                    size={"sm"}
+                    className="flex h-[50px] w-full items-center justify-center"
+                    onClick={() => window.open(href, "_blank")}
+                  >
+                    <Image
+                      src={`/company-logos/${company}.svg`}
+                      width={20}
+                      height={20}
+                      alt=""
+                    />
+                  </Button>
+                );
+              })}
             </div>
             <Input
               name="profileLink"
@@ -137,19 +91,16 @@ function ShareProfile() {
             />
             <Button
               className="mt-4 w-full"
-              onClick={() => {
-                navigator.clipboard.writeText(
-                  `${window.origin}/${profile?.user_name}`,
-                );
-                setHasCopied(true);
-              }}
+              onClick={async () =>
+                writeText(`${window.origin}/${profile?.user_name}`)
+              }
             >
-              {hasCopied ? "Copied" : "Copy Link"}
+              {hasCopied ? "Copied!" : "Copy profile link"}
             </Button>
           </Form>
         </div>
       </Modal>
-    </div>
+    </>
   );
 }
 

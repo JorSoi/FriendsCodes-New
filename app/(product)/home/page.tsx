@@ -1,5 +1,6 @@
-import CodeContainer from "@/components/Product/my-codes/CodeContainer";
+import CodeContainer from "@/components/Global/CodeContainer";
 import CodeList from "@/components/Product/my-codes/CodeList";
+import ShareProfile from "@/components/Product/my-codes/ShareProfile";
 import Tab from "@/components/Product/Tab";
 import { UserCodeWithRelations } from "@/types/general.types";
 import { generateUniqueProfileName } from "@/utils/generateUniqueProfileName";
@@ -37,6 +38,7 @@ async function Page() {
       <Tab />
       <CodeContainer className="mb-[15svh]">
         <CodeList userCodes={userCodes} />
+        <ShareProfile />
       </CodeContainer>
     </div>
   );

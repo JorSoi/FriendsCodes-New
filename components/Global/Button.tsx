@@ -15,10 +15,11 @@ const buttonVariants = cva(
         secondary:
           "text-white bg-[#ffffff15] hover:bg-[#ffffff20] shadow-[0_0_0_1px_#ffffff24,inset_0_2px_2px_0_#ffffff10]",
         ghost: "hover:bg-[#ffffff16] transition-colors",
+        outline: "border-1 border-[#ffffff20] hover:bg-[#ffffff16] transition-colors"
       },
       size: {
         xs: "text-[11px] md:text-[9px] px-[6px] py-[5px] rounded-[6px]",
-        sm: "text-[14px] md:text-[12px] px-[16px] py-[12px] rounded-[11px] font-medium",
+        sm: "text-[14px] md:text-[12px] px-[16px] py-[12px] rounded-[9px] font-medium",
         md: "text-[14px] px-[23px] py-[12px] rounded-[11px] font-medium",
         lg: "text-[17px] md:text-[14px] px-[23px] py-[12px] rounded-[11px] font-medium",
       },

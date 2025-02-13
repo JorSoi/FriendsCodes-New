@@ -1,4 +1,5 @@
-import CodeContainer from "@/components/Product/my-codes/CodeContainer";
+import CodeContainer from "@/components/Global/CodeContainer";
+import ShareProfile from "@/components/Product/my-codes/ShareProfile";
 import FriendsList from "@/components/Product/my-friends/FriendsList";
 import Tab from "@/components/Product/Tab";
 import { FriendWithCodes } from "@/types/general.types";
@@ -26,6 +27,7 @@ async function Page() {
       <Tab />
       <CodeContainer>
         <FriendsList friendsList={friendsList} />
+        <ShareProfile />
       </CodeContainer>
     </div>
   );

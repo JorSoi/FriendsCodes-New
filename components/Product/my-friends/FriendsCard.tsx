@@ -5,7 +5,7 @@ import { FriendWithCodes } from "@/types/general.types";
 import { getTimeAgo } from "@/utils/getTimeAgo";
 import Image from "next/image";
 import Modal from "../../Global/Modal";
-import CodeContainer from "../my-codes/CodeContainer";
+import CodeContainer from "../../Global/CodeContainer";
 import CodeList from "../my-codes/CodeList";
 import Button from "../../Global/Button";
 import CompanyLogo from "../CompanyLogo";
@@ -62,8 +62,8 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
       >
         <div className="w-full max-w-[480px] rounded-full border-1 border-[#ffffff10] bg-[#21203d] p-2 pr-4 xs:px-6">
           <div className="flex items-center justify-between gap-3">
-            <div className="flex gap-4 " onClick={closeModal} >
-              <div className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-[#ffffff10] [&_img]:-translate-x-px [&_img]:rotate-180 xs:hidden">
+            <div className="flex gap-4" onClick={closeModal}>
+              <div className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-[#ffffff10] xs:hidden [&_img]:-translate-x-px [&_img]:rotate-180">
                 <Image src={"icons/chevron.svg"} width={7} height={7} alt="" />
               </div>
               <div>
