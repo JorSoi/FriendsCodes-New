@@ -74,9 +74,9 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
         friend: Yup.string().required("Email or username required"),
       })}
     >
-      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#333350] p-3">
-        <div className="mb-3 flex items-center gap-4">
-          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#47476a]">
+      <div className="rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
+        <div className="mb-4 flex items-center gap-4">
+          <div className="flex size-14 items-center justify-center rounded-2xl border-1 border-[#ffffff1b] bg-[#47476a]">
             <Image
               src={"/icons/add-user.svg"}
               width={22}
@@ -109,6 +109,7 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
                 size={"sm"}
                 className="flex size-[40px] items-center justify-center rounded-full p-[unset]"
                 onClick={() => window.open(href, "_blank")}
+                type="button"
               >
                 <Image
                   src={`/company-logos/${company}.svg`}
