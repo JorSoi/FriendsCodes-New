@@ -39,7 +39,14 @@ function CompanySearch({
           />
         </div>
         {/* <div className="w-full h-[20%] bg-gradient-to-b from-[#333350] via-[#3333505e] via-[70%] to-[#33335000] absolute top-full inset-x-0 z-10"></div> */}
-        <Button variant={"ghost"} type="button" onClick={() => closeModal()} className="hidden sm:block">Cancel</Button>
+        <Button
+          variant={"ghost"}
+          type="button"
+          onClick={() => closeModal()}
+          className="hidden sm:block"
+        >
+          Cancel
+        </Button>
       </div>
       <CompanySearchList setCompany={setCompany} />
     </div>
