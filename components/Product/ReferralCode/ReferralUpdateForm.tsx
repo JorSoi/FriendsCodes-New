@@ -54,9 +54,9 @@ function ReferralUpdateForm({
           .notOneOf([code.referral_value], "Cant be the same as before"),
       })}
     >
-      <div className="w-full rounded-xl border-1 border-[#ffffff20] bg-[#333350] p-3">
+      <div className="w-full rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
         <div className="flex items-center gap-4">
-          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#47476a] p-1">
+          <div className="flex size-14 items-center justify-center rounded-2xl border-1 border-[#ffffff1b] bg-[#47476a] p-1">
             <CompanyLogo src={code.companies.logo_url} size={"md"} />
           </div>
           <div className="text-left">
@@ -71,9 +71,9 @@ function ReferralUpdateForm({
       </div>
       <div className="ml-4 h-4 w-4 bg-[#333350]"></div>
 
-      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#333350] p-3">
+      <div className="rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
         <div className="mb-3 flex items-center gap-4">
-          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#47476a]">
+          <div className="flex size-14 items-center justify-center rounded-2xl border-1 border-[#ffffff1b] bg-[#47476a]">
             <Image
               src={"/icons/referral-code.svg"}
               width={40}

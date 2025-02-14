@@ -7,9 +7,28 @@ import Image from "next/image";
 import Input from "@/components/Global/FormComponents/Input";
 import Button from "@/components/Global/Button";
 import { useRouter } from "next/navigation";
+import { useClipboard } from "@/hooks/useClipboard";
+import { shareSocials } from "@/lib/shareSocials";
+import { useState, useEffect } from "react";
+import { Tables } from "@/types/database.types";
 
 function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
   const router = useRouter();
+  const [writeText, hasCopied] = useClipboard();
+  const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
+  const socials = shareSocials(
+    "Let's connect on FriendsCodes, so we can redeem each other's referral codes and enjoy the rewards together!",
+    `${window.origin}/invitation?friend=${profile?.user_name}`,
+  );
+
+  useEffect(() => {
+    async function setProfileState() {
+      const { profile } = await getClientProfile();
+      setProfile(profile);
+    }
+    setProfileState();
+  }, []);
+
   const addFriend = async (
     values: FormikValues,
     actions: FormikHelpers<FormikValues>,
@@ -20,7 +39,7 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
     const { data, error } = await supabase
       .from("profiles")
       .select("id")
-      .or(`user_name.ilike.${values.friend},email.ilike.${values.friend}`)
+      .or(`user_name.ilike.${values.friend.trim()},email.ilike.${values.friend.trim()}`)
       .single();
 
     if (!error && user) {
@@ -33,15 +52,17 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
         router.refresh();
       } else {
         if (creationError?.code == "23505") {
-            actions.setFieldError("friend", "You are already friends!");
-          }
+          actions.setFieldError("friend", "You are already friends!");
+        }
         console.log(creationError);
       }
     } else {
       if (error?.code == "PGRST116") {
         actions.setFieldError("friend", "Couldn't find that user! 😯");
+      } else {
+        actions.setFieldError("friend", "An error occured!");
       }
-      console.log(error);
+      
     }
   };
 
@@ -53,9 +74,9 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
         friend: Yup.string().required("Email or username required"),
       })}
     >
-      <div className="rounded-xl border-1 border-[#ffffff20] bg-[#333350] p-3">
-        <div className="mb-3 flex items-center gap-4">
-          <div className="flex size-14 items-center justify-center rounded-lg border-1 border-[#ffffff1b] bg-[#47476a]">
+      <div className="rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
+        <div className="mb-4 flex items-center gap-4">
+          <div className="flex size-14 items-center justify-center rounded-2xl border-1 border-[#ffffff1b] bg-[#47476a]">
             <Image
               src={"/icons/add-user.svg"}
               width={22}
@@ -79,21 +100,44 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
           placeholder="Add username or email"
           autoComplete="off"
         />
+        <div className="mt-4 flex flex-wrap gap-2">
+          {socials.map(({ company, href }) => {
+            return (
+              <Button
+                key={company}
+                variant={"outline"}
+                size={"sm"}
+                className="flex size-[40px] items-center justify-center rounded-full p-[unset]"
+                onClick={() => window.open(href, "_blank")}
+                type="button"
+              >
+                <Image
+                  src={`/company-logos/${company}.svg`}
+                  width={20}
+                  height={20}
+                  alt=""
+                />
+              </Button>
+            );
+          })}
+        </div>
       </div>
       <div className="mt-5 flex gap-3 xs:flex-col-reverse">
         <Button
           type="button"
           variant={"secondary"}
-          className="flex justify-center gap-2"
+          className="flex grow-[1] basis-0 justify-center gap-2"
           onClick={async () => {
             const { profile } = await getClientProfile();
-            await navigator.clipboard.writeText(`${window.origin}/invitation?friend=${profile?.user_name}`)
+            writeText(
+              `${window.origin}/invitation?friend=${profile?.user_name}`,
+            );
           }}
         >
           <Image src={"/icons/link.svg"} width={20} height={20} alt="" />
-          Use invitation link
+          {hasCopied ? "Copied!" : "Use invitation link"}
         </Button>
-        <Button className="flex-grow" type="submit">
+        <Button className="grow-[1] basis-0" type="submit">
           Add friend
         </Button>
       </div>

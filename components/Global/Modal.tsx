@@ -2,6 +2,8 @@
 
 import { cn } from "@/utils/variants";
 import { RefObject } from "react";
+import { createContext } from "react";
+export const ModalContext = createContext<(() => void) | null>(null);
 
 function Modal({
   children,
@@ -15,30 +17,33 @@ function Modal({
   closeModal: () => void;
 }) {
 
+
   return (
-    <div
-      data-open="false"
-      ref={ref}
-      className={cn(
-        "transition-all group fixed inset-0 z-[10000] flex cursor-auto items-center justify-center bg-[#09071cc6] duration-150 backdrop-blur-[4px] sm:items-start overflow-y-scroll",
-        "data-[open=true]:visible data-[open=true]:opacity-100",
-        "data-[open=transition]:opacity-0",
-        "data-[open=false]:invisible data-[open=false]:opacity-0",
-      )}
-      onClick={() => closeModal()}
-    >
+    <ModalContext.Provider value={closeModal}>
       <div
         data-open="false"
-        onClick={(e) => e.stopPropagation()} //prevents backdrop from triggering animation even when clicking on its child.
+        ref={ref}
         className={cn(
-          "z-[99999] translate-y-5 scale-95 transition-transform duration-150 mx-[3%]",
-          "group-data-[open=true]:translate-y-0 group-data-[open=true]:scale-100 sm:my-[15svh]",
-          className,
+          "group fixed inset-0 z-[10000] flex cursor-auto items-center justify-center overflow-y-auto bg-[#09071cc6] backdrop-blur-[4px] transition-all duration-150 sm:items-start",
+          "data-[open=true]:visible data-[open=true]:opacity-100",
+          "data-[open=transition]:opacity-0",
+          "data-[open=false]:invisible data-[open=false]:opacity-0",
         )}
+        onClick={() => closeModal()}
       >
-        {children}
+        <div
+          data-open="false"
+          onClick={(e) => e.stopPropagation()} //prevents backdrop from triggering animation even when clicking on its child.
+          className={cn(
+            "z-[10001] mx-[3%] -mb-[40px] duration-300",
+            "group-data-[open=true]:mb-0 sm:my-[15svh]",
+            className,
+          )}
+        >
+          {children}
+        </div>
       </div>
-    </div>
+    </ModalContext.Provider>
   );
 }
 

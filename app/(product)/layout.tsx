@@ -26,7 +26,7 @@ export default async function RootLayout({
       lang="en"
       className={`${figtree.variable} ${inter.variable} scroll-smooth`}
     >
-      <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] pt-[150px] font-figtree sm:pt-[120px]">
+      <body className="overflow-x-hidden overflow-y-auto bg-[#09071C] pt-[150px] font-figtree sm:pt-[120px]">
         <InvitationLogic>
           <NavBar />
           {children}

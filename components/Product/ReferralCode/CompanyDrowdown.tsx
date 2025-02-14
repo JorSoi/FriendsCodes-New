@@ -42,7 +42,7 @@ function CompanyDrowdown({
   }, [values]);
 
   return (
-    <div className="absolute top-full z-[10001] mt-2 max-h-[25svh] w-full overflow-y-auto rounded-md border-1 border-[#ffffff40] bg-[#333350] p-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#4b526d] [&::-webkit-scrollbar-track]:bg-[#ffffff0d] [&::-webkit-scrollbar]:w-2 shadow-lg shadow-[#24243954]">
+    <div className="absolute top-full z-[10001] mt-2 max-h-[50svh] w-full overflow-y-auto rounded-md border-1 border-[#ffffff40] bg-[#333350] p-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#4b526d] [&::-webkit-scrollbar-track]:bg-[#ffffff0d] [&::-webkit-scrollbar]:w-2 shadow-lg shadow-[#24243954]">
       {companyList.map(({ ...company }) => {
         return (
           <DropdownItem

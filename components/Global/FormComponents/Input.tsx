@@ -6,12 +6,13 @@ import { twMerge } from "tailwind-merge";
 import { useField } from "formik";
 
 const inputVariants = cva(
-  "p-3 rounded-lg font-inter text-[14px] w-full max-w-[400px] transition-[colors, shadow] duration-[300ms] appearance-none autofill:bg-transparent",
+  "p-3 rounded-lg font-inter text-[14px] w-full transition-[colors, shadow] duration-[300ms] appearance-none autofill:bg-transparent max-w-[400px] placeholder-[#ffffff87]",
   {
     variants: {
       variant: {
         outline:
-          "bg-transparent border-1 border-[#262537] placeholder-[#ffffff87] focus:placeholder-[#39374f] outline-[#ffffff17] focus:border-[#9291b7] focus:outline-none focus:shadow-[0px_0px_0px_3px_#ffffff20]",
+          "bg-transparent border-1 border-[#262537]  focus:placeholder-[#39374f] outline-[#ffffff17] focus:border-[#9291b7] focus:outline-none focus:shadow-[0px_0px_0px_3px_#ffffff20]",
+          ghost: "bg-transparent outline-none ",
         error:
           "!border-red-500 border-1 bg-transparent outline-none shadow-[0px_0px_0px_3px_#FF000050]",
       },
@@ -19,6 +20,7 @@ const inputVariants = cva(
         sm: "",
         md: "",
         lg: "",
+        full: "max-w-none"
       },
     },
     defaultVariants: {
@@ -36,11 +38,12 @@ interface InputProps
 }
 
 function Input({ className, size, variant, label, ...props }: InputProps) {
+  
   const [field, meta] = useField(props);
   const isError = meta.touched && meta.error; // Condition for error
 
   return (
-    <div >
+    <div className="w-full">
       {label && (
         <label
           htmlFor={props.type}
