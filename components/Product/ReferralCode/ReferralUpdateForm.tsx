@@ -75,7 +75,7 @@ function ReferralUpdateForm({
         <div className="mb-3 flex items-center gap-4">
           <div className="flex size-14 items-center justify-center rounded-2xl border-1 border-[#ffffff1b] bg-[#47476a]">
             <Image
-              src={"/icons/referral-code.svg"}
+              src={"/icons/referral-code.png"}
               width={40}
               height={40}
               alt="20"

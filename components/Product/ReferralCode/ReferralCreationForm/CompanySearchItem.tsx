@@ -24,8 +24,8 @@ function CompanySearchItem({
       >
         <CompanyLogo src={imageSrc} size={"md"} />
       </div>
-      <div className="max-w-[400px]">
-        <h5 className="-mb-[2px] truncate font-medium">{title}</h5>
+      <div className="max-w-[400px] sm:max-w-[300px]">
+        <h5 className="-mb-[2px] truncate font-medium max-w-[400px] sm:max-w-[300px]">{title}</h5>
         <p className="truncate text-[14px] text-[#ffffff7c]">{description}</p>
       </div>
     </div>

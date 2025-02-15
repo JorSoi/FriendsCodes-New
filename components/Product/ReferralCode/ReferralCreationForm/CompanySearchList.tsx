@@ -20,12 +20,13 @@ function CompanySearchList({
   const { setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    const getCompanies = async (value = "") => {
+    const getCompanies = async () => {
       const supabase = createClient();
       const { data, error } = await supabase
         .from("companies")
         .select()
-        .ilike("name", `%${value}%`);
+        .neq("status", "reviewing")
+        .neq("status", "private");
 
       if (!error) {
         setCompanyList(data);
@@ -34,16 +35,16 @@ function CompanySearchList({
       }
     };
 
-    getCompanies(searchValue);
+    getCompanies();
   }, []);
 
-   // Filters data based on the complete dataset (companyList), whenever searchValue changes
- const filteredCompanies = useMemo(() => {
-  if (!searchValue) return companyList;
-  return companyList.filter(company =>
-    company.name?.toLowerCase().includes(searchValue.toLowerCase())
-  );
-}, [companyList, searchValue]);
+  // Filters data based on the complete dataset (companyList), whenever searchValue changes
+  const filteredCompanies = useMemo(() => {
+    if (!searchValue) return companyList;
+    return companyList.filter((company) =>
+      company.name?.toLowerCase().includes(searchValue.toLowerCase()),
+    );
+  }, [companyList, searchValue]);
 
   const selectCompany = (company: Tables<"companies">) => {
     setCompany(company);
@@ -52,7 +53,7 @@ function CompanySearchList({
   };
 
   return (
-    <div className="[&::-webkit-scrollbar-track]:transparent max-h-[70svh] overflow-y-auto px-3 pb-3 xl:max-h-[40svh] sm:max-h-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#25253b] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2">
+    <div className="[&::-webkit-scrollbar-track]:transparent max-h-[70svh] overflow-y-auto overflow-x-hidden px-3 pb-3 xl:max-h-[40svh] sm:max-h-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#25253b] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2">
       {filteredCompanies.map(({ ...company }) => {
         return (
           <CompanySearchItem
@@ -80,7 +81,7 @@ function CompanySearchList({
                   name: searchValue,
                   logo_url: null,
                   benefits: null,
-                  status: "reviewing"
+                  status: "reviewing",
                 })
               }
               title={`"${searchValue}"`}

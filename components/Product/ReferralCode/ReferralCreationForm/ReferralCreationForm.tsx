@@ -88,7 +88,8 @@ function ReferralCreationForm({
         validationSchema={Yup.object().shape({
           company: Yup.string()
             .matches(/^(?!https?:\/\/).*$/, "Company name cannot be a URL")
-            .min(2, "Too short")
+            .min(2, "Name is too short")
+            .max(30, "Name is too long")
             .required("Store is required"),
           referralCode: Yup.string().required("Referral code or link required"),
         })}
