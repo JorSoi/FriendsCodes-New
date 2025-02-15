@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
 
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useMemo } from "react";
 import { Tables } from "@/types/database.types";
 import { createClient } from "@/utils/supabase/client";
 import CompanySearchItem from "./CompanySearchItem";
@@ -35,7 +35,15 @@ function CompanySearchList({
     };
 
     getCompanies(searchValue);
-  }, [searchValue]);
+  }, []);
+
+   // Filters data based on the complete dataset (companyList), whenever searchValue changes
+ const filteredCompanies = useMemo(() => {
+  if (!searchValue) return companyList;
+  return companyList.filter(company =>
+    company.name?.toLowerCase().includes(searchValue.toLowerCase())
+  );
+}, [companyList, searchValue]);
 
   const selectCompany = (company: Tables<"companies">) => {
     setCompany(company);
@@ -45,7 +53,7 @@ function CompanySearchList({
 
   return (
     <div className="[&::-webkit-scrollbar-track]:transparent max-h-[70svh] overflow-y-auto px-3 pb-3 xl:max-h-[40svh] sm:max-h-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#25253b] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2">
-      {companyList.map(({ ...company }) => {
+      {filteredCompanies.map(({ ...company }) => {
         return (
           <CompanySearchItem
             key={company.id}
