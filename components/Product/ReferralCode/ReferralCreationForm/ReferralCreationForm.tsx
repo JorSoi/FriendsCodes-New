@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
-import Input from "../../Global/FormComponents/Input";
-import Form from "../../Global/FormComponents/Form";
-import Button from "../../Global/Button";
+import Input from "../../../Global/FormComponents/Input";
+import Form from "../../../Global/FormComponents/Form";
+import Button from "../../../Global/Button";
 import { Tables } from "@/types/database.types";
 import * as Yup from "yup";
 import { createClient } from "@/utils/supabase/client";
@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import Modal from "@/components/Global/Modal";
 import { useModal } from "@/hooks/useModal";
 import CompanySearch from "./CompanySearch";
-import CompanyLogo from "../CompanyLogo";
+import CompanyLogo from "../../CompanyLogo";
 
 function ReferralCreationForm({
   closeModal,
@@ -33,7 +33,6 @@ function ReferralCreationForm({
     const { user } = await getClientProfile();
 
     const checkIfCompanyExists = async (company: Tables<"companies">) => {
-     
       if (company.id == 0) {
         //New company creations via the company search are labeled with an id of 0. This symbolizes that the company is not existant yet and must be created prior to referencing it in a user_code.
         const { data, error } = await supabase
@@ -89,7 +88,8 @@ function ReferralCreationForm({
         validationSchema={Yup.object().shape({
           company: Yup.string()
             .matches(/^(?!https?:\/\/).*$/, "Company name cannot be a URL")
-            .min(2, "Too short")
+            .min(2, "Name is too short")
+            .max(30, "Name is too long")
             .required("Store is required"),
           referralCode: Yup.string().required("Referral code or link required"),
         })}
@@ -174,7 +174,10 @@ function ReferralCreationForm({
           closeModal={closeSearchModal}
           className="w-full max-w-[700px] sm:m-0"
         >
-          <CompanySearch closeModal={closeSearchModal} setCompany={setCompany} />
+          <CompanySearch
+            closeModal={closeSearchModal}
+            setCompany={setCompany}
+          />
         </Modal>
       </Form>
     </>

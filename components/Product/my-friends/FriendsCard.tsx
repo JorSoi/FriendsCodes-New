@@ -9,12 +9,26 @@ import CodeContainer from "../../Global/CodeContainer";
 import CodeList from "../my-codes/CodeList";
 import Button from "../../Global/Button";
 import CompanyLogo from "../CompanyLogo";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
+import clsx from "clsx";
+import { useEffect, useState } from "react";
 
 function FriendsCard({ ...friend }: FriendWithCodes) {
   const router = useRouter();
   const { openModal, closeModal, modalRef } = useModal();
+  const isNew = getTimeAgo(friend.created_at).match(/minute|now/)
+  const searchParam = useSearchParams().get("search")
+  const [searchValue, setSearchValue] = useState<string | null>(null)
+
+  //All companies will be highlighted if the searchValue matches their company name
+  useEffect(() => {
+    if(searchParam) {
+      setSearchValue(searchParam.toLowerCase())
+    } else {
+      setSearchValue(null)
+    }
+  }, [searchParam]);
 
   const deleteFriend = async () => {
     const supabase = createClient();
@@ -35,24 +49,37 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
       onClick={() => openModal()}
       className="group relative max-h-[180px] min-h-[130px] w-full cursor-pointer overflow-hidden rounded-lg border-1 border-[#ffffff10] bg-[#2F304A] p-3 transition-colors hover:bg-[#3e405bd9] lg:p-[10px] md:max-h-[150px] sm:rounded-md"
     >
-      <div className="grid grid-cols-4 flex-wrap justify-items-center gap-2 sm:gap-1">
+      <div className="grid grid-cols-4 flex-wrap justify-items-center gap-2">
         {friend.user_codes.map((user_code) => {
           return (
             <div
               key={user_code.id}
-              className="flex items-center justify-center rounded-md border-1 border-[#ffffff10] bg-[#444560dd]"
+              className={clsx(
+                "flex size-[35px] shrink-0 items-center justify-center",
+                {
+                  "rounded-[10px] border border-[#ffffff1b] bg-[#47476a] p-2":
+                    !user_code.companies.logo_url,
+                  "rounded-xl outline outline-[3px] outline-[#ff00b37b] border-[1.5px] border-[#ff00b3]": 
+                    searchValue && user_code.companies.name?.toLowerCase().includes(searchValue)
+                }
+              )}
             >
               <CompanyLogo src={user_code.companies.logo_url} size={"sm"} />
             </div>
           );
         })}
       </div>
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2F304A] via-[#2f304aea] via-70% to-[#2f304a00] px-5 py-5 lg:p-[10px]">
-        <p className="mt-[10px] w-full truncate font-semibold text-white">
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2F304A] via-[#2f304af2] via-70% to-[#2f304a00] px-3 py-3 pt-4 lg:p-[10px]">
+        <p className="mt-[10px] flex w-full items-center truncate font-semibold text-white">
           @{friend.profile.user_name}
+          {isNew && (
+            <span className="ml-2 rounded-lg bg-gradient-to-b from-[#FF00B2] to-[#D900FF] px-2 py-1 text-[11px] font-medium text-white shadow-[inset_-2px_3px_2px_-1px_#ffffff70]">
+              New!
+            </span>
+          )}
         </p>
-        <p className="text-[13px] text-[#9496A1]">
-          Added {getTimeAgo(friend.created_at)}
+        <p className="text-[12px] text-[#9496A1]">
+          {getTimeAgo(friend.created_at)}
         </p>
       </div>
       <Modal
@@ -102,7 +129,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
           <div></div>
         </div>
         <CodeContainer>
-          <CodeList userCodes={friend.user_codes} viewOnly={true} />
+          <CodeList userCodes={friend.user_codes} viewOnly />
         </CodeContainer>
       </Modal>
     </div>

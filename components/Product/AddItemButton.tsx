@@ -5,7 +5,7 @@ import Image from "next/image";
 import Modal from "../Global/Modal";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 import { useState } from "react";
-import ReferralCreationForm from "./ReferralCode/ReferralCreationForm";
+import ReferralCreationForm from "./ReferralCode/ReferralCreationForm/ReferralCreationForm";
 import { usePathname } from "next/navigation";
 import FriendCreationForm from "./my-friends/FriendCreationForm";
 
