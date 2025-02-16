@@ -16,6 +16,7 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
       new URL(referralValue);
       return true; // If URL constructor succeeds, it's a valid URL
     } catch (error) {
+      console.log(error)
       return false;
     }
   }
@@ -70,9 +71,13 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
         className="mt-5 w-full"
         type="button"
         onClick={async () => {
-          isValidUrl
-            ? window.open(code.referral_value, "_blank")
-            : await writeText(code.referral_value);
+          if(isValidUrl) {
+            window.open(code.referral_value, "_blank")
+
+          } else {
+
+            await writeText(code.referral_value);
+          }
         }}
       >
         {hasCopied
