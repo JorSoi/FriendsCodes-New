@@ -129,7 +129,7 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
           className="flex grow-[1] basis-0 justify-center gap-2"
           onClick={async () => {
             const { profile } = await getClientProfile();
-            writeText(
+            await writeText(
               `${window.origin}/invitation?friend=${profile?.user_name}`,
             );
           }}

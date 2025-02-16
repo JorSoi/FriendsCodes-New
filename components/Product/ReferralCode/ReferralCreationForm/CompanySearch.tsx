@@ -15,13 +15,13 @@ function CompanySearch({
   closeModal: () => void;
 }) {
   return (
-    <div className="w-full max-w-[700px] overflow-hidden rounded-3xl border-1 border-[#ffffff20] bg-[#333350] sm:h-svh sm:rounded-none">
+    <div className="flex w-full max-w-[700px] flex-col rounded-3xl border-1 border-[#ffffff20] bg-[#333350] sm:h-dvh sm:rounded-none">
       {/* Searchbar */}
       <div className="relative flex w-full cursor-text items-center px-5 pb-1 pt-3">
         <div className="relative w-full">
           <Input
             name="searchValue"
-            type="text"
+            type="search"
             placeholder="Search store you want to add"
             size={"full"}
             className="font-figtreea pl-8 text-base"
@@ -43,7 +43,7 @@ function CompanySearch({
           variant={"ghost"}
           type="button"
           onClick={() => closeModal()}
-          className="hidden sm:block px-1 font-semibold text-base"
+          className="hidden px-1 text-base font-semibold sm:block"
         >
           Cancel
         </Button>

@@ -30,10 +30,10 @@ function ShareProfile() {
   }, []);
 
   return (
-    <>
+    <div className="absolute bottom-0 inset-x-0 h-[100px] xs:h-[80px] flex justify-center items-center">
       <Button
         onClick={openModal}
-        className="absolute bottom-[5%] left-1/2 flex -translate-x-1/2 items-center justify-center gap-2 xs:w-[94%]"
+        className=" flex items-center justify-center gap-2 xs:w-[94%]"
       >
         <Image
           src={"/icons/share.svg"}
@@ -100,7 +100,7 @@ function ShareProfile() {
           </Form>
         </div>
       </Modal>
-    </>
+    </div>
   );
 }
 

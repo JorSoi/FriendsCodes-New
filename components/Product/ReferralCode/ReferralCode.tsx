@@ -40,7 +40,7 @@ function ReferralCode({
         <Modal
           ref={modalRef}
           closeModal={closeModal}
-          className="w-full max-w-[370px]"
+          className="w-full max-w-[340px]"
         >
           <ReferralViewOnly {...code} />
         </Modal>
