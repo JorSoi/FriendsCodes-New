@@ -3,7 +3,7 @@ import { useState } from "react";
 export const useClipboard = () => {
   const [hasCopied, setHasCopied] = useState(false);
 
-  async function writeText(text: string) {
+  const  writeText = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
       setHasCopied(true);

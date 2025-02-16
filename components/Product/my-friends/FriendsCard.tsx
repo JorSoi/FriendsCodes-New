@@ -59,7 +59,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
                 {
                   "rounded-[10px] border border-[#ffffff1b] bg-[#47476a] p-2":
                     !user_code.companies.logo_url,
-                  "rounded-xl outline outline-[3px] outline-[#ff00b37b] border-[1.5px] border-[#ff00b3]": 
+                  "rounded-xl outline outline-[3px] outline-[#ff00b37b] border-[1.5px] !border-[#ff00b3]": 
                     searchValue && user_code.companies.name?.toLowerCase().includes(searchValue)
                 }
               )}
