@@ -37,6 +37,7 @@ export type Database = {
       companies: {
         Row: {
           benefits: string | null
+          company_url: string | null
           created_at: string
           id: number
           logo_url: string | null
@@ -45,6 +46,7 @@ export type Database = {
         }
         Insert: {
           benefits?: string | null
+          company_url?: string | null
           created_at?: string
           id?: number
           logo_url?: string | null
@@ -53,6 +55,7 @@ export type Database = {
         }
         Update: {
           benefits?: string | null
+          company_url?: string | null
           created_at?: string
           id?: number
           logo_url?: string | null
@@ -179,24 +182,30 @@ export type Database = {
       user_codes: {
         Row: {
           company_id: number
+          conversion_count: number
           created_at: string
           id: number
           referral_value: string
           user_id: string | null
+          view_count: number
         }
         Insert: {
           company_id: number
+          conversion_count?: number
           created_at?: string
           id?: number
           referral_value: string
           user_id?: string | null
+          view_count?: number
         }
         Update: {
           company_id?: number
+          conversion_count?: number
           created_at?: string
           id?: number
           referral_value?: string
           user_id?: string | null
+          view_count?: number
         }
         Relationships: [
           {
@@ -222,6 +231,18 @@ export type Database = {
           profile: Json
           user_codes: Json
         }[]
+      }
+      increment_conversion_count: {
+        Args: {
+          user_code_id: number
+        }
+        Returns: undefined
+      }
+      increment_view_count: {
+        Args: {
+          user_code_id: number
+        }
+        Returns: undefined
       }
       json_matches_schema: {
         Args: {

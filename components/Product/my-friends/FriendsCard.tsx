@@ -85,7 +85,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
       <Modal
         ref={modalRef}
         closeModal={closeModal}
-        className="flex flex-col items-center gap-4"
+        className="flex flex-col items-center gap-4 max-w-[850px] w-full"
       >
         <div className="w-full max-w-[480px] rounded-full border-1 border-[#ffffff10] bg-[#21203d] p-2 pr-4 xs:px-6">
           <div className="flex items-center justify-between gap-3">
