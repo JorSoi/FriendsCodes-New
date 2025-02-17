@@ -16,8 +16,6 @@ function Modal({
   ref: RefObject<HTMLDivElement | null>;
   closeModal: () => void;
 }) {
-
-
   return (
     <ModalContext.Provider value={closeModal}>
       <div
@@ -29,7 +27,10 @@ function Modal({
           "data-[open=transition]:opacity-0",
           "data-[open=false]:invisible data-[open=false]:opacity-0",
         )}
-        onClick={() => closeModal()}
+        onClick={(e) => {
+          e.stopPropagation(); //to ensure that clicks on modal element dont bubble down to parent
+          closeModal();
+        }}
       >
         <div
           data-open="false"

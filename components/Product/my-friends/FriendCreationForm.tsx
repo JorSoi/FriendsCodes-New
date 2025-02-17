@@ -39,7 +39,9 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
     const { data, error } = await supabase
       .from("profiles")
       .select("id")
-      .or(`user_name.ilike.${values.friend.trim()},email.ilike.${values.friend.trim()}`)
+      .or(
+        `user_name.ilike.${values.friend.trim()},email.ilike.${values.friend.trim()}`,
+      )
       .single();
 
     if (!error && user) {
@@ -62,7 +64,6 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
       } else {
         actions.setFieldError("friend", "An error occured!");
       }
-      
     }
   };
 
@@ -129,9 +130,7 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
           className="flex grow-[1] basis-0 justify-center gap-2"
           onClick={async () => {
             const { profile } = await getClientProfile();
-            await writeText(
-              `${window.origin}/invitation?friend=${profile?.user_name}`,
-            );
+            await writeText(`${window.origin}/invitation?friend=${profile?.user_name}`);
           }}
         >
           <Image src={"/icons/link.svg"} width={20} height={20} alt="" />

@@ -82,6 +82,7 @@ function CompanySearchList({
                   logo_url: null,
                   benefits: null,
                   status: "reviewing",
+                  company_url: "",
                 })
               }
               title={`"${searchValue}"`}

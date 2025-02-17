@@ -3,7 +3,7 @@
 import { useModal } from "@/hooks/useModal";
 import Image from "next/image";
 import Modal from "../Global/Modal";
-import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
+import Pride from "react-canvas-confetti/dist/presets/pride";
 import { useState } from "react";
 import ReferralCreationForm from "./ReferralCode/ReferralCreationForm/ReferralCreationForm";
 import { usePathname } from "next/navigation";
@@ -43,7 +43,14 @@ function AddItemButton() {
         )}
       </Modal>
       {fireWork && (
-        <Fireworks autorun={{ speed: 3, duration: 2000, delay: 500 }} />
+        <Pride
+          autorun={{ speed: 40, duration: 2000, delay: 500 }}
+          decorateOptions={(options) => {
+            options.colors = ["#FF00B2", "#D900FF", "#ffffff"];
+            options.disableForReducedMotion = true;
+            return options;
+          }}
+        />
       )}
     </div>
   );
