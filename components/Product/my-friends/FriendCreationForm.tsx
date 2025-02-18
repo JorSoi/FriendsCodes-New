@@ -45,7 +45,12 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
       .single();
 
     if (!error && user) {
-      console.log(data.id);
+      //Prevent that user can add themselve
+      if(data.id == user.id){
+        actions.setFieldError("friend", "Can't add yourself as a friend! 🤭")
+        return;
+      } 
+    
       const { error: creationError } = await supabase
         .from("friends")
         .insert({ friend_id: data.id, user_id: user?.id });
@@ -130,7 +135,9 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
           className="flex grow-[1] basis-0 justify-center gap-2"
           onClick={async () => {
             const { profile } = await getClientProfile();
-            await writeText(`${window.origin}/invitation?friend=${profile?.user_name}`);
+            await writeText(
+              `${window.origin}/invitation?friend=${profile?.user_name}`,
+            );
           }}
         >
           <Image src={"/icons/link.svg"} width={20} height={20} alt="" />

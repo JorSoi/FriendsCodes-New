@@ -87,7 +87,7 @@ function Login() {
       <div className="mb-5 flex flex-col items-center text-center">
         <div className="flex- flex text-[22px] font-semibold text-white">
           {invitation ? (
-            <h3>{invitation} invited you as a friend 🧑‍🤝‍🧑</h3>
+            <h3>{invitation} wants to be friends! 🧑‍🤝‍🧑</h3>
           ) : (
             <h3 className="mr-2">
               Welcome back{visitorName ? `, ${visitorName}` : ""}! 🎉

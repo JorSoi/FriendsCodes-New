@@ -42,7 +42,7 @@ function HoverMenu({
     <div
       ref={menuRef}
       className={cn(
-        "absolute right-0 top-[99%] mt-1 rounded-lg border-1 border-[#ffffff16] bg-[#252542] p-1 px-[3px] pt-3 shadow-[0px_0px_50px_0px_#00000020] backdrop-blur-[160px] transition-all sm:fixed sm:inset-x-[1%] sm:top-[10%] max-h-[70svh] overflow-y-auto",
+        "absolute right-0 top-[99%] mt-1 rounded-2xl border-1 border-[#ffffff16] bg-[#252542] py-3 px-2 shadow-[0px_0px_50px_0px_#00000020] backdrop-blur-[160px] transition-all sm:fixed sm:inset-x-[1%] sm:top-[10%] max-h-[70svh] overflow-y-auto z-[1] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#32324d] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2",
         {
           "visible translate-y-0 opacity-100": isVisible,
           "invisible translate-y-1 opacity-0": !isVisible,

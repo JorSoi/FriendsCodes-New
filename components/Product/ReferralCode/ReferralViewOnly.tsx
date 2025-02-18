@@ -10,33 +10,33 @@ import { useClipboard } from "@/hooks/useClipboard";
 import clsx from "clsx";
 import { createClient } from "@/utils/supabase/client";
 import Realistic from "react-canvas-confetti/dist/presets/realistic";
+import { getClientProfile } from "@/utils/getClientProfile";
+import { isValidURL } from "@/utils/isValidURL";
 
 function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
   const [writeText, hasCopied] = useClipboard();
   const supabase = createClient();
 
-  function isValidURL(referralValue: string): boolean {
-    try {
-      const url = new URL(
-        referralValue.startsWith("http")
-          ? referralValue
-          : `https://${referralValue}`,
-      );
-      // Check if the protocol is either http or https
-      if (!/^https?:$/.test(url.protocol)) {
-        return false;
-      }
-      // Check if the hostname is a valid domain structure
-      const hostname = url.hostname;
-      // Regex to validate domain structure (excludes localhost, IPs, etc.)
-      const hostnameRegex = /^([a-zA-Z0-9-]+\.)+[a-zA-Z0-9-]{2,}$/;
-      return hostnameRegex.test(hostname);
-    } catch {
-      return false;
-    }
-  }
-
+  
   const isValidUrl = isValidURL(code.referral_value);
+
+  const sendConversionNotification = async () => {
+    const { user } = await getClientProfile();
+    if (!user) return;
+    const { data, error } = await supabase
+      .from("notifications")
+      .insert({
+        type:"code_interaction",
+        recipient: code.user_id,
+        triggered_by: user.id,
+        used_referral: code.id,
+      });
+    if (!error) {
+      console.log(data);
+    } else {
+      console.log(error);
+    }
+  };
 
   return (
     <Form
@@ -100,6 +100,7 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
               await supabase.rpc("increment_conversion_count", {
                 user_code_id: code.id,
               });
+              await sendConversionNotification();
             }}
           />
         </div>
@@ -108,6 +109,10 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
         className="mt-5 w-full"
         type="button"
         onClick={async () => {
+          await sendConversionNotification();
+          await supabase.rpc("increment_conversion_count", {
+            user_code_id: code.id,
+          });
           if (isValidUrl) {
             const url = code.referral_value.startsWith("http")
               ? code.referral_value
@@ -115,9 +120,8 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
             window.open(url, "_blank");
           } else {
             await writeText(code.referral_value);
-            await supabase.rpc("increment_conversion_count", {
-              user_code_id: code.id,
-            });
+          
+            
           }
         }}
       >

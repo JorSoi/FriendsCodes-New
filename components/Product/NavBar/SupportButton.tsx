@@ -34,7 +34,13 @@ function SupportButton() {
         <h4 className="mb-2 px-1 text-[15px] font-semibold text-white">
           Help Center
         </h4>
-        <HoverMenuItem key={1} className="flex gap-2">
+        <HoverMenuItem
+          key={1}
+          className="flex gap-2"
+          onClick={() =>
+            window.open("https://app.youform.com/forms/wmbthihc", "_blank")
+          }
+        >
           <Image
             src={"/icons/alert-octagon.svg"}
             width={16}
@@ -43,22 +49,28 @@ function SupportButton() {
           />
           <p className="">Report Bug</p>
         </HoverMenuItem>
-        <HoverMenuItem key={2} className="flex gap-2">
+        <HoverMenuItem
+          key={2}
+          className="flex gap-2"
+          onClick={() =>
+            window.open("https://app.youform.com/forms/3sbkole5", "_blank")
+          }
+        >
           <Image
             src={"/icons/announcement.svg"}
             width={16}
             height={16}
-            alt="Bug"
+            alt="Feature Request"
           />
           <p>Feature Requests</p>
         </HoverMenuItem>
-        <Link href={'/#faq'}>
+        <Link href={"/#faq"}>
           <HoverMenuItem key={3} className="flex gap-2">
             <Image
               src={"/icons/message-question.svg"}
               width={16}
               height={16}
-              alt="Bug"
+              alt="FAQ"
             />
             <p>FAQ</p>
           </HoverMenuItem>
