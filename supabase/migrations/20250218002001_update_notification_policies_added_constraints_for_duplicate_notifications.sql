@@ -17,7 +17,7 @@ CREATE OR REPLACE FUNCTION public.create_friend_request_notification()
  LANGUAGE plpgsql
 AS $function$BEGIN
   INSERT INTO public.notifications (type, recipient, triggered_by)
-  VALUES ('new_friend', NEW.friend_id, auth.uid())
+  VALUES ('new_friend', NEW.friend_id, NEW.user_id)
   ON CONFLICT (recipient, triggered_by) 
   WHERE type = 'new_friend'
   DO NOTHING;
