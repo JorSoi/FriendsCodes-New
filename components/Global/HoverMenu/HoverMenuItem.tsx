@@ -13,7 +13,7 @@ function HoverMenuItem({
     <div
       onClick={onClick}
       className={twMerge(
-        "cursor-pointer rounded-md p-2 transition-colors hover:bg-[#ffffff16] active:hover:bg-[#ffffff26]",
+        "cursor-pointer rounded-xl py-3 px-3 transition-colors hover:bg-[#ffffff16] ",
         className,
       )}
     >

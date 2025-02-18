@@ -186,7 +186,7 @@ export type Database = {
           created_at: string
           id: number
           referral_value: string
-          user_id: string | null
+          user_id: string
           view_count: number
         }
         Insert: {
@@ -195,7 +195,7 @@ export type Database = {
           created_at?: string
           id?: number
           referral_value: string
-          user_id?: string | null
+          user_id: string
           view_count?: number
         }
         Update: {
@@ -204,7 +204,7 @@ export type Database = {
           created_at?: string
           id?: number
           referral_value?: string
-          user_id?: string | null
+          user_id?: string
           view_count?: number
         }
         Relationships: [

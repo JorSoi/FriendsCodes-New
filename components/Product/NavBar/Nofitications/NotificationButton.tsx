@@ -42,7 +42,7 @@ function NotificationButton() {
         .from("notifications")
 
         .select(
-          "*, profiles!notifications_triggered_by_fkey(*), user_codes!notifications_used_referral_fkey(companies(*))",
+          "*, profiles!notifications_triggered_by_fkey(*), user_codes!notifications_used_referral_fkey(*,companies(*))",
         )
         .order("created_at", {ascending: false})
         .returns<NotificationWithRelations[]>();
