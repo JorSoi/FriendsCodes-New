@@ -11,10 +11,13 @@ function Notification({ ...notification }: NotificationWithRelations) {
   return (
     <div className="flex gap-3">
       <div
-        className={clsx("relative size-[40px] flex shrink-0 items-center justify-center", {
-          "absolute rounded-xl border-1 border-[#ffffff1b] bg-[#47476a] p-2":
-            notification.type == "new_friend",
-        })}
+        className={clsx(
+          "relative flex size-[40px] shrink-0 items-center justify-center",
+          {
+            "absolute rounded-xl border-1 border-[#ffffff1b] bg-[#47476a] p-2":
+              notification.type == "new_friend" || !notification.user_codes?.companies.logo_url,
+          },
+        )}
       >
         {notification.type == "code_interaction" && (
           <CompanyLogo
@@ -23,12 +26,9 @@ function Notification({ ...notification }: NotificationWithRelations) {
           />
         )}
 
-        {notification.type == "new_friend" &&           <Image
-                          src={"/icons/add-user.svg"}
-                          width={17}
-                          height={17}
-                          alt="20"
-                        />}
+        {notification.type == "new_friend" && (
+          <Image src={"/icons/add-user.svg"} width={17} height={17} alt="20" />
+        )}
 
         {!notification.marked_as_read && (
           <div className="absolute bottom-[-7%] right-[-7%] z-[1] flex size-[13px] items-center justify-center rounded-full bg-gradient-to-b from-[#FF00B2] to-[#D900FF] text-[13px] font-semibold shadow-[0_0_0_2px_#262538,inset_0_2px_2px_0_#ffffff70]"></div>
