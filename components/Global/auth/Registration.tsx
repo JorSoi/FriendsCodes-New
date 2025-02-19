@@ -79,7 +79,7 @@ function RegistrationForm() {
     if (user) {
       setIsLoading(false);
       //if user is coming from invitation link, navigate them straight to /friends page to see their new friend.
-      router.push( invitation ? "/friends" : "/home")
+      router.push(invitation ? "/friends" : "/home");
     } else {
       actions.setFieldError("password", error?.message);
       setIsLoading(false);
@@ -120,16 +120,15 @@ function RegistrationForm() {
           <h3 className="ml-[2px]">, let&apos;s get started.</h3>
         </div>
         <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
-          You share your first referral codes. We make sure that they find the
-          right person to redeem them!
+          Add your first referral codes - your profile is easy to manage and all in one place!
         </p>
       </div>
 
       {/* Mark: Social Signup Buttons */}
       <div className="flex w-full justify-between gap-3">
         <SocialAuthButton provider="google" />
-        <SocialAuthButton provider="twitter" className="[&>img]:size-[17px]" />
         <SocialAuthButton provider="facebook" className="[&>img]:size-[20px]" />
+        <SocialAuthButton provider="twitter" className="[&>img]:size-[17px]" />
       </div>
 
       {/* Horizontal Line */}
@@ -142,15 +141,21 @@ function RegistrationForm() {
         onSubmit={handleSubmit}
       >
         <div className="w-full space-y-3">
-          <Input
-            name="name"
-            type="text"
-            variant={"outline"}
-            size={"md"}
-            placeholder="Enter your name..."
-            label="Name"
-            required
-          />
+          <div className="relative">
+            <p className="pointer-events-none absolute left-3 top-[37px] select-none text-[14.5px] tracking-[0.015em] text-white">
+              friendscodes.de/
+            </p>
+            <Input
+              className="pl-[126px] tracking-[0.015em] sm:pl-[128px]"
+              name="name"
+              type="text"
+              variant={"outline"}
+              size={"md"}
+              placeholder="yourname"
+              label="Choose a profile name"
+              required
+            />
+          </div>
           <Input
             name="email"
             type="email"
