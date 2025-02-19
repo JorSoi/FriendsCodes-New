@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { NotificationWithRelations } from "@/types/general.types";
 import { getTimeAgo } from "@/utils/getTimeAgo";
 import CompanyLogo from "../../CompanyLogo";
@@ -15,7 +14,8 @@ function Notification({ ...notification }: NotificationWithRelations) {
           "relative flex size-[40px] shrink-0 items-center justify-center",
           {
             "absolute rounded-xl border-1 border-[#ffffff1b] bg-[#47476a] p-2":
-              notification.type == "new_friend" || !notification.user_codes?.companies.logo_url,
+              notification.type == "new_friend" ||
+              !notification.user_codes?.companies.logo_url,
           },
         )}
       >
@@ -39,12 +39,16 @@ function Notification({ ...notification }: NotificationWithRelations) {
         {notification.type == "code_interaction" && (
           <div>
             <p className="text-[13.5px] text-[#c1c1c1]">
-              <Link
-                className="font-semibold text-white transition-colors hover:text-[#FF00B2]"
-                href={`/${notification.profiles.user_name}`}
+              <span
+                className={clsx({"font-semibold text-white transition-colors hover:text-[#FF00B2]": notification.triggered_by})}
+                onClick={() => {
+                  if(!notification.triggered_by)  return;
+                  window.open(`/${notification.profiles.user_name}`, "_blank")
+                }
+                }
               >
-                {notification.profiles.user_name}{" "}
-              </Link>
+                {notification.triggered_by ? notification.profiles.user_name : "Someone"}{" "}
+              </span>
               {isValidUrl
                 ? "opened your referral link!"
                 : "copied your referral code!"}{" "}
@@ -62,12 +66,14 @@ function Notification({ ...notification }: NotificationWithRelations) {
         )}
         {notification.type == "new_friend" && (
           <p className="text-[13.5px] text-[#c1c1c1]">
-            <Link
+            <span
               className="font-semibold text-white transition-colors hover:text-[#FF00B2]"
-              href={`/${notification.profiles.user_name}`}
+              onClick={() =>
+                window.open(`/${notification.profiles.user_name}`, "_blank")
+              }
             >
-              @{notification.profiles.user_name}{" "}
-            </Link>
+              {notification.profiles.user_name}{" "}
+            </span>
             added you as a friend. They will use your referral codes.
           </p>
         )}

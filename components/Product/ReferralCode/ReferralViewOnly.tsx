@@ -22,13 +22,14 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
 
   const sendConversionNotification = async () => {
     const { user } = await getClientProfile();
-    if (!user) return;
+    //Dont send conversion notifications to a user if they convert their own codes.
+    if (user?.id == code.user_id) return;
     const { data, error } = await supabase
       .from("notifications")
       .insert({
         type:"code_interaction",
         recipient: code.user_id,
-        triggered_by: user.id,
+        triggered_by: user ? user.id : null, //NULL if profile visitor not authed
         used_referral: code.id,
       });
     if (!error) {

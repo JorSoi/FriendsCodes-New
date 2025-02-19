@@ -129,7 +129,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
           <div></div>
         </div>
         <CodeContainer>
-          <CodeList userCodes={friend.user_codes} viewOnly />
+          <CodeList userCodes={friend.user_codes} viewOnly searchEnabled={false} />
         </CodeContainer>
       </Modal>
     </div>

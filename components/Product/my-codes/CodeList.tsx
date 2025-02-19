@@ -9,16 +9,18 @@ import { useSearchParams } from "next/navigation";
 function CodeList({
   userCodes,
   viewOnly = false,
+  searchEnabled = true,
 }: {
   userCodes: UserCodeWithRelations[] | null;
   viewOnly?: boolean;
+  searchEnabled?: boolean;
 }) {
   const searchParams = useSearchParams();
   const [list, setList] = useState(userCodes);
 
   useEffect(() => {
     //Exclude list from search filtering if it is view only. (Visitors should always see all user_codes in the preview of their friends even when they search for a specific company)
-    if(viewOnly) return;
+    if(!searchEnabled) return;
     const filterCodes = () => {
       const searchValue = searchParams.get("search")?.toLowerCase();
 

@@ -6,16 +6,28 @@ import NotificationButton from "./Nofitications/NotificationButton";
 import ProfileButton from "./ProfileButton";
 import SupportButton from "./SupportButton";
 import { usePathname, useRouter } from "next/navigation";
+import { getClientProfile } from "@/utils/getClientProfile";
+import { User } from "@supabase/supabase-js";
+import Button from "@/components/Global/Button";
+import Link from "next/link";
 
 function NavBar() {
   const [searchValue, setSearchValue] = useState<string | null>(null); //initially set to null to prevent router in useEffect from pushing initially upon component mount inside the useEffect.
+  const [user, setUser] = useState<User | null>();
   const router = useRouter();
   const pathName = usePathname();
+  useEffect(() => {
+    const checkIfLoggedIn = async () => {
+      const { user } = await getClientProfile();
+      setUser(user);
+    };
+    checkIfLoggedIn();
+  }, []);
 
   useEffect(() => {
     if (searchValue && searchValue.length >= 1) {
       router.push(`${pathName}?search=${searchValue}`);
-    } else if(searchValue === ""){
+    } else if (searchValue === "") {
       router.push(pathName);
     }
   }, [searchValue]);
@@ -26,7 +38,6 @@ function NavBar() {
       setSearchValue("");
     }
   }, [pathName]);
-  
 
   return (
     <header className="fixed top-[30px] z-[9999] flex w-full items-center justify-center sm:top-[0px]">
@@ -50,7 +61,9 @@ function NavBar() {
                 placeholder={
                   pathName == "/home"
                     ? "Search your referral codes"
-                    : "Search friends or their referrals"
+                    : pathName == "/my-friends"
+                      ? "Search friends or their referrals"
+                      : "Search referrals"
                 }
                 onChange={({ target }) => setSearchValue(target.value)}
                 value={searchValue || ""}
@@ -67,10 +80,25 @@ function NavBar() {
         </div>
         <div className="flex h-full flex-[1] items-center justify-end">
           <div className="flex">
-            <SupportButton />
-
-            <NotificationButton />
-            <ProfileButton />
+            {user ? (
+              <>
+                <SupportButton />
+                <NotificationButton />
+                <ProfileButton />
+              </>
+            ) : (
+              <div className="flex gap-2">
+                <Link href={"/auth/login"}>
+                  <Button
+                    size={"sm"}
+                    variant={"secondary"}
+                    className="text-nowrap"
+                  >
+                    Sign in!
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </nav>
