@@ -100,7 +100,7 @@ enabled = true
 site_url = "https://friendscodes.de/auth/callback"
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
 additional_redirect_urls = [
-  "http://localhost:3000/auth/callback",
+  "http://localhost:*/auth/callback",
   "https://*.friendscodes.de/auth/callback",
   "https://friendscodes-v20-*-jorsois-projects.vercel.app/auth/callback",
   "https://friendscodes-v20.vercel.app/auth/callback",
@@ -230,6 +230,15 @@ enabled = true
 # DO NOT commit your OAuth provider secret to git. Use environment variable substitution instead:
 client_id = "env(SUPABASE_AUTH_FACEBOOK_CLIENT_ID)"
 secret = "env(SUPABASE_AUTH_FACEBOOK_SECRET)"
+# Overrides the default auth redirectUrl.
+redirect_uri = "http://localhost:54321/auth/v1/callback"
+
+
+[auth.external.twitter]
+enabled = true
+# DO NOT commit your OAuth provider secret to git. Use environment variable substitution instead:
+client_id = "env(SUPABASE_AUTH_TWITTER_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_TWITTER_SECRET)"
 # Overrides the default auth redirectUrl.
 redirect_uri = "http://localhost:54321/auth/v1/callback"
 
