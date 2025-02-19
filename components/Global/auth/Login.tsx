@@ -109,8 +109,8 @@ function Login() {
       {/* Mark: Social Signup Buttons */}
       <div className="flex w-full justify-between gap-3">
         <SocialAuthButton provider="google" />
-        <SocialAuthButton provider="twitter" className="[&>img]:size-[17px]" />
         <SocialAuthButton provider="facebook" className="[&>img]:size-[20px]" />
+        <SocialAuthButton provider="twitter" className="[&>img]:size-[17px]" />
       </div>
 
       {/* Horizontal Line */}
