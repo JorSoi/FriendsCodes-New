@@ -107,7 +107,7 @@ export type Database = {
           marked_as_read: boolean
           raw_notification_meta_data: Json | null
           recipient: string
-          triggered_by: string
+          triggered_by: string | null
           type: Database["public"]["Enums"]["notification_types"]
           used_referral: number | null
         }
@@ -117,7 +117,7 @@ export type Database = {
           marked_as_read?: boolean
           raw_notification_meta_data?: Json | null
           recipient: string
-          triggered_by: string
+          triggered_by?: string | null
           type: Database["public"]["Enums"]["notification_types"]
           used_referral?: number | null
         }
@@ -127,7 +127,7 @@ export type Database = {
           marked_as_read?: boolean
           raw_notification_meta_data?: Json | null
           recipient?: string
-          triggered_by?: string
+          triggered_by?: string | null
           type?: Database["public"]["Enums"]["notification_types"]
           used_referral?: number | null
         }
@@ -162,6 +162,7 @@ export type Database = {
           id: string
           updated_at: string | null
           user_name: string | null
+          visitor_count: number
         }
         Insert: {
           avatar_url?: string | null
@@ -169,6 +170,7 @@ export type Database = {
           id: string
           updated_at?: string | null
           user_name?: string | null
+          visitor_count?: number
         }
         Update: {
           avatar_url?: string | null
@@ -176,6 +178,7 @@ export type Database = {
           id?: string
           updated_at?: string | null
           user_name?: string | null
+          visitor_count?: number
         }
         Relationships: []
       }
@@ -235,6 +238,12 @@ export type Database = {
       increment_conversion_count: {
         Args: {
           user_code_id: number
+        }
+        Returns: undefined
+      }
+      increment_profile_visitor_count: {
+        Args: {
+          profile_owner_id: string
         }
         Returns: undefined
       }

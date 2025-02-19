@@ -9,6 +9,7 @@ import Notification from "./Notification";
 import { NotificationWithRelations } from "@/types/general.types";
 import HoverMenu from "@/components/Global/HoverMenu/HoverMenu";
 import HoverMenuItem from "@/components/Global/HoverMenu/HoverMenuItem";
+import { getClientProfile } from "@/utils/getClientProfile";
 
 function NotificationButton() {
   const [notifications, setNotifications] = useState<
@@ -19,7 +20,7 @@ function NotificationButton() {
 
   const handleReadAll = async () => {
     const supabase = createClient();
-    
+
     // Update all notifications to read
     const { error } = await supabase
       .from("notifications")
@@ -28,23 +29,26 @@ function NotificationButton() {
 
     if (!error) {
       // Optimistically update local state
-      setNotifications(prev => 
-        prev.map(n => ({ ...n, marked_as_read: true }))
+      setNotifications((prev) =>
+        prev.map((n) => ({ ...n, marked_as_read: true })),
       );
-      setUnreadCount(0)
+      setUnreadCount(0);
     }
   };
 
   useEffect(() => {
     const getNotifications = async () => {
       const supabase = createClient();
+      const { user } = await getClientProfile();
+      if (!user) return;
+
       const { data, error } = await supabase
         .from("notifications")
-
         .select(
           "*, profiles!notifications_triggered_by_fkey(*), user_codes!notifications_used_referral_fkey(*,companies(*))",
         )
-        .order("created_at", {ascending: false})
+        .eq("recipient", user.id)
+        .order("created_at", { ascending: false })
         .returns<NotificationWithRelations[]>();
 
       if (data) {
@@ -110,7 +114,7 @@ function NotificationButton() {
         {notifications.map(({ ...notification }) => {
           return (
             <HoverMenuItem key={notification.id}>
-              <Notification  {...notification} />
+              <Notification {...notification} />
             </HoverMenuItem>
           );
         })}
