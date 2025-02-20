@@ -5,6 +5,7 @@ import NavBar from "@/components/Product/NavBar/NavBar";
 import { getServerProfile } from "@/utils/getServerProfile";
 import { redirect } from "next/navigation";
 import InvitationLogic from "@/components/Global/InvitationLogic";
+import FireWorkLogic from "@/components/Global/FireWorkContext";
 
 export const metadata: Metadata = {
   title: "FriendsCodes - Benefit from referrals!",
@@ -26,10 +27,12 @@ export default async function RootLayout({
       lang="en"
       className={`${figtree.variable} ${inter.variable} scroll-smooth`}
     >
-      <body className="overflow-x-hidden overflow-y-auto bg-[#09071C] pt-[150px] font-figtree sm:pt-[120px]">
+      <body className="overflow-y-auto overflow-x-hidden bg-[#09071C] pt-[150px] font-figtree sm:pt-[120px]">
         <InvitationLogic>
-          <NavBar />
-          {children}
+          <FireWorkLogic>
+            <NavBar />
+            {children}
+          </FireWorkLogic>
         </InvitationLogic>
       </body>
     </html>

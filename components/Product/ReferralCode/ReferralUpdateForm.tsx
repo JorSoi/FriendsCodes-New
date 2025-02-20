@@ -9,12 +9,14 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { UserCodeWithRelations } from "@/types/general.types";
 import CompanyLogo from "../CompanyLogo";
+import { useContext } from "react";
+import { ModalContext } from "@/components/Global/Modal";
 
 function ReferralUpdateForm({
-  closeModal,
   ...code
-}: UserCodeWithRelations & { closeModal: () => void }) {
+}: UserCodeWithRelations) {
   const router = useRouter();
+  const closeModal = useContext(ModalContext)
 
   const updateCode = async (values: FormikValues) => {
     const supabase = createClient();
@@ -23,7 +25,7 @@ function ReferralUpdateForm({
       .update({ referral_value: values.referralCode })
       .eq("id", code.id);
     if (!error) {
-      closeModal();
+      closeModal?.();
       router.refresh();
     } else {
       console.log(error);
@@ -37,7 +39,7 @@ function ReferralUpdateForm({
       .delete()
       .eq("id", code.id);
     if (!error) {
-      closeModal();
+      closeModal?.();
       router.refresh();
     } else {
       console.log(error);

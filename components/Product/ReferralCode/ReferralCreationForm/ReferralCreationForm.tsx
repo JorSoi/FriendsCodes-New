@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import Input from "../../../Global/FormComponents/Input";
 import Form from "../../../Global/FormComponents/Form";
 import Button from "../../../Global/Button";
@@ -13,16 +13,15 @@ import Modal from "@/components/Global/Modal";
 import { useModal } from "@/hooks/useModal";
 import CompanySearch from "./CompanySearch";
 import CompanyLogo from "../../CompanyLogo";
+import { useContext } from "react";
+import { FireWorkContext } from "@/components/Global/FireWorkContext";
+import { ModalContext } from "@/components/Global/Modal";
 
-function ReferralCreationForm({
-  closeModal,
-  setFireWork,
-}: {
-  closeModal: () => void;
-  setFireWork: Dispatch<SetStateAction<boolean>>;
-}) {
+function ReferralCreationForm() {
   const [company, setCompany] = useState<Tables<"companies"> | null>(null);
   const { openModal, closeModal: closeSearchModal, modalRef } = useModal();
+  const triggerFireWork = useContext(FireWorkContext);
+  const closeModal = useContext(ModalContext);
   const router = useRouter();
 
   const handleSubmit = async (
@@ -54,7 +53,7 @@ function ReferralCreationForm({
     };
 
     const createUserCode = async (company: Tables<"companies">) => {
-      if(!user) return;
+      if (!user) return;
       const { error } = await supabase
         .from("user_codes")
         .insert({
@@ -65,8 +64,8 @@ function ReferralCreationForm({
         .select("*");
       if (!error) {
         router.refresh();
-        closeModal();
-        setFireWork(true);
+        closeModal?.();
+        triggerFireWork?.();
         resetForm();
         setCompany(null);
       } else {
@@ -175,10 +174,7 @@ function ReferralCreationForm({
           closeModal={closeSearchModal}
           className="w-full max-w-[700px] sm:m-0"
         >
-          <CompanySearch
-            closeModal={closeSearchModal}
-            setCompany={setCompany}
-          />
+          <CompanySearch setCompany={setCompany} />
         </Modal>
       </Form>
     </>
