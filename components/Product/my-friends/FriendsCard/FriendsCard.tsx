@@ -4,29 +4,31 @@ import { useModal } from "@/hooks/useModal";
 import { FriendWithCodes } from "@/types/general.types";
 import { getTimeAgo } from "@/utils/getTimeAgo";
 import Image from "next/image";
-import Modal from "../../Global/Modal";
-import CodeContainer from "../../Global/CodeContainer";
-import CodeList from "../my-codes/CodeList";
-import Button from "../../Global/Button";
-import CompanyLogo from "../CompanyLogo";
+import Modal from "../../../Global/Modal";
+import CodeContainer from "../../../Global/CodeContainer";
+import CodeList from "../../my-codes/CodeList";
+import Button from "../../../Global/Button";
+import CompanyLogo from "../../CompanyLogo";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+import EmptyState from "./EmptyState";
 
 function FriendsCard({ ...friend }: FriendWithCodes) {
   const router = useRouter();
   const { openModal, closeModal, modalRef } = useModal();
-  const isNew = getTimeAgo(friend.created_at).match(/minute|now/)
-  const searchParam = useSearchParams().get("search")
-  const [searchValue, setSearchValue] = useState<string | null>(null)
+  const isNew = getTimeAgo(friend.created_at).match(/minute|now/);
+  const searchParam = useSearchParams().get("search");
+  const [searchValue, setSearchValue] = useState<string | null>(null);
+  const hasUserCodes = friend.user_codes.length > 0;
 
   //All companies will be highlighted if the searchValue matches their company name
   useEffect(() => {
-    if(searchParam) {
-      setSearchValue(searchParam.toLowerCase())
+    if (searchParam) {
+      setSearchValue(searchParam.toLowerCase());
     } else {
-      setSearchValue(null)
+      setSearchValue(null);
     }
   }, [searchParam]);
 
@@ -59,9 +61,12 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
                 {
                   "rounded-[10px] border border-[#ffffff1b] bg-[#47476a] p-2":
                     !user_code.companies.logo_url,
-                  "rounded-xl outline outline-[3px] outline-[#ff00b37b] border-[1.5px] !border-[#ff00b3]": 
-                    searchValue && user_code.companies.name?.toLowerCase().includes(searchValue)
-                }
+                  "rounded-xl border-[1.5px] !border-[#ff00b3] outline outline-[3px] outline-[#ff00b37b]":
+                    searchValue &&
+                    user_code.companies.name
+                      ?.toLowerCase()
+                      .includes(searchValue),
+                },
               )}
             >
               <CompanyLogo src={user_code.companies.logo_url} size={"sm"} />
@@ -85,7 +90,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
       <Modal
         ref={modalRef}
         closeModal={closeModal}
-        className="flex flex-col items-center gap-4 max-w-[850px] w-full"
+        className="flex w-full max-w-[850px] flex-col items-center gap-4"
       >
         <div className="w-full max-w-[480px] rounded-full border-1 border-[#ffffff10] bg-[#21203d] p-2 pr-4 xs:px-6">
           <div className="flex items-center justify-between gap-3">
@@ -128,8 +133,16 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
           </div>
           <div></div>
         </div>
-        <CodeContainer>
-          <CodeList userCodes={friend.user_codes} viewOnly searchEnabled={false} />
+        <CodeContainer variant={hasUserCodes ? "block" : "center"}>
+          {hasUserCodes ? (
+            <CodeList
+              userCodes={friend.user_codes}
+              viewOnly
+              searchEnabled={false}
+            />
+          ) : (
+            <EmptyState profileName={friend.profile.user_name} />
+          )}
         </CodeContainer>
       </Modal>
     </div>

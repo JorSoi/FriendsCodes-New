@@ -39,6 +39,7 @@ async function Page() {
       <Tab />
       <CodeContainer
         variant={userCodes?.length ? "block" : "center"}
+        className={userCodes?.length ? "" : "pb-[100px]"}
       >
         {userCodes?.length ? (
           <CodeList userCodes={userCodes} />
