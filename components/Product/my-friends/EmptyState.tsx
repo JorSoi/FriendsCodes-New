@@ -12,7 +12,6 @@ function EmptyState() {
   const [writeText, hasCopied] = useClipboard();
   const { closeModal, openModal, modalRef } = useModal();
 
-
   return (
     <div className="relative">
       <div className="relative z-10 flex flex-col text-center sm:[&_.decorationImg]:hidden">
@@ -28,7 +27,11 @@ function EmptyState() {
             className="flex grow-[1] basis-0 justify-center gap-2"
             onClick={async () => {
               const { profile } = await getClientProfile();
-              return writeText(`${window.origin}/${profile?.user_name}`);
+              if (profile) {
+                return await writeText(
+                  `${window.origin}/${profile?.user_name}`,
+                );
+              }
             }}
           >
             <Image src={"/icons/link.svg"} width={20} height={20} alt="" />
