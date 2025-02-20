@@ -7,6 +7,7 @@ import { UserCodeWithRelations } from "@/types/general.types";
 import { generateUniqueProfileName } from "@/utils/generateUniqueProfileName";
 import { getServerProfile } from "@/utils/getServerProfile";
 import { createClient } from "@/utils/supabase/server";
+import clsx from "clsx";
 
 async function Page() {
   let userCodes: UserCodeWithRelations[] | null = [];
@@ -39,6 +40,7 @@ async function Page() {
       <Tab />
       <CodeContainer
         variant={userCodes?.length ? "block" : "center"}
+        className={userCodes?.length ? "" : "pb-[100px]"}
       >
         {userCodes?.length ? (
           <CodeList userCodes={userCodes} />
