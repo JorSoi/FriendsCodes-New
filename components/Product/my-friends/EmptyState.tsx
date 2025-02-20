@@ -7,10 +7,21 @@ import { getClientProfile } from "@/utils/getClientProfile";
 import { useModal } from "@/hooks/useModal";
 import Modal from "@/components/Global/Modal";
 import FriendCreationForm from "@/components/Product/my-friends/FriendCreationForm";
+import { useEffect, useState } from "react";
+import { Tables } from "@/types/database.types";
 
 function EmptyState() {
   const [writeText, hasCopied] = useClipboard();
+  const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
   const { closeModal, openModal, modalRef } = useModal();
+
+  useEffect(() => {
+    async function setProfileState() {
+      const { profile } = await getClientProfile();
+      setProfile(profile);
+    }
+    setProfileState();
+  }, []);
 
   return (
     <div className="relative">
@@ -25,14 +36,9 @@ function EmptyState() {
             type="button"
             variant={"secondary"}
             className="flex grow-[1] basis-0 justify-center gap-2"
-            onClick={async () => {
-              const { profile } = await getClientProfile();
-              if (profile) {
-                return await writeText(
-                  `${window.origin}/${profile?.user_name}`,
-                );
-              }
-            }}
+            onClick={async () =>
+              writeText(`${window.origin}/${profile?.user_name}`)
+            }
           >
             <Image src={"/icons/link.svg"} width={20} height={20} alt="" />
             {hasCopied ? "Copied!" : "Use invitation link"}

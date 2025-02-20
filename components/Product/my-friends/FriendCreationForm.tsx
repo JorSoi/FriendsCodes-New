@@ -33,7 +33,7 @@ function FriendCreationForm() {
 
   const addFriend = async (
     values: FormikValues,
-    {setFieldError, resetForm}: FormikHelpers<FormikValues>,
+    { setFieldError, resetForm }: FormikHelpers<FormikValues>,
   ) => {
     const { user } = await getClientProfile();
 
@@ -48,11 +48,11 @@ function FriendCreationForm() {
 
     if (!error && user) {
       //Prevent that user can add themselve
-      if(data.id == user.id){
-        setFieldError("friend", "Can't add yourself as a friend! 🤭")
+      if (data.id == user.id) {
+        setFieldError("friend", "Can't add yourself as a friend! 🤭");
         return;
-      } 
-    
+      }
+
       const { error: creationError } = await supabase
         .from("friends")
         .insert({ friend_id: data.id, user_id: user?.id });
@@ -136,12 +136,9 @@ function FriendCreationForm() {
           type="button"
           variant={"secondary"}
           className="flex grow-[1] basis-0 justify-center gap-2"
-          onClick={async () => {
-            const { profile } = await getClientProfile();
-            await writeText(
-              `${window.origin}/invitation?friend=${profile?.user_name}`,
-            );
-          }}
+          onClick={async () =>
+            writeText(`${window.origin}/${profile?.user_name}`)
+          }
         >
           <Image src={"/icons/link.svg"} width={20} height={20} alt="" />
           {hasCopied ? "Copied!" : "Use invitation link"}
