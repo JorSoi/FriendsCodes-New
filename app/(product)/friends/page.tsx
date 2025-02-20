@@ -1,5 +1,6 @@
 import CodeContainer from "@/components/Global/CodeContainer";
 import ShareProfile from "@/components/Product/my-codes/ShareProfile";
+import EmptyState from "@/components/Product/my-friends/EmptyState";
 import FriendsList from "@/components/Product/my-friends/FriendsList";
 import Tab from "@/components/Product/Tab";
 import { FriendWithCodes } from "@/types/general.types";
@@ -25,9 +26,13 @@ async function Page() {
   return (
     <div className="mx-[3%] flex flex-col items-center justify-center gap-5">
       <Tab />
-      <CodeContainer>
-        <FriendsList friendsList={friendsList} />
-        <ShareProfile />
+      <CodeContainer variant={friendsList.length ? "block" : "center"}>
+        {friendsList.length ? (
+          <FriendsList friendsList={friendsList} />
+        ) : (
+          <EmptyState />
+        )}
+        {friendsList.length > 0 && <ShareProfile /> }
       </CodeContainer>
     </div>
   );

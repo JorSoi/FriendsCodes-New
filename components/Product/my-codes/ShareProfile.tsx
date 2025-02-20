@@ -11,8 +11,9 @@ import { getClientProfile } from "@/utils/getClientProfile";
 import { Tables } from "@/types/database.types";
 import { useClipboard } from "@/hooks/useClipboard";
 import { shareSocials } from "@/lib/shareSocials";
+import { cn } from "@/utils/variants";
 
-function ShareProfile() {
+function ShareProfile({className} : {className? : string}) {
   const { modalRef, closeModal, openModal } = useModal();
   const [writeText, hasCopied] = useClipboard();
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
@@ -30,7 +31,7 @@ function ShareProfile() {
   }, []);
 
   return (
-    <div className="absolute bottom-0 inset-x-0 h-[100px] xs:h-[80px] flex justify-center items-center">
+    <div className={cn("absolute bottom-0 inset-x-0 h-[100px] xs:h-[80px] flex justify-center items-center", className)}>
       <Button
         onClick={openModal}
         className=" flex items-center justify-center gap-2 xs:w-[94%]"

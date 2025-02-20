@@ -1,5 +1,6 @@
 import CodeContainer from "@/components/Global/CodeContainer";
 import CodeList from "@/components/Product/my-codes/CodeList";
+import EmptyState from "@/components/Product/my-codes/EmptyState";
 import ShareProfile from "@/components/Product/my-codes/ShareProfile";
 import Tab from "@/components/Product/Tab";
 import { UserCodeWithRelations } from "@/types/general.types";
@@ -36,8 +37,14 @@ async function Page() {
   return (
     <div className="mx-[3%] flex flex-col items-center justify-center gap-5">
       <Tab />
-      <CodeContainer className="mb-[15svh]">
-        <CodeList userCodes={userCodes} />
+      <CodeContainer
+        variant={userCodes?.length ? "block" : "center"}
+      >
+        {userCodes?.length ? (
+          <CodeList userCodes={userCodes} />
+        ) : (
+          <EmptyState />
+        )}
         <ShareProfile />
       </CodeContainer>
     </div>
