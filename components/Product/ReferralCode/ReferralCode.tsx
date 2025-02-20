@@ -62,7 +62,7 @@ function ReferralCode({
           closeModal={closeModal}
           className="w-full max-w-[400px]"
         >
-          <ReferralUpdateForm closeModal={closeModal} {...code} />
+          <ReferralUpdateForm {...code} />
         </Modal>
       )}
     </div>

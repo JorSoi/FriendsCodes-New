@@ -9,13 +9,15 @@ import Button from "@/components/Global/Button";
 import { useRouter } from "next/navigation";
 import { useClipboard } from "@/hooks/useClipboard";
 import { shareSocials } from "@/lib/shareSocials";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Tables } from "@/types/database.types";
+import { ModalContext } from "@/components/Global/Modal";
 
-function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
+function FriendCreationForm() {
   const router = useRouter();
   const [writeText, hasCopied] = useClipboard();
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
+  const closeModal = useContext(ModalContext);
   const socials = shareSocials(
     "Let's connect on FriendsCodes, so we can redeem each other's referral codes and enjoy the rewards together!",
     `${window.origin}/invitation?friend=${profile?.user_name}`,
@@ -31,7 +33,7 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
 
   const addFriend = async (
     values: FormikValues,
-    actions: FormikHelpers<FormikValues>,
+    {setFieldError, resetForm}: FormikHelpers<FormikValues>,
   ) => {
     const { user } = await getClientProfile();
 
@@ -47,7 +49,7 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
     if (!error && user) {
       //Prevent that user can add themselve
       if(data.id == user.id){
-        actions.setFieldError("friend", "Can't add yourself as a friend! 🤭")
+        setFieldError("friend", "Can't add yourself as a friend! 🤭")
         return;
       } 
     
@@ -55,19 +57,20 @@ function FriendCreationForm({ closeModal }: { closeModal: () => void }) {
         .from("friends")
         .insert({ friend_id: data.id, user_id: user?.id });
       if (!creationError) {
-        closeModal();
+        closeModal?.();
         router.refresh();
+        resetForm();
       } else {
         if (creationError?.code == "23505") {
-          actions.setFieldError("friend", "You are already friends!");
+          setFieldError("friend", "You are already friends!");
         }
         console.log(creationError);
       }
     } else {
       if (error?.code == "PGRST116") {
-        actions.setFieldError("friend", "Couldn't find that user! 😯");
+        setFieldError("friend", "Couldn't find that user! 😯");
       } else {
-        actions.setFieldError("friend", "An error occured!");
+        setFieldError("friend", "An error occured!");
       }
     }
   };

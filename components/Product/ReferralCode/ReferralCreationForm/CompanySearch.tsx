@@ -6,14 +6,16 @@ import CompanySearchList from "./CompanySearchList";
 import { Dispatch, SetStateAction } from "react";
 import { Tables } from "@/types/database.types";
 import Button from "@/components/Global/Button";
+import { ModalContext } from "@/components/Global/Modal";
+import { useContext } from "react";
 
 function CompanySearch({
   setCompany,
-  closeModal,
 }: {
   setCompany: Dispatch<SetStateAction<Tables<"companies"> | null>>;
-  closeModal: () => void;
 }) {
+  const closeModal = useContext(ModalContext);
+
   return (
     <div className="flex w-full max-w-[700px] flex-col rounded-3xl border-1 border-[#ffffff20] bg-[#333350] sm:h-dvh sm:rounded-none">
       {/* Searchbar */}
@@ -42,7 +44,7 @@ function CompanySearch({
         <Button
           variant={"ghost"}
           type="button"
-          onClick={() => closeModal()}
+          onClick={() => closeModal?.()}
           className="hidden px-1 text-base font-semibold sm:block"
         >
           Cancel
