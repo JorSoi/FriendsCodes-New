@@ -26,9 +26,9 @@ function NavBar() {
 
   useEffect(() => {
     if (searchValue && searchValue.length >= 1) {
-      router.push(`${pathName}?search=${searchValue}`);
+      window.history.pushState(null, "", `${pathName}?search=${searchValue}`);
     } else if (searchValue === "") {
-      router.push(pathName);
+      window.history.pushState(null, "", pathName);
     }
   }, [searchValue]);
 

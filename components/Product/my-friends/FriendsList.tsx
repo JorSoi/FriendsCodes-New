@@ -1,6 +1,6 @@
 "use client";
 
-import FriendsCard from "./FriendsCard";
+import FriendsCard from "./FriendsCard/FriendsCard";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FriendWithCodes } from "@/types/general.types";
