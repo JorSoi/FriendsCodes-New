@@ -4,9 +4,7 @@ export const useClipboard = () => {
   const [hasCopied, setHasCopied] = useState(false);
 
   const  writeText = async (text: string) => {
-    alert(window.isSecureContext)
     try {
-      alert("inside trying")
       await navigator.clipboard.writeText(text);
       setHasCopied(true);
       // Reset the "Copied!" state after 1.1 seconds (which is in line with the confetti animation duration)
