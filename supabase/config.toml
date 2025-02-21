@@ -104,6 +104,8 @@ additional_redirect_urls = [
   "https://*.friendscodes.de/auth/callback",
   "https://friendscodes-v20-*-jorsois-projects.vercel.app/auth/callback",
   "https://friendscodes-v20.vercel.app/auth/callback",
+  "http://localhost:*/auth/change-password",
+  "http://*.friendscodes.de/auth/change-password",
 ]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
@@ -135,21 +137,21 @@ enable_confirmations = false
 # If enabled, users will need to reauthenticate or have logged in recently to change their password.
 secure_password_change = false
 # Controls the minimum amount of time that must pass before sending another signup confirmation or password reset email.
-max_frequency = "1s"
+max_frequency = "30s"
 # Number of characters used in the email OTP.
 otp_length = 6
 # Number of seconds before the email OTP expires (defaults to 1 hour).
 otp_expiry = 3600
 
 # Use a production-ready SMTP server
-# [auth.email.smtp]
-# enabled = true
-# host = "smtp.sendgrid.net"
-# port = 587
-# user = "apikey"
-# pass = "env(SENDGRID_API_KEY)"
-# admin_email = "admin@email.com"
-# sender_name = "Admin"
+[auth.email.smtp]
+enabled = true
+host = "smtp.ionos.de"
+port = 465
+user = "hello@friendscodes.de"
+pass = "env(IONOS_WEBMAIL_PASSWORD)"
+admin_email = "hello@friendscodes.de"
+sender_name = "Philipp from FriendsCodes"
 
 # Uncomment to customize email template
 # [auth.email.template.invite]

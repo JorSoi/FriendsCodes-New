@@ -3,12 +3,14 @@ import * as Yup from "yup";
 import Form from "../FormComponents/Form";
 import Input from "../FormComponents/Input";
 import Button from "../Button";
+import { FormikHelpers, FormikValues } from "formik";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 function ChangePassword() {
-  const initialValues = {
-    password: "",
-    confirmPassword: "",
-  };
+
+  const supabase = createClient();
+  const router = useRouter();
 
   const validationSchema = Yup.object().shape({
     password: Yup.string()
@@ -29,8 +31,18 @@ function ChangePassword() {
       .required("Required"),
   });
 
-  const handleSubmit = (values: { [key: string]: string }) => {
-    alert(JSON.stringify(values));
+  const handleSubmit = async (values: FormikValues, {setFieldError, resetForm} : FormikHelpers<FormikValues>) => {
+    const { data, error } = await supabase.auth.updateUser({
+      password: values.password
+    })
+    if(!error) {
+      console.log(data)
+      resetForm()
+      router.push('/home')
+    } else {
+      console.log(error)
+      setFieldError("confirmPassword", `Couldn't change password: ${error.message}`)
+    }
   };
 
   return (
@@ -61,7 +73,10 @@ function ChangePassword() {
 
       {/* Form Fields */}
       <Form
-        initialValues={initialValues}
+        initialValues={{
+          password: "",
+          confirmPassword: "",
+        }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
@@ -86,7 +101,7 @@ function ChangePassword() {
           />
         </div>
         <Button type="submit" className="mt-5 w-full">
-          Send Recovery Email
+          Update password
         </Button>
       </Form>
     </div>
