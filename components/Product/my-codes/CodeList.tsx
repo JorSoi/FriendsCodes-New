@@ -3,7 +3,7 @@
 import { UserCodeWithRelations } from "@/types/general.types";
 import ReferralCode from "../ReferralCode/ReferralCode";
 import AddItemButton from "../AddItemButton";
-import { useEffect, useOptimistic, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 function CodeList({
