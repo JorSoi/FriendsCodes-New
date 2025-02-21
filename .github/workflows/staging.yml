@@ -22,6 +22,9 @@ jobs:
       #Twitter oAuth Secrets
       SUPABASE_AUTH_TWITTER_CLIENT_ID: ${{ secrets.SUPABASE_AUTH_TWITTER_CLIENT_ID }}
       SUPABASE_AUTH_TWITTER_SECRET: ${{ secrets.SUPABASE_AUTH_TWITTER_SECRET }}
+      #IONOS SMTP Password
+      IONOS_WEBMAIL_PASSWORD: ${{ secrets.IONOS_WEBMAIL_PASSWORD }}
+      
 
     steps:
       - uses: actions/checkout@v4

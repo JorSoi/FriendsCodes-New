@@ -4,25 +4,37 @@ import * as Yup from "yup";
 import Form from "../FormComponents/Form";
 import Input from "../FormComponents/Input";
 import Button from "../Button";
+import { createClient } from "@/utils/supabase/client";
+import { FormikHelpers, FormikValues } from "formik";
+import { useState } from "react";
 
 function PasswordResetForm() {
-  const initialValues = {
-    email: "",
-  };
+  const supabase = createClient();
+  const [emailDelivered, setEmailDelivered] = useState(false);
+  const [recipientMail, setRecipientMail] = useState("");
 
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-  });
+  const deliverEmail = async (
+    values: FormikValues,
+    { setFieldError, resetForm }: FormikHelpers<FormikValues>,
+  ) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(values.email, {
+      redirectTo: `${window.origin}/auth/change-password`,
+    });
 
-  const handleSubmit = (values: { [key: string]: string }) => {
-    alert(JSON.stringify(values));
+    if (!error) {
+      setEmailDelivered(true);
+      setRecipientMail(values.email);
+      resetForm();
+    } else {
+      setFieldError("email", `Couldn't send email : ${error.message}`);
+    }
   };
 
   return (
     <div className="w-full max-w-[400px]">
       <div className="relative flex w-full justify-center pb-7">
         <div className="flex size-[56px] items-center justify-center overflow-hidden rounded-lg border-1 border-[#ffffff15] bg-gradient-to-b from-[#ffffff26] to-[#ffffff05] backdrop-blur-[30px]">
-          <h3 className="text-2xl">🔐</h3>
+          <h3 className="text-2xl">{emailDelivered ? "✅" : "🔐"}</h3>
         </div>
 
         <Image
@@ -38,34 +50,56 @@ function PasswordResetForm() {
       <div className="mb-5 flex flex-col items-center text-center">
         <div className="flex- flex">
           <h3 className="text-[22px] font-semibold text-white">
-            Forgot your password?
+            {emailDelivered ? "Email Sent!" : "Forgot your password?"}
           </h3>
         </div>
-        <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
-          No worries, we&apos;ll send you reset instructions.
-        </p>
+        {emailDelivered ? (
+          <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
+            Please follow the instructions in your email{" "}
+            <span className="text-[#EA01DD]">{recipientMail}</span> to reset the
+            password.
+          </p>
+        ) : (
+          <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
+            No worries! We will send you an email to reset your password
+          </p>
+        )}
       </div>
 
       {/* Form Fields */}
-      <Form
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        <Input
-          name="email"
-          type="email"
-          variant={"outline"}
-          size={"md"}
-          placeholder="Enter your email..."
-          label="Email"
-          required
-        />
+      {!emailDelivered && (
+        <Form
+          initialValues={{ email: "" }}
+          validationSchema={Yup.object().shape({
+            email: Yup.string().email("Invalid email").required("Required"),
+          })}
+          onSubmit={deliverEmail}
+        >
+          <Input
+            name="email"
+            type="email"
+            variant={"outline"}
+            size={"md"}
+            placeholder="Enter your email..."
+            label="Email"
+            required
+          />
+          <div className="mt-6 flex justify-between">
+            <p
+              onClick={() =>
+                window.open("https://app.youform.com/forms/wmbthihc", "_blank")
+              }
+              className="underline-offset-2] cursor-pointer font-inter text-[14px] underline"
+            >
+              I&apos;m still having issues.
+            </p>
+          </div>
 
-        <Button type="submit" className="mt-5 w-full">
-          Send Recovery Email
-        </Button>
-      </Form>
+          <Button type="submit" className="mt-7 w-full">
+            Send Recovery Email
+          </Button>
+        </Form>
+      )}
 
       <div className="mt-4 flex w-full justify-center">
         <Link
