@@ -11,6 +11,7 @@ import { useState } from "react";
 function PasswordResetForm() {
   const supabase = createClient();
   const [emailDelivered, setEmailDelivered] = useState(false);
+  const [recipientMail, setRecipientMail] = useState("");
 
   const deliverEmail = async (
     values: FormikValues,
@@ -22,6 +23,7 @@ function PasswordResetForm() {
 
     if (!error) {
       setEmailDelivered(true);
+      setRecipientMail(values.email);
       resetForm();
     } else {
       setFieldError("email", `Couldn't send email : ${error.message}`);
@@ -51,9 +53,17 @@ function PasswordResetForm() {
             {emailDelivered ? "Email Sent!" : "Forgot your password?"}
           </h3>
         </div>
-        <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
-          {emailDelivered ? "Please follow the instructions in your email to reset the password." : "No worries! We will send you an email to reset your password"}
-        </p>
+        {emailDelivered ? (
+          <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
+            Please follow the instructions in your email{" "}
+            <span className="text-[#EA01DD]">{recipientMail}</span> to reset the
+            password.
+          </p>
+        ) : (
+          <p className="mt-2 max-w-[400px] text-[#A9A6B2]">
+            No worries! We will send you an email to reset your password
+          </p>
+        )}
       </div>
 
       {/* Form Fields */}
@@ -74,15 +84,16 @@ function PasswordResetForm() {
             label="Email"
             required
           />
-            <div className="mt-6 flex justify-between">
-      
-          <p
-            onClick={() => window.open("https://app.youform.com/forms/wmbthihc", "_blank")}
-            className="underline-offset-2] font-inter text-[14px] underline cursor-pointer"
-          >
-            Still having issues?
-          </p>
-        </div>
+          <div className="mt-6 flex justify-between">
+            <p
+              onClick={() =>
+                window.open("https://app.youform.com/forms/wmbthihc", "_blank")
+              }
+              className="underline-offset-2] cursor-pointer font-inter text-[14px] underline"
+            >
+              I&apos;m still having issues.
+            </p>
+          </div>
 
           <Button type="submit" className="mt-7 w-full">
             Send Recovery Email
