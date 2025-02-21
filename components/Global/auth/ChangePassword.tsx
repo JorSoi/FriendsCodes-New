@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import * as Yup from "yup";
 import Form from "../FormComponents/Form";
@@ -59,6 +61,7 @@ function ChangePassword() {
           height={506}
           alt=""
           draggable={false}
+          priority
         />
       </div>
 

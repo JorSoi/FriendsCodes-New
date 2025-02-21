@@ -81,6 +81,7 @@ function Login() {
           height={506}
           alt=""
           draggable={false}
+          priority
         />
       </div>
 

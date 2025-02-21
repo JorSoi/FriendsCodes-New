@@ -9,6 +9,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { TrackPageView } from "./TrackPageView";
 import EmptyState from "../../../components/Landing/[profileName]/EmptyState";
+import { Metadata } from "next";
+import image from "@/public/metadata/og-personal.png";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ profileName: string }>;
+}): Promise<Metadata> {
+  return {
+    title: `${(await params).profileName}'s Referral Profile`,
+    description: `Use referral codes from ${(await params).profileName} to earn cash and rewards and save on deals!`,
+    openGraph: {
+      type: "website",
+      url: "https://friendscodes.de",
+      title: `Use ${(await params).profileName}'s referral codes!`,
+      description: `Both of you will earn cash and other rewards for using the referrals on ${(await params).profileName}'s profile!`,
+      siteName: "FriendsCodes",
+      images: [
+        {
+          url: image.src,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: image.src,
+    },
+  };
+}
 
 export default async function Page({
   params,
@@ -65,8 +94,8 @@ export default async function Page({
                 {profileName}&apos;s referral profile 🎁 🎉
               </h1>
               <p className="mt-1 max-w-[450px] text-[15px] text-[#a1a3ae]">
-                Redeem the referral codes below so that you and {profileName} can
-                both collect store benefits!
+                Redeem the referral codes below so that you and {profileName}{" "}
+                can both collect store benefits!
               </p>
             </div>
           )}
