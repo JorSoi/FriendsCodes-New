@@ -105,7 +105,7 @@ additional_redirect_urls = [
   "https://friendscodes-v20-*-jorsois-projects.vercel.app/auth/callback",
   "https://friendscodes-v20.vercel.app/auth/callback",
   "http://localhost:*/auth/change-password",
-  "http://*.friendscodes.de/auth/change-password",
+  "https://*.friendscodes.de/auth/change-password",
 ]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
