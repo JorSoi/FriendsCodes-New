@@ -7,12 +7,9 @@ async function layout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
   const {
     data: { user },
-    error,
   } = await supabase.auth.getUser();
   if (user) {
     redirect("/home");
-  } else {
-    console.log(error);
   }
 
   return (

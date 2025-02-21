@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
 import * as Yup from "yup";
@@ -44,6 +46,7 @@ function PasswordResetForm() {
           height={506}
           alt=""
           draggable={false}
+          priority
         />
       </div>
 
