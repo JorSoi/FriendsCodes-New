@@ -26,7 +26,7 @@ function Card2() {
           />
           <Image
             className="absolute bottom-[-10%] right-[-50%] size-[35px] rounded-full border-2 border-[#ffffff70] object-cover opacity-55"
-            src={"/users/user-1.jpg"}
+            src={"/users/user-1.webp"}
             width={400}
             height={400}
             alt=""
@@ -34,7 +34,7 @@ function Card2() {
           />
           <Image
             className="absolute right-[-30%] top-[-140%] size-[48px] rounded-full border-2 border-[#ffffff70] object-cover"
-            src={"/users/user-2.jpg"}
+            src={"/users/user-2.webp"}
             width={400}
             height={400}
             alt=""
@@ -42,7 +42,7 @@ function Card2() {
           />
           <Image
             className="absolute left-[-10%] top-[-180%] size-[40px] touch-none rounded-full border-2 border-[#ffffff70] object-cover"
-            src={"/users/user-4.jpg"}
+            src={"/users/user-4.webp"}
             width={400}
             height={400}
             alt=""
@@ -50,7 +50,7 @@ function Card2() {
           />
           <Image
             className="absolute left-[-50%] top-[-30%] size-[33px] touch-none rounded-full border-2 border-[#ffffff70] object-cover"
-            src={"/users/user-3.jpg"}
+            src={"/users/user-3.webp"}
             width={400}
             height={400}
             alt=""

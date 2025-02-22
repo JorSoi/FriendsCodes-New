@@ -23,7 +23,7 @@ export default function Home() {
  // Wrap the session check in useEffect
  useEffect(() => {
   const checkForSession = async () => {
-    const supabase = await createClient();
+    const supabase = createClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -85,7 +85,7 @@ export default function Home() {
       {/* MARK: Hero Heading Section */}
       <section
         id="hero"
-        className="w-full pt-[190px] xl:pt-[240px] md:pt-[170px] sm:pt-[125px] overflow-x-hidden flex items-center justify-center pb-[100px]"
+        className="w-full pt-[190px] xl:pt-[240px] md:pt-[170px] sm:pt-[100px] overflow-x-hidden flex items-center justify-center pb-[100px] lg:pb-[70px]"
       >
         <div className="relative flex w-full max-w-[990px] flex-col items-center justify-center text-center md:w-[550px] mx-[3%]">
           {userName && (
@@ -225,11 +225,11 @@ export default function Home() {
       </section>
 
       {/* MARK: Hero Image */}
-      <section className="relative flex w-full items-center justify-center  lg:pt-[70px]">
+      <section className="relative flex w-full items-center justify-center">
         <div className="fadeInHero invisible relative max-w-[90%] rounded-[20px] border-2 border-[#ffffff30] bg-gradient-to-br from-[#ffffff23] to-[#ffffff04] p-[23px] backdrop-blur-[38px] md:p-[15px] xs:max-w-[94%] xs:rounded-[10px] xs:p-[7px]">
           <Image
             className="z-1 relative rounded-[10px] xs:rounded-[5px]"
-            src={"/hero-image.png"}
+            src={"/hero-image.webp"}
             width={950}
             height={550}
             priority
@@ -453,7 +453,7 @@ export default function Home() {
                 height="100%"
               >
                 <image
-                  href="/footer-card-bg.png"
+                  href="/footer-card-bg.webp"
                   x="-75%"
                   y="-35%"
                   width="250%"
@@ -467,7 +467,7 @@ export default function Home() {
               fill="url(#footerBgPattern)"
             />
           </svg>
-          <div className="absolute inset-0 z-[-1] hidden rounded-[20px] bg-[url('/footer-card-bg.png')] bg-[length:250%_740%] bg-center brightness-[120%] xs:block"></div>
+          <div className="absolute inset-0 z-[-1] hidden rounded-[20px] bg-[url('/footer-card-bg.webp')] bg-[length:250%_740%] bg-center brightness-[120%] xs:block"></div>
         </div>
       </section>
 
