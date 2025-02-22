@@ -16,12 +16,35 @@ import { isValidURL } from "@/utils/isValidURL";
 function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
   const [writeText, hasCopied] = useClipboard();
   const supabase = createClient();
-  const validUrl = isValidURL(code.referral_value)
+  const validUrl = isValidURL(code.referral_value);
+
+  const hasAlreadyUsed = (userCodeId: number) => {
+    const currentArray = JSON.parse(
+      localStorage.getItem("previouslyUsed") || "[]",
+    );
+    return currentArray.indexOf(userCodeId) === -1 ? false : true;
+  };
+
+  //If anon user, store their referral conversions to localstorage to prevent sending duplicate notifications to profileOwner and to keep track the anon's redemptions
+  const pushConversionToLocalStorage = async (userCodeId: number) => {
+    const { user } = await getClientProfile();
+    const currentArray: number[] = JSON.parse(
+      localStorage.getItem("previouslyUsed") || "[]",
+    );
+
+    if (user) return; //Only use localstorage, when we can't link conversion to a user.
+
+    if (currentArray.indexOf(userCodeId) < 0) {
+      const updatedArray = JSON.stringify([...currentArray, userCodeId]);
+      localStorage.setItem("previouslyUsed", updatedArray);
+    }
+  };
 
   const sendConversionNotification = async () => {
     const { user } = await getClientProfile();
-    //Dont send conversion notifications to a user if they convert their own codes.
-    if (user?.id == code.user_id) return;
+
+    //Dont send notification if user converts own code. Or if anon user has already converted it.
+    if (user?.id == code.user_id || hasAlreadyUsed(code.id)) return;
     const { data, error } = await supabase.from("notifications").insert({
       type: "code_interaction",
       recipient: code.user_id,
@@ -81,17 +104,8 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
             autoComplete="off"
             readOnly
           />
-          <Image
-            src={"/icons/copy.svg"}
-            width={18}
-            height={18}
-            alt=""
-            className={clsx(
-              "absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer transition-all duration-75 active:scale-90",
-              {
-                "opacity-30": hasCopied,
-              },
-            )}
+          <div
+            className="absolute right-0 top-1/2 flex h-full w-[50px] -translate-y-1/2 cursor-pointer items-center justify-center"
             onClick={async () => {
               await writeText(code.referral_value);
               await supabase.rpc("increment_conversion_count", {
@@ -99,7 +113,17 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
               });
               await sendConversionNotification();
             }}
-          />
+          >
+            <Image
+              src={"/icons/copy.svg"}
+              width={18}
+              height={18}
+              alt=""
+              className={clsx("transition-all duration-75 active:scale-90", {
+                "opacity-30": hasCopied,
+              })}
+            />
+          </div>
         </div>
       </div>
       <Button
@@ -118,6 +142,7 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
           await supabase.rpc("increment_conversion_count", {
             user_code_id: code.id,
           });
+          pushConversionToLocalStorage(code.id);
         }}
       >
         {hasCopied
