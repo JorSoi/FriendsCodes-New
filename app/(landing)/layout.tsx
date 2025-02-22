@@ -3,6 +3,7 @@ import { figtree, inter } from "@/lib/fonts";
 import "@/app/globals.css";
 import { Suspense } from "react";
 import image from "@/public/metadata/og-default.png";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "FriendsCodes - Benefit from referral sharing!",
@@ -49,6 +50,11 @@ export default function RootLayout({
     >
       <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] font-figtree">
         <Suspense>{children}</Suspense>
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

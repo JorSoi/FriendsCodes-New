@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import InvitationLogic from "@/components/Global/InvitationLogic";
 import FireWorkLogic from "@/components/Global/FireWorkContext";
 import image from "@/public/metadata/og-default.png";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "FriendsCodes Dashboard",
@@ -63,6 +64,11 @@ export default async function RootLayout({
             {children}
           </FireWorkLogic>
         </InvitationLogic>
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
