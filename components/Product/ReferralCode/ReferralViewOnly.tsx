@@ -16,22 +16,18 @@ import { isValidURL } from "@/utils/isValidURL";
 function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
   const [writeText, hasCopied] = useClipboard();
   const supabase = createClient();
-
-  
-  const isValidUrl = isValidURL(code.referral_value);
+  const validUrl = isValidURL(code.referral_value)
 
   const sendConversionNotification = async () => {
     const { user } = await getClientProfile();
     //Dont send conversion notifications to a user if they convert their own codes.
     if (user?.id == code.user_id) return;
-    const { data, error } = await supabase
-      .from("notifications")
-      .insert({
-        type:"code_interaction",
-        recipient: code.user_id,
-        triggered_by: user ? user.id : null, //NULL if profile visitor not authed
-        used_referral: code.id,
-      });
+    const { data, error } = await supabase.from("notifications").insert({
+      type: "code_interaction",
+      recipient: code.user_id,
+      triggered_by: user ? user.id : null, //NULL if profile visitor not authed
+      used_referral: code.id,
+    });
     if (!error) {
       console.log(data);
     } else {
@@ -69,7 +65,7 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
             {code.companies.name}
           </h3>
           <p className="text-[15px] text-[#a1a3ae]">
-            {isValidUrl ? "Open the referral link" : "Copy the referral code"}{" "}
+            {validUrl ? "Open the referral link" : "Copy the referral code"}{" "}
             from this user below and redeem it at {code.companies.name}! 👇👇
           </p>
         </div>
@@ -110,25 +106,23 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
         className="mt-5 w-full"
         type="button"
         onClick={async () => {
-          await sendConversionNotification();
-          await supabase.rpc("increment_conversion_count", {
-            user_code_id: code.id,
-          });
-          if (isValidUrl) {
+          if (validUrl) {
             const url = code.referral_value.startsWith("http")
               ? code.referral_value
               : `https://${code.referral_value}`;
             window.open(url, "_blank");
           } else {
             await writeText(code.referral_value);
-          
-            
           }
+          await sendConversionNotification();
+          await supabase.rpc("increment_conversion_count", {
+            user_code_id: code.id,
+          });
         }}
       >
         {hasCopied
           ? "Copied!"
-          : isValidUrl
+          : validUrl
             ? "Open Referral Link"
             : "Copy Referral Code"}
       </Button>
