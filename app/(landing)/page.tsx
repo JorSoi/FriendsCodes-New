@@ -11,35 +11,11 @@ import Link from "next/link";
 import Question from "@/components/Landing/Question";
 import Footer from "@/components/Landing/Footer";
 import useAnimations from "@/lib/useAnimations";
-import { createClient } from "@/utils/supabase/client";
 import Tag from "@/components/Landing/Tag";
-import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function Home() {
-  const [userName, setUserName] = useState<string>();
   const visitorName = useSearchParams().get("visitor");
-
- // Wrap the session check in useEffect
- useEffect(() => {
-  const checkForSession = async () => {
-    const supabase = createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (user) {
-      const { data } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single();
-      if (data?.user_name) setUserName(data?.user_name);
-    }
-  };
-
-  checkForSession();
-}, []);
-
 
   useAnimations();
 
@@ -85,13 +61,10 @@ export default function Home() {
       {/* MARK: Hero Heading Section */}
       <section
         id="hero"
-        className="w-full pt-[190px] xl:pt-[240px] md:pt-[170px] sm:pt-[100px] overflow-x-hidden flex items-center justify-center pb-[100px] lg:pb-[70px]"
+        className="w-full pt-[190px] xl:pt-[240px] md:pt-[170px] sm:pt-[125px] overflow-x-hidden flex items-center justify-center pb-[100px] lg:pb-[70px]"
       >
         <div className="relative flex w-full max-w-[990px] flex-col items-center justify-center text-center md:w-[550px] mx-[3%]">
-          {userName && (
-            <Tag className="mb-4">Welcome back, {userName} ! 🎉</Tag>
-          )}
-          {visitorName && !userName && (
+          {visitorName && (
             <Tag className="mb-4">Hey, {visitorName} ! 👋</Tag>
           )}
           <h1 className="fadeInHero invisible text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] mlg:max-w-[600px] md:text-[57px] sm:text-[52px] xs:text-[43px]">
