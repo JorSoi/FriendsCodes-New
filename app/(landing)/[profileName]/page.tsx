@@ -55,7 +55,7 @@ export default async function Page({
     //get profileOwner based on profileName in url slug
     .from("profiles")
     .select()
-    .eq("user_name", profileName)
+    .ilike("user_name", profileName)
     .single();
   if (!error) profileExists = true;
 
@@ -90,10 +90,10 @@ export default async function Page({
         >
           {profileExists && (
             <div className="mb-5 flex w-full flex-col items-center justify-center text-center">
-              <h1 className="pt-2 text-[1.7rem] font-bold">
+              <h1 className="pt-2 text-[1.7rem] font-bold md:text-[1.5rem]">
                 {profileName}&apos;s referral profile 🎁 🎉
               </h1>
-              <p className="mt-1 max-w-[450px] text-[15px] text-[#a1a3ae]">
+              <p className="mt-1 max-w-[450px] text-[15px] text-[#a1a3ae] md:hidden">
                 Redeem the referral codes below so that you and {profileName}{" "}
                 can both collect store benefits!
               </p>
@@ -108,7 +108,7 @@ export default async function Page({
 
           <div className="absolute inset-x-0 bottom-0 flex h-[100px] items-center justify-center xs:h-[80px]">
             <div className="flex gap-2">
-              {user && !isAlreadyFriend && (
+              {user && !isAlreadyFriend && user.id !== profileOwner?.id && (
                 <Link href={`/invitation?friend=${profileName}`}>
                   <Button className="flex items-center gap-2">
                     <Image
