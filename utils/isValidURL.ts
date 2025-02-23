@@ -12,7 +12,7 @@ export function isValidURL(referralValue: string): boolean {
       // Check if the hostname is a valid domain structure
       const hostname = url.hostname;
       // Regex to validate domain structure (excludes localhost, IPs, etc.)
-      const hostnameRegex = /^([a-zA-Z0-9-]+\.)+[a-zA-Z0-9-]{2,}$/;
+      const hostnameRegex = /^(?!\d+$)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       return hostnameRegex.test(hostname);
     } catch {
       return false;

@@ -50,7 +50,7 @@ function EmptyState() {
 
         <Image
           className="decorationImg absolute right-[-30px] top-[-20px] size-[40px] rounded-full border-2 border-[#ffffffa9] object-cover"
-          src={"/users/user-1.jpg"}
+          src={"/users/user-1.webp"}
           width={400}
           height={400}
           alt=""
@@ -58,7 +58,7 @@ function EmptyState() {
         />
         <Image
           className="decorationImg absolute right-[50px] top-[-110px] size-[55px] rounded-full border-2 border-[#ffffffa9] object-cover"
-          src={"/users/user-2.jpg"}
+          src={"/users/user-2.webp"}
           width={400}
           height={400}
           alt=""
@@ -66,7 +66,7 @@ function EmptyState() {
         />
         <Image
           className="decorationImg absolute left-[60px] top-[-124px] size-[60px] touch-none rounded-full border-2 border-[#ffffffa9] object-cover"
-          src={"/users/user-4.jpg"}
+          src={"/users/user-4.webp"}
           width={400}
           height={400}
           alt=""
@@ -74,7 +74,7 @@ function EmptyState() {
         />
         <Image
           className="decorationImg absolute left-[-30px] top-[-25px] size-[45px] touch-none rounded-full border-2 border-[#ffffffa9] object-cover"
-          src={"/users/user-3.jpg"}
+          src={"/users/user-3.webp"}
           width={400}
           height={400}
           alt=""

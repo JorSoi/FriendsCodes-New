@@ -63,7 +63,7 @@ function NavBar() {
                     ? "Search your referral codes"
                     : pathName == "/my-friends"
                       ? "Search friends or their referrals"
-                      : "Search referrals"
+                      : `Search ${pathName.substring(1)}'s referrals`
                 }
                 onChange={({ target }) => setSearchValue(target.value)}
                 value={searchValue || ""}
