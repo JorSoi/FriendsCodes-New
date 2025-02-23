@@ -12,6 +12,7 @@ import { createClient } from "@/utils/supabase/client";
 import Realistic from "react-canvas-confetti/dist/presets/realistic";
 import { getClientProfile } from "@/utils/getClientProfile";
 import { isValidURL } from "@/utils/isValidURL";
+import { prominent } from "color.js";
 
 function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
   const [writeText, hasCopied] = useClipboard();
@@ -68,16 +69,27 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
           <div className="relative">
             {hasCopied && (
               <Realistic
-                onInit={({ confetti }) =>
-                  confetti({
-                    colors: ["#FF00B2", "#D900FF", "#ffffff"],
+                onInit={async ({ confetti }) => {
+                  let colorScheme;
+
+                  try {
+                    colorScheme = (await prominent(code.companies.logo_url!, {
+                      amount: 3,
+                      format: "hex",
+                    })) as string[];
+                  } catch {
+                    colorScheme = ["#FF00B2", "#D900FF", "#ffffff"];
+                  }
+
+                  return confetti({
+                    colors: colorScheme,
                     startVelocity: 30,
                     ticks: 60,
                     spread: 60,
                     disableForReducedMotion: true,
                     particleCount: 40,
-                  })
-                }
+                  });
+                }}
               />
             )}
             <div className="flex size-[80px] items-center justify-center rounded-2xl border-1 border-[#ffffff10] bg-[#47476a] p-[10px]">
