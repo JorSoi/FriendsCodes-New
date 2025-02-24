@@ -166,7 +166,11 @@ function ReferralCreationForm() {
             autoComplete="off"
           />
         </div>
-        <Button type="submit" className="mt-5 w-full">
+        <Button
+          type="submit"
+          className="mt-5 w-full"
+          data-umami-event="prod-referral-creation"
+        >
           Add your new referral
         </Button>
         <Modal

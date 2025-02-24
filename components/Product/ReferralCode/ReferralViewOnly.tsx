@@ -118,6 +118,7 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
           />
           <div
             className="absolute right-0 top-1/2 flex h-full w-[50px] -translate-y-1/2 cursor-pointer items-center justify-center"
+            data-umami-event="prod-referral-conversion"
             onClick={async () => {
               await writeText(code.referral_value);
               await supabase.rpc("increment_conversion_count", {
@@ -131,7 +132,7 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
               width={18}
               height={18}
               alt=""
-              className={clsx("transition-all duration-75 active:scale-90", {
+              className={clsx("transition-all duration-75 active:scale-90 pointer-events-none", {
                 "opacity-30": hasCopied,
               })}
             />
@@ -139,6 +140,7 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
         </div>
       </div>
       <Button
+        data-umami-event="prod-referral-conversion"
         className="mt-5 w-full"
         type="button"
         onClick={async () => {

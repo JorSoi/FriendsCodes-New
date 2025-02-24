@@ -119,9 +119,12 @@ function FriendCreationForm() {
                 className="flex size-[40px] items-center justify-center rounded-full p-[unset]"
                 onClick={() => window.open(href, "_blank")}
                 type="button"
+                data-umami-event="prod-friend-invitation"
+                data-umami-event-via={company}
               >
                 <Image
                   src={`/company-logos/${company}.svg`}
+                  className="pointer-events-none"
                   width={20}
                   height={20}
                   alt=""
@@ -133,6 +136,8 @@ function FriendCreationForm() {
       </div>
       <div className="mt-5 flex gap-3 xs:flex-col-reverse">
         <Button
+          data-umami-event="prod-friend-invitation"
+          data-umami-event-via={"link"}
           type="button"
           variant={"secondary"}
           className="flex grow-[1] basis-0 justify-center gap-2"
@@ -140,10 +145,20 @@ function FriendCreationForm() {
             writeText(`${window.origin}/${profile?.user_name}`)
           }
         >
-          <Image src={"/icons/link.svg"} width={20} height={20} alt="" />
+          <Image
+            src={"/icons/link.svg"}
+            width={20}
+            height={20}
+            alt=""
+            className="pointer-events-none"
+          />
           {hasCopied ? "Copied!" : "Use invitation link"}
         </Button>
-        <Button className="grow-[1] basis-0" type="submit">
+        <Button
+          className="grow-[1] basis-0"
+          type="submit"
+          data-umami-event="prod-friend-creation"
+        >
           Add friend
         </Button>
       </div>

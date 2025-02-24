@@ -12,11 +12,9 @@ import CompanyLogo from "../CompanyLogo";
 import { useContext } from "react";
 import { ModalContext } from "@/components/Global/Modal";
 
-function ReferralUpdateForm({
-  ...code
-}: UserCodeWithRelations) {
+function ReferralUpdateForm({ ...code }: UserCodeWithRelations) {
   const router = useRouter();
-  const closeModal = useContext(ModalContext)
+  const closeModal = useContext(ModalContext);
 
   const updateCode = async (values: FormikValues) => {
     const supabase = createClient();
@@ -101,7 +99,12 @@ function ReferralUpdateForm({
         />
       </div>
       <div className="mt-5 flex gap-3">
-        <Button type="button" variant={"secondary"} onClick={deleteCode}>
+        <Button
+          type="button"
+          variant={"secondary"}
+          onClick={deleteCode}
+          data-umami-event="prod-referral-deletion"
+        >
           <Image src={"/icons/trash.svg"} width={20} height={20} alt="" />
         </Button>
         <Button className="flex-grow" type="submit">

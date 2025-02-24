@@ -122,7 +122,10 @@ export default async function Page({
                 </Link>
               )}
               {!user && (
-                <Link href={"/auth/registration"}>
+                <Link
+                  href={"/auth/registration"}
+                  data-umami-event="prod-create-own-profile"
+                >
                   <Button className="flex items-center gap-2">
                     Build your own referral profile!
                     <Image
@@ -140,6 +143,7 @@ export default async function Page({
         <Link
           href={"/"}
           className="inline-block h-[100px] text-center text-lg font-medium xs:h-[80px]"
+          data-umami-event="prod-created-with-friendscodes"
         >
           Created with{" "}
           <span className="bg-gradient-to-r from-[#FF00B2] to-[#D900FF] bg-clip-text text-lg font-semibold leading-normal text-transparent">

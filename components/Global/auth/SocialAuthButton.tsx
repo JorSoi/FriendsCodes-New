@@ -29,6 +29,8 @@ function SocialAuthButton({
         className,
       )}
       onClick={handleClick}
+      data-umami-event={"auth-social"}
+      data-umami-event-via={provider}
     >
       <Image
         src={`/company-logos/${provider}.svg`}

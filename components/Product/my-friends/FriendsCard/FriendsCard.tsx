@@ -121,6 +121,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
                 variant={"ghost"}
                 className="flex size-10 items-center justify-center p-[unset]"
                 onClick={deleteFriend}
+                data-umami-event="prod-friend-deletion"
               >
                 <Image
                   src={"icons/remove-user.svg"}

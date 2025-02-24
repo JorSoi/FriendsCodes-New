@@ -51,6 +51,7 @@ function Login() {
     if (user) {
       //if user is coming from invitation link, navigate them straight to /friends page to see their new friend.
       router.push( invitation ? "/friends" : "/home")
+      window.umami.identify({ email: user.email, user_id: user.id }) //attach user data to visitor session in analytics
     } else {
       actions.setFieldError("password", error?.message);
       setIsLoading(false);
@@ -170,7 +171,7 @@ function Login() {
           </Link>
         </div>
 
-        <Button type="submit" className="mt-7 w-full" loading={isLoading}>
+        <Button type="submit" className="mt-7 w-full" loading={isLoading}  data-umami-event="auth-login">
           Login
         </Button>
       </Form>

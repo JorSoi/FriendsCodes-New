@@ -13,7 +13,7 @@ import { useClipboard } from "@/hooks/useClipboard";
 import { shareSocials } from "@/lib/shareSocials";
 import { cn } from "@/utils/variants";
 
-function ShareProfile({className} : {className? : string}) {
+function ShareProfile({ className }: { className?: string }) {
   const { modalRef, closeModal, openModal } = useModal();
   const [writeText, hasCopied] = useClipboard();
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
@@ -31,10 +31,15 @@ function ShareProfile({className} : {className? : string}) {
   }, []);
 
   return (
-    <div className={cn("absolute bottom-0 inset-x-0 h-[100px] xs:h-[80px] flex justify-center items-center", className)}>
+    <div
+      className={cn(
+        "absolute inset-x-0 bottom-0 flex h-[100px] items-center justify-center xs:h-[80px]",
+        className,
+      )}
+    >
       <Button
         onClick={openModal}
-        className=" flex items-center justify-center gap-2 xs:w-[94%]"
+        className="flex items-center justify-center gap-2 xs:w-[94%]"
       >
         <Image
           src={"/icons/share.svg"}
@@ -71,6 +76,9 @@ function ShareProfile({className} : {className? : string}) {
                     size={"sm"}
                     className="flex h-[50px] w-full items-center justify-center"
                     onClick={() => window.open(href, "_blank")}
+                    data-umami-event="prod-share-profile"
+                    data-umami-event-via={company}
+                    data-umami-profile-name={`/${profile?.user_name}`}
                   >
                     <Image
                       src={`/company-logos/${company}.svg`}
@@ -92,6 +100,9 @@ function ShareProfile({className} : {className? : string}) {
             />
             <Button
               className="mt-4 w-full"
+              data-umami-event="prod-share-profile"
+              data-umami-event-via="link"
+              data-umami-event-profile-name={`/${profile?.user_name}`}
               onClick={async () =>
                 writeText(`${window.origin}/${profile?.user_name}`)
               }
