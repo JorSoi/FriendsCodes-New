@@ -134,7 +134,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
           </div>
           <div></div>
         </div>
-        <CodeContainer variant={hasUserCodes ? "block" : "center"}>
+        <CodeContainer variant={hasUserCodes ? "block" : "center"} className="max-h-[70svh] overflow-y-auto">
           {hasUserCodes ? (
             <CodeList
               userCodes={friend.user_codes}
