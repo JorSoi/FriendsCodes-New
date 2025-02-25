@@ -121,6 +121,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
                 variant={"ghost"}
                 className="flex size-10 items-center justify-center p-[unset]"
                 onClick={deleteFriend}
+                data-umami-event="prod-friend-deletion"
               >
                 <Image
                   src={"icons/remove-user.svg"}
@@ -133,7 +134,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
           </div>
           <div></div>
         </div>
-        <CodeContainer variant={hasUserCodes ? "block" : "center"}>
+        <CodeContainer variant={hasUserCodes ? "block" : "center"} className="max-h-[70svh] overflow-y-auto">
           {hasUserCodes ? (
             <CodeList
               userCodes={friend.user_codes}

@@ -78,6 +78,7 @@ function RegistrationForm() {
     });
     if (user) {
       setIsLoading(false);
+      window.umami.identify({ email: user.email, user_id: user.id }) //attach user data to visitor session in analytics
       //if user is coming from invitation link, navigate them straight to /friends page to see their new friend.
       router.push(invitation ? "/friends" : "/home");
     } else {
@@ -202,7 +203,7 @@ function RegistrationForm() {
           </Link>
         </div>
 
-        <Button type="submit" className="mt-7 w-full" loading={isLoading}>
+        <Button type="submit" className="mt-7 w-full" loading={isLoading} data-umami-event="auth-registration">
           Register
         </Button>
       </Form>

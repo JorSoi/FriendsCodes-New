@@ -1,3 +1,4 @@
+"use client";
 import { twMerge } from "tailwind-merge";
 
 function HoverMenuItem({
@@ -13,7 +14,7 @@ function HoverMenuItem({
     <div
       onClick={onClick}
       className={twMerge(
-        "cursor-pointer rounded-xl py-3 px-3 transition-colors hover:bg-[#ffffff16] ",
+        "cursor-pointer rounded-xl px-3 py-3 transition-colors hover:bg-[#ffffff16]",
         className,
       )}
     >

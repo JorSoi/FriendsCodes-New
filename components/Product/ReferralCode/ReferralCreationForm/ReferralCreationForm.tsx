@@ -90,7 +90,7 @@ function ReferralCreationForm() {
             .matches(/^(?!https?:\/\/).*$/, "Company name cannot be a URL")
             .min(2, "Name is too short")
             .max(30, "Name is too long")
-            .required("Store is required"),
+            .required("Company is required"),
           referralCode: Yup.string().required("Referral code or link required"),
         })}
       >
@@ -110,10 +110,10 @@ function ReferralCreationForm() {
             </div>
             <div className="text-left">
               <p className="max-w-[300px] truncate text-[17px] font-semibold text-white">
-                {company ? company.name : "Select a Store"}
+                {company ? company.name : "Select a Company"}
               </p>
               <p className="text-[14px] text-[#9496A1]">
-                Choose the store for your referral code.
+                Choose the company for your referral code.
               </p>
             </div>
           </div>
@@ -129,7 +129,7 @@ function ReferralCreationForm() {
               type="text"
               name="company"
               className="cursor-pointer border-[1.5px] border-[#5c6484] pr-9 text-white focus:placeholder-[#73727E]"
-              placeholder="Select store name"
+              placeholder="Select company name"
               autoComplete="off"
               readOnly
               onClick={openModal}
@@ -166,7 +166,11 @@ function ReferralCreationForm() {
             autoComplete="off"
           />
         </div>
-        <Button type="submit" className="mt-5 w-full">
+        <Button
+          type="submit"
+          className="mt-5 w-full"
+          data-umami-event="prod-referral-creation"
+        >
           Add your new referral
         </Button>
         <Modal

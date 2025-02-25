@@ -36,30 +36,30 @@ export type Database = {
     Tables: {
       companies: {
         Row: {
-          benefits: string | null
           company_url: string | null
           created_at: string
+          description: string | null
           id: number
           logo_url: string | null
-          name: string | null
+          name: string
           status: Database["public"]["Enums"]["company_status"]
         }
         Insert: {
-          benefits?: string | null
           company_url?: string | null
           created_at?: string
+          description?: string | null
           id?: number
           logo_url?: string | null
-          name?: string | null
+          name: string
           status?: Database["public"]["Enums"]["company_status"]
         }
         Update: {
-          benefits?: string | null
           company_url?: string | null
           created_at?: string
+          description?: string | null
           id?: number
           logo_url?: string | null
-          name?: string | null
+          name?: string
           status?: Database["public"]["Enums"]["company_status"]
         }
         Relationships: []
@@ -158,6 +158,7 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          created_at: string
           email: string | null
           id: string
           updated_at: string | null
@@ -166,6 +167,7 @@ export type Database = {
         }
         Insert: {
           avatar_url?: string | null
+          created_at?: string
           email?: string | null
           id: string
           updated_at?: string | null
@@ -174,6 +176,7 @@ export type Database = {
         }
         Update: {
           avatar_url?: string | null
+          created_at?: string
           email?: string | null
           id?: string
           updated_at?: string | null

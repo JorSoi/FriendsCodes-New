@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-
+import Fuse from "fuse.js";
 import { useEffect, useState, useContext, useMemo } from "react";
 import { Tables } from "@/types/database.types";
 import { createClient } from "@/utils/supabase/client";
@@ -40,10 +40,18 @@ function CompanySearchList({
 
   // Filters data based on the complete dataset (companyList), whenever searchValue changes
   const filteredCompanies = useMemo(() => {
-    if (!searchValue) return companyList;
-    return companyList.filter((company) =>
-      company.name?.toLowerCase().includes(searchValue.toLowerCase()),
-    );
+    if (!searchValue) {
+      return companyList;
+    } else {
+      const fuse = new Fuse(companyList, {
+        ignoreDiacritics: true,
+        threshold: 0.35,
+        includeScore: false,
+        includeMatches: false,
+        keys: ["name"],
+      });
+      return fuse.search(searchValue).map(({item}) => item);
+    }
   }, [companyList, searchValue]);
 
   const selectCompany = (company: Tables<"companies">) => {
@@ -60,7 +68,7 @@ function CompanySearchList({
             key={company.id}
             onClick={() => selectCompany(company)}
             title={company.name}
-            description={`Benefits: ${company.benefits ?? "10% discount on next signup"}`}
+            description={company.description}
             imageSrc={company.logo_url}
           />
         );
@@ -80,7 +88,7 @@ function CompanySearchList({
                   created_at: "",
                   name: searchValue,
                   logo_url: null,
-                  benefits: null,
+                  description: null,
                   status: "reviewing",
                   company_url: "",
                 })

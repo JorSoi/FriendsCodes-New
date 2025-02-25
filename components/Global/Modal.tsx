@@ -10,16 +10,18 @@ function Modal({
   className,
   ref,
   closeModal,
+  open = false, //For debugging purposes. Sets modal to automatically open
 }: {
   children: React.ReactNode;
   className?: string;
   ref: RefObject<HTMLDivElement | null>;
   closeModal: () => void;
+  open?: boolean
 }) {
   return (
     <ModalContext.Provider value={closeModal}>
       <div
-        data-open="false"
+        data-open={open ? "true" : "false"}
         ref={ref}
         className={cn(
           "group fixed inset-0 z-[10000] flex cursor-auto items-center justify-center overflow-y-auto bg-[#09071cc6] backdrop-blur-[4px] transition-all duration-150 sm:items-start",
@@ -33,7 +35,7 @@ function Modal({
         }}
       >
         <div
-          data-open="false"
+          data-open={open ? "true" : "false"}
           onClick={(e) => e.stopPropagation()} //prevents backdrop from triggering animation even when clicking on its child.
           className={cn(
             "z-[10001] mx-[3%] -mb-[40px] duration-300",

@@ -36,6 +36,8 @@ function EmptyState() {
             type="button"
             variant={"secondary"}
             className="flex grow-[1] basis-0 justify-center gap-2"
+            data-umami-event="prod-friend-invitation"
+            data-umami-event-via={"link"}
             onClick={async () =>
               writeText(`${window.origin}/${profile?.user_name}`)
             }

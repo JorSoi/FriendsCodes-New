@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <main>
-      <NavBar className="fadeInHero invisible"/>
+      <NavBar className="fadeInHero invisible" />
       <svg
         viewBox="0 0 1379 893"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,8 +45,8 @@ export default function Home() {
               href="/bg-color-gradients.webp"
               x="0"
               y="0"
-              width={'100%'}
-              height={'100%'}
+              width={"100%"}
+              height={"100%"}
               preserveAspectRatio="xMidYMid slice"
             />
           </pattern>
@@ -61,29 +61,37 @@ export default function Home() {
       {/* MARK: Hero Heading Section */}
       <section
         id="hero"
-        className="w-full pt-[190px] xl:pt-[240px] md:pt-[170px] sm:pt-[125px] overflow-x-hidden flex items-center justify-center pb-[100px] lg:pb-[70px]"
+        className="flex w-full items-center justify-center overflow-x-hidden pb-[100px] pt-[190px] xl:pt-[240px] lg:pb-[70px] md:pt-[170px] sm:pt-[125px]"
       >
-        <div className="relative flex w-full max-w-[990px] flex-col items-center justify-center text-center md:w-[550px] mx-[3%]">
-          {visitorName && (
-            <Tag className="mb-4">Hey, {visitorName} ! 👋</Tag>
-          )}
+        <div className="relative mx-[3%] flex w-full max-w-[990px] flex-col items-center justify-center text-center md:w-[550px]">
+          {visitorName && <Tag className="mb-4">Hey, {visitorName} ! 👋</Tag>}
           <h1 className="fadeInHero invisible text-[65px] font-[670] leading-[130%] tracking-[-2%] text-white xl:text-[75px] mlg:max-w-[600px] md:text-[57px] sm:text-[52px] xs:text-[43px]">
             Share Referrals with Friends, Family and the World
           </h1>
           <p className="fadeInHero invisible max-w-[620px] pt-[31px] text-[18px] leading-[156.1%] text-[#A9A6B2] xl:text-[20px] md:max-w-[540px] md:pt-[20px] sm:max-w-[500px] sm:text-[17px] xs:pt-[15px]">
-          The easiest place to share and redeem product referrals with
-          anyone. Collect benefits from 4000+ companies worldwide.
+            The easiest place to share and redeem product referrals with anyone.
+            Collect benefits from 4000+ companies worldwide.
           </p>
           <div className="fadeInHero invisible mt-[52px] flex gap-6 xs:mt-[42px]">
             <Link
               href={`/auth/registration${visitorName ? "?visitor=" + visitorName : ""}`}
             >
-              <Button variant={"primary"} size={"lg"}>
+              <Button
+                variant={"primary"}
+                size={"lg"}
+                data-umami-event="lp-hero-get-started"
+              >
                 Get Started!
               </Button>
             </Link>
-            <Link href={`/${visitorName ? "?visitor=" + visitorName : ""}#how-it-works`}>
-              <Button variant={"secondary"} size={"lg"}>
+            <Link
+              href={`/${visitorName ? "?visitor=" + visitorName : ""}#how-it-works`}
+            >
+              <Button
+                variant={"secondary"}
+                size={"lg"}
+                data-umami-event="lp-hero-how-it-works"
+              >
                 How it works
               </Button>
             </Link>
@@ -318,11 +326,14 @@ export default function Home() {
               your benefits!
             </p>
             <div className="mt-[50px] flex gap-6 xs:mt-[42px] xs:w-[90%] xs:flex-col">
-              <Link href={`/auth/registration${visitorName ? "?visitor=" + visitorName : ""}`}>
+              <Link
+                href={`/auth/registration${visitorName ? "?visitor=" + visitorName : ""}`}
+              >
                 <Button
                   variant={"primary"}
                   size={"md"}
                   className="flex items-center justify-center gap-3 xs:w-full"
+                  data-umami-event="lp-footer-get-started"
                 >
                   Let&apos;s get started {visitorName}!
                   <Image

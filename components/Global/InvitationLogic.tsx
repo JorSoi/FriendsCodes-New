@@ -16,7 +16,7 @@ function InvitationLogic({ children }: { children: React.ReactNode }) {
 
       if (invitation) {
         const supabase = createClient();
-        const { data, error } = await supabase
+        const { data : friend, error } = await supabase
           .from("profiles")
           .select("id")
           .ilike("user_name", invitation)
@@ -25,7 +25,7 @@ function InvitationLogic({ children }: { children: React.ReactNode }) {
         if (!error && user) {
           const { error: insertError } = await supabase
             .from("friends")
-            .insert({ user_id: user.id, friend_id: data.id });
+            .insert({ user_id: user.id, friend_id: friend.id });
           if (!insertError) {
             router.refresh();
           }

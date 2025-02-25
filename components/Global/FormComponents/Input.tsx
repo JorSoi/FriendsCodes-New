@@ -1,6 +1,6 @@
 "use client";
 
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, Ref } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 import { useField } from "formik";
@@ -12,7 +12,7 @@ const inputVariants = cva(
       variant: {
         outline:
           "bg-transparent border-1 border-[#262537]  focus:placeholder-[#39374f] outline-[#ffffff17] focus:border-[#9291b7] focus:outline-none focus:shadow-[0px_0px_0px_3px_#ffffff20]",
-          ghost: "bg-transparent outline-none ",
+        ghost: "bg-transparent outline-none ",
         error:
           "!border-red-500 border-1 bg-transparent outline-none shadow-[0px_0px_0px_3px_#FF000050]",
       },
@@ -20,7 +20,7 @@ const inputVariants = cva(
         sm: "",
         md: "",
         lg: "",
-        full: "max-w-none"
+        full: "max-w-none",
       },
     },
     defaultVariants: {
@@ -35,10 +35,10 @@ interface InputProps
     VariantProps<typeof inputVariants> {
   label?: string; //Only populate when label wanted
   name: string; // Critical: Formik needs name attr to link input to form state managed by formik.
+  ref?: Ref<HTMLInputElement>;
 }
 
-function Input({ className, size, variant, label, ...props }: InputProps) {
-  
+function Input({ className, size, variant, label, ref, ...props }: InputProps) {
   const [field, meta] = useField(props);
   const isError = meta.touched && meta.error; // Condition for error
 
@@ -47,12 +47,13 @@ function Input({ className, size, variant, label, ...props }: InputProps) {
       {label && (
         <label
           htmlFor={props.type}
-          className="mb-1 block font-figtree text-[14px] font-medium text-left"
+          className="mb-1 block text-left font-figtree text-[14px] font-medium"
         >
           {label}
         </label>
       )}
       <input
+        ref={ref}
         id={props.type}
         {...field}
         {...props}
@@ -62,7 +63,9 @@ function Input({ className, size, variant, label, ...props }: InputProps) {
         )}
       />
       {isError && (
-        <div className="mt-1 text-[12px] text-red-500 text-left">{meta.error}</div>
+        <div className="mt-1 text-left text-[12px] text-red-500">
+          {meta.error}
+        </div>
       )}
     </div>
   );
