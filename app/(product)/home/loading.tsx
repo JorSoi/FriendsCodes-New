@@ -8,8 +8,8 @@ async function Page() {
       <Tab />
       <CodeContainer>
       <div className="grid grid-cols-4 gap-3 lg:grid-cols-4 md:grid-cols-3 md:gap-2 sm:grid-cols-2">
-      {[1,2,3,4,5,6,7,8,9].map(() => {
-        return <div className="w-full h-[120px] bg-[#ffffff10] animate-pulse rounded-lg"></div>
+      {[1,2,3,4,5,6,7,8,9].map((e) => {
+        return <div key={e} className="w-full h-[120px] bg-[#ffffff10] animate-pulse rounded-lg"></div>
       })}
     </div>
       </CodeContainer>
