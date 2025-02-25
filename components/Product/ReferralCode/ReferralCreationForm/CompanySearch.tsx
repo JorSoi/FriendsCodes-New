@@ -24,7 +24,7 @@ function CompanySearch({
           <Input
             name="searchValue"
             type="search"
-            placeholder="Search store you want to add"
+            placeholder="Search company you want to refer"
             size={"full"}
             className="font-figtreea pl-8 text-base"
             variant={"ghost"}
