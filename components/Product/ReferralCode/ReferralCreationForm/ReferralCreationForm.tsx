@@ -1,43 +1,68 @@
-import Image from "next/image";
-import { useState } from "react";
-import Input from "../../../Global/FormComponents/Input";
-import Form from "../../../Global/FormComponents/Form";
-import Button from "../../../Global/Button";
-import { Tables } from "@/types/database.types";
-import * as Yup from "yup";
-import { createClient } from "@/utils/supabase/client";
-import { FormikHelpers, FormikValues } from "formik";
-import { getClientProfile } from "@/utils/getClientProfile";
-import { useRouter } from "next/navigation";
-import Modal from "@/components/Global/Modal";
+"use client";
+
+import { useState, useEffect } from "react";
 import { useModal } from "@/hooks/useModal";
-import CompanySearch from "./CompanySearch";
-import CompanyLogo from "../../CompanyLogo";
 import { useContext } from "react";
 import { FireWorkContext } from "@/components/Global/FireWorkContext";
 import { ModalContext } from "@/components/Global/Modal";
+import Image from "next/image";
+import Input from "../../../Global/FormComponents/Input";
+import Form from "../../../Global/FormComponents/Form";
+import Button from "../../../Global/Button";
+import Modal from "@/components/Global/Modal";
+import CompanySearch from "./CompanySearch";
+import CompanyLogo from "../../CompanyLogo";
+import * as Yup from "yup";
+import { createClient } from "@/utils/supabase/client";
+import { Tables } from "@/types/database.types";
+import { FormikHelpers, FormikValues } from "formik";
+import { getClientProfile } from "@/utils/getClientProfile";
+import { useRouter } from "next/navigation";
 
 function ReferralCreationForm() {
-  const [company, setCompany] = useState<Tables<"companies"> | null>(null);
+  const [companyList, setCompanyList] = useState<Tables<"companies">[]>([]);
+  const [selectedCompany, setSelectedCompany] =
+    useState<Tables<"companies"> | null>(null);
   const { openModal, closeModal: closeSearchModal, ...modalProps } = useModal();
   const triggerFireWork = useContext(FireWorkContext);
   const closeModal = useContext(ModalContext);
   const router = useRouter();
 
+  useEffect(() => {
+    const getCompanies = async () => {
+      const supabase = createClient();
+      const { data, error } = await supabase
+        .from("companies")
+        .select()
+        .neq("status", "reviewing")
+        .neq("status", "private");
+
+      if (!error) {
+        setCompanyList(data);
+      } else {
+        console.log(error);
+      }
+    };
+
+    getCompanies();
+  }, []);
+
   const handleSubmit = async (
     values: FormikValues,
-    { resetForm, setFieldError }: FormikHelpers<FormikValues>,
+    { setFieldError }: FormikHelpers<FormikValues>,
   ) => {
     const supabase = createClient();
     const { user } = await getClientProfile();
 
-    const checkIfCompanyExists = async (company: Tables<"companies">) => {
-      if (company.id == 0) {
+    const checkIfCompanyExists = async (
+      selectedCompany: Tables<"companies">,
+    ) => {
+      if (selectedCompany.id == 0) {
         //New company creations via the company search are labeled with an id of 0. This symbolizes that the company is not existant yet and must be created prior to referencing it in a user_code.
         const { data, error } = await supabase
           .from("companies")
           .insert({
-            name: company.name,
+            name: selectedCompany.name,
           })
           .select()
           .single();
@@ -48,16 +73,16 @@ function ReferralCreationForm() {
           console.log(error);
         }
       } else {
-        createUserCode(company);
+        createUserCode(selectedCompany);
       }
     };
 
-    const createUserCode = async (company: Tables<"companies">) => {
+    const createUserCode = async (selectedCompany: Tables<"companies">) => {
       if (!user) return;
       const { error } = await supabase
         .from("user_codes")
         .insert({
-          company_id: company.id,
+          company_id: selectedCompany.id,
           referral_value: values.referralCode,
           user_id: user?.id,
         })
@@ -66,17 +91,15 @@ function ReferralCreationForm() {
         router.refresh();
         closeModal?.();
         triggerFireWork?.();
-        resetForm();
-        setCompany(null);
       } else {
         console.log(error);
         setFieldError("company", "Couldn't add referral to profile!");
       }
     };
 
-    if (company) {
+    if (selectedCompany) {
       console.log("state not empty, check if company exists now!");
-      checkIfCompanyExists(company);
+      checkIfCompanyExists(selectedCompany);
     }
   };
 
@@ -97,8 +120,8 @@ function ReferralCreationForm() {
         <div className="rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
           <div className="mb-3 flex items-center gap-4">
             <div className="flex size-14 items-center justify-center rounded-2xl border-1 border-[#ffffff1b] bg-[#47476a] p-1">
-              {company ? (
-                <CompanyLogo src={company.logo_url} size={"md"} />
+              {selectedCompany ? (
+                <CompanyLogo src={selectedCompany.logo_url} size={"md"} />
               ) : (
                 <Image
                   src={"/icons/select-store.svg"}
@@ -110,7 +133,7 @@ function ReferralCreationForm() {
             </div>
             <div className="text-left">
               <p className="max-w-[300px] truncate text-[17px] font-semibold text-white">
-                {company ? company.name : "Select a Company"}
+                {selectedCompany ? selectedCompany.name : "Select a Company"}
               </p>
               <p className="text-[14px] text-[#9496A1]">
                 Choose the company for your referral code.
@@ -133,6 +156,7 @@ function ReferralCreationForm() {
               autoComplete="off"
               readOnly
               onClick={openModal}
+              onBlur={() => {}}
             />
           </div>
         </div>
@@ -178,7 +202,10 @@ function ReferralCreationForm() {
           closeModal={closeSearchModal}
           className="w-full max-w-[700px] sm:m-0"
         >
-          <CompanySearch setCompany={setCompany} />
+          <CompanySearch
+            setSelectedCompany={setSelectedCompany}
+            companyList={companyList}
+          />
         </Modal>
       </Form>
     </>

@@ -10,9 +10,11 @@ import { ModalContext } from "@/components/Global/Modal";
 import { useContext } from "react";
 
 function CompanySearch({
-  setCompany,
+  setSelectedCompany,
+  companyList,
 }: {
-  setCompany: Dispatch<SetStateAction<Tables<"companies"> | null>>;
+  setSelectedCompany: Dispatch<SetStateAction<Tables<"companies"> | null>>;
+  companyList: Tables<"companies">[];
 }) {
   const closeModal = useContext(ModalContext);
 
@@ -50,7 +52,7 @@ function CompanySearch({
           Cancel
         </Button>
       </div>
-      <CompanySearchList setCompany={setCompany} />
+      <CompanySearchList setSelectedCompany={setSelectedCompany} companyList={companyList}/>
     </div>
   );
 }
