@@ -13,7 +13,7 @@ function ReferralCode({
   viewOnly = false,
   ...code
 }: UserCodeWithRelations & { viewOnly?: boolean }) {
-  const { modalRef, openModal, closeModal } = useModal();
+  const { openModal, ...modalProps } = useModal();
   const supabase = createClient();
 
   return (
@@ -50,16 +50,14 @@ function ReferralCode({
 
       {viewOnly ? (
         <Modal
-          ref={modalRef}
-          closeModal={closeModal}
+          {...modalProps}
           className="w-full max-w-[340px]"
         >
           <ReferralViewOnly {...code} />
         </Modal>
       ) : (
         <Modal
-          ref={modalRef}
-          closeModal={closeModal}
+          {...modalProps}
           className="w-full max-w-[400px]"
         >
           <ReferralUpdateForm {...code} />

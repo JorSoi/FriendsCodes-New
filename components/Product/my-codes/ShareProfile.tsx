@@ -14,13 +14,10 @@ import { shareSocials } from "@/lib/shareSocials";
 import { cn } from "@/utils/variants";
 
 function ShareProfile({ className }: { className?: string }) {
-  const { modalRef, closeModal, openModal } = useModal();
+  const { openModal, ...modalProps } = useModal();
   const [writeText, hasCopied] = useClipboard();
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
-  const socials = shareSocials(
-    "Take a look at my referral codes",
-    `${window.origin}/${profile?.user_name}`,
-  );
+  const socials = shareSocials("Take a look at my referral codes",`${window.origin}/${profile?.user_name}`);
 
   useEffect(() => {
     async function setProfileState() {
@@ -50,7 +47,7 @@ function ShareProfile({ className }: { className?: string }) {
         />
         Share my profile
       </Button>
-      <Modal ref={modalRef} closeModal={closeModal} className="max-w-[400px]">
+      <Modal {...modalProps} className="max-w-[400px]">
         <div className="w-full rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
           <div className="flex flex-col items-center justify-center gap-2 rounded-md bg-[#0B081D] bg-[url(/auth-bg-decoration.webp)] bg-cover bg-[center_bottom_0px] p-5 text-center">
             <Image src={"/logo.png"} width={50} height={50} alt="" />

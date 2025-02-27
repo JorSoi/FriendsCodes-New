@@ -9,7 +9,7 @@ import FriendCreationForm from "./my-friends/FriendCreationForm";
 import { cn } from "@/utils/variants";
 
 function AddItemButton({ className }: { className?: string }) {
-  const { openModal, closeModal, modalRef } = useModal();
+  const { openModal, ...modalProps } = useModal();
   const pathName = usePathname();
 
   return (
@@ -30,8 +30,7 @@ function AddItemButton({ className }: { className?: string }) {
         />
       </div>
       <Modal
-        closeModal={closeModal}
-        ref={modalRef}
+        {...modalProps}
         className="w-full max-w-[400px]"
       >
         {pathName == "/home" ? (

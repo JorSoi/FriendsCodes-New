@@ -13,7 +13,7 @@ import { Tables } from "@/types/database.types";
 function EmptyState() {
   const [writeText, hasCopied] = useClipboard();
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
-  const { closeModal, openModal, modalRef } = useModal();
+  const { openModal, ...modalProps } = useModal();
 
   useEffect(() => {
     async function setProfileState() {
@@ -92,8 +92,7 @@ function EmptyState() {
         </div>
       </div>
       <Modal
-        ref={modalRef}
-        closeModal={closeModal}
+        {...modalProps}
         className="w-full max-w-[400px]"
       >
         <FriendCreationForm />
