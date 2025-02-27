@@ -19,7 +19,7 @@ import { ModalContext } from "@/components/Global/Modal";
 
 function ReferralCreationForm() {
   const [company, setCompany] = useState<Tables<"companies"> | null>(null);
-  const { openModal, closeModal: closeSearchModal, modalRef } = useModal();
+  const { openModal, closeModal: closeSearchModal, ...modalProps } = useModal();
   const triggerFireWork = useContext(FireWorkContext);
   const closeModal = useContext(ModalContext);
   const router = useRouter();
@@ -174,7 +174,7 @@ function ReferralCreationForm() {
           Add your new referral
         </Button>
         <Modal
-          ref={modalRef}
+          {...modalProps}
           closeModal={closeSearchModal}
           className="w-full max-w-[700px] sm:m-0"
         >

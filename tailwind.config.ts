@@ -45,6 +45,49 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        openModal:{
+          "from" : {
+            marginBottom: "-40px",
+          },
+          "to": {
+            marginBottom: "0px",
+          },
+        },
+        closeModal:{
+          "from" : {
+            marginBottom: "0px",
+            opacity: "1"
+          },
+          "to": {
+            marginBottom: "-40px",
+            opacity: "0"
+          },
+        },
+        fadeInModal:{
+          "from" : {
+            opacity: "0",
+          },
+          "to": {
+            opacity: "1",
+          },
+        },
+        fadeOutModal:{
+          "from" : {
+            opacity: "1",
+          },
+          "to": {
+            opacity: "0",
+          },
+        },
+        
+      },
+      animation: {
+        'openModal': 'openModal 0.3s ease forwards',
+        'closeModal': 'closeModal 0.3s ease forwards',
+        'fadeInModal': 'fadeInModal 0.3s ease forwards',
+        'fadeOutModal': 'fadeOutModal 0.3s ease forwards',
+      }
     },
   },
   plugins: [],

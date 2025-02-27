@@ -17,7 +17,7 @@ import EmptyState from "./EmptyState";
 
 function FriendsCard({ ...friend }: FriendWithCodes) {
   const router = useRouter();
-  const { openModal, closeModal, modalRef } = useModal();
+  const { openModal, ...modalProps } = useModal();
   const isNew = getTimeAgo(friend.created_at).match(/minute|now/);
   const searchParam = useSearchParams().get("search");
   const [searchValue, setSearchValue] = useState<string | null>(null);
@@ -40,7 +40,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
       .eq("friend_id", friend.profile.id);
     if (!error) {
       router.refresh();
-      closeModal();
+      modalProps.closeModal();
     } else {
       console.log(error);
     }
@@ -88,13 +88,12 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
         </p>
       </div>
       <Modal
-        ref={modalRef}
-        closeModal={closeModal}
+       {...modalProps}
         className="flex w-full max-w-[850px] flex-col items-center gap-4"
       >
         <div className="w-full max-w-[480px] rounded-full border-1 border-[#ffffff10] bg-[#21203d] p-2 pr-4 xs:px-6">
           <div className="flex items-center justify-between gap-3">
-            <div className="flex gap-4" onClick={closeModal}>
+            <div className="flex gap-4" onClick={modalProps.closeModal}>
               <div className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-[#ffffff10] xs:hidden [&_img]:-translate-x-px [&_img]:rotate-180">
                 <Image src={"icons/chevron.svg"} width={7} height={7} alt="" />
               </div>

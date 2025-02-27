@@ -1,33 +1,31 @@
 "use client";
 
 import { cn } from "@/utils/variants";
-import { RefObject } from "react";
 import { createContext } from "react";
 export const ModalContext = createContext<(() => void) | null>(null);
 
 function Modal({
   children,
   className,
-  ref,
   closeModal,
-  open = false, //For debugging purposes. Sets modal to automatically open
+  modalState,
 }: {
   children: React.ReactNode;
   className?: string;
-  ref: RefObject<HTMLDivElement | null>;
   closeModal: () => void;
-  open?: boolean
+  modalState?: "open" | "closing" | "closed";
 }) {
+  if (modalState === "closed") return null;
   return (
     <ModalContext.Provider value={closeModal}>
       <div
-        data-open={open ? "true" : "false"}
-        ref={ref}
         className={cn(
-          "group fixed inset-0 z-[10000] flex cursor-auto items-center justify-center overflow-y-auto bg-[#09071cc6] backdrop-blur-[4px] transition-all duration-150 sm:items-start",
-          "data-[open=true]:visible data-[open=true]:opacity-100",
-          "data-[open=transition]:opacity-0",
-          "data-[open=false]:invisible data-[open=false]:opacity-0",
+          "group fixed inset-0 z-[10000] flex cursor-auto items-center justify-center overflow-y-auto bg-[#09071cc6] backdrop-blur-[4px] transition-all duration-700 sm:items-start",
+          {
+            "animate-fadeInModal": modalState === "open",
+            "animate-fadeOutModal pointer-events-none":
+              modalState === "closing",
+          },
         )}
         onClick={(e) => {
           e.stopPropagation(); //to ensure that clicks on modal element dont bubble down to parent
@@ -35,11 +33,12 @@ function Modal({
         }}
       >
         <div
-          data-open={open ? "true" : "false"}
           onClick={(e) => e.stopPropagation()} //prevents backdrop from triggering animation even when clicking on its child.
           className={cn(
-            "z-[10001] mx-[3%] -mb-[40px] duration-300",
-            "group-data-[open=true]:mb-0 sm:my-[15svh]",
+            {
+              "animate-openModal": modalState === "open",
+              "animate-closeModal": modalState === "closing",
+            },
             className,
           )}
         >
