@@ -83,10 +83,10 @@ export default {
         
       },
       animation: {
-        'openModal': 'openModal 0.3s ease forwards',
-        'closeModal': 'closeModal 0.3s ease forwards',
-        'fadeInModal': 'fadeInModal 0.3s ease forwards',
-        'fadeOutModal': 'fadeOutModal 0.3s ease forwards',
+        'openModal': 'openModal 0.2s ease forwards',
+        'closeModal': 'closeModal 0.2s ease forwards',
+        'fadeInModal': 'fadeInModal 0.2s ease forwards',
+        'fadeOutModal': 'fadeOutModal 0.2s ease forwards',
       }
     },
   },
