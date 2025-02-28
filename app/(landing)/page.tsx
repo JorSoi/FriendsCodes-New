@@ -81,7 +81,7 @@ export default function Home() {
                 size={"lg"}
                 data-umami-event="lp-hero-get-started"
               >
-                Get Started!
+                Share my Codes!
               </Button>
             </Link>
             <Link
@@ -335,7 +335,7 @@ export default function Home() {
                   className="flex items-center justify-center gap-3 xs:w-full"
                   data-umami-event="lp-footer-get-started"
                 >
-                  Let&apos;s get started {visitorName}!
+                  Share your codes, {visitorName}!
                   <Image
                     src={"/icons/chevron.svg"}
                     width={7}
