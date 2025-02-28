@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     "referral codes",
     "refer friend",
     "invite friend",
+    "share discount",
     "Find referral codes",
     "invite code",
     "referral rewards",

@@ -1,42 +1,23 @@
 import { useFormikContext } from "formik";
 import Fuse from "fuse.js";
-import { useEffect, useState, useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { Tables } from "@/types/database.types";
-import { createClient } from "@/utils/supabase/client";
 import CompanySearchItem from "./CompanySearchItem";
 import { Dispatch, SetStateAction } from "react";
 import { ModalContext } from "@/components/Global/Modal";
 
 function CompanySearchList({
-  setCompany,
+  setSelectedCompany,
+  companyList,
 }: {
-  setCompany: Dispatch<SetStateAction<Tables<"companies"> | null>>;
+  setSelectedCompany: Dispatch<SetStateAction<Tables<"companies"> | null>>;
+  companyList: Tables<"companies">[];
 }) {
   const {
     values: { searchValue },
   }: { values: { searchValue: string } } = useFormikContext();
-  const [companyList, setCompanyList] = useState<Tables<"companies">[]>([]);
   const closeModal = useContext(ModalContext);
   const { setFieldValue } = useFormikContext();
-
-  useEffect(() => {
-    const getCompanies = async () => {
-      const supabase = createClient();
-      const { data, error } = await supabase
-        .from("companies")
-        .select()
-        .neq("status", "reviewing")
-        .neq("status", "private");
-
-      if (!error) {
-        setCompanyList(data);
-      } else {
-        console.log(error);
-      }
-    };
-
-    getCompanies();
-  }, []);
 
   // Filters data based on the complete dataset (companyList), whenever searchValue changes
   const filteredCompanies = useMemo(() => {
@@ -50,12 +31,12 @@ function CompanySearchList({
         includeMatches: false,
         keys: ["name"],
       });
-      return fuse.search(searchValue).map(({item}) => item);
+      return fuse.search(searchValue).map(({ item }) => item);
     }
   }, [companyList, searchValue]);
 
   const selectCompany = (company: Tables<"companies">) => {
-    setCompany(company);
+    setSelectedCompany(company);
     closeModal?.();
     setFieldValue("company", company.name);
   };
@@ -74,6 +55,7 @@ function CompanySearchList({
         );
       })}
       {searchValue &&
+        /\S/.test(searchValue) &&
         !companyList.some(
           (el) => el.name?.toLowerCase() == searchValue.toLowerCase(),
         ) && (
@@ -86,14 +68,14 @@ function CompanySearchList({
                 selectCompany({
                   id: 0,
                   created_at: "",
-                  name: searchValue,
+                  name: searchValue.trim(),
                   logo_url: null,
                   description: null,
                   status: "reviewing",
                   company_url: "",
                 })
               }
-              title={`"${searchValue}"`}
+              title={`"${searchValue.trim()}"`}
               description={"Add the store, we add the details later!"}
             />
           </div>

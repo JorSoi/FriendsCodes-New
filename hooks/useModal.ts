@@ -9,7 +9,7 @@ export const useModal = () => {
     setModalState("closing"); //"closing allows us to run exit animations before the component actually unmounts"
     setTimeout(() => {
       setModalState(prevState => prevState !== "open" ? "closed" : prevState); //Only set modal to closed if it is not being opened again during the closing animation.
-    }, 300);
+    }, 200);
   };
 
   return { openModal, closeModal, modalState };

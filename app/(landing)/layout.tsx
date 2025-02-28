@@ -6,13 +6,14 @@ import image from "@/public/metadata/og-default.png";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "FriendsCodes - Benefit from referral sharing!",
+  title: "FriendsCodes - Share Codes, Earn Rewards Together!",
   description:
     "The easiest place to share and redeem product referrals with anyone. Collect benefits from 4000+ companies worldwide.",
   keywords: [
     "referral codes",
     "refer friend",
     "invite friend",
+    "share discount",
     "Find referral codes",
     "invite code",
     "referral rewards",
