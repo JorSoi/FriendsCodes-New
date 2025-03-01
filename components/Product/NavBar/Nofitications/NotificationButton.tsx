@@ -10,6 +10,7 @@ import { NotificationWithRelations } from "@/types/general.types";
 import HoverMenu from "@/components/Global/HoverMenu/HoverMenu";
 import HoverMenuItem from "@/components/Global/HoverMenu/HoverMenuItem";
 import { getClientProfile } from "@/utils/getClientProfile";
+import EmptyState from "./EmptyState";
 
 function NotificationButton() {
   const [notifications, setNotifications] = useState<
@@ -111,6 +112,7 @@ function NotificationButton() {
             Read All
           </p>
         </div>
+        {notifications.length == 0 && <EmptyState />}
         {notifications.map(({ ...notification }) => {
           return (
             <HoverMenuItem key={notification.id}>
