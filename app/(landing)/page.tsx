@@ -335,7 +335,7 @@ export default function Home() {
                   className="flex items-center justify-center gap-3 xs:w-full"
                   data-umami-event="lp-footer-get-started"
                 >
-                  Share your codes, {visitorName}!
+                  Share your codes{visitorName ? ", " + visitorName : null}!
                   <Image
                     src={"/icons/chevron.svg"}
                     width={7}
