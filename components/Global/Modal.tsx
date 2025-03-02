@@ -35,6 +35,7 @@ function Modal({
         <div
           onClick={(e) => e.stopPropagation()} //prevents backdrop from triggering animation even when clicking on its child.
           className={cn(
+            "mx-[3%] sm:my-[15svh]",
             {
               "animate-openModal": modalState === "open",
               "animate-closeModal": modalState === "closing",
