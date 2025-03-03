@@ -1,4 +1,4 @@
-create extension if not exists "pg_jsonschema" with schema "public" version '0.3.3';
+create extension if not exists "pg_jsonschema" with schema "public";
 
 alter table "public"."notifications" add column "used_referral" bigint;
 
