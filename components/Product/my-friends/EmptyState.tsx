@@ -39,7 +39,7 @@ function EmptyState() {
             data-umami-event="prod-friend-invitation"
             data-umami-event-via={"link"}
             onClick={async () =>
-              writeText(`${window.origin}/${profile?.user_name}`)
+              writeText(`${window.origin}/invitation?friend=${profile?.user_name}`)
             }
           >
             <Image src={"/icons/link.svg"} width={20} height={20} alt="" />
