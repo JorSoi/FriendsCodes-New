@@ -19,6 +19,14 @@ function PasswordResetForm() {
     values: FormikValues,
     { setFieldError, resetForm }: FormikHelpers<FormikValues>,
   ) => {
+
+    //Check if email actually exists first
+    const {data : emailExists} = await supabase.from("profiles").select().eq("email", values.email).maybeSingle();
+    if(!emailExists) {
+      setFieldError("email", "Couldn't find this email") 
+      return;
+    }
+
     const { error } = await supabase.auth.resetPasswordForEmail(values.email, {
       redirectTo: `${window.origin}/auth/change-password`,
     });
