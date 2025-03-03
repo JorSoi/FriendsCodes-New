@@ -8,6 +8,7 @@ import InvitationLogic from "@/components/Global/InvitationLogic";
 import FireWorkLogic from "@/components/Global/FireWorkContext";
 import image from "@/public/metadata/og-default.png";
 import Script from "next/script";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: "FriendsCodes Dashboard",
@@ -70,6 +71,7 @@ export default async function RootLayout({
           data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           strategy="afterInteractive"
         />
+        <SpeedInsights />
       </body>
     </html>
   );

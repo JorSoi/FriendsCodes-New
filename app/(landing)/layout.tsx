@@ -3,6 +3,7 @@ import { figtree, inter } from "@/lib/fonts";
 import "@/app/globals.css";
 import { Suspense } from "react";
 import image from "@/public/metadata/og-default.png";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -56,6 +57,7 @@ export default function RootLayout({
           data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           strategy="afterInteractive"
         />
+        <SpeedInsights />
       </body>
     </html>
   );

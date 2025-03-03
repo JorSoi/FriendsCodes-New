@@ -90,7 +90,7 @@ export default async function Page({
         >
           {profileExists && (
             <div className="mb-5 flex w-full flex-col items-center justify-center text-center">
-              <h1 className="pt-2 text-[1.7rem] font-bold md:text-[1.5rem]">
+              <h1 className="pt-2 text-[1.7rem] font-bold md:text-[1.5rem] text-white">
                 {profileName}&apos;s referral profile 🎁 🎉
               </h1>
               <p className="mt-1 max-w-[450px] text-[15px] text-[#a1a3ae] md:hidden">
@@ -147,7 +147,7 @@ export default async function Page({
         >
           Created with{" "}
           <span className="bg-gradient-to-r from-[#FF00B2] to-[#D900FF] bg-clip-text text-lg font-semibold leading-normal text-transparent">
-            FriendsCodes.de
+            FriendsCodes.app
           </span>
         </Link>
       </div>

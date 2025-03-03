@@ -20,13 +20,16 @@ function NotificationButton() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const handleReadAll = async () => {
+    const { user } = await getClientProfile();
     const supabase = createClient();
 
+    if (!user) return;
     // Update all notifications to read
     const { error } = await supabase
       .from("notifications")
       .update({ marked_as_read: true })
-      .eq("marked_as_read", false); // Only update unread ones
+      .eq("marked_as_read", false)
+      .eq("recipient", user.id); // Only update unread ones
 
     if (!error) {
       // Optimistically update local state
@@ -105,12 +108,20 @@ function NotificationButton() {
               {unreadCount}
             </span>
           </h4>
-          <p
+          <Button
+            size={"sm"}
+            variant={"ghost"}
+            className="flex items-center gap-2 py-2 !text-[14px]"
             onClick={handleReadAll}
-            className="cursor-pointer pr-4 text-[13px]"
           >
-            Read All
-          </p>
+            <Image
+              src={"/icons/double-checkmark.svg"}
+              width={20}
+              height={20}
+              alt=""
+            />
+            Clear All
+          </Button>
         </div>
         {notifications.length == 0 && <EmptyState />}
         {notifications.map(({ ...notification }) => {
