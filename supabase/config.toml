@@ -97,15 +97,15 @@ file_size_limit = "50MiB"
 enabled = true
 # The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
 # in emails.
-site_url = "https://friendscodes.de/auth/callback"
+site_url = "https://friendscodes.app/auth/callback"
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
 additional_redirect_urls = [
   "http://localhost:*/auth/callback",
-  "https://*.friendscodes.de/auth/callback",
+  "https://*.friendscodes.app/auth/callback",
   "https://friendscodes-v20-*-jorsois-projects.vercel.app/auth/callback",
   "https://friendscodes-v20.vercel.app/auth/callback",
   "http://localhost:*/auth/change-password",
-  "https://*.friendscodes.de/auth/change-password",
+  "https://*.friendscodes.app/auth/change-password",
 ]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
@@ -148,10 +148,10 @@ otp_expiry = 3600
 enabled = true
 host = "smtp.ionos.de"
 port = 465
-user = "hello@friendscodes.de"
+user = "hello@friendscodes.app"
 pass = "env(IONOS_WEBMAIL_PASSWORD)"
-admin_email = "hello@friendscodes.de"
-sender_name = "Philipp from FriendsCodes"
+admin_email = "hello@friendscodes.app"
+sender_name = "Phillipp from FriendsCodes"
 
 # Uncomment to customize email template
 [auth.email.template.recovery]
