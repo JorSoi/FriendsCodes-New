@@ -1,35 +1,37 @@
-# name: Deploy Migrations to FriendsCodes (Prod) Project
+name: Deploy Migrations to FriendsCodes (Prod) Project
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     env:
-#       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-#       SUPABASE_DB_PASSWORD: ${{ secrets.PRODUCTION_DB_PASSWORD }}
-#       SUPABASE_PROJECT_ID: ${{ secrets.PRODUCTION_PROJECT_ID }}
-#       #Facebook oAuth Secrets
-#       SUPABASE_AUTH_FACEBOOK_CLIENT_ID: ${{ secrets.SUPABASE_AUTH_FACEBOOK_CLIENT_ID }}
-#       SUPABASE_AUTH_FACEBOOK_SECRET: ${{ secrets.SUPABASE_AUTH_FACEBOOK_SECRET }}
-#       #Google oAuth Secrets
-#       SUPABASE_AUTH_GOOGLE_CLIENT_ID: ${{ secrets.SUPABASE_AUTH_GOOGLE_CLIENT_ID }}
-#       SUPABASE_AUTH_GOOGLE_SECRET: ${{ secrets.SUPABASE_AUTH_GOOGLE_SECRET }}
-#       #Twitter oAuth Secrets
-#       SUPABASE_AUTH_TWITTER_CLIENT_ID: ${{ secrets.SUPABASE_AUTH_TWITTER_CLIENT_ID }}
-#       SUPABASE_AUTH_TWITTER_SECRET: ${{ secrets.SUPABASE_AUTH_TWITTER_SECRET }}
-#       #IONOS SMTP Password
-#       IONOS_WEBMAIL_PASSWORD: ${{ secrets.IONOS_WEBMAIL_PASSWORD }}
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: supabase/setup-cli@v1
-#         with:
-#           version: latest
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.PRODUCTION_DB_PASSWORD }}
+      SUPABASE_PROJECT_ID: ${{ secrets.PRODUCTION_PROJECT_ID }}
+      #Facebook oAuth Secrets
+      SUPABASE_AUTH_FACEBOOK_CLIENT_ID: ${{ secrets.SUPABASE_AUTH_FACEBOOK_CLIENT_ID }}
+      SUPABASE_AUTH_FACEBOOK_SECRET: ${{ secrets.SUPABASE_AUTH_FACEBOOK_SECRET }}
+      #Google oAuth Secrets
+      SUPABASE_AUTH_GOOGLE_CLIENT_ID: ${{ secrets.SUPABASE_AUTH_GOOGLE_CLIENT_ID }}
+      SUPABASE_AUTH_GOOGLE_SECRET: ${{ secrets.SUPABASE_AUTH_GOOGLE_SECRET }}
+      #Twitter oAuth Secrets
+      SUPABASE_AUTH_TWITTER_CLIENT_ID: ${{ secrets.SUPABASE_AUTH_TWITTER_CLIENT_ID }}
+      SUPABASE_AUTH_TWITTER_SECRET: ${{ secrets.SUPABASE_AUTH_TWITTER_SECRET }}
+      #IONOS SMTP Password
+      IONOS_WEBMAIL_PASSWORD: ${{ secrets.IONOS_WEBMAIL_PASSWORD }}
 
-#       - run: supabase link --project-ref $SUPABASE_PROJECT_ID
-#       - run: supabase db push
-#       - run: supabase config push
+      
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - run: supabase link --project-ref $SUPABASE_PROJECT_ID
+      - run: supabase db push
+      - run: supabase config push
