@@ -88,7 +88,7 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
         </p>
       </div>
       <Modal
-       {...modalProps}
+        {...modalProps}
         className="flex w-full max-w-[850px] flex-col items-center gap-4"
       >
         <div className="w-full max-w-[480px] rounded-full border-1 border-[#ffffff10] bg-[#21203d] p-2 pr-4 xs:px-6">
@@ -133,7 +133,10 @@ function FriendsCard({ ...friend }: FriendWithCodes) {
           </div>
           <div></div>
         </div>
-        <CodeContainer variant={hasUserCodes ? "block" : "center"} className="max-h-[70svh] overflow-y-auto">
+        <CodeContainer
+          variant={hasUserCodes ? "block" : "center"}
+          className="max-h-[70svh] overflow-y-auto [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#3f3f57] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2"
+        >
           {hasUserCodes ? (
             <CodeList
               userCodes={friend.user_codes}

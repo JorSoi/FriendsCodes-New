@@ -8,7 +8,7 @@ import InvitationLogic from "@/components/Global/InvitationLogic";
 import FireWorkLogic from "@/components/Global/FireWorkContext";
 import image from "@/public/metadata/og-default.png";
 import Script from "next/script";
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "FriendsCodes Dashboard",
@@ -59,7 +59,7 @@ export default async function RootLayout({
       lang="en"
       className={`${figtree.variable} ${inter.variable} scroll-smooth`}
     >
-      <body className="overflow-y-auto overflow-x-hidden bg-[#09071C] pt-[150px] font-figtree sm:pt-[120px]">
+      <body className="overflow-y-auto overflow-x-hidden bg-[#09071C] pt-[150px] font-figtree sm:pt-[120px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#3e3e4f] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2">
         <InvitationLogic>
           <FireWorkLogic>
             <NavBar />

@@ -61,7 +61,7 @@ function CompanySearchList({
         ) && (
           <div className="mt-3">
             <h5 className="mb-1 ml-2 text-left text-[14px] font-medium text-[#ffffff7c]">
-              Looking for another store?
+              Looking for another company?
             </h5>
             <CompanySearchItem
               onClick={() =>
@@ -76,7 +76,7 @@ function CompanySearchList({
                 })
               }
               title={`"${searchValue.trim()}"`}
-              description={"Add the store, we add the details later!"}
+              description={"Add the company, we add the details later!"}
             />
           </div>
         )}
