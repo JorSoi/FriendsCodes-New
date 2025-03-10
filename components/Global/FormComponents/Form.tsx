@@ -15,6 +15,7 @@ function Form({
   initialValues,
   onSubmit,
   validationSchema,
+  autoComplete,
   children,
 }: FormProps) {
   return (
@@ -23,7 +24,7 @@ function Form({
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      <FormikForm>{children}</FormikForm>
+      <FormikForm autoComplete={autoComplete}>{children}</FormikForm>
     </Formik>
   );
 }

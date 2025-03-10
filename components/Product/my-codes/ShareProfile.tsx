@@ -12,12 +12,16 @@ import { Tables } from "@/types/database.types";
 import { useClipboard } from "@/hooks/useClipboard";
 import { shareSocials } from "@/lib/shareSocials";
 import { cn } from "@/utils/variants";
+import clsx from "clsx";
 
 function ShareProfile({ className }: { className?: string }) {
   const { openModal, ...modalProps } = useModal();
   const [writeText, hasCopied] = useClipboard();
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
-  const socials = shareSocials("Take a look at my referral codes",`${window.origin}/${profile?.user_name}`);
+  const socials = shareSocials(
+    "Take a look at my referral codes",
+    `${window.origin}/${profile?.user_name}`,
+  );
 
   useEffect(() => {
     async function setProfileState() {
@@ -51,10 +55,10 @@ function ShareProfile({ className }: { className?: string }) {
         <div className="w-full rounded-xl border-1 border-[#ffffff20] bg-[#30354A] p-3">
           <div className="flex flex-col items-center justify-center gap-2 rounded-md bg-[#0B081D] bg-[url(/auth-bg-decoration.webp)] bg-cover bg-[center_bottom_0px] p-5 text-center">
             <Image src={"/logo.png"} width={50} height={50} alt="" />
-            <h3 className="text-lg font-semibold">@{profile?.user_name}</h3>
+            <h3 className="text-lg font-semibold">Share your profile!</h3>
             <p className="text-sm text-[#ffffff9f]">
-              Add the profile in your social bios to remind your friends to use
-              your referral codes!
+              Add the profile link to your social bios and invite friends
+              to use your referral codes!
             </p>
           </div>
 
@@ -96,7 +100,7 @@ function ShareProfile({ className }: { className?: string }) {
               className="border-[#ffffff50]"
             />
             <Button
-              className="mt-4 w-full"
+              className="mt-4 flex w-full items-center justify-center gap-2"
               data-umami-event="prod-share-profile"
               data-umami-event-via="link"
               data-umami-event-profile-name={`/${profile?.user_name}`}
@@ -104,7 +108,17 @@ function ShareProfile({ className }: { className?: string }) {
                 writeText(`${window.origin}/${profile?.user_name}`)
               }
             >
-              {hasCopied ? "Copied!" : "Copy profile link"}
+              {
+                <Image
+                  src={"/icons/link.svg"}
+                  width={17}
+                  height={17}
+                  alt=""
+                  draggable="false"
+                  className={clsx(hasCopied && "hidden")}
+                />
+              }
+              {hasCopied ? "Copied!" : "Copy Profile Link"}
             </Button>
           </Form>
         </div>

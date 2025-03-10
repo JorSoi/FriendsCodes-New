@@ -50,7 +50,7 @@ export default function RootLayout({
       lang="en"
       className={`${figtree.variable} ${inter.variable} scroll-smooth`}
     >
-      <body className="overflow-x-hidden overflow-y-scroll bg-[#09071C] font-figtree  [&::-webkit-scrollbar-thumb]:bg-[#4f4f64] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full">
+      <body className="overflow-x-hidden overflow-y-scroll font-figtree [&::-webkit-scrollbar-thumb]:bg-[#4f4f64] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full">
         <Suspense>{children}</Suspense>
         <Script
           src="https://cloud.umami.is/script.js"

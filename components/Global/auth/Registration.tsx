@@ -140,20 +140,21 @@ function RegistrationForm() {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
+        autoComplete="off"
       >
         <div className="w-full space-y-3">
           <div className="relative">
-            <p className="pointer-events-none absolute left-3 top-[37px] select-none text-[14.5px] tracking-[0.015em] text-white">
-              friendscodes.de/
+            <p className="pointer-events-none absolute left-3 top-[37px] select-none text-[14.8px] tracking-[0.017em] text-white font-medium">
+              friendscodes.app/
             </p>
             <Input
-              className="pl-[126px] tracking-[0.015em] sm:pl-[128px]"
+              className="pl-[138px] tracking-[0.017em] font-medium text-[#e721c9] sm:pl-[139px] placeholder:font-normal"
               name="name"
               type="text"
               variant={"outline"}
               size={"md"}
               placeholder="yourname"
-              label="Choose a profile name"
+              label="Choose a username for your profile"
               required
             />
           </div>
@@ -197,7 +198,7 @@ function RegistrationForm() {
           <Checkbox label="Remember me" />
           <Link
             href={"/auth/forgot-password"}
-            className="underline-offset-2] font-inter text-[14px] underline"
+            className="underline-offset-2 font-inter text-[14px] underline"
           >
             Forgot Password?
           </Link>
