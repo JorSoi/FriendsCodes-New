@@ -59,7 +59,7 @@ export default async function RootLayout({
       lang="en"
       className={`${figtree.variable} ${inter.variable} scroll-smooth`}
     >
-      <body className="overflow-y-auto overflow-x-hidden bg-[#09071C] pt-[150px] font-figtree sm:pt-[120px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#3e3e4f] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2">
+      <body className="overflow-y-auto overflow-x-hidden pt-[150px] font-figtree sm:pt-[120px] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#3e3e4f] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2">
         <InvitationLogic>
           <FireWorkLogic>
             <NavBar />

@@ -11,6 +11,7 @@ export interface FormProps {
   initialValues: FormValues;
   onSubmit: (values: FormValues, actions: FormikHelpers<FormValues>) => void;
   validationSchema?: Yup.ObjectSchema<FormValues>;
+  autoComplete?: "on" | "off",
   children: React.ReactNode;
 }
 
