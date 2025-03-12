@@ -39,6 +39,7 @@ function CompanyLogo({
           height={100}
           alt="Company Logo"
           draggable={false}
+          unoptimized={true}
         />
       ) : (
         <Image
@@ -48,6 +49,7 @@ function CompanyLogo({
           height={50}
           alt="Company Logo"
           draggable={false}
+          unoptimized={true}
         />
       )}
     </>
