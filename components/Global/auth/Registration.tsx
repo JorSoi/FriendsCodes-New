@@ -37,7 +37,7 @@ function RegistrationForm() {
       .required("Name is required")
       .min(3, "Too short!")
       .max(15, "Too long!")
-      .test("name", "This one is already taken. 😦 ", async (value) => {
+      .test("name", "This user already exists. 😦  If it's you, try logging in instead!", async (value) => {
         const { data, error } = await supabase
           .from("profiles")
           .select()
