@@ -29,6 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: supabase/setup-cli@v1
+        with:
+          version: 2.15.8
 
       - run: supabase link --project-ref $SUPABASE_PROJECT_ID --debug
       - run: supabase db push --debug
