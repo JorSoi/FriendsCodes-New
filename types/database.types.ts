@@ -191,6 +191,8 @@ export type Database = {
           conversion_count: number
           created_at: string
           id: number
+          referral_description: string | null
+          referral_reward: string | null
           referral_value: string
           user_id: string
           view_count: number
@@ -200,6 +202,8 @@ export type Database = {
           conversion_count?: number
           created_at?: string
           id?: number
+          referral_description?: string | null
+          referral_reward?: string | null
           referral_value: string
           user_id: string
           view_count?: number
@@ -209,6 +213,8 @@ export type Database = {
           conversion_count?: number
           created_at?: string
           id?: number
+          referral_description?: string | null
+          referral_reward?: string | null
           referral_value?: string
           user_id?: string
           view_count?: number

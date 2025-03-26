@@ -12,17 +12,20 @@ import Button from "../../../Global/Button";
 import Modal from "@/components/Global/Modal";
 import CompanySearch from "./CompanySearch";
 import CompanyLogo from "../../CompanyLogo";
+import Tag from "@/components/Global/FormComponents/Tag";
 import * as Yup from "yup";
 import { createClient } from "@/utils/supabase/client";
 import { Tables } from "@/types/database.types";
 import { FormikHelpers, FormikValues } from "formik";
 import { getClientProfile } from "@/utils/getClientProfile";
 import { useRouter } from "next/navigation";
+import { cn } from "@/utils/variants";
 
 function ReferralCreationForm() {
   const [companyList, setCompanyList] = useState<Tables<"companies">[]>([]);
   const [selectedCompany, setSelectedCompany] =
     useState<Tables<"companies"> | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { openModal, closeModal: closeSearchModal, ...modalProps } = useModal();
   const triggerFireWork = useContext(FireWorkContext);
   const closeModal = useContext(ModalContext);
@@ -51,6 +54,7 @@ function ReferralCreationForm() {
     values: FormikValues,
     { setFieldError }: FormikHelpers<FormikValues>,
   ) => {
+    setIsLoading(true);
     const supabase = createClient();
     const { user } = await getClientProfile();
 
@@ -83,7 +87,9 @@ function ReferralCreationForm() {
         .from("user_codes")
         .insert({
           company_id: selectedCompany.id,
-          referral_value: values.referralCode,
+          referral_value: values.referralValue,
+          referral_reward: values.referralReward,
+          referral_description: values.referralDescription,
           user_id: user?.id,
         })
         .select("*");
@@ -106,7 +112,13 @@ function ReferralCreationForm() {
   return (
     <>
       <Form
-        initialValues={{ company: "", referralCode: "", searchValue: "" }}
+        initialValues={{
+          company: "",
+          referralValue: "",
+          searchValue: "",
+          referralReward: "",
+          referralDescription: "",
+        }}
         onSubmit={handleSubmit}
         validationSchema={Yup.object().shape({
           company: Yup.string()
@@ -114,11 +126,11 @@ function ReferralCreationForm() {
             .min(2, "Name is too short")
             .max(30, "Name is too long")
             .required("Company is required"),
-          referralCode: Yup.string().required("Referral code or link required"),
+          referralValue: Yup.string().required("Referral code or link required"),
         })}
       >
-        <div className="rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
-          <div className="mb-3 flex items-center gap-4">
+        <div className="space-y-3 rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
+          <div className="flex items-center gap-4">
             <div className="flex size-14 items-center justify-center rounded-2xl border-1 border-[#ffffff1b] bg-[#47476a] p-1">
               {selectedCompany ? (
                 <CompanyLogo src={selectedCompany.logo_url} size={"md"} />
@@ -159,6 +171,27 @@ function ReferralCreationForm() {
               onBlur={() => {}}
             />
           </div>
+          <div
+            className={cn(
+              "flex w-full flex-wrap gap-2",
+              !selectedCompany && "hidden",
+            )}
+          >
+            <Tag
+              placeholder="e.g. $10 off"
+              emoji="🎁"
+              content="Add Reward"
+              maxLength={40}
+              name="referralReward"
+            />
+            <Tag
+              placeholder="e.g. expiry, guide, tips"
+              emoji="✏️"
+              content="Add Description"
+              maxLength={200}
+              name="referralDescription"
+            />
+          </div>
         </div>
         <div className="ml-4 h-4 w-4 bg-[#333350]"></div>
 
@@ -184,7 +217,7 @@ function ReferralCreationForm() {
 
           <Input
             type="text"
-            name="referralCode"
+            name="referralValue"
             className="border-[2.4px] border-dashed border-[#5c6484] pr-9 text-white"
             placeholder="e.g. https://refer.amazon.com/jorsoi13"
             autoComplete="off"
@@ -194,6 +227,7 @@ function ReferralCreationForm() {
           type="submit"
           className="mt-5 w-full"
           data-umami-event="prod-referral-creation"
+          loading={isLoading}
         >
           Add your new referral
         </Button>

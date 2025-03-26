@@ -251,6 +251,14 @@ export default function Home() {
         <div className="flex w-full items-center justify-center">
           <div className="grid w-full max-w-[1100px] grid-cols-2 justify-items-center gap-5 sm:grid-cols-1">
             <Question
+              questionTitle={"What are referral codes?"}
+              iconSrc="/icons/gift.svg"
+            >
+              Referral codes are unique links companies provide to track how
+              many people you invite. Successful referrals earn you rewards like
+              discounts, cash, or coupons.
+            </Question>
+            <Question
               questionTitle={"What is FriendsCodes about?"}
               iconSrc="/icons/star-shining.svg"
               iconWidth={24}
@@ -261,12 +269,19 @@ export default function Home() {
               you never miss out on rewards.
             </Question>
             <Question
-              questionTitle={"What are referral codes?"}
-              iconSrc="/icons/gift.svg"
+              questionTitle={"Is it free?"}
+              iconSrc="/icons/diamond.svg"
             >
-              Referral codes are unique links companies provide to track how
-              many people you invite. Successful referrals earn you rewards like
-              discounts, cash, or coupons.
+              Yes! Referral programs are widely offered by companies to grow
+              their user base, and we are here to help you get the most value
+              from your referral codes - completely free.
+            </Question>
+            <Question
+              questionTitle={"Who can see the codes on my profile?"}
+              iconSrc="/icons/multiple-users.svg"
+            >
+              Your codes are visible to anyone with your profile link and
+              friends you have added on the platform.
             </Question>
             <Question
               questionTitle={"How can I maximize my referrals?"}
@@ -277,27 +292,12 @@ export default function Home() {
               up for services.
             </Question>
             <Question
-              questionTitle={"Who can see the codes on my profile?"}
-              iconSrc="/icons/multiple-users.svg"
-            >
-              Your codes are visible to anyone with your profile link and
-              friends you have added on the platform.
-            </Question>
-            <Question
               questionTitle={"How will I know if my codes are used?"}
               iconSrc="/icons/bell-ringing.svg"
             >
               Since redemptions happen outside our platform, you will need to
               track them. However, we will notify you when someone opens or
               copies any of your referral codes.
-            </Question>
-            <Question
-              questionTitle={"Is it free?"}
-              iconSrc="/icons/diamond.svg"
-            >
-              Yes! Referral programs are widely offered by companies to grow
-              their user base, and we are here to help you get the most value
-              from your referral codes - completely free.
             </Question>
           </div>
         </div>

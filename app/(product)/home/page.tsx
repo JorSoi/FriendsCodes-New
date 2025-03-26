@@ -3,6 +3,7 @@ import CodeList from "@/components/Product/my-codes/CodeList";
 import EmptyState from "@/components/Product/my-codes/EmptyState";
 import ShareProfile from "@/components/Product/my-codes/ShareProfile";
 import Tab from "@/components/Product/Tab";
+import { sendAuthSlackMessage } from "@/lib/sendAuthSlackMessage";
 import { UserCodeWithRelations } from "@/types/general.types";
 import { generateUniqueProfileName } from "@/utils/generateUniqueProfileName";
 import { getServerProfile } from "@/utils/getServerProfile";
@@ -22,11 +23,13 @@ async function Page() {
 
     //Automatically generate username when being redirected here after oAuth registration.
     if (!profile?.user_name && user.email) {
+
+      const generatedUsername = await generateUniqueProfileName(user.email)
       const { error } = await supabase
         .from("profiles")
-        .update({ user_name: await generateUniqueProfileName(user.email) })
+        .update({ user_name: generatedUsername})
         .eq("id", user.id);
-
+        sendAuthSlackMessage(generatedUsername, "social")
       if (error) {
         console.log(error);
       }

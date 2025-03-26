@@ -14,6 +14,7 @@ import * as Yup from "yup";
 import { createClient } from "@/utils/supabase/client";
 import { FormikHelpers } from "formik";
 import { FormValues } from "@/types/general.types";
+import { sendAuthSlackMessage } from "@/lib/sendAuthSlackMessage";
 
 function RegistrationForm() {
   const visitorName = useSearchParams().get("visitor");
@@ -37,18 +38,22 @@ function RegistrationForm() {
       .required("Name is required")
       .min(3, "Too short!")
       .max(15, "Too long!")
-      .test("name", "This user already exists. 😦  If it's you, try logging in instead!", async (value) => {
-        const { data, error } = await supabase
-          .from("profiles")
-          .select()
-          .ilike("user_name", value);
+      .test(
+        "name",
+        "This user already exists. 😦  If it's you, try logging in instead!",
+        async (value) => {
+          const { data, error } = await supabase
+            .from("profiles")
+            .select()
+            .ilike("user_name", value);
 
-        if (!error && data.length) {
-          return false;
-        } else {
-          return true;
-        }
-      }),
+          if (!error && data.length) {
+            return false;
+          } else {
+            return true;
+          }
+        },
+      ),
     email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string()
       .required("Password is required")
@@ -77,9 +82,10 @@ function RegistrationForm() {
       },
     });
     if (user) {
-      setIsLoading(false);
-      window.umami.identify({ email: user.email, user_id: user.id }) //attach user data to visitor session in analytics
+      sendAuthSlackMessage(values.name, "email");
+      window.umami.identify({ email: user.email, user_id: user.id }); //attach user data to visitor session in analytics
       //if user is coming from invitation link, navigate them straight to /friends page to see their new friend.
+      setIsLoading(false);
       router.push(invitation ? "/friends" : "/home");
     } else {
       actions.setFieldError("password", error?.message);
@@ -144,11 +150,11 @@ function RegistrationForm() {
       >
         <div className="w-full space-y-3">
           <div className="relative">
-            <p className="pointer-events-none absolute left-3 top-[37px] select-none text-[14.8px] tracking-[0.017em] text-white font-medium">
+            <p className="pointer-events-none absolute left-3 top-[37px] select-none text-[14.8px] font-medium tracking-[0.017em] text-white">
               friendscodes.app/
             </p>
             <Input
-              className="pl-[138px] tracking-[0.017em] font-medium text-[#e721c9] sm:pl-[139px] placeholder:font-normal"
+              className="pl-[138px] font-medium tracking-[0.017em] text-[#e721c9] placeholder:font-normal sm:pl-[139px]"
               name="name"
               type="text"
               variant={"outline"}
@@ -198,7 +204,7 @@ function RegistrationForm() {
           <Checkbox label="Remember me" />
           <Link
             href={"/auth/forgot-password"}
-            className="underline-offset-2 font-inter text-[14px] underline"
+            className="font-inter text-[14px] underline underline-offset-2"
           >
             Forgot Password?
           </Link>
