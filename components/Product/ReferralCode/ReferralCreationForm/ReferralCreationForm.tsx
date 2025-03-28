@@ -180,16 +180,18 @@ function ReferralCreationForm() {
             <Tag
               placeholder="e.g. $10 off"
               emoji="🎁"
-              content="Add Reward"
+              title="Add Reward Info"
               maxLength={40}
               name="referralReward"
+              isEditable
             />
             <Tag
               placeholder="e.g. expiry, guide, tips"
               emoji="✏️"
-              content="Add Description"
-              maxLength={200}
+              title="Add Description"
+              maxLength={250}
               name="referralDescription"
+              isEditable
             />
           </div>
         </div>
