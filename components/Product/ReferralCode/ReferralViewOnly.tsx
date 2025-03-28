@@ -13,6 +13,7 @@ import Realistic from "react-canvas-confetti/dist/presets/realistic";
 import { getClientProfile } from "@/utils/getClientProfile";
 import { isValidURL } from "@/utils/isValidURL";
 import { prominent } from "color.js";
+import Tag from "@/components/Global/FormComponents/Tag";
 
 function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
   const [writeText, hasCopied] = useClipboard();
@@ -99,10 +100,22 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
           <h3 className="mt-[10px] w-full truncate text-[19px] font-semibold text-white">
             {code.companies.name}
           </h3>
-          <p className="text-[15px] text-[#a1a3ae]">
-            {validUrl ? "Open the referral link" : "Copy the referral code"}{" "}
-            from this user below and redeem it at {code.companies.name}! 👇👇
-          </p>
+
+          {code.referral_reward && (
+            <div className="my-1">
+              <Tag title={code.referral_reward} name="" emoji="🎁" />
+            </div>
+          )}
+          {code.referral_description ? (
+            <p className="text-[15px] text-[#a1a3ae]">
+              {code.referral_description}
+            </p>
+          ) : (
+            <p className="text-[15px] text-[#a1a3ae]">
+              {validUrl ? "Open the referral link" : "Copy the referral code"}{" "}
+              from this user below and redeem it at {code.companies.name}! 👇👇
+            </p>
+          )}
         </div>
       </div>
       <div className="ml-4 h-[10px] w-4 bg-[#333350]"></div>
@@ -132,9 +145,12 @@ function ReferralViewOnly({ ...code }: UserCodeWithRelations) {
               width={18}
               height={18}
               alt=""
-              className={clsx("transition-all duration-75 active:scale-90 pointer-events-none", {
-                "opacity-30": hasCopied,
-              })}
+              className={clsx(
+                "pointer-events-none transition-all duration-75 active:scale-90",
+                {
+                  "opacity-30": hasCopied,
+                },
+              )}
             />
           </div>
         </div>
