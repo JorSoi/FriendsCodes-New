@@ -3,14 +3,14 @@ import Image from "next/image";
 import { cn } from "@/utils/variants";
 
 const logoVariants = cva(
-  "h-full object-contain transition-transform duration-200 hover:scale-[105%] shrink-[1] overflow-hidden  w-auto",
+  "h-full object-contain transition-transform duration-200 hover:scale-[105%] shrink-[1] overflow-hidden w-auto",
   {
     variants: {
       size: {
         xs: "max-h-[28px] max-w-[28px] rounded-md",
         sm: "max-h-[35px] rounded-[10px]",
         md: "max-h-[40px] max-w-[40px] rounded-xl ",
-        lg: "h-[55px]  max-w-[75px] rounded-2xl lg:h-[50px] sm:max-w-[65px] lg:rounded-[14px]",
+        lg: "h-[55px] max-w-[75px] rounded-2xl lg:h-[50px] sm:max-w-[65px] lg:rounded-[14px]",
         xl: "max-h-[65px] rounded-xl",
       },
     },
