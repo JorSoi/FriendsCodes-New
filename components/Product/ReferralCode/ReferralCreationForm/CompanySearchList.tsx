@@ -2,6 +2,7 @@ import Fuse from "fuse.js";
 import { useMemo } from "react";
 import { Tables } from "@/types/database.types";
 import CompanySearchItem from "./CompanySearchItem";
+import SpotlightList from "./SpotlightList";
 
 function CompanySearchList({
   selectCompany,
@@ -39,21 +40,26 @@ function CompanySearchList({
   }, [companyList, searchValue, activeCategories]);
 
   return (
-    <div className="px-3">
-      {filteredCompanies.length > 0 && (
-        <h4 className="px-2 pb-1 text-left text-sm font-medium text-[#ffffff80]">
-          All Companies
-        </h4>
-      )}
+    <div className="[&::-webkit-scrollbar-track]:transparent max-h-[70svh] overflow-y-auto overflow-x-hidden px-3 pb-3 xl:max-h-[40svh] sm:h-full sm:max-h-none [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#25253b] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2">
+
+      <SpotlightList
+        companyList={companyList}
+        searchValue={searchValue}
+        selectCompany={selectCompany}
+        activeCategories={activeCategories}
+      />
+
+      <h5 className="mb-1 ml-2 text-left text-[14px] font-medium text-[#ffffff7c]">
+        All companies
+      </h5>
       {filteredCompanies.map(({ ...company }) => {
         return (
           <CompanySearchItem
             key={company.id}
             onClick={() => selectCompany(company)}
             title={company.name}
-            description={company.referral_sharing_reward}
+            description={company.company_description}
             imageSrc={company.logo_url}
-            createdAt={company.created_at}
           />
         );
       })}
@@ -73,13 +79,13 @@ function CompanySearchList({
                   created_at: "",
                   name: searchValue.trim(),
                   logo_url: null,
-                  company_description: "",
-                  referral_sharing_reward: "",
-                  referral_usage_reward: "",
-                  highlighted: null,
+                  company_description: null,
+                  company_categories: null,
+                  spotlighted: null,
                   status: "reviewing",
                   company_url: "",
-                  company_categories: null,
+                  referral_sharing_reward: null,
+                  referral_usage_reward: null,
                 })
               }
               title={`"${searchValue.trim()}"`}

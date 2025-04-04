@@ -42,12 +42,12 @@ export type Database = {
           company_description: string | null
           company_url: string | null
           created_at: string
-          highlighted: boolean | null
           id: number
           logo_url: string | null
           name: string
           referral_sharing_reward: string | null
           referral_usage_reward: string | null
+          spotlighted: boolean | null
           status: Database["public"]["Enums"]["company_status"]
         }
         Insert: {
@@ -57,12 +57,12 @@ export type Database = {
           company_description?: string | null
           company_url?: string | null
           created_at?: string
-          highlighted?: boolean | null
           id?: number
           logo_url?: string | null
           name: string
           referral_sharing_reward?: string | null
           referral_usage_reward?: string | null
+          spotlighted?: boolean | null
           status?: Database["public"]["Enums"]["company_status"]
         }
         Update: {
@@ -72,12 +72,12 @@ export type Database = {
           company_description?: string | null
           company_url?: string | null
           created_at?: string
-          highlighted?: boolean | null
           id?: number
           logo_url?: string | null
           name?: string
           referral_sharing_reward?: string | null
           referral_usage_reward?: string | null
+          spotlighted?: boolean | null
           status?: Database["public"]["Enums"]["company_status"]
         }
         Relationships: []

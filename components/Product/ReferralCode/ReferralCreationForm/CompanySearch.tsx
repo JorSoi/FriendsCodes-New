@@ -9,7 +9,6 @@ import Button from "@/components/Global/Button";
 import { ModalContext } from "@/components/Global/Modal";
 import { useContext } from "react";
 import Category from "../../Category";
-import CompanyLogo from "../../CompanyLogo";
 import { useFormikContext } from "formik";
 
 function CompanySearch({
@@ -101,36 +100,13 @@ function CompanySearch({
           />
         ))}
       </div>
-      <div className="[&::-webkit-scrollbar-track]:transparent max-h-[70svh] overflow-y-auto overflow-x-hidden pb-3 xl:max-h-[50svh] sm:h-full sm:max-h-none [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#25253b] [&::-webkit-scrollbar-thumb]:pr-2 [&::-webkit-scrollbar]:w-2">
-        {!searchValue && activeCategories.length == 0 && (
-          <>
-            <h4 className=" pl-5 text-left text-sm font-medium text-[#ffffff80]">
-              Currently Popular
-            </h4>
-            <div className="overflow-x-scroll scroll-smooth px-5 pb-5 scrollbar-hide pt-3">
-              <div className="flex w-fit gap-2 [&_img]:shrink-0">
-                {companyList
-                  .filter((company) => company.highlighted)
-                  .map((company) => (
-                    <div
-                      key={company.id}
-                      className="cursor-pointer"
-                      onClick={() => selectCompany(company)}
-                    >
-                      <CompanyLogo size={"lg"} src={company.logo_url} />
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </>
-        )}
-        <CompanySearchList
-          selectCompany={selectCompany}
-          companyList={companyList}
-          activeCategories={activeCategories}
-          searchValue={searchValue}
-        />
-      </div>
+
+      <CompanySearchList
+        selectCompany={selectCompany}
+        companyList={companyList}
+        activeCategories={activeCategories}
+        searchValue={searchValue}
+      />
     </div>
   );
 }
