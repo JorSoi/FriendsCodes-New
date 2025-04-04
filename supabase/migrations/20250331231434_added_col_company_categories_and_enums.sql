@@ -1,4 +1,4 @@
-create type "public"."company_categories" as enum ('banking', 'crypto', 'education', 'fitness', 'food', 'housing', 'games', 'mobility', 'travel', 'shopping', 'other');
+create type "public"."company_categories" as enum ('banking', 'crypto', 'education', 'fitness', 'food', 'housing', 'games', 'mobility', 'travel', 'shopping', 'other', 'software');
 
 alter table "public"."companies" drop column "default_sharing_reward";
 
