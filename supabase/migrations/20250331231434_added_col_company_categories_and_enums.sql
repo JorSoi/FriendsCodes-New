@@ -6,7 +6,7 @@ alter table "public"."companies" drop column "default_usage_reward";
 
 alter table "public"."companies" add column "company_categories" company_categories[];
 
-alter table "public"."companies" add column "highlighted" boolean;
+alter table "public"."companies" add column "spotlighted" boolean;
 
 alter table "public"."companies" add column "referral_sharing_reward" text;
 
