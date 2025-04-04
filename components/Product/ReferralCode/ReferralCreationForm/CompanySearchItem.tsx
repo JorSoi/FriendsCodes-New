@@ -6,13 +6,13 @@ import { differenceInDays } from "date-fns";
 
 function CompanySearchItem({
   title = "",
-  description = "",
+  subtitle = "",
   imageSrc,
   createdAt,
   ...props
 }: Omit<HTMLAttributes<HTMLDivElement>, "title" | "description"> & {
   title?: string | null;
-  description?: string | null;
+  subtitle?: string | null;
   imageSrc?: string | null;
   createdAt?: string;
 }) {
@@ -38,7 +38,7 @@ function CompanySearchItem({
               <Badge>New</Badge>
             )}
         </div>
-        <p className="truncate text-[14px] text-[#ffffff7c]">{description}</p>
+        <p className="truncate text-[14px] text-[#ffffff7c]">{subtitle}</p>
       </div>
     </div>
   );

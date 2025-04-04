@@ -58,8 +58,9 @@ function CompanySearchList({
             key={company.id}
             onClick={() => selectCompany(company)}
             title={company.name}
-            description={company.company_description}
+            subtitle={company.referral_usage_reward}
             imageSrc={company.logo_url}
+            createdAt={company.created_at}
           />
         );
       })}
@@ -89,7 +90,7 @@ function CompanySearchList({
                 })
               }
               title={`"${searchValue.trim()}"`}
-              description={"Add the company, we add the details later!"}
+              subtitle={"Add the company, we add the details later!"}
             />
           </div>
         )}
