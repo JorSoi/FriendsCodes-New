@@ -14,13 +14,13 @@ function SpotlightList({
 }) {
   return (
     <div className="">
-      <h4 className="px-5 text-left text-sm font-medium text-[#ffffff80]">
+    {  searchValue.length !>= 1 || !activeCategories.length && <h4 className="px-5 text-left text-sm font-medium text-[#ffffff80]">
         Currently Popular
-      </h4>
+      </h4>}
       {!searchValue && activeCategories.length == 0 && (
         <>
-          <div className="pb-5 pt-3 scrollbar-hide overflow-x-scroll scroll-smooth px-5">
-            <div className="flex w-fit gap-2 [&_img]:shrink-0">
+          <div className="pb-5 pt-3 scrollbar-hide overflow-x-scroll scroll-smooth">
+            <div className="flex w-fit gap-2 [&_img]:shrink-0 px-5">
               {companyList
                 .filter((company) => company.spotlighted)
                 .map((company) => (
