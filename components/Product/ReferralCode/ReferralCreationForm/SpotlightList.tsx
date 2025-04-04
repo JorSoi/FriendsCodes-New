@@ -13,13 +13,13 @@ function SpotlightList({
   activeCategories: string[];
 }) {
   return (
-    <div className="px-2">
+    <div className="">
+      <h4 className="px-5 text-left text-sm font-medium text-[#ffffff80]">
+        Currently Popular
+      </h4>
       {!searchValue && activeCategories.length == 0 && (
         <>
-          <h4 className="text-left text-sm font-medium text-[#ffffff80]">
-            Currently Popular
-          </h4>
-          <div className="overflow-x-scroll scroll-smooth pb-5 pt-3 scrollbar-hide">
+          <div className="pb-5 pt-3 scrollbar-hide overflow-x-scroll scroll-smooth px-5">
             <div className="flex w-fit gap-2 [&_img]:shrink-0">
               {companyList
                 .filter((company) => company.spotlighted)
