@@ -20,6 +20,7 @@ import { FormikHelpers, FormikValues } from "formik";
 import { getClientProfile } from "@/utils/getClientProfile";
 import { useRouter } from "next/navigation";
 import { cn } from "@/utils/variants";
+import { differenceInDays } from "date-fns";
 
 function ReferralCreationForm() {
   const [companyList, setCompanyList] = useState<Tables<"companies">[]>([]);
@@ -39,13 +40,12 @@ function ReferralCreationForm() {
         .select()
         .neq("status", "reviewing")
         .neq("status", "private")
-        .order("created_at", {
-          ascending: false
-        })
-        .order("name")    
-
+        .order("name");
       if (!error) {
-        setCompanyList(data);
+        //List freshly created companies first, and sort the rest alphabetically.
+        const latestCompanies = data.filter(company => differenceInDays(new Date(), new Date(company.created_at)) <= 4)
+        const remainingCompanies = data.filter(company => differenceInDays(new Date(), new Date(company.created_at)) > 4)
+        setCompanyList([...latestCompanies, ...remainingCompanies])
       } else {
         console.log(error);
       }
@@ -130,7 +130,9 @@ function ReferralCreationForm() {
             .min(2, "Name is too short")
             .max(30, "Name is too long")
             .required("Company is required"),
-          referralValue: Yup.string().required("Referral code or link required"),
+          referralValue: Yup.string().required(
+            "Referral code or link required",
+          ),
         })}
       >
         <div className="space-y-3 rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
