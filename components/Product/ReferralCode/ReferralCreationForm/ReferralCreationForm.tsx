@@ -38,7 +38,11 @@ function ReferralCreationForm() {
         .from("companies")
         .select()
         .neq("status", "reviewing")
-        .neq("status", "private");
+        .neq("status", "private")
+        .order("created_at", {
+          ascending: false
+        })
+        .order("name")    
 
       if (!error) {
         setCompanyList(data);
