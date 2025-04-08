@@ -14,16 +14,20 @@ import image from "@/public/metadata/og-personal.png";
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ profileName: string }>;
+  searchParams: { referral: string } | undefined;
 }): Promise<Metadata> {
   return {
     title: `${(await params).profileName}'s Referral Profile`,
     description: `Use referral codes from ${(await params).profileName} to earn cash and rewards and save on deals!`,
     openGraph: {
       type: "website",
-      url: "https://friendscodes.de",
-      title: `Use ${(await params).profileName}'s referral codes!`,
+      url: "https://friendscodes.app",
+      title: searchParams?.referral
+        ? `Use my "${searchParams.referral}" referral and get exclusive benefits!`
+        : `Use ${(await params).profileName}'s referral codes!`,
       description: `Both of you will earn cash and other rewards for using the referrals on ${(await params).profileName}'s profile!`,
       siteName: "FriendsCodes",
       images: [
@@ -90,7 +94,7 @@ export default async function Page({
         >
           {profileExists && (
             <div className="mb-5 flex w-full flex-col items-center justify-center text-center">
-              <h1 className="pt-2 text-[1.7rem] font-bold md:text-[1.5rem] text-white">
+              <h1 className="pt-2 text-[1.7rem] font-bold text-white md:text-[1.5rem]">
                 {profileName}&apos;s referral profile 🎁 🎉
               </h1>
               <p className="mt-1 max-w-[450px] text-[15px] text-[#a1a3ae] md:hidden">

@@ -1,3 +1,5 @@
+"use client";
+
 import Input from "../../Global/FormComponents/Input";
 import { getTimeAgo } from "@/utils/getTimeAgo";
 import Form from "../../Global/FormComponents/Form";
@@ -9,13 +11,26 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 import { UserCodeWithRelations } from "@/types/general.types";
 import CompanyLogo from "../CompanyLogo";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "@/components/Global/Modal";
 import Tag from "@/components/Global/FormComponents/Tag";
+import { useClipboard } from "@/hooks/useClipboard";
+import { getClientProfile } from "@/utils/getClientProfile";
+import { Tables } from "@/types/database.types";
 
 function ReferralUpdateForm({ ...code }: UserCodeWithRelations) {
   const router = useRouter();
   const closeModal = useContext(ModalContext);
+  const [writeText, hasCopied] = useClipboard();
+  const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
+
+  useEffect(() => {
+    async function setProfileState() {
+      const { profile } = await getClientProfile();
+      setProfile(profile);
+    }
+    setProfileState();
+  }, []);
 
   const updateCode = async (
     values: FormikValues,
@@ -72,7 +87,26 @@ function ReferralUpdateForm({ ...code }: UserCodeWithRelations) {
         referralValue: Yup.string().required("Code or Link Required"),
       })}
     >
-      <div className="w-full space-y-3 rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
+      <div className="relative flex w-full flex-col gap-3 rounded-2xl border-1 border-[#ffffff20] bg-[#333350] p-3">
+        <button
+          type="button"
+          className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-xl border-1 border-white/20 hover:bg-white/10 transition-colors"
+          onClick={async () => {
+            writeText(
+              `${window.origin}/${profile?.user_name}?referral=${encodeURIComponent(code.companies.name)}`,
+            );
+          }}
+          data-umami-event="prod-share-referral"
+          data-umami-event-company-name={code.companies.name}
+        >
+          <Image
+            src={hasCopied ? "/icons/checkmark.svg" : "/icons/link.svg"}
+            width={16}
+            height={16}
+            alt="share icon"
+            className="opacity-60"
+          />
+        </button>
         <div className="flex items-center gap-4">
           <div className="flex size-14 items-center justify-center rounded-2xl border-1 border-[#ffffff1b] bg-[#47476a] p-1">
             <CompanyLogo src={code.companies.logo_url} size={"md"} />

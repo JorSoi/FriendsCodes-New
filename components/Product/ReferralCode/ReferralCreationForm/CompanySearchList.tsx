@@ -40,7 +40,7 @@ function CompanySearchList({
   }, [companyList, searchValue, activeCategories]);
 
   return (
-    <div className="[&::-webkit-scrollbar-track]:transparent max-h-[70svh] overflow-y-auto overflow-x-hidden pb-3 xl:max-h-[40svh] sm:h-full sm:max-h-none [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#25253b] [&::-webkit-scrollbar]:w-2">
+    <div className="[&::-webkit-scrollbar-track]:transparent max-h-[60svh] overflow-y-auto overflow-x-hidden pb-3 3xl:max-h-[40svh] sm:h-full sm:max-h-none [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#25253b] [&::-webkit-scrollbar]:w-2">
       <SpotlightList
         companyList={companyList}
         searchValue={searchValue}
