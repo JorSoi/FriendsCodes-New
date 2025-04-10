@@ -12,8 +12,7 @@ import Button from "../Button";
 import Form from "../FormComponents/Form";
 import * as Yup from "yup";
 import { createClient } from "@/utils/supabase/client";
-import { FormikHelpers } from "formik";
-import { FormValues } from "@/types/general.types";
+import { FormikHelpers, FormikValues } from "formik";
 
 function Login() {
   const visitorName = useSearchParams().get("visitor");
@@ -36,8 +35,8 @@ function Login() {
   });
 
   const handleSubmit = async (
-    values: FormValues,
-    actions: FormikHelpers<FormValues>,
+    values: FormikValues,
+    actions: FormikHelpers<FormikValues>,
   ) => {
     setIsLoading(true);
     const {

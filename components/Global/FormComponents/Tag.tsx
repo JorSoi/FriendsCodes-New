@@ -1,7 +1,6 @@
 import { TextareaHTMLAttributes, useState } from "react";
 import { cn } from "@/utils/variants";
-import { useFormikContext } from "formik";
-import { FormValues } from "@/types/general.types";
+import { FormikValues, useFormikContext } from "formik";
 
 interface tagProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   placeholder?: string;
@@ -22,7 +21,7 @@ function Tag({
   ...props
 }: tagProps) {
   const [value, setValue] = useState(initialValue ? initialValue : title);
-  const { setFieldValue } = useFormikContext<FormValues>();
+  const { setFieldValue } = useFormikContext<FormikValues>();
 
   const handleBlur = () => {
     setFieldValue(name, value.trim());

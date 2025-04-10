@@ -209,6 +209,7 @@ export type Database = {
           conversion_count: number
           created_at: string
           id: number
+          pinned_at: string | null
           referral_description: string | null
           referral_reward: string | null
           referral_value: string
@@ -220,6 +221,7 @@ export type Database = {
           conversion_count?: number
           created_at?: string
           id?: number
+          pinned_at?: string | null
           referral_description?: string | null
           referral_reward?: string | null
           referral_value: string
@@ -231,6 +233,7 @@ export type Database = {
           conversion_count?: number
           created_at?: string
           id?: number
+          pinned_at?: string | null
           referral_description?: string | null
           referral_reward?: string | null
           referral_value?: string
@@ -321,6 +324,7 @@ export type Database = {
         | "travel"
         | "shopping"
         | "other"
+        | "software"
       company_status: "public" | "reviewing" | "private"
       notification_types: "new_friend" | "code_interaction"
     }
@@ -453,6 +457,7 @@ export const Constants = {
         "travel",
         "shopping",
         "other",
+        "software",
       ],
       company_status: ["public", "reviewing", "private"],
       notification_types: ["new_friend", "code_interaction"],
