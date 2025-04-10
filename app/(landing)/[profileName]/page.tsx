@@ -17,7 +17,7 @@ export async function generateMetadata({
   searchParams,
 }: {
   params: Promise<{ profileName: string }>;
-  searchParams: { referral: string } | undefined;
+  searchParams: Promise<{ referral: string }> | undefined;
 }): Promise<Metadata> {
   return {
     title: `${(await params).profileName}'s Referral Profile`,
@@ -25,8 +25,8 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       url: "https://friendscodes.app",
-      title: searchParams?.referral
-        ? `Use my "${searchParams.referral}" referral and get exclusive benefits!`
+      title: ((await searchParams)?.referral)
+        ? `Use my "${(await searchParams)?.referral}" referral and get exclusive benefits!`
         : `Use ${(await params).profileName}'s referral codes!`,
       description: `Both of you will earn cash and other rewards for using the referrals on ${(await params).profileName}'s profile!`,
       siteName: "FriendsCodes",
