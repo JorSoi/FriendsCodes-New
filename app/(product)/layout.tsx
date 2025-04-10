@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://friendscodes.de",
+    url: "https://friendscodes.app",
     title: "FriendsCodes - Earn from referral sharing!",
     description:
       "The easiest place to share and redeem product referrals with anyone. Collect benefits from 4000+ companies worldwide.",

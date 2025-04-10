@@ -8,6 +8,8 @@ import ReferralViewOnly from "./ReferralViewOnly";
 import CompanyLogo from "../CompanyLogo";
 import clsx from "clsx";
 import { createClient } from "@/utils/supabase/client";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 function ReferralCode({
   viewOnly = false,
@@ -15,19 +17,31 @@ function ReferralCode({
 }: UserCodeWithRelations & { viewOnly?: boolean }) {
   const { openModal, ...modalProps } = useModal();
   const supabase = createClient();
+  const searchParams = useSearchParams();
+
+  //Show referral immediately if referral-param specified in URL
+  useEffect(() => {
+    if (
+      viewOnly &&
+      searchParams.get("referral")?.toLowerCase() ===
+        code.companies.name.toLowerCase()
+    ) {
+      openModal();
+    }
+  }, []);
 
   return (
     <div
       onClick={async () => {
         openModal();
         if (viewOnly) {
-          const { data,error } = await supabase.rpc("increment_view_count", {
+          const { data, error } = await supabase.rpc("increment_view_count", {
             user_code_id: code.id,
           });
-          if(error){
-            console.log(error)
+          if (error) {
+            console.log(error);
           } else {
-            console.log(data)
+            console.log(data);
           }
         }
       }}
@@ -49,17 +63,11 @@ function ReferralCode({
       </div>
 
       {viewOnly ? (
-        <Modal
-          {...modalProps}
-          className="w-full max-w-[340px]"
-        >
+        <Modal {...modalProps} className="w-full max-w-[340px]">
           <ReferralViewOnly {...code} />
         </Modal>
       ) : (
-        <Modal
-          {...modalProps}
-          className="w-full max-w-[400px]"
-        >
+        <Modal {...modalProps} className="w-full max-w-[400px]">
           <ReferralUpdateForm {...code} />
         </Modal>
       )}
