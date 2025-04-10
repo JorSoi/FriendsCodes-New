@@ -1,16 +1,13 @@
-import { FormikHelpers } from "formik";
+import { FormikHelpers, FormikValues } from "formik";
 import * as Yup from "yup";
 import { Tables } from "./database.types";
 
 
 //Used to provide type safety for formik functionality in the Form Component. 
-export interface FormValues {
-  [key: string]: string; 
-}
 export interface FormProps {
-  initialValues: FormValues;
-  onSubmit: (values: FormValues, actions: FormikHelpers<FormValues>) => void;
-  validationSchema?: Yup.ObjectSchema<FormValues>;
+  initialValues: FormikValues;
+  onSubmit: (values: FormikValues, actions: FormikHelpers<FormikValues>) => void;
+  validationSchema?: Yup.ObjectSchema<FormikValues>;
   autoComplete?: "on" | "off",
   children: React.ReactNode;
 }

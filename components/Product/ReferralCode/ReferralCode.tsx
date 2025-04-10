@@ -10,6 +10,7 @@ import clsx from "clsx";
 import { createClient } from "@/utils/supabase/client";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
 
 function ReferralCode({
   viewOnly = false,
@@ -45,8 +46,17 @@ function ReferralCode({
           }
         }
       }}
-      className="group flex min-h-[130px] w-full cursor-pointer flex-col items-center justify-between rounded-lg border-1 border-[#ffffff10] bg-[#3e405b76] p-5 text-center transition-colors hover:bg-[#3e405bd9] lg:p-[10px] md:min-h-[120px] sm:rounded-md"
+      className="group relative flex min-h-[130px] w-full cursor-pointer flex-col items-center justify-between rounded-lg border-1 border-[#ffffff10] bg-[#3e405b76] p-5 text-center transition-colors hover:bg-[#3e405bd9] lg:p-[10px] md:min-h-[120px] sm:rounded-md"
     >
+      {code.pinned_at && (
+        <Image
+          src={"/icons/pinned.svg"}
+          width={18}
+          height={18}
+          alt="pin icon"
+          className="absolute right-2 top-2 opacity-40"
+        />
+      )}
       <div className="flex size-full flex-col items-center justify-center">
         <div
           className={clsx({
