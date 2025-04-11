@@ -11,6 +11,8 @@ import { TrackPageView } from "./TrackPageView";
 import EmptyState from "../../../components/Landing/[profileName]/EmptyState";
 import { Metadata } from "next";
 import image from "@/public/metadata/og-personal.png";
+import { Tables } from "@/types/database.types";
+import { compareDesc } from "date-fns";
 
 export async function generateMetadata({
   params,
@@ -25,7 +27,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       url: "https://friendscodes.app",
-      title: ((await searchParams)?.referral)
+      title: (await searchParams)?.referral
         ? `Use my "${(await searchParams)?.referral}" referral and get exclusive benefits!`
         : `Use ${(await params).profileName}'s referral codes!`,
       description: `Both of you will earn cash and other rewards for using the referrals on ${(await params).profileName}'s profile!`,
@@ -81,7 +83,16 @@ export default async function Page({
       .eq("user_id", profileOwner.id)
       .order("created_at", { ascending: false });
 
-    userCodes = userCodeData;
+    const pinnedCodes = (
+      userCodeData?.filter((code) => !!code.pinned_at) || []
+    ).sort((a: Tables<"user_codes">, b: Tables<"user_codes">) =>
+      compareDesc(new Date(a.pinned_at!), new Date(b.pinned_at!)),
+    );
+    const remainingCodes = userCodeData?.filter(
+      (userCodes) => !!!userCodes.pinned_at,
+    );
+
+    userCodes = [...(pinnedCodes || []), ...(remainingCodes || [])];
   }
 
   return (
