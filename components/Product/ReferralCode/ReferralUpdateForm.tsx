@@ -110,7 +110,7 @@ function ReferralUpdateForm({ ...code }: UserCodeWithRelations) {
               { "bg-[#434565]": isPinned },
             )}
             onClick={() => setIsPinned(!isPinned)}
-            data-umami-event="prod-share-referral"
+            data-umami-event="prod-pin-referral"
             data-umami-event-company-name={code.companies.name}
           >
             <Image
