@@ -121,6 +121,7 @@ export type Database = {
       notifications: {
         Row: {
           created_at: string
+          email_delivered: boolean
           id: number
           marked_as_read: boolean
           raw_notification_meta_data: Json | null
@@ -131,6 +132,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          email_delivered?: boolean
           id?: number
           marked_as_read?: boolean
           raw_notification_meta_data?: Json | null
@@ -141,6 +143,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          email_delivered?: boolean
           id?: number
           marked_as_read?: boolean
           raw_notification_meta_data?: Json | null
@@ -178,6 +181,7 @@ export type Database = {
           avatar_url: string | null
           created_at: string
           email: string | null
+          email_preferences: Json
           id: string
           last_activity_at: string | null
           user_name: string | null
@@ -187,6 +191,7 @@ export type Database = {
           avatar_url?: string | null
           created_at?: string
           email?: string | null
+          email_preferences?: Json
           id: string
           last_activity_at?: string | null
           user_name?: string | null
@@ -196,6 +201,7 @@ export type Database = {
           avatar_url?: string | null
           created_at?: string
           email?: string | null
+          email_preferences?: Json
           id?: string
           last_activity_at?: string | null
           user_name?: string | null
@@ -246,6 +252,13 @@ export type Database = {
             columns: ["company_id"]
             isOneToOne: false
             referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_codes_user_id_fkey1"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -309,6 +322,26 @@ export type Database = {
           instance: Json
         }
         Returns: string[]
+      }
+      retrieve_referrals_for_email_notification: {
+        Args: {
+          user_id: string
+        }
+        Returns: {
+          company_categories:
+            | Database["public"]["Enums"]["company_categories"][]
+            | null
+          company_description: string | null
+          company_url: string | null
+          created_at: string
+          id: number
+          logo_url: string | null
+          name: string
+          referral_sharing_reward: string | null
+          referral_usage_reward: string | null
+          spotlighted: boolean | null
+          status: Database["public"]["Enums"]["company_status"]
+        }[]
       }
     }
     Enums: {

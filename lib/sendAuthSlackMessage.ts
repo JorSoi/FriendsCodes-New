@@ -21,12 +21,10 @@ export const sendAuthSlackMessage = async (
       },
       {
         type: "section",
-        fields: [
-          {
-            type: "mrkdwn",
-            text: `*${username}* just registered via *${method}*`,
-          },
-        ],
+        text: {
+          type: "mrkdwn",
+          text: `<https://friendscodes.app/${username}|${username}> just registered via *${method}*`,
+        },
       },
     ],
   });
