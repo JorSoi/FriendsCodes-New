@@ -328,19 +328,10 @@ export type Database = {
           user_id: string
         }
         Returns: {
-          company_categories:
-            | Database["public"]["Enums"]["company_categories"][]
-            | null
-          company_description: string | null
-          company_url: string | null
-          created_at: string
-          id: number
-          logo_url: string | null
           name: string
-          referral_sharing_reward: string | null
-          referral_usage_reward: string | null
-          spotlighted: boolean | null
-          status: Database["public"]["Enums"]["company_status"]
+          logo_url: string
+          conversion_at: string
+          triggered_by: string
         }[]
       }
     }

@@ -1,3 +1,4 @@
+import verifyAPIRequest from "@/utils/verifyAPIRequest";
 import nodemailer from "nodemailer";
 import { Options } from "nodemailer/lib/mailer/index";
 
@@ -11,13 +12,9 @@ const transporter = nodemailer.createTransport({
 });
 
 export const POST = async (req: Request) => {
-  const authHeader = req.headers.get("authorization");
-  const verified =
-    authHeader &&
-    authHeader.startsWith("Bearer ") &&
-    authHeader.split(" ")[1] === process.env.API_ACCESS_TOKEN;
-  // Check if bearer token is correct, only then continue
-  if (!verified) {
+  try {
+    verifyAPIRequest(req);
+  } catch {
     return Response.json({ message: "Unauthorized" }, { status: 401 });
   }
 
