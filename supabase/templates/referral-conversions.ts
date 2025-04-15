@@ -1,4 +1,5 @@
 import { Tables } from "@/types/database.types";
+import getEnvRootURL from "@/utils/getEnvRootURL";
 import { format } from "date-fns";
 
 export const generateCodeConversionHTML = (
@@ -27,6 +28,7 @@ export const generateCodeConversionHTML = (
     <meta name="x-apple-disable-message-reformatting" content="" />
     <meta content="target-densitydpi=device-dpi" name="viewport" />
     <meta content="true" name="HandheldFriendly" />
+    <meta name="color-scheme" content="light">
     <meta content="width=device-width" name="viewport" />
     <meta
       name="format-detection"
@@ -678,7 +680,7 @@ export const generateCodeConversionHTML = (
                                                       color: #e900df;
                                                       mso-line-height-rule: exactly;
                                                     "
-                                                    >${convertedReferrals[0].name} </span
+                                                    >"${convertedReferrals[0].name}" </span
                                                   >${convertedReferrals.length > 1 
                                                     ? `+${convertedReferrals.length - 1} more referrals were` 
                                                     : ' referral was'}
@@ -910,7 +912,7 @@ export const generateCodeConversionHTML = (
                                               >
                                                 <a
                                                   class="t104"
-                                                  href="https://friendscodes.app/home"
+                                                  href="${getEnvRootURL()}/home?utm_source=email&utm_medium=notification&utm_campaign=referral-conversion"
                                                   style="
                                                     display: block;
                                                     margin: 0;
@@ -1161,7 +1163,7 @@ export const generateCodeConversionHTML = (
                                                                 "
                                                               >
                                                                 <a
-                                                                  href="whatsapp://send?text=Join me on FriendsCodes! Lets swap referral codes and unlock rewards together!:https://friendscodes.app/invitation?friend=${profile.user_name}"
+                                                                  href="whatsapp://send?text=Join me on FriendsCodes! Lets swap referral codes and unlock rewards together!:${getEnvRootURL()}/invitation?friend=${profile.user_name}"
                                                                   style="
                                                                     font-size: 0px;
                                                                   "
@@ -1227,7 +1229,7 @@ export const generateCodeConversionHTML = (
                                                                 "
                                                               >
                                                                 <a
-                                                                  href="https://reddit.com/submit?url=https://friendscodes.app/invitation?friend=${profile.user_name}&title=Join me on FriendsCodes! Lets swap referral codes and unlock rewards"
+                                                                  href="https://reddit.com/submit?url=${getEnvRootURL()}/invitation?friend=${profile.user_name}&title=Join me on FriendsCodes! Lets swap referral codes and unlock rewards"
                                                                   style="
                                                                     font-size: 0px;
                                                                   "
@@ -1293,7 +1295,7 @@ export const generateCodeConversionHTML = (
                                                                 "
                                                               >
                                                                 <a
-                                                                  href="http://twitter.com/share?text=Join me on FriendsCodes! Lets swap referral codes and unlock rewards&url=https://friendscodes.app/invitation?friend=${profile.user_name}&hashtags=referralCodes,referral,redeem"
+                                                                  href="http://twitter.com/share?text=Join me on FriendsCodes! Lets swap referral codes and unlock rewards&url=${getEnvRootURL()}/invitation?friend=${profile.user_name}&hashtags=referralCodes,referral,redeem"
                                                                   style="
                                                                     font-size: 0px;
                                                                   "
@@ -1371,7 +1373,7 @@ export const generateCodeConversionHTML = (
                                                                 "
                                                               >
                                                                 <a
-                                                                  href="https://www.facebook.com/sharer/sharer.php?u&quote=Join me on FriendsCodes! Lets swap referral codes and unlock rewards: https://friendscodes.app/invitation?friend=${profile.user_name}"
+                                                                  href="https://www.facebook.com/sharer/sharer.php?u&quote=Join me on FriendsCodes! Lets swap referral codes and unlock rewards: ${getEnvRootURL()}/invitation?friend=${profile.user_name}"
                                                                   style="
                                                                     font-size: 0px;
                                                                   "
@@ -1437,7 +1439,7 @@ export const generateCodeConversionHTML = (
                                                                 "
                                                               >
                                                                 <a
-                                                                  href="https://telegram.me/share/url?url=https://friendscodes.app/invitation?friend=${profile.user_name}&text=Join me on FriendsCodes! Lets swap referral codes and unlock rewards."
+                                                                  href="https://telegram.me/share/url?url=${getEnvRootURL()}/invitation?friend=${profile.user_name}&text=Join me on FriendsCodes! Lets swap referral codes and unlock rewards."
                                                                   style="
                                                                     font-size: 0px;
                                                                   "
@@ -1536,7 +1538,7 @@ export const generateCodeConversionHTML = (
                                                 >
                                                   <a
                                                     class="t164"
-                                                    href="https://friendscodes.app/email-list/notifications"
+                                                    href="${getEnvRootURL()}/email-preferences?uid=${profile.id}"
                                                     style="
                                                       margin: 0;
                                                       margin: 0;
@@ -1559,7 +1561,7 @@ export const generateCodeConversionHTML = (
                                                   >&nbsp; •&nbsp;
                                                   <a
                                                     class="t165"
-                                                    href="https://friendscodes.app/privacy-policy"
+                                                    href="${getEnvRootURL()}/privacy-policy"
                                                     style="
                                                       margin: 0;
                                                       margin: 0;

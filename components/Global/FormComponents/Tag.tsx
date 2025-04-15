@@ -43,7 +43,7 @@ function Tag({
       </p>
       <textarea
         className={cn(
-          "x absolute inset-0 resize-none overflow-hidden break-all rounded-xl border-1 border-[#5e6081] bg-[#434565] px-4 py-[7px] outline-none transition-all focus:cursor-auto focus:border-[#797A9C] focus:shadow-[0px_0px_0px_2px_#797A9C50] cursor-default opacity-100 text-white",
+          "absolute inset-0 resize-none overflow-hidden break-all rounded-xl border-1 border-[#5e6081] bg-[#434565] px-4 py-[7px] outline-none transition-all focus:cursor-auto focus:border-[#797A9C] focus:shadow-[0px_0px_0px_2px_#797A9C50] cursor-default opacity-100 text-white",
           emoji && "pl-9", isEditable && "hover:cursor-pointer"
         )}
         onChange={(e) => setValue(e.target.value)}

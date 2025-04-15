@@ -41,7 +41,7 @@ function NavBar() {
 
   return (
     <header className="fixed top-[30px] z-[9999] flex w-full items-center justify-center sm:top-[0px]">
-      <nav className="flex w-[90%] max-w-[880px] items-center justify-between gap-4 rounded-full border-2 border-[#ffffff16] bg-[#1d1d2f9e] px-[24px] py-[9px] backdrop-blur-xl sm:w-[100%] sm:rounded-none sm:border-x-0 sm:border-b-2 sm:border-t-0 sm:px-[3%] sm:py-[10px]">
+      <nav className="flex w-[90%] max-w-[880px] items-center justify-between gap-4 rounded-full border border-[#ffffff10] bg-[#21203d] px-[24px] py-[9px] sm:w-[100%] sm:rounded-none sm:border-x-0 sm:border-b-1 sm:border-t-0 sm:px-[3%] sm:py-[10px]">
         <div className="flex shrink-0 grow-[1] items-center justify-start sm:grow-0">
           <Image
             src="/logo.png"

@@ -1,6 +1,7 @@
 import { FormikHelpers, FormikValues } from "formik";
 import * as Yup from "yup";
 import { Database, Tables } from "./database.types";
+import { Ref } from "react";
 
 //Used to provide type safety for formik functionality in the Form Component.
 export interface FormProps {
@@ -11,6 +12,7 @@ export interface FormProps {
   ) => void;
   validationSchema?: Yup.ObjectSchema<FormikValues>;
   autoComplete?: "on" | "off";
+  enableReinitialize?: boolean;
   children: React.ReactNode;
 }
 
@@ -43,3 +45,12 @@ export type NotificationResults = {
   error?: string;
   convertedReferrals?: Database["public"]["Functions"]["retrieve_referrals_for_email_notification"]["Returns"];
 }[];
+
+export type EmailPreferences = {
+  referral_conversions: boolean;
+  friends: boolean;
+  product_updates: boolean;
+  misc: boolean;
+};
+
+export type SettingsSections = "account" | "preferences" | "billing";

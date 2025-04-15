@@ -54,7 +54,7 @@ export const GET = async (req: Request) => {
             status: "error",
             error:
               referralError?.message ??
-              "Only stale conversion notifications detected (older than 24h). This happens, when user deactivates the email_preference and reactivates it at a later time leaving intentionally undelivered codes that should not be considered for the newest  email notification delivery.",
+              "Detected undelivered conversion notifications. However those are stale conversion notifications (older than 24h). This happens, when user deactivates the email_preference and reactivates it at a later time leaving intentionally undelivered codes that should not be considered for the latest email notification delivery.",
           });
           continue;
         }
@@ -68,7 +68,7 @@ export const GET = async (req: Request) => {
           },
           body: JSON.stringify({
             to: profile.email,
-            subject: `Your ${convertedReferrals[0].name} referral was just used by someone!`,
+            subject: `Your "${convertedReferrals[0].name}" referral was just used by someone!`,
             html: generateCodeConversionHTML(convertedReferrals, profile),
           }),
         });

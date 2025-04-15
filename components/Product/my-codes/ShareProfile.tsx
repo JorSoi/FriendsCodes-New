@@ -13,6 +13,7 @@ import { useClipboard } from "@/hooks/useClipboard";
 import { shareSocials } from "@/lib/shareSocials";
 import { cn } from "@/utils/variants";
 import clsx from "clsx";
+import getEnvRootURL from "@/utils/getEnvRootURL";
 
 function ShareProfile({ className }: { className?: string }) {
   const { openModal, ...modalProps } = useModal();
@@ -20,7 +21,7 @@ function ShareProfile({ className }: { className?: string }) {
   const [profile, setProfile] = useState<Tables<"profiles"> | null>(null);
   const socials = shareSocials(
     "Take a look at my referral codes",
-    `${window.origin}/${profile?.user_name}`,
+    `${getEnvRootURL()}/${profile?.user_name}`,
   );
 
   useEffect(() => {
@@ -57,15 +58,15 @@ function ShareProfile({ className }: { className?: string }) {
             <Image src={"/logo.png"} width={50} height={50} alt="" />
             <h3 className="text-lg font-semibold">Share your profile!</h3>
             <p className="text-sm text-[#ffffff9f]">
-              Add the profile link to your social bios and invite friends
-              to use your referral codes!
+              Add the profile link to your social bios and invite friends to use
+              your referral codes!
             </p>
           </div>
 
           <Form
             onSubmit={() => {}}
             initialValues={{
-              profileLink: window.origin + `/${profile?.user_name}`,
+              profileLink: getEnvRootURL() + `/${profile?.user_name}`,
             }}
           >
             <div className="my-4 grid grid-cols-[repeat(auto-fit,minmax(60px,1fr))] gap-2">
@@ -95,7 +96,7 @@ function ShareProfile({ className }: { className?: string }) {
               name="profileLink"
               type="text"
               label="Or copy link"
-              value={window.origin + "/" + profile?.user_name || ""}
+              value={getEnvRootURL() + "/" + profile?.user_name || ""}
               readOnly
               className="border-[#ffffff50]"
             />
@@ -105,7 +106,7 @@ function ShareProfile({ className }: { className?: string }) {
               data-umami-event-via="link"
               data-umami-event-profile-name={`/${profile?.user_name}`}
               onClick={async () =>
-                writeText(`${window.origin}/${profile?.user_name}`)
+                writeText(`${getEnvRootURL()}/${profile?.user_name}`)
               }
             >
               {

@@ -180,30 +180,36 @@ export type Database = {
         Row: {
           avatar_url: string | null
           created_at: string
+          display_name: string | null
           email: string | null
           email_preferences: Json
           id: string
           last_activity_at: string | null
+          profile_description: string
           user_name: string | null
           visitor_count: number
         }
         Insert: {
           avatar_url?: string | null
           created_at?: string
+          display_name?: string | null
           email?: string | null
           email_preferences?: Json
           id: string
           last_activity_at?: string | null
+          profile_description?: string
           user_name?: string | null
           visitor_count?: number
         }
         Update: {
           avatar_url?: string | null
           created_at?: string
+          display_name?: string | null
           email?: string | null
           email_preferences?: Json
           id?: string
           last_activity_at?: string | null
+          profile_description?: string
           user_name?: string | null
           visitor_count?: number
         }
