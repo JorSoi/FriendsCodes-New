@@ -8,8 +8,6 @@ import getEnvRootURL from "@/utils/getEnvRootURL";
 export const GET = async (req: Request) => {
   const supabase = await createClient();
 
-  console.log(getEnvRootURL());
-
   try {
     verifyAPIRequest(req); // 🔐 API key verification
   } catch {

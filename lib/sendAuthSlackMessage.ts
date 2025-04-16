@@ -1,5 +1,6 @@
 "use server";
 
+import getEnvRootURL from "@/utils/getEnvRootURL";
 import { WebClient } from "@slack/web-api";
 
 export const sendAuthSlackMessage = async (
@@ -23,7 +24,7 @@ export const sendAuthSlackMessage = async (
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `<https://friendscodes.app/${username}|${username}> just registered via *${method}*`,
+          text: `<${getEnvRootURL()}/${username}|${username}> just registered via *${method}*`,
         },
       },
     ],

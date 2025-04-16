@@ -1,4 +1,4 @@
-// Returns correct root URL based on what env the code is built on. For anything outside of dev env we rely on vercel's own env variable to keep it as dynamic as possible.
+// Returns correct root URL based on what env the code is built on. For anything outside of dev env, we rely on vercel's own env variable to keep it as dynamic as possible.
 const getEnvRootURL = () => {
   if (process.env.NODE_ENV === "development") {
     return "http://localhost:3000";
