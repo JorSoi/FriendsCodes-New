@@ -8,11 +8,9 @@ import getEnvRootURL from "@/utils/getEnvRootURL";
 export const GET = async (req: Request) => {
   const supabase = await createClient();
 
-  try {
-    verifyAPIRequest(req); // 🔐 API key verification
-  } catch {
-    return Response.json({ message: "Unauthorized" }, { status: 401 });
-  }
+  const { verified, details } = verifyAPIRequest(req);
+  if (!verified)
+    return Response.json({ message: `Unauthorized: ${details}` }, { status: 401 });
 
   try {
     // 🧑‍💻 Fetch eligible profiles
