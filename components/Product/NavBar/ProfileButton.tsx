@@ -10,10 +10,14 @@ import { Tables } from "@/types/database.types";
 import { createClient } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { useModal } from "@/hooks/useModal";
+import Modal from "@/components/Global/Modal";
+import Settings from "../Settings/Settings";
 
 function ProfileButton() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [user, setUser] = useState<Tables<"profiles"> | null>();
+  const {openModal, ...modalProps} = useModal();
 
   const handleLogOut = async () => {
     const supabase = createClient();
@@ -57,7 +61,7 @@ function ProfileButton() {
         setIsVisible={setIsVisible}
         className="w-[200px] text-[14px] text-[#C0C1C5] sm:w-[unset] [&_img]:opacity-80"
       >
-        <HoverMenuItem key={1} className="flex cursor-auto gap-2">
+        <HoverMenuItem key={1} className="flex cursor-default gap-2  hover:bg-none!">
           <div className="flex size-10 items-center justify-center rounded-full bg-[#ffffff28]">
             <Image
               src={"/icons/user.svg"}
@@ -88,6 +92,17 @@ function ProfileButton() {
           </HoverMenuItem>
         </Link>
 
+        <HoverMenuItem key={3} className="flex gap-2" onClick={openModal}>
+            <Image
+              src={"/icons/gear.svg"}
+              width={19}
+              height={19}
+              alt="Bug"
+              draggable={false}
+            />
+            <p>Settings</p>
+          </HoverMenuItem>
+
         <Button
           size={"sm"}
           variant={"secondary"}
@@ -104,7 +119,7 @@ function ProfileButton() {
             className="select-none opacity-[50%] transition-all"
             draggable={false}
           />
-          Buy me a coffee
+          Support FriendsCodes
         </Button>
 
         <hr className="my-1 h-px border-0 bg-[#ffffff26]" />
@@ -120,6 +135,9 @@ function ProfileButton() {
           <p>Log out</p>
         </HoverMenuItem>
       </HoverMenu>
+      <Modal {...modalProps} className="w-full max-w-[700px] sm:m-0">
+        <Settings />
+      </Modal>
     </div>
   );
 }

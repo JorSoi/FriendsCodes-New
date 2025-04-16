@@ -15,6 +15,7 @@ function Form({
   initialValues,
   onSubmit,
   validationSchema,
+  enableReinitialize,
   autoComplete,
   children,
 }: FormProps) {
@@ -23,6 +24,7 @@ function Form({
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
+      enableReinitialize={enableReinitialize}
     >
       <FormikForm autoComplete={autoComplete}>{children}</FormikForm>
     </Formik>
