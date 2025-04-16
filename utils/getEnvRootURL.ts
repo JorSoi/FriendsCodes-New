@@ -2,7 +2,7 @@
 const getEnvRootURL = () => {
   if (process.env.NODE_ENV === "development") {
     return "http://localhost:3000";
-  } else if (process.env.VERCEL_ENV === "preview") {
+  } else if (process.env.NEXT_PUBLIC_VERCEL_ENV === "preview") {
     // For preview deployments
     return `https://staging.friendscodes.app`;
   } else {
