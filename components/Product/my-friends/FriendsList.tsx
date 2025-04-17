@@ -26,7 +26,6 @@ function FriendsList({ friendsList }: { friendsList: FriendWithCodes[] }) {
             ?.toLowerCase()
             .includes(searchValue);
 
-          console.log(hasMatchingUserName);
           if (hasMatchingCode.length > 0 || hasMatchingUserName) return true;
         });
 
