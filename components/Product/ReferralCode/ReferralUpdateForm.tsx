@@ -81,7 +81,7 @@ function ReferralUpdateForm({ ...code }: UserCodeWithRelations) {
   //Sets or removes pinned_at time from the usercode
   const determinePinnedAt = () => {
     if (!code.pinned_at && isPinned) {
-      return new Date().toLocaleString();
+      return new Date().toISOString();
     } else if (code.pinned_at && !isPinned) {
       return null;
     } else {
