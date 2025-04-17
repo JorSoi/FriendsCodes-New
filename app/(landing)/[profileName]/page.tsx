@@ -11,8 +11,7 @@ import { TrackPageView } from "./TrackPageView";
 import EmptyState from "../../../components/Landing/[profileName]/EmptyState";
 import { Metadata } from "next";
 import image from "@/public/metadata/og-personal.png";
-import { Tables } from "@/types/database.types";
-import { compareDesc } from "date-fns";
+import orderUserCodes from "@/utils/orderUserCodes";
 
 export async function generateMetadata({
   params,
@@ -83,16 +82,7 @@ export default async function Page({
       .eq("user_id", profileOwner.id)
       .order("created_at", { ascending: false });
 
-    const pinnedCodes = (
-      userCodeData?.filter((code) => !!code.pinned_at) || []
-    ).sort((a: Tables<"user_codes">, b: Tables<"user_codes">) =>
-      compareDesc(new Date(a.pinned_at!), new Date(b.pinned_at!)),
-    );
-    const remainingCodes = userCodeData?.filter(
-      (userCodes) => !!!userCodes.pinned_at,
-    );
-
-    userCodes = [...(pinnedCodes || []), ...(remainingCodes || [])];
+    userCodes = orderUserCodes(userCodeData);
   }
 
   return (

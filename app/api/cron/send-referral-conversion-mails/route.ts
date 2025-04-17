@@ -10,7 +10,10 @@ export const GET = async (req: Request) => {
 
   const { verified, details } = verifyAPIRequest(req);
   if (!verified)
-    return Response.json({ message: `Unauthorized: ${details}` }, { status: 401 });
+    return Response.json(
+      { message: `Unauthorized: ${details}` },
+      { status: 401 },
+    );
 
   try {
     // 🧑‍💻 Fetch eligible profiles

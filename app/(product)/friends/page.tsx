@@ -5,6 +5,7 @@ import FriendsList from "@/components/Product/my-friends/FriendsList";
 import Tab from "@/components/Product/Tab";
 import { FriendWithCodes } from "@/types/general.types";
 import { getServerProfile } from "@/utils/getServerProfile";
+import orderUserCodes from "@/utils/orderUserCodes";
 import { createClient } from "@/utils/supabase/server";
 import { PostgrestSingleResponse } from "@supabase/supabase-js";
 
@@ -17,7 +18,10 @@ async function Page() {
       current_user_id: user.id,
     })) as PostgrestSingleResponse<FriendWithCodes[]>;
     if (!error) {
-      friendsList = data;
+      //returning same data but with the correct order of referrals (pinned first)
+      friendsList = data.map((friend) => {
+        return { ...friend, user_codes: orderUserCodes(friend.user_codes) };
+      });
     } else {
       console.log(error);
     }
@@ -32,7 +36,7 @@ async function Page() {
         ) : (
           <EmptyState />
         )}
-        {friendsList.length > 0 && <ShareProfile /> }
+        {friendsList.length > 0 && <ShareProfile />}
       </CodeContainer>
     </div>
   );

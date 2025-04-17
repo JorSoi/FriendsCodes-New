@@ -12,11 +12,12 @@ const transporter = nodemailer.createTransport({
 });
 
 export const POST = async (req: Request) => {
-  try {
-    verifyAPIRequest(req);
-  } catch {
-    return Response.json({ message: "Unauthorized" }, { status: 401 });
-  }
+  const { verified, details } = verifyAPIRequest(req);
+  if (!verified)
+    return Response.json(
+      { message: `Unauthorized: ${details}` },
+      { status: 401 },
+    );
 
   const body: Options = await req.json();
 
